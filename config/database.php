@@ -52,6 +52,7 @@ return [
             'username' => env('DB_USERNAME', 'user'),
             'password' => env('DB_PASSWORD', 'pw'),
             'unix_socket' => env('DB_SOCKET', '/var/run/mysqld/mysqld.sock'),
+            // 'unix_socket' => env('UNIX_SOCKET', '/var/run/mysqld/mysqld.sock'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
