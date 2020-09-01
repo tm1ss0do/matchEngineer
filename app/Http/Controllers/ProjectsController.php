@@ -8,6 +8,6 @@ class ProjectsController extends Controller
 {
     //
     public function show_project_all(){
-      return view('projects.index');
+      return view('projects.all');
     }
 }

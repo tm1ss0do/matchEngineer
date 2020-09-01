@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/projects/all', 'ProjectsController@show_project_all')->name('project.all');
 //
 // Auth::routes();
 //
