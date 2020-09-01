@@ -1,2 +1,7 @@
+@extends('layouts.base')
+
+@section('content')
 ProjectsController
-indexページ
+indexページです
+
+@endsection
