@@ -1,7 +1,11 @@
 @extends('layouts.base')
 
+@section('title', '案件一覧')
+
 @section('content')
 ProjectsController
-indexページです
+project indexアクション
+案件一覧ページです。
+Homeでもあります。
 
 @endsection
