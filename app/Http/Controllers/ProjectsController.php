@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ProjectsController extends Controller
 {
     //
-    public function index(){
+    public function show_project_all(){
       return view('projects.index');
     }
 }
