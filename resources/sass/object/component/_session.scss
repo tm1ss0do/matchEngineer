@@ -1,0 +1,28 @@
+.c-session-msg{
+  height: $session-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-sub;
+  overflow: hidden;
+  position: fixed;
+  z-index: -10;
+  width: 100%;
+  animation: session 6s ease 1s 1;
+  transform: translateY( - $session-height );
+}
+
+@keyframes session {
+0% {
+ transform: translateY( - $session-height );
+}
+10%{
+  transform: translateY( 0 );
+}
+90%{
+  transform: translateY( 0 );
+}
+ 100% {
+ transform: translateY( - $session-height );
+ }
+}

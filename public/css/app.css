@@ -334,3 +334,154 @@ progress {
   cursor: default;
 }
 
+body {
+  font-family: "Sawarabi Gothic", sans-serif;
+}
+
+.l-footer {
+  background: #BCE0FD;
+  margin-top: auto;
+}
+
+.l-header {
+  background: #2699FB;
+  height: 56px;
+}
+
+.l-main__wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.c-title__header-link {
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  display: block;
+  line-height: 56px;
+}
+
+.c-title__header-link:hover {
+  text-decoration: underline;
+}
+
+.c-title__sub {
+  font-family: "Kokoro", sans-serif;
+}
+
+.c-header__container {
+  max-width: 1040px;
+  display: flex;
+  height: 56px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  background: #2699FB;
+  color: #FFFFFF;
+}
+
+.c-session-msg {
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #BCE0FD;
+  overflow: hidden;
+  position: fixed;
+  z-index: -10;
+  width: 100%;
+  -webkit-animation: session 6s ease 1s 1;
+          animation: session 6s ease 1s 1;
+  transform: translateY(-56px);
+}
+
+@-webkit-keyframes session {
+  0% {
+    transform: translateY(-56px);
+  }
+
+  10% {
+    transform: translateY(0);
+  }
+
+  90% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-56px);
+  }
+}
+
+@keyframes session {
+  0% {
+    transform: translateY(-56px);
+  }
+
+  10% {
+    transform: translateY(0);
+  }
+
+  90% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-56px);
+  }
+}
+
+.c-nav,
+.c-nav__right {
+  width: 100%;
+  display: flex;
+}
+
+.c-nav__right {
+  justify-content: flex-end;
+}
+
+.c-nav__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c-nav__item,
+.c-nav__item--small,
+.c-nav__item--top {
+  display: block;
+  text-align: center;
+  border-radius: 4px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: 0.2s;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.c-nav__item:hover,
+.c-nav__item--small:hover,
+.c-nav__item--top:hover {
+  background: #BCE0FD;
+  color: #707070;
+  transition: 0.2s;
+}
+
+.c-nav__item--top {
+  height: 56px;
+}
+
+.c-nav__item--small {
+  line-height: inherit;
+}
+
+.font__ss {
+  font-size: 14px;
+}
+
+.text-align__center {
+  text-align: center;
+}
+

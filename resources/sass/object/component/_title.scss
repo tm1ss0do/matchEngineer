@@ -1,0 +1,20 @@
+.c-title{
+
+  &__header-logo{
+    
+  }
+  &__header-link{
+    font-family: $font-family-logo;
+    text-decoration: none;
+    color: $color-white;
+    display: block;
+    line-height: $header-height;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  &__sub{
+    font-family: $font-family-sub;
+  }
+
+}

@@ -1,19 +1,67 @@
-// Body
-$body-bg: #fff;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-base: 'Sawarabi Gothic', sans-serif;
+$font-family-sub: "Kokoro", sans-serif;
+$font-family-logo: 'Montserrat', sans-serif;
+
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
+// height
+$header-height: 56px;
+$session-height: 56px;
+
+// width
+$max-width: 1040px;
+$mobile-width: 750px;
+
+// border-radius
+$radius-ss: 4px;
+
 // Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+
+$color-main: #2699FB;
+$color-sub: #BCE0FD;
+$color-black-main: #707070;
+$color-black-sub: #95989A;
+$color-white: #FFFFFF;
+$color-error: #fa4b51;
+
+// Font size
+$font-ss: 14px; //日付・サブ紹介文など
+$font-s: 16px; //通常の文章・<p>
+$font-m: 18px; //h3項目など
+$font-l: 24px; //1.5em
+$font-ll: 30px; //h1表題のサブタイトルなど
+$font-xl: 46px; //表題・サービスタイトルなど
+
+// スペース
+$spacing-0: 0;
+$spacing-half: 4px;
+$spacing-1: 8px;
+$spacing-2: 16px;
+$spacing-3: 24px;
+$spacing-4: 32px;
+$spacing-5: 48px;
+$spacing-6: 64px;
+$spacing-7: 96px;
+$spacing-8: 128px;
+$spacing-9: 192px;
+$spacing-10: 256px;
+
+// BreakPoint
+
+// 通常、変数として設定しておくと後々変更しやすくて便利
+//  !defaultはすでに変数に値が入っていた場合は何もせず、変数に値が入っていない時に割り当てられるもの
+// https://hail2u.net/blog/webdesign/how-to-use-bang-default-flag-in-sass-and-how-it-works.html
+//$breakpoint-sm: 400px !default;
+//$breakpoint-md: 768px !default;
+//$breakpoint-lg: 1000px !default;
+//
+// // マップ型変数を使うと便利
+// $breakpoints: (
+//   'sm': 'screen and (max-width: 414px)',
+//   'md': 'screen and (max-width: 768px)',
+//   'lg': 'screen and (max-width: 1000px)',
+//   'xl': 'screen and (max-width: 1200px)',
+// ) !default;

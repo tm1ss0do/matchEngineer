@@ -1,0 +1,40 @@
+.c-nav{
+  width: 100%;
+  display: flex;
+  &__right{
+    @extend .c-nav;
+    justify-content: flex-end;
+  }
+  &__container{
+    display: flex;
+    justify-content: space-between;
+  }
+  &__item{
+    display: block;
+    text-align: center;
+    border-radius: $radius-ss;
+    color: $color-white;
+    text-decoration: none;
+    transition: .2s;
+    padding: $spacing-1;
+    display: flex;
+    align-items: center;
+    &:hover{
+      background: $color-sub;
+      color: $color-black-main;
+      transition: .2s;
+    }
+    &--top{
+      @extend .c-nav__item;
+      height: $header-height;
+    }
+    &--small{
+      @extend .c-nav__item;
+      line-height: inherit;
+    }
+  }
+
+  // footer
+
+
+}
