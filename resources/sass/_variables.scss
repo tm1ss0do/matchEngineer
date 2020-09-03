@@ -1,23 +1,4 @@
-
-// Typography
-$font-family-base: 'Sawarabi Gothic', sans-serif;
-$font-family-sub: "Kokoro", sans-serif;
-$font-family-logo: 'Montserrat', sans-serif;
-
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
-
-// height
-$header-height: 56px;
-$session-height: 56px;
-
-// width
-$max-width: 1040px;
-$mobile-width: 750px;
-
-// border-radius
-$radius-ss: 4px;
-
+// ------------------------------------------------------
 // Colors
 
 $color-main: #2699FB;
@@ -25,17 +6,53 @@ $color-sub: #BCE0FD;
 $color-black-main: #707070;
 $color-black-sub: #95989A;
 $color-white: #FFFFFF;
-$color-error: #fa4b51;
+$color-emphasis: #fa4b51;
 
+// ------------------------------------------------------
 // Font size
 $font-ss: 14px; //日付・サブ紹介文など
-$font-s: 16px; //通常の文章・<p>
+$font-s: 16px; //通常の文章・<p>(1em相当)
 $font-m: 18px; //h3項目など
-$font-l: 24px; //1.5em
+$font-l: 24px; //ページタイトルなど(1.5em相当)
+
 $font-ll: 30px; //h1表題のサブタイトルなど
 $font-xl: 46px; //表題・サービスタイトルなど
 
-// スペース
+// $font-size-base: 0.9rem;
+// $line-height-base: 1.6;
+
+// ------------------------------------------------------
+// height
+
+// header
+$header-height: 56px;
+$session-height: 56px;
+
+
+$height-m: 50px; // topのボタン ・ prof-iconのサイズ
+
+
+// ------------------------------------------------------
+// width
+$max-width: 1040px;
+$mobile-width: 750px;
+
+$btn-width-medi: 200px;
+
+// ------------------------------------------------------
+// border-radius
+$radius-ss: 4px;
+
+
+// ------------------------------------------------------
+// Typography
+// $font-family-base: 'Sawarabi Gothic', sans-serif;
+$font-family-base: sans-serif;
+$font-family-sub: "Kokoro", sans-serif;
+$font-family-logo: 'Montserrat', sans-serif;
+
+// ------------------------------------------------------
+// space
 $spacing-0: 0;
 $spacing-half: 4px;
 $spacing-1: 8px;
@@ -49,19 +66,40 @@ $spacing-8: 128px;
 $spacing-9: 192px;
 $spacing-10: 256px;
 
-// BreakPoint
+// ------------------------------------------------------
+// padding
 
-// 通常、変数として設定しておくと後々変更しやすくて便利
-//  !defaultはすでに変数に値が入っていた場合は何もせず、変数に値が入っていない時に割り当てられるもの
-// https://hail2u.net/blog/webdesign/how-to-use-bang-default-flag-in-sass-and-how-it-works.html
-//$breakpoint-sm: 400px !default;
-//$breakpoint-md: 768px !default;
-//$breakpoint-lg: 1000px !default;
-//
-// // マップ型変数を使うと便利
-// $breakpoints: (
-//   'sm': 'screen and (max-width: 414px)',
-//   'md': 'screen and (max-width: 768px)',
-//   'lg': 'screen and (max-width: 1000px)',
-//   'xl': 'screen and (max-width: 1200px)',
-// ) !default;
+$padding-0: 0;
+$padding-ss: 4px;
+$padding-s: 8px;
+$padding-m: 16px;
+$padding-l: 24px;
+
+// ------------------------------------------------------
+// breakpoint
+
+//@media screen and (max-width: 414px){
+//  .btn{
+//    font-size: .7em;
+//  }
+//}
+// @include mq() {
+//     height: 60px;
+//     padding-right: $space_l;
+//     padding-left: $space_l;
+//   }
+
+// マップ型変数
+$breakpoints: (
+  'sm': 'screen and (max-width: 576px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 992px)',
+  'xl': 'screen and (max-width: 1200px)',
+) !default;
+
+// mixin
+@mixin mq($breakpoint: sm) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}

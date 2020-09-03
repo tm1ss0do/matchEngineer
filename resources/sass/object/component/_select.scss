@@ -1,0 +1,8 @@
+.c-select{
+  -moz-appearance: menulist;
+  -webkit-appearance: menulist;
+  padding: $padding-ss;
+  &::-ms-expand {
+    display: block;
+  }
+}

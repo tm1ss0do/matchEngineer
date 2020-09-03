@@ -1,0 +1,45 @@
+.c-card{
+  padding: $padding-s;
+  box-sizing: border-box;
+  border: 1px solid $color-black-sub;
+  border-radius: $radius-ss;
+  margin-bottom: $spacing-2;
+  &__header{
+    padding: $padding-ss;
+  }
+  &__title{
+    &--link{
+      color: $color-main;
+      &:hover{
+        color: $color-sub;
+      }
+    }
+  }
+  &__text-sub{
+    font-size: $font-ss;
+  }
+  &__text-emphasis{
+    color: $color-emphasis;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: $spacing-half;
+  }
+  &__body{
+    padding: $padding-ss;
+  }
+  &__status{
+    font-size: $font-ss;
+    display: inline-block;
+    margin-right: $spacing-half;
+    margin-bottom: $spacing-half;
+    border: 1px solid $color-black-sub;
+    border-radius: $radius-ss;
+    box-sizing: border-box;
+    padding: $padding-s $padding-m;
+  }
+  &__footer{
+    display: flex;
+    align-items: center;
+    padding: $padding-ss;
+  }
+}

@@ -1,0 +1,19 @@
+.c-img{
+  &__container{
+    text-align: center;
+    border: 1px solid #F5ECE7;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
+    &--mini{
+      @extend .c-img__container;
+      width: $height-m;
+      height: $height-m;
+    }
+  }
+  &__img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

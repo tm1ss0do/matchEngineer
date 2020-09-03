@@ -1,0 +1,9 @@
+.c-input{
+  &__text{
+    width: 100%;
+    padding: $padding-ss;
+  }
+  &__check{
+    margin-right: $spacing-1;
+  }
+}

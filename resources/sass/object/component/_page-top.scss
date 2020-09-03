@@ -1,0 +1,33 @@
+.c-page-top{
+  width: $height-m;
+  height: $height-m;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: $color-black-sub;
+  opacity: 0.6;
+  border-radius: 50%;
+}
+.c-page-top a{
+  position: relative;
+  display: block;
+  width: $height-m;
+  height: $height-m;
+  text-decoration: none;
+}
+.c-page-top a::before{
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f106';
+  font-size: $font-l;
+  color: $color-white;
+  position: absolute;
+  width: $height-m / 2;
+  height: $height-m / 2;
+  top: - $spacing-half;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}

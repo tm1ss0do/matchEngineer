@@ -1,0 +1,8 @@
+.c-icon{
+  display: flex;
+  align-items: center;
+  &__center{
+    justify-content: center;
+    padding: $padding-s;
+  }
+}

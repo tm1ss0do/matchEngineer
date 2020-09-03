@@ -12,11 +12,16 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.png') }}">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
 
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
 
 
     <!-- Styles -->
@@ -33,17 +38,38 @@
             <div class="c-nav__container">
               @auth
               <!-- ログインしていた場合 -->
-              <a class="c-nav__item--top" href="{{ url('/home') }}">Home</a>
-              <a class="c-nav__item--top" href="#">案件を探す</a>
-              <a class="c-nav__item--top" href="#">マイページ</a>
-              <a class="c-nav__item--top" href="#">依頼する</a>
+              <a class="c-nav__item--top" href="{{ url('/home') }}">
+                <i class="fas fa-home"></i>
+                Home
+              </a>
+              <a class="c-nav__item--top" href="#">
+                <i class="fas fa-clipboard-list"></i>
+                案件を探す
+              </a>
+              <a class="c-nav__item--top" href="#">
+                <i class="far fa-user"></i>
+                マイページ
+              </a>
+              <a class="c-nav__item--top" href="#">
+                <i class="far fa-handshake"></i>
+                依頼する
+              </a>
               @else
               <!-- ゲストの場合 -->
-              <a class="c-nav__item--top" href="#">案件を見てみる</a>
-              <a class="c-nav__item--top" href="{{ route('login') }}">Login</a>
+              <a class="c-nav__item--top" href="#">
+                <i class="fas fa-clipboard-list"></i>
+                案件を見てみる
+              </a>
+              <a class="c-nav__item--top" href="{{ route('login') }}">
+                <i class="fas fa-sign-in-alt"></i>
+                ログイン
+              </a>
 
                 @if (Route::has('register'))
-                <a class="c-nav__item--top" href="{{ route('register') }}">Register</a>
+                <a class="c-nav__item--top" href="{{ route('register') }}">
+                  <i class="fas fa-user-plus"></i>
+                  新規登録
+                </a>
                 @endif
 
               @endauth
@@ -65,31 +91,57 @@
     <div class="l-main__wrap">
       @yield('content')
     </div>
+
+    <div class="c-page-top"><a href="#"></a></div>
+
+
   </main>
+
   <footer class="l-footer">
     <nav class="c-nav">
         @if (Route::has('login'))
           <div class="c-nav__container">
             @auth
             <!-- ログインしていた場合 -->
-            <a class="c-nav__item--small" href="{{ url('/home') }}">Home</a>
-            <a class="c-nav__item--small" href="#">案件を探す</a>
-            <a class="c-nav__item--small" href="#">マイページ</a>
-            <a class="c-nav__item--small" href="#">依頼する</a>
+            <a class="c-nav__item--top" href="{{ url('/home') }}">
+              <i class="fas fa-home"></i>
+              Home
+            </a>
+            <a class="c-nav__item--small" href="#">
+              <i class="fas fa-clipboard-list"></i>
+              案件を探す
+            </a>
+            <a class="c-nav__item--small" href="#">
+              <i class="far fa-user"></i>
+              マイページ
+            </a>
+            <a class="c-nav__item--small" href="#">
+              <i class="far fa-handshake"></i>
+              依頼する
+            </a>
             @else
             <!-- ゲストの場合 -->
-            <a class="c-nav__item--small" href="#">案件を見てみる</a>
-            <a class="c-nav__item--small" href="{{ route('login') }}">Login</a>
+            <a class="c-nav__item--small" href="#">
+              <i class="fas fa-clipboard-list"></i>
+              案件を見てみる
+            </a>
+            <a class="c-nav__item--small" href="{{ route('login') }}">
+              <i class="fas fa-sign-in-alt"></i>
+              ログイン
+            </a>
 
               @if (Route::has('register'))
-              <a class="c-nav__item--small" href="{{ route('register') }}">Register</a>
+              <a class="c-nav__item--small" href="{{ route('register') }}">
+                <i class="fas fa-user-plus"></i>
+                新規登録
+              </a>
               @endif
 
             @endauth
           </div>
         @endif
     </nav>
-    <p class="text-align__center font__ss" >©︎webukatu,created by Tomomi Sasaki</p>
+    <p class="text-align__center font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
   </footer>
 </body>
 </html>

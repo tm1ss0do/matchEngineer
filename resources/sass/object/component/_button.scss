@@ -1,0 +1,19 @@
+.c-btn{
+  &__right{
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+  }
+  &__medi{
+    padding: $padding-s;
+    background: $color-main;
+    color: $color-white;
+    border-radius: $radius-ss;
+    min-width: $btn-width-medi;
+    text-align: center;
+    text-decoration: none;
+    &:hover{
+      background: $color-sub;
+    }
+  }
+}
