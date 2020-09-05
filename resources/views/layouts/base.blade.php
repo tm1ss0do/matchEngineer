@@ -28,12 +28,81 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-  <header class="l-header">
-    <div class="c-header__container">
-      <h1 class="c-title__header-logo">
-        <a class="c-title__header-link" href="#">match</a>
-      </h1>
-      <nav class="c-nav__right">
+  <div id="app">
+
+    <header id="header" class="l-header">
+      <div class="c-header__container">
+        <h1 class="c-title__header-logo">
+          <a class="c-title__header-link" href="#">match</a>
+        </h1>
+        <nav class="c-nav__right">
+            @if (Route::has('login'))
+              <div class="c-nav__container">
+                @auth
+                <!-- ログインしていた場合 -->
+                <a class="c-nav__item--top" href="{{ url('/home') }}">
+                  <i class="fas fa-home"></i>
+                  Home
+                </a>
+                <a class="c-nav__item--top" href="#">
+                  <i class="fas fa-clipboard-list"></i>
+                  案件を探す
+                </a>
+                <a class="c-nav__item--top" href="#">
+                  <i class="far fa-user"></i>
+                  マイページ
+                </a>
+                <a class="c-nav__item--top" href="#">
+                  <i class="far fa-handshake"></i>
+                  依頼する
+                </a>
+                @else
+                <!-- ゲストの場合 -->
+                <a class="c-nav__item--top" href="#">
+                  <i class="fas fa-clipboard-list"></i>
+                  案件を見てみる
+                </a>
+                <a class="c-nav__item--top" href="{{ route('login') }}">
+                  <i class="fas fa-sign-in-alt"></i>
+                  ログイン
+                </a>
+
+                  @if (Route::has('register'))
+                  <a class="c-nav__item--top" href="{{ route('register') }}">
+                    <i class="fas fa-user-plus"></i>
+                    新規登録
+                  </a>
+                  @endif
+
+                @endauth
+              </div>
+            @endif
+        </nav>
+      </div>
+      @if (session('status'))
+          <div class="c-session-msg">
+              {{ session('status') }}
+              例文メッセージです：登録しました！
+          </div>
+      @endif
+    </header>
+
+
+
+    <main id="main" class="l-main">
+      <div class="l-main__wrap">
+        @yield('content')
+      </div>
+
+      <pagetop-component></pagetop-component>
+
+      <!-- <div class="c-page-top"><a href="#"></a></div> -->
+
+
+    </main>
+
+    <footer class="l-footer">
+      <nav class="c-nav">
           @if (Route::has('login'))
             <div class="c-nav__container">
               @auth
@@ -42,31 +111,31 @@
                 <i class="fas fa-home"></i>
                 Home
               </a>
-              <a class="c-nav__item--top" href="#">
+              <a class="c-nav__item--small" href="#">
                 <i class="fas fa-clipboard-list"></i>
                 案件を探す
               </a>
-              <a class="c-nav__item--top" href="#">
+              <a class="c-nav__item--small" href="#">
                 <i class="far fa-user"></i>
                 マイページ
               </a>
-              <a class="c-nav__item--top" href="#">
+              <a class="c-nav__item--small" href="#">
                 <i class="far fa-handshake"></i>
                 依頼する
               </a>
               @else
               <!-- ゲストの場合 -->
-              <a class="c-nav__item--top" href="#">
+              <a class="c-nav__item--small" href="#">
                 <i class="fas fa-clipboard-list"></i>
                 案件を見てみる
               </a>
-              <a class="c-nav__item--top" href="{{ route('login') }}">
+              <a class="c-nav__item--small" href="{{ route('login') }}">
                 <i class="fas fa-sign-in-alt"></i>
                 ログイン
               </a>
 
                 @if (Route::has('register'))
-                <a class="c-nav__item--top" href="{{ route('register') }}">
+                <a class="c-nav__item--small" href="{{ route('register') }}">
                   <i class="fas fa-user-plus"></i>
                   新規登録
                 </a>
@@ -76,72 +145,8 @@
             </div>
           @endif
       </nav>
-    </div>
-    @if (session('status'))
-        <div class="c-session-msg">
-            {{ session('status') }}
-            例文メッセージです：登録しました！
-        </div>
-    @endif
-  </header>
-
-
-
-  <main class="l-main">
-    <div class="l-main__wrap">
-      @yield('content')
-    </div>
-
-    <div class="c-page-top"><a href="#"></a></div>
-
-
-  </main>
-
-  <footer class="l-footer">
-    <nav class="c-nav">
-        @if (Route::has('login'))
-          <div class="c-nav__container">
-            @auth
-            <!-- ログインしていた場合 -->
-            <a class="c-nav__item--top" href="{{ url('/home') }}">
-              <i class="fas fa-home"></i>
-              Home
-            </a>
-            <a class="c-nav__item--small" href="#">
-              <i class="fas fa-clipboard-list"></i>
-              案件を探す
-            </a>
-            <a class="c-nav__item--small" href="#">
-              <i class="far fa-user"></i>
-              マイページ
-            </a>
-            <a class="c-nav__item--small" href="#">
-              <i class="far fa-handshake"></i>
-              依頼する
-            </a>
-            @else
-            <!-- ゲストの場合 -->
-            <a class="c-nav__item--small" href="#">
-              <i class="fas fa-clipboard-list"></i>
-              案件を見てみる
-            </a>
-            <a class="c-nav__item--small" href="{{ route('login') }}">
-              <i class="fas fa-sign-in-alt"></i>
-              ログイン
-            </a>
-
-              @if (Route::has('register'))
-              <a class="c-nav__item--small" href="{{ route('register') }}">
-                <i class="fas fa-user-plus"></i>
-                新規登録
-              </a>
-              @endif
-
-            @endauth
-          </div>
-        @endif
-    </nav>
-    <p class="text-align__center font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
-  </footer>
+      <p class="text-align__center font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
+    </footer>
+  </div>
 </body>
 </html>
