@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'test1',
             'email' => 'test1@example.com',
             'delete_flg' => '0',
-
+            'self_introduction'=> '自己紹介文',
             'password' => bcrypt('password'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
