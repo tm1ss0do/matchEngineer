@@ -23,5 +23,8 @@ class UsersTableSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+
+        //factoryを使ってダミーデータ
+        factory(App\User\::class, 10)->create();
     }
 }
