@@ -8,6 +8,19 @@
   案件一覧ページです。
   Homeでもあります。 -->
 
+    <!-- <ul> -->
+      <!-- @foreach ( $users as $user ) -->
+
+      <!-- <li>{{ $user->name }}</li> -->
+      <!-- @endforeach -->
+
+    <!-- </ul> -->
+
+    <project-component
+    :users = "{{ $users }}"
+    >
+    </project-component>
+
   <!-- search -->
   <section class="p-search">
     <div class="c-search__container--border">

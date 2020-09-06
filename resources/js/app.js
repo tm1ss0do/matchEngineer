@@ -24,6 +24,7 @@ var VueScrollTo = require('vue-scrollto');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('pagetop-component', require('./components/PagetopComponent.vue').default);
+Vue.component('project-component', require('./components/ProjectComponent.vue').default);
 
 
 
