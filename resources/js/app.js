@@ -10,6 +10,10 @@ window.Vue = require('vue');
 
 var VueScrollTo = require('vue-scrollto');
 // Vue.use(VueScrollTo)
+// import VuePaginate from 'vue-paginate';
+// Vue.use(VuePaginate);
+var Paginate = require('vuejs-paginate');
+Vue.component('paginate', Paginate);
 
 /**
  * The following block of code may be used to automatically register your
@@ -25,6 +29,9 @@ var VueScrollTo = require('vue-scrollto');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('pagetop-component', require('./components/PagetopComponent.vue').default);
 Vue.component('project-component', require('./components/ProjectComponent.vue').default);
+Vue.component('project-list', require('./components/ProjectList.vue').default);
+Vue.component('search-component', require('./components/SearchComponent.vue').default);
+Vue.component('pagination-component', require('./components/PaginationComponent.vue').default);
 
 
 
@@ -37,3 +44,16 @@ Vue.component('project-component', require('./components/ProjectComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
+/*
+<ul>
+  <project-component></project-component>
+  <paginate name="paginate-log" :list="logs" :per="5">
+      <li v-for="log in paginated('paginate-log')">
+        {{ log.id }}: {{ log.name }}
+      </li>
+  </paginate>
+</ul>
+<paginate-links for="paginate-log" class="pagination" :show-step-links="true"></paginate-links> -
+*/

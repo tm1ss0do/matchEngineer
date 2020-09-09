@@ -16,10 +16,10 @@
 
     <!-- </ul> -->
 
-    <project-component
-    :users = "{{ $users }}"
-    >
-    </project-component>
+
+    <project-list>
+  </project-list>
+
 
   <!-- search -->
   <section class="p-search">
