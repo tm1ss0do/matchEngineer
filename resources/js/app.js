@@ -56,4 +56,26 @@ const app = new Vue({
   </paginate>
 </ul>
 <paginate-links for="paginate-log" class="pagination" :show-step-links="true"></paginate-links> -
+
+
+
+
+<pagination-component
+  :data="data"
+  v-model="page"
+  :length="length">
+</pagination-component>
+
+<project-component
+    :data = "data"
+></project-component>
+
+
+      <ul v-for="project in getItems">
+        <li>
+          {{ project.id }}:
+          {{ project.name }}
+        </li>
+      </ul>
+
 */

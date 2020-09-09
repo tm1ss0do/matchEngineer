@@ -1989,16 +1989,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['data'],
   data: function data() {
     return {
       projects: [],
-      // page: 1, //表示中のページ番号
-      // length: 3, //表示するページリンクの上限
-      // :total-visible="10" //表示されるページボタンの最大数
       parPage: 1,
       //1ページに表示する件数
       currentPage: 1 //現在のページ番号
@@ -2042,6 +2037,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2108,25 +2104,103 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
   data: function data() {
     return {
       data: [],
       //projectのデータ一覧(json形式で取得)
+      sliceData: [],
       loading: true,
       errored: false,
-      page: 1,
-      //表示中のページ番号
-      length: 3,
-      //表示するページリンクの上限
       from: "",
-      //一覧の開始
+      //表示している件数の最初の番号
       to: "",
-      //一覧の終了
-      total: "" //件数
+      //表示している件数の最後の番号
+      total: "",
+      //該当の全件数
+      currentPage: 1,
+      //現在のページ番号
+      parPage: 3 //1ページに表示する件数
 
     };
+  },
+  methods: {
+    clickCallback: function clickCallback(pageNum) {
+      //ページネーション のページ番号が押されたときの処理
+      this.currentPage = Number(pageNum); //現在のページのアイテムを返す
+
+      var current = this.currentPage * this.parPage;
+      console.log('current:' + current);
+      var start = current - this.parPage;
+      console.log('start:' + start); //表示件数の始め
+
+      this.from = start + 1; //表示件数の終わり
+
+      if (current > this.total) {
+        this.to = this.total;
+      } else {
+        this.to = current;
+      } // console.log(this.data.slice(start, current));
+
+
+      this.sliceData = this.data.slice(start, current);
+    }
+  },
+  computed: {
+    // getItems: function() { //現在のページのアイテムを返す
+    // let current = this.currentPage * this.parPage;
+    // console.log('current:' + current);
+    // let start = current - this.parPage;
+    // console.log('start:' + start);
+    //表示件数の始め
+    // this.from = start + 1;
+    // //表示件数の終わり
+    // if( current > this.total ){
+    //   this.to = this.total;
+    // }else{
+    //   this.to = current;
+    // }
+    // // console.log(this.data.slice(start, current));
+    // return this.data.slice(start, current);
+    // },
+    getPageCount: function getPageCount() {
+      //総ページ数を返す・初期処理
+      //初期処理ーーーーーー
+      //現在のページのアイテムを返す
+      //表示件数の終わり
+      var current = this.currentPage * this.parPage;
+
+      if (current > this.total) {
+        this.to = this.total;
+      } else {
+        this.to = current;
+      } //表示件数の始め
+
+
+      var start = current - this.parPage;
+      this.from = start + 1; //初期表示データ
+
+      this.sliceData = this.data.slice(start, current); //ーーーーーーーーーーーー
+      //総ページ数を返すーーーーーー
+
+      var numberOfProjects = Object.keys(this.data).length; //該当の全件数
+
+      this.total = numberOfProjects;
+      var totalPage = Math.ceil(numberOfProjects / this.parPage);
+      console.log('totalPage:' + totalPage); //総ページ返却
+
+      return totalPage; //ーーーーーーーーーーーー
+    }
   },
   mounted: function mounted() {
     var self = this;
@@ -37850,47 +37924,8 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {},
-    [
-      _vm._v('\n   v-model="page" :length="length" :total-visible="10"\n\n   '),
-      _vm._l(_vm.getItems, function(project) {
-        return _c("ul", [
-          _c("li", [
-            _vm._v(
-              "\n       " +
-                _vm._s(project.id) +
-                ":\n       " +
-                _vm._s(project.name) +
-                "\n     "
-            )
-          ])
-        ])
-      }),
-      _vm._v(" "),
-      _c("paginate", {
-        attrs: {
-          "page-count": _vm.getPageCount,
-          "page-range": 3,
-          "margin-pages": 2,
-          "click-handler": _vm.clickCallback,
-          "prev-text": "＜",
-          "next-text": "＞",
-          "container-class": "pagination",
-          "page-class": "page-item"
-        }
-      })
-    ],
-    2
-  )
-}
+var render = function () {}
 var staticRenderFns = []
-render._withStripped = true
 
 
 
@@ -37915,7 +37950,7 @@ var render = function() {
     "div",
     { staticClass: "card-body" },
     [
-      _vm._v("\n  Project Compoent.\n  "),
+      _vm._v("\n  Project Compoent.\n\n  "),
       _vm._l(_vm.data, function(project) {
         return _c("ul", [
           _c("li", [
@@ -37956,7 +37991,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {}, [
-    _vm._v("\n  I'm an ProjectList Compoent.\n  \n\n  "),
+    _vm._v("\n  I'm an ProjectList Compoent.\n\n\n  "),
     _vm.errored
       ? _c("section", [
           _c("p", [
@@ -37984,22 +38019,20 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("pagination-component", {
-                    attrs: {
-                      data: _vm.data,
-                      length: _vm.length,
-                      "total-visible": 10
-                    },
-                    model: {
-                      value: _vm.page,
-                      callback: function($$v) {
-                        _vm.page = $$v
-                      },
-                      expression: "page"
-                    }
-                  }),
+                  _c("project-component", { attrs: { data: _vm.sliceData } }),
                   _vm._v(" "),
-                  _c("project-component", { attrs: { data: _vm.data } })
+                  _c("paginate", {
+                    attrs: {
+                      "page-count": _vm.getPageCount,
+                      "page-range": 3,
+                      "margin-pages": 1,
+                      "click-handler": _vm.clickCallback,
+                      "prev-text": "＜",
+                      "next-text": "＞",
+                      "container-class": "c-pagination",
+                      "page-class": "c-pagination__item"
+                    }
+                  })
                 ],
                 1
               )
@@ -50811,6 +50844,28 @@ var app = new Vue({
   </paginate>
 </ul>
 <paginate-links for="paginate-log" class="pagination" :show-step-links="true"></paginate-links> -
+
+
+
+
+<pagination-component
+  :data="data"
+  v-model="page"
+  :length="length">
+</pagination-component>
+
+<project-component
+    :data = "data"
+></project-component>
+
+
+      <ul v-for="project in getItems">
+        <li>
+          {{ project.id }}:
+          {{ project.name }}
+        </li>
+      </ul>
+
 */
 
 /***/ }),
@@ -51143,14 +51198,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/components/ProjectList.vue ***!
   \*************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProjectList_vue_vue_type_template_id_236eb2bc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectList.vue?vue&type=template&id=236eb2bc& */ "./resources/js/components/ProjectList.vue?vue&type=template&id=236eb2bc&");
 /* harmony import */ var _ProjectList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectList.vue?vue&type=script&lang=js& */ "./resources/js/components/ProjectList.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ProjectList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ProjectList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -51180,7 +51236,7 @@ component.options.__file = "resources/js/components/ProjectList.vue"
 /*!**************************************************************************!*\
   !*** ./resources/js/components/ProjectList.vue?vue&type=script&lang=js& ***!
   \**************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -2,6 +2,7 @@
 
 <div class="card-body">
   Project Compoent.
+
   <ul v-for="project in data">
     <li>
       {{ project.id }}:

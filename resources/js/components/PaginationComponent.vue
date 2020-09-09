@@ -1,8 +1,6 @@
 <template>
-
+//破棄予定
   <div class="">
-     v-model="page" :length="length" :total-visible="10"
-
      <ul v-for="project in getItems">
        <li>
          {{ project.id }}:
@@ -12,12 +10,12 @@
      <paginate
        :page-count="getPageCount"
        :page-range="3"
-       :margin-pages="2"
+       :margin-pages="1"
        :click-handler="clickCallback"
        :prev-text="'＜'"
        :next-text="'＞'"
-       :container-class="'pagination'"
-       :page-class="'page-item'">
+       :container-class="'c-pagination'"
+       :page-class="'c-pagination__item'">
      </paginate>
 
   </div>
@@ -29,9 +27,6 @@
         data: function() {
             return {
                 projects: [],
-                // page: 1, //表示中のページ番号
-                // length: 3, //表示するページリンクの上限
-                // :total-visible="10" //表示されるページボタンの最大数
                 parPage: 1, //1ページに表示する件数
                 currentPage: 1 //現在のページ番号
             }
