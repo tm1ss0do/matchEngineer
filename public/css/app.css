@@ -377,6 +377,10 @@ body {
   background: #BCE0FD;
 }
 
+.c-btn__submit {
+  background: #95989A;
+}
+
 .c-title__header-link {
   font-family: "Montserrat", sans-serif;
   text-decoration: none;

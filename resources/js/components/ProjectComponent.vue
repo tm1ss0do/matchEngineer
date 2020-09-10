@@ -1,9 +1,13 @@
 <template>
 
 <div class="card-body">
-  Project Compoent.
 
-  <ul v-for="project in data">
+  <section v-if="searchNotFlg" >
+    <p>
+    該当の情報が見つかりません。他の単語でお試しください。
+    </p>
+  </section>
+  <ul v-for="project in getItems">
     <li>
       {{ project.id }}:
       {{ project.name }}
@@ -15,9 +19,9 @@
 
 <script>
 export default {
-  props: ['data'],
+  props: ['getItems','searchNotFlg'],
     mounted() {
-        console.log('Component mounted.')
+        console.log('Project mounted.')
     }
 }
 </script>

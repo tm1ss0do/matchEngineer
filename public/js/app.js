@@ -2052,10 +2052,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['data'],
+  props: ['getItems', 'searchNotFlg'],
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log('Project mounted.');
   }
 });
 
@@ -2113,15 +2117,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: [],
   data: function data() {
     return {
       data: [],
       //projectのデータ一覧(json形式で取得)
       sliceData: [],
+      //ページネーション表示用データを格納
+      filterData: [],
+      //検索表示用データを格納
       loading: true,
       errored: false,
+      searchNotFlg: false,
+      //検索結果フラグ
       from: "",
       //表示している件数の最初の番号
       to: "",
@@ -2130,19 +2140,19 @@ __webpack_require__.r(__webpack_exports__);
       //該当の全件数
       currentPage: 1,
       //現在のページ番号
-      parPage: 3 //1ページに表示する件数
+      parPage: 2 //1ページに表示する件数
 
     };
   },
   methods: {
-    clickCallback: function clickCallback(pageNum) {
-      //ページネーション のページ番号が押されたときの処理
+    paginateCallback: function paginateCallback(pageNum) {
+      //ページネーションのページ番号が押されたときの処理
       this.currentPage = Number(pageNum); //現在のページのアイテムを返す
 
-      var current = this.currentPage * this.parPage;
-      console.log('current:' + current);
-      var start = current - this.parPage;
-      console.log('start:' + start); //表示件数の始め
+      var current = this.currentPage * this.parPage; // console.log('current:' + current);
+
+      var start = current - this.parPage; // console.log('start:' + start);
+      //表示件数の始め
 
       this.from = start + 1; //表示件数の終わり
 
@@ -2150,63 +2160,93 @@ __webpack_require__.r(__webpack_exports__);
         this.to = this.total;
       } else {
         this.to = current;
-      } // console.log(this.data.slice(start, current));
+      } //dataの該当箇所のみ表示
+      // console.log(this.data.slice(start, current));
 
 
-      this.sliceData = this.data.slice(start, current);
+      if (this.searchNotFlg) {
+        //検索結果がなかった場合
+        this.sliceData = this.data.slice(start, current);
+      } else {
+        //検索結果があった場合
+        this.sliceData = this.filterData.slice(start, current);
+      }
+    },
+    searchProject: function searchProject(searchData) {
+      //現在のページを設定
+      this.currentPage = 1; //検索結果のデータをfilterDataに格納
+      // console.log('emitで来たsearchData：' + searchData);
+
+      var filtered = this.data.filter(function (project) {
+        return String(project.name).match(searchData);
+      }); //検索結果数
+
+      var numberOfFilterData = Object.keys(filtered).length;
+
+      if (numberOfFilterData) {
+        //検索結果があった場合)(検索結果を表示)
+        this.searchNotFlg = false;
+        this.filterData = filtered;
+      } else {
+        //検索結果がなかった場合(メッセージを表示・全件のデータを格納)
+        this.searchNotFlg = true;
+        this.filterData = this.data;
+      }
     }
   },
   computed: {
-    // getItems: function() { //現在のページのアイテムを返す
-    // let current = this.currentPage * this.parPage;
-    // console.log('current:' + current);
-    // let start = current - this.parPage;
-    // console.log('start:' + start);
-    //表示件数の始め
-    // this.from = start + 1;
-    // //表示件数の終わり
-    // if( current > this.total ){
-    //   this.to = this.total;
-    // }else{
-    //   this.to = current;
-    // }
-    // // console.log(this.data.slice(start, current));
-    // return this.data.slice(start, current);
-    // },
-    getPageCount: function getPageCount() {
-      //総ページ数を返す・初期処理
-      //初期処理ーーーーーー
+    getItems: function getItems() {
       //現在のページのアイテムを返す
-      //表示件数の終わり
-      var current = this.currentPage * this.parPage;
+      var current = this.currentPage * this.parPage; // console.log('current:' + current);
+
+      var start = current - this.parPage; // console.log('start:' + start);
+      // 表示件数の始め
+
+      this.from = start + 1; //表示件数の終わり
 
       if (current > this.total) {
         this.to = this.total;
       } else {
         this.to = current;
-      } //表示件数の始め
+      } //検索していた場合、表示データ(useData)としてfilterDataを格納
 
 
-      var start = current - this.parPage;
-      this.from = start + 1; //初期表示データ
+      if (this.searchNotFlg) {
+        //検索結果がない
+        var useData = this.data;
+      } else {
+        var useData = this.filterData;
+      } //console.log(this.data.slice(start, current));
 
-      this.sliceData = this.data.slice(start, current); //ーーーーーーーーーーーー
-      //総ページ数を返すーーーーーー
 
-      var numberOfProjects = Object.keys(this.data).length; //該当の全件数
+      return useData.slice(start, current);
+    },
+    getPageCount: function getPageCount() {
+      //総ページ数を返す
+      //検索していた場合、表示データ(useData)としてfilterDataを格納
+      if (this.searchNotFlg) {
+        //検索結果がない
+        var useData = this.data;
+      } else {
+        var useData = this.filterData;
+      } //console.log(this.data.slice(start, current));
+      //該当の全件数
 
+
+      var numberOfProjects = Object.keys(useData).length;
       this.total = numberOfProjects;
-      var totalPage = Math.ceil(numberOfProjects / this.parPage);
-      console.log('totalPage:' + totalPage); //総ページ返却
+      var totalPage = Math.ceil(numberOfProjects / this.parPage); //総ページ返却
 
-      return totalPage; //ーーーーーーーーーーーー
+      return totalPage;
     }
   },
   mounted: function mounted() {
+    //非同期通信を使い、json形式で該当の情報を取得
     var self = this;
-    var url = '/projects/json';
+    var url = '/projects/json'; //取得対象をdataに格納
+
     axios.get(url).then(function (response) {
-      return self.data = response.data;
+      return self.data = response.data, self.filterData = response.data;
     })["catch"](function (error) {
       console.log(error);
       self.errored = true;
@@ -2244,15 +2284,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: [],
+  props: ['data'],
   data: function data() {
     return {
-      // projects: [],
-      loading: true,
-      errored: false // paginate: ['paginate-log'],
-
+      searchText: "",
+      searchType: "",
+      searchStatus: ""
     };
+  },
+  computed: {},
+  methods: {
+    clickSearch: function clickSearch(event) {
+      event.preventDefault();
+      var searchData = {};
+      searchData['searchText'] = this.searchText;
+      searchData['searchType'] = this.searchType;
+      searchData['searchStatus'] = this.searchStatus; //console.log('searchData:' + searchData['searchType']);
+      //console.log('searchData:' + searchData['searchStatus']);
+
+      this.$emit("search", this.searchText);
+    }
   },
   mounted: function mounted() {}
 });
@@ -37924,8 +37985,46 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {},
+    [
+      _vm._l(_vm.getItems, function(project) {
+        return _c("ul", [
+          _c("li", [
+            _vm._v(
+              "\n       " +
+                _vm._s(project.id) +
+                ":\n       " +
+                _vm._s(project.name) +
+                "\n     "
+            )
+          ])
+        ])
+      }),
+      _vm._v(" "),
+      _c("paginate", {
+        attrs: {
+          "page-count": _vm.getPageCount,
+          "page-range": 3,
+          "margin-pages": 1,
+          "click-handler": _vm.clickCallback,
+          "prev-text": "＜",
+          "next-text": "＞",
+          "container-class": "c-pagination",
+          "page-class": "c-pagination__item"
+        }
+      })
+    ],
+    2
+  )
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 
@@ -37950,8 +38049,17 @@ var render = function() {
     "div",
     { staticClass: "card-body" },
     [
-      _vm._v("\n  Project Compoent.\n\n  "),
-      _vm._l(_vm.data, function(project) {
+      _vm.searchNotFlg
+        ? _c("section", [
+            _c("p", [
+              _vm._v(
+                "\n    該当の情報が見つかりません。他の単語でお試しください。\n    "
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.getItems, function(project) {
         return _c("ul", [
           _c("li", [
             _vm._v(
@@ -37991,7 +38099,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {}, [
-    _vm._v("\n  I'm an ProjectList Compoent.\n\n\n  "),
+    _vm._v("\n  I'm an ProjectList Compoent.\n\n  "),
     _vm.errored
       ? _c("section", [
           _c("p", [
@@ -38006,7 +38114,14 @@ var render = function() {
             : _c(
                 "div",
                 [
-                  _c("search-component"),
+                  _c("search-component", {
+                    attrs: { data: _vm.data },
+                    on: {
+                      search: function($event) {
+                        return _vm.searchProject($event)
+                      }
+                    }
+                  }),
                   _vm._v(" "),
                   _c("p", [
                     _vm._v(
@@ -38019,14 +38134,19 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("project-component", { attrs: { data: _vm.sliceData } }),
+                  _c("project-component", {
+                    attrs: {
+                      getItems: _vm.getItems,
+                      searchNotFlg: _vm.searchNotFlg
+                    }
+                  }),
                   _vm._v(" "),
                   _c("paginate", {
                     attrs: {
                       "page-count": _vm.getPageCount,
                       "page-range": 3,
-                      "margin-pages": 1,
-                      "click-handler": _vm.clickCallback,
+                      "margin-pages": 2,
+                      "click-handler": _vm.paginateCallback,
                       "prev-text": "＜",
                       "next-text": "＞",
                       "container-class": "c-pagination",
@@ -38061,19 +38181,148 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card-body" }, [
-    _vm.errored
-      ? _c("section", [
-          _c("p", [
-            _vm._v(
-              "\n    該当の情報が見つかりません。他の単語でお試しください。\n    "
-            )
-          ])
+  return _c("section", { staticClass: "p-search" }, [
+    _c("form", { attrs: { action: "", method: "post" } }, [
+      _c("div", { staticClass: "c-search__container--border" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.searchText,
+              expression: "searchText"
+            }
+          ],
+          staticClass: "c-input__text",
+          attrs: { type: "text", placeholder: "案件を検索する 例：デザイナー" },
+          domProps: { value: _vm.searchText },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.searchText = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-search__container" }, [
+        _c("div", { staticClass: "c-search__item--border" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchType,
+                  expression: "searchType"
+                }
+              ],
+              staticClass: "c-select",
+              attrs: { name: "" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.searchType = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("全ての案件種別")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "revenue" } }, [
+                _vm._v("レベニューシェア")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "single" } }, [_vm._v("単発")])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "c-search__item" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.searchStatus,
+                expression: "searchStatus"
+              }
+            ],
+            staticClass: "c-input__check",
+            attrs: {
+              type: "checkbox",
+              name: "recruiting",
+              value: "recruiting"
+            },
+            domProps: {
+              checked: Array.isArray(_vm.searchStatus)
+                ? _vm._i(_vm.searchStatus, "recruiting") > -1
+                : _vm.searchStatus
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.searchStatus,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "recruiting",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.searchStatus = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.searchStatus = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.searchStatus = $$c
+                }
+              }
+            }
+          }),
+          _vm._v("募集中のみ表示\n      ")
         ])
-      : _c("section", [_vm._v("\n  Search \n  ")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "c-btn__submit",
+          attrs: { type: "submit", name: "search" },
+          on: { click: _vm.clickSearch }
+        },
+        [_vm._v("検索")]
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "c-icon__center" }, [
+      _c("i", { staticClass: "fas fa-search" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -51198,15 +51447,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/components/ProjectList.vue ***!
   \*************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProjectList_vue_vue_type_template_id_236eb2bc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectList.vue?vue&type=template&id=236eb2bc& */ "./resources/js/components/ProjectList.vue?vue&type=template&id=236eb2bc&");
 /* harmony import */ var _ProjectList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectList.vue?vue&type=script&lang=js& */ "./resources/js/components/ProjectList.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ProjectList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ProjectList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -51236,7 +51484,7 @@ component.options.__file = "resources/js/components/ProjectList.vue"
 /*!**************************************************************************!*\
   !*** ./resources/js/components/ProjectList.vue?vue&type=script&lang=js& ***!
   \**************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

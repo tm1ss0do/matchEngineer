@@ -1,5 +1,5 @@
+<-- 破棄予定 -->
 <template>
-//破棄予定
   <div class="">
      <ul v-for="project in getItems">
        <li>
