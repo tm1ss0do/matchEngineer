@@ -4,7 +4,7 @@
 
   <section v-if="searchNotFlg" >
     <p>
-    該当の情報が見つかりません。他の単語でお試しください。
+    該当の情報が見つかりません。条件や単語を変えてお試しください。
     </p>
   </section>
   <ul v-for="project in getItems">
