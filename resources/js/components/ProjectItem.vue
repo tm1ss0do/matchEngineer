@@ -3,7 +3,7 @@
 <li class="">
   ProjectItem
   {{ project.id }}:
-  {{ project.name }}
+  {{ project.project_title }}
 </li>
 </template>
 

@@ -9,14 +9,14 @@
   Homeでもあります。 -->
 
     <!-- <ul> -->
-      <!-- @foreach ( $users as $user ) -->
+      <!-- @foreach ( $projects as $project ) -->
 
-      <!-- <li>{{ $user->name }}</li> -->
-      <!-- <li>{{!! $user->self_introduction !!}}</li> -->
+      <!-- <li>{{ $project->id }}</li> -->
+      <!-- <li>{{!! $project->project_title !!}}</li> -->
 
       <!-- @endforeach -->
 
-    </ul>
+    <!-- </ul> -->
     <project-list>
   </project-list>
 

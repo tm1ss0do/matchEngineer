@@ -99,7 +99,9 @@
               {
                 //console.log('searchText:'+ searchData['searchText']);
                 var filterData = this.data.filter(function(project){
-                   return String(project.name).match(searchData['searchText']);
+                // project.nameならできるけど、
+                // projectの中身全ての文字列からマッチするものを探すってどうするの？
+                   return String(project.project_title).match(searchData['searchText']);
                 });
               }else{
                 var filterData = this.data;
@@ -108,9 +110,8 @@
               //ステータスが"true"に絞られていた場合(募集中の案件のみ表示)
               if(searchData['searchStatus'])
               {
-              console.log('searchStatus Push!');
                var filterData = filterData.filter(function(project){
-                   return String(project.name).match('野村');
+                   return project.project_status;
                });
               }
 
@@ -123,10 +124,10 @@
                   // return String(project.name).match('野村');
                   if(searchType === 'revenue'){
                     console.log('revenue!!!');
-                    return String(project.name).match('晃');
+                    return String(project.project_type).match('revenue');
                   }else if(searchType === 'single'){
                     console.log('single!!');
-                    return String(project.name).match('くみ子');
+                    return String(project.project_type).match('single');
                   }
                });
               }
@@ -144,7 +145,7 @@
               this.filterData = this.data;
             }
             //==============================================
-            
+
             //検索結果に合致するデータを返す
             return filterData;
 

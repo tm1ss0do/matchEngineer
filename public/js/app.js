@@ -2206,7 +2206,9 @@ __webpack_require__.r(__webpack_exports__);
       if (searchData['searchText']) {
         //console.log('searchText:'+ searchData['searchText']);
         var filterData = this.data.filter(function (project) {
-          return String(project.name).match(searchData['searchText']);
+          // project.nameならできるけど、
+          // projectの中身全ての文字列からマッチするものを探すってどうするの？
+          return String(project.project_title).match(searchData['searchText']);
         });
       } else {
         var filterData = this.data;
@@ -2214,9 +2216,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (searchData['searchStatus']) {
-        console.log('searchStatus Push!');
         var filterData = filterData.filter(function (project) {
-          return String(project.name).match('野村');
+          return project.project_status;
         });
       } //種別が指定されていた場合
 
@@ -2228,10 +2229,10 @@ __webpack_require__.r(__webpack_exports__);
           // return String(project.name).match('野村');
           if (searchType === 'revenue') {
             console.log('revenue!!!');
-            return String(project.name).match('晃');
+            return String(project.project_type).match('revenue');
           } else if (searchType === 'single') {
             console.log('single!!');
-            return String(project.name).match('くみ子');
+            return String(project.project_type).match('single');
           }
         });
       } //==============================================
@@ -38159,7 +38160,7 @@ var render = function() {
       "\n  ProjectItem\n  " +
         _vm._s(_vm.project.id) +
         ":\n  " +
-        _vm._s(_vm.project.name) +
+        _vm._s(_vm.project.project_title) +
         "\n"
     )
   ])
