@@ -8,10 +8,9 @@
     </p>
   </section>
   <ul v-for="project in getItems">
-    <li>
-      {{ project.id }}:
-      {{ project.name }}
-    </li>
+    <project-item
+    :project="project"
+    ></project-item>
   </ul>
 
 </div>
