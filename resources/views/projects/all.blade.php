@@ -12,9 +12,11 @@
       <!-- @foreach ( $users as $user ) -->
 
       <!-- <li>{{ $user->name }}</li> -->
+      <!-- <li>{{!! $user->self_introduction !!}}</li> -->
+
       <!-- @endforeach -->
 
-    <!-- </ul> -->
+    </ul>
     <project-list>
   </project-list>
 
