@@ -15,8 +15,6 @@
       <!-- @endforeach -->
 
     <!-- </ul> -->
-
-
     <project-list>
   </project-list>
 

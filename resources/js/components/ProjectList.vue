@@ -91,59 +91,48 @@
           searchProject: function(searchData){
             //現在のページを設定
             this.currentPage = 1;
-            //検索結果のデータをfilterDataに格納
 
-            //console.log('emitで来たsearchData：' + searchData);
-            //var searchText = searchData['searchText'];
-            //console.log('searchText:'+ searchData['searchText']);
+            //検索で一致するデータを filterData に格納=======================
 
-            //var filterData = [];
+              //文字検索があった場合
+              if(searchData['searchText'])
+              {
+                //console.log('searchText:'+ searchData['searchText']);
+                var filterData = this.data.filter(function(project){
+                   return String(project.name).match(searchData['searchText']);
+                });
+              }else{
+                var filterData = this.data;
+              }
 
-            //データから一致するデータを取得
-            //ステータスが"true"だった場合
-            //if(searchData['searchStatus'])
-            //{
-            //  var filterData = this.data.filter(function(project){
-            //      var filterData = String(project.id).match(1);
-            //      console.log('filterData:'+filterData);
-            //      //return filterData;
-            //  });
-            //}else{
-            //  var filterData = this.data;
-            //}
+              //ステータスが"true"に絞られていた場合(募集中の案件のみ表示)
+              if(searchData['searchStatus'])
+              {
+              console.log('searchStatus Push!');
+               var filterData = filterData.filter(function(project){
+                   return String(project.name).match('野村');
+               });
+              }
 
-            //検索文字があった場合
-            if(searchData['searchText'])
-            {
-              console.log('searchText:'+ searchData['searchText']);
+              //種別が指定されていた場合
+              if(searchData['searchType'])
+              {
+              var searchType = searchData['searchType'];
+              console.log('searchType：' + searchData['searchType']);
+               var filterData = filterData.filter(function(project){
+                  // return String(project.name).match('野村');
+                  if(searchType === 'revenue'){
+                    console.log('revenue!!!');
+                    return String(project.name).match('晃');
+                  }else if(searchType === 'single'){
+                    console.log('single!!');
+                    return String(project.name).match('くみ子');
+                  }
+               });
+              }
+            //==============================================
 
-              var filterData = this.data.filter(function(project){
-                 return String(project.name).match(searchData['searchText']);
-              });
-              console.log( 'filterData:' + filterData);
-            }else{
-              var filterData = this.data;
-            }
-
-
-            //var filtered = searchData.filter(function(project){
-
-              //検索文字があった場合
-              //if(searchData['searchText']){
-              //  var matchData = String(project.name).match(searchData['searchText']);
-              //}
-
-              //種別が検索されていた場合
-
-              //console.log('textMatch:'+ textMatch);
-
-              //return String(project.name).match(searchText);
-              //return matchData;
-            //});
-
-
-
-            //検索結果数
+            //検索結果数=======================
             var numberOfFilterData = Object.keys(filterData).length;
             if(numberOfFilterData){
               //検索結果があった場合)(検索結果を表示)
@@ -154,7 +143,8 @@
               this.searchNotFlg = true;
               this.filterData = this.data;
             }
-
+            //==============================================
+            
             //検索結果に合致するデータを返す
             return filterData;
 
