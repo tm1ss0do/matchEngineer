@@ -48,7 +48,8 @@
             //console.log('searchData:' + searchData['searchType']);
             //console.log('searchData:' + searchData['searchStatus']);
 
-            this.$emit("search", this.searchText);
+            //this.$emit("search", this.searchText);
+            this.$emit("search", searchData);
           }
         },
         mounted () {

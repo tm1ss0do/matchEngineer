@@ -92,21 +92,72 @@
             //現在のページを設定
             this.currentPage = 1;
             //検索結果のデータをfilterDataに格納
-            // console.log('emitで来たsearchData：' + searchData);
-            var filtered = this.data.filter(function(project){
-              return String(project.name).match(searchData);
-            });
+
+            //console.log('emitで来たsearchData：' + searchData);
+            //var searchText = searchData['searchText'];
+            //console.log('searchText:'+ searchData['searchText']);
+
+            //var filterData = [];
+
+            //データから一致するデータを取得
+            //ステータスが"true"だった場合
+            //if(searchData['searchStatus'])
+            //{
+            //  var filterData = this.data.filter(function(project){
+            //      var filterData = String(project.id).match(1);
+            //      console.log('filterData:'+filterData);
+            //      //return filterData;
+            //  });
+            //}else{
+            //  var filterData = this.data;
+            //}
+
+            //検索文字があった場合
+            if(searchData['searchText'])
+            {
+              console.log('searchText:'+ searchData['searchText']);
+
+              var filterData = this.data.filter(function(project){
+                 return String(project.name).match(searchData['searchText']);
+              });
+              console.log( 'filterData:' + filterData);
+            }else{
+              var filterData = this.data;
+            }
+
+
+            //var filtered = searchData.filter(function(project){
+
+              //検索文字があった場合
+              //if(searchData['searchText']){
+              //  var matchData = String(project.name).match(searchData['searchText']);
+              //}
+
+              //種別が検索されていた場合
+
+              //console.log('textMatch:'+ textMatch);
+
+              //return String(project.name).match(searchText);
+              //return matchData;
+            //});
+
+
+
             //検索結果数
-            var numberOfFilterData = Object.keys(filtered).length;
+            var numberOfFilterData = Object.keys(filterData).length;
             if(numberOfFilterData){
               //検索結果があった場合)(検索結果を表示)
               this.searchNotFlg = false;
-              this.filterData = filtered;
+              this.filterData = filterData;
             }else{
               //検索結果がなかった場合(メッセージを表示・全件のデータを格納)
               this.searchNotFlg = true;
               this.filterData = this.data;
             }
+
+            //検索結果に合致するデータを返す
+            return filterData;
+
           }
         },
         computed: {
