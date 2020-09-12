@@ -97,11 +97,16 @@
               //文字検索があった場合
               if(searchData['searchText'])
               {
-                //console.log('searchText:'+ searchData['searchText']);
                 var filterData = this.data.filter(function(project){
-                // project.nameならできるけど、
-                // projectの中身全ての文字列からマッチするものを探すってどうするの？
-                   return String(project.project_title).match(searchData['searchText']);
+                // titleMatchData：project_titleに合致するもの
+                var titleMatchData = String(project.project_title).match(searchData['searchText']);
+
+                // detailMatchData：project_detail_descに合致するもの
+                var detailMatchData = String(project.project_detail_desc).match(searchData['searchText']);
+
+                // project_detail_desc または project_title に合致するデータを返却
+                var MatchTextData = titleMatchData || detailMatchData;
+                return MatchTextData;
                 });
               }else{
                 var filterData = this.data;
