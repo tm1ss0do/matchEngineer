@@ -38170,9 +38170,11 @@ var render = function() {
         _vm._s(_vm.project.project_title) +
         "\n  "
     ),
-    _c("a", { attrs: { href: "/project/" + _vm.project.user_id } }, [
-      _vm._v(_vm._s(_vm.project.user_id))
-    ])
+    _c(
+      "a",
+      { attrs: { href: "/projects/" + _vm.project.user_id + "/profile" } },
+      [_vm._v(_vm._s(_vm.project.user_id))]
+    )
   ])
 }
 var staticRenderFns = []

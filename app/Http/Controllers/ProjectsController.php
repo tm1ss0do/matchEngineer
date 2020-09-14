@@ -37,9 +37,14 @@ class ProjectsController extends Controller
       return $projects;
     }
 
-    public function show_profile($id){
+    public function profile($id){
       // 渡されたidにしたがって、userのprofileページを表示
-      
+      if(!ctype_digit($id)){
+        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+        }
+
+        $user = User::find($id);
+        return view('users.profile', compact('user'));
     }
 
 }

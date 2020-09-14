@@ -2,5 +2,6 @@
   "現在、この情報を取得できません。しばらくしてからもう一度お試しください": "We're sorry, we're not able to retrieve this information at the moment, please try back later",
     "準備中": "Loading",
     "Category": "カテゴリー",
-    "Problem": "問題"
+    "Problem": "問題",
+    "Invalid operation was performed.": "不正な値です。"
 }
