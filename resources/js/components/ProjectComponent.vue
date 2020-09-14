@@ -10,6 +10,7 @@
   <ul v-for="project in getItems">
     <project-item
     :project="project"
+    :url = "url"
     ></project-item>
   </ul>
 
@@ -18,7 +19,7 @@
 
 <script>
 export default {
-  props: ['getItems','searchNotFlg'],
+  props: ['getItems','searchNotFlg','url'],
     mounted() {
         console.log('Project mounted.')
     }

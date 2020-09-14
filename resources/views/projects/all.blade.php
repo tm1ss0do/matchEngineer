@@ -16,8 +16,8 @@
       <!-- @endforeach -->
 
     <!-- </ul> -->
-    <project-list>
-  </project-list>
+    <project-list
+    url="{{ url('/') }}"></project-list>
 
 
   <!-- search -->

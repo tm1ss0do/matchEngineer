@@ -21,6 +21,7 @@
       <p>{{ from }} 〜 {{ to }}件 / {{ total }}件中</p>
 
       <project-component
+      :url = "url"
       :getItems = "getItems"
       :searchNotFlg = "searchNotFlg"
       ></project-component>
@@ -45,6 +46,7 @@
 
 <script>
     export default {
+        props: ['url'],
         data: function() {
             return {
                 data: [], //projectのデータ一覧(json形式で取得)
