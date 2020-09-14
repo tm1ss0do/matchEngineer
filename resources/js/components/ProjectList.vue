@@ -2,7 +2,6 @@
 
 <div class="">
   I'm an ProjectList Compoent.
-
   <section v-if="errored">
     <p>
     現在、この情報を取得できません。しばらくしてからもう一度お試しください
@@ -160,6 +159,8 @@
         },
         computed: {
             getItems: function() { //現在のページのアイテムを返す
+              console.log(this.data);
+
                 let current = this.currentPage * this.parPage;
                 // console.log('current:' + current);
                 let start = current - this.parPage;

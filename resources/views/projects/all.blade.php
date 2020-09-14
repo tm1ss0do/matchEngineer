@@ -8,14 +8,15 @@
   案件一覧ページです。
   Homeでもあります。 -->
 
-    <!-- <ul> -->
-      <!-- @foreach ( $projects as $project ) -->
+    <ul>
+      @foreach ( $projects as $project )
 
-      <!-- <li>{{ $project }}</li> -->
+      <li>{{ $project->user_id }}</li>
+      <li>{{ $project->user->name }}</li>
 
-      <!-- @endforeach -->
+      @endforeach
 
-    <!-- </ul> -->
+    </ul>
     <project-list
     url="{{ url('/') }}"></project-list>
 

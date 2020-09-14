@@ -2147,7 +2147,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url'],
   data: function data() {
@@ -2266,6 +2265,7 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     getItems: function getItems() {
       //現在のページのアイテムを返す
+      console.log(this.data);
       var current = this.currentPage * this.parPage; // console.log('current:' + current);
 
       var start = current - this.parPage; // console.log('start:' + start);
@@ -38173,7 +38173,7 @@ var render = function() {
     _c(
       "a",
       { attrs: { href: "/projects/" + _vm.project.user_id + "/profile" } },
-      [_vm._v(_vm._s(_vm.project.user_id))]
+      [_vm._v(_vm._s(_vm.project.user.name))]
     )
   ])
 }
@@ -38200,7 +38200,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {}, [
-    _vm._v("\n  I'm an ProjectList Compoent.\n\n  "),
+    _vm._v("\n  I'm an ProjectList Compoent.\n  "),
     _vm.errored
       ? _c("section", [
           _c("p", [
