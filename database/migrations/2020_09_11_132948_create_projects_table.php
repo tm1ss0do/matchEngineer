@@ -22,7 +22,6 @@ class CreateProjectsTable extends Migration
             $table->integer('project_max_amount')->nullable();
             $table->integer('project_mini_amount')->nullable();
             $table->string('project_detail_desc',2000);
-            $table->unsignedBigInteger('applicant_id');
             $table->timestamps();
         });
     }

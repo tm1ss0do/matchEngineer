@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Project;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,5 +20,10 @@ class User extends Authenticatable
         'name', 'email', 'password', 'profile_icon', 'self_introduction', 'delete_flg'
     ];
 
-    
+   //  public function projects()
+   // {
+   //     return $this->hasMany('App\Project');
+   // }
+
+
 }

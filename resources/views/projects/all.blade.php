@@ -9,9 +9,9 @@
   Homeでもあります。 -->
 
     <!-- <ul> -->
-      <!-- @foreach ( $users as $user ) -->
+      <!-- @foreach ( $projects as $project ) -->
 
-      <!-- <li>{{ $users }}</li> -->
+      <!-- <li>{{ $project }}</li> -->
 
       <!-- @endforeach -->
 

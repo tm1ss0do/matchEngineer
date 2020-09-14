@@ -13,6 +13,14 @@ class ProjectsController extends Controller
       // $users = User::all();
       // return view('projects.all', ['users' => $users ]);
 
+
+      // $user1Projects = User::find(1)->projects;
+      //
+      // foreach ($user1Project as $user1Project) {
+      //     //
+      //     $projects = $user1Project;
+      // }
+
       $projects = Project::all();
       // $users = User::find(1);
       // return view('projects.all', ['projects' => $projects ]);
