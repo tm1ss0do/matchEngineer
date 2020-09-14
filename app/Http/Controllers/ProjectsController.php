@@ -14,7 +14,9 @@ class ProjectsController extends Controller
       // return view('projects.all', ['users' => $users ]);
 
       $projects = Project::all();
-      return view('projects.all', ['projects' => $projects ]);
+      // $users = User::find(1);
+      // return view('projects.all', ['projects' => $projects ]);
+      return view('projects.all', compact('projects'));
 
     }
 
