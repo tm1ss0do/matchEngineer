@@ -20,10 +20,10 @@ class User extends Authenticatable
         'name', 'email', 'password', 'profile_icon', 'self_introduction', 'delete_flg'
     ];
 
-   //  public function projects()
-   // {
-   //     return $this->hasMany('App\Project');
-   // }
+    public function projects()
+   {
+       return $this->hasMany('App\Project');
+   }
 
 
 }

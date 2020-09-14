@@ -2055,8 +2055,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['getItems', 'searchNotFlg'],
+  props: ['getItems', 'searchNotFlg', 'url'],
   mounted: function mounted() {
     console.log('Project mounted.');
   }
@@ -2082,8 +2083,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['project'],
+  props: ['project', 'url'],
   mounted: function mounted() {
     console.log('ProjectItem mounted.');
   }
@@ -2145,7 +2147,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url'],
   data: function data() {
     return {
       data: [],
@@ -38128,7 +38132,7 @@ var render = function() {
       _vm._l(_vm.getItems, function(project) {
         return _c(
           "ul",
-          [_c("project-item", { attrs: { project: project } })],
+          [_c("project-item", { attrs: { project: project, url: _vm.url } })],
           1
         )
       })
@@ -38164,8 +38168,11 @@ var render = function() {
         _vm._s(_vm.project.id) +
         ":\n  " +
         _vm._s(_vm.project.project_title) +
-        "\n"
-    )
+        "\n  "
+    ),
+    _c("a", { attrs: { href: "/project/" + _vm.project.user_id } }, [
+      _vm._v(_vm._s(_vm.project.user_id))
+    ])
   ])
 }
 var staticRenderFns = []
@@ -38228,6 +38235,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("project-component", {
                     attrs: {
+                      url: _vm.url,
                       getItems: _vm.getItems,
                       searchNotFlg: _vm.searchNotFlg
                     }

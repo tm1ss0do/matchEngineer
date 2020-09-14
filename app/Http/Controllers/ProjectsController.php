@@ -33,7 +33,13 @@ class ProjectsController extends Controller
       // return $users;
 
       $projects = Project::all();
+      // $projects = User::find(1)->projects;
       return $projects;
+    }
+
+    public function show_profile($id){
+      // 渡されたidにしたがって、userのprofileページを表示
+      
     }
 
 }
