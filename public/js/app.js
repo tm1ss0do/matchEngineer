@@ -1922,7 +1922,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       DatePickerFormat: 'yyyy-MM-dd',
-      ja: vuejs_datepicker_dist_locale__WEBPACK_IMPORTED_MODULE_1__["ja"]
+      ja: vuejs_datepicker_dist_locale__WEBPACK_IMPORTED_MODULE_1__["ja"],
+      disabledDates: {
+        to: new Date() //本日以前の日付は選択不可
+
+      }
     };
   },
   components: {
@@ -38031,6 +38035,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("datepicker", {
     attrs: {
+      "disabled-dates": _vm.disabledDates,
       format: _vm.DatePickerFormat,
       "bootstrap-styling": true,
       language: _vm.ja,
