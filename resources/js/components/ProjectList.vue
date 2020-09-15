@@ -39,7 +39,6 @@
     </div>
 
   </section>
-
 </section>
 </template>
 
@@ -59,7 +58,6 @@
                 total: "",//該当の全件数
                 currentPage: 1, //現在のページ番号
                 parPage: 2, //1ページに表示する件数
-
             }
         },
         methods: {
