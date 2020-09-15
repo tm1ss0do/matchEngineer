@@ -19,6 +19,12 @@ Vue.component('paginate', Paginate);
 var moment = require('vue-moment');
 Vue.use(moment);
 
+// import Datepicker from "vuejs-datepicker";
+
+// var datepicker = require('vuejs-datepicker');
+// Vue.component(datepicker);
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
