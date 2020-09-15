@@ -1,6 +1,6 @@
 <template>
 
-<div class="">
+<section class="p-projects__list">
   I'm an ProjectList Compoent.
   <section v-if="errored">
     <p>
@@ -40,7 +40,7 @@
 
   </section>
 
-</div>
+</section>
 </template>
 
 <script>
@@ -159,7 +159,6 @@
         },
         computed: {
             getItems: function() { //現在のページのアイテムを返す
-              console.log(this.data);
 
                 let current = this.currentPage * this.parPage;
                 // console.log('current:' + current);

@@ -2084,6 +2084,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['project', 'url'],
   mounted: function mounted() {
@@ -2265,7 +2293,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     getItems: function getItems() {
       //現在のページのアイテムを返す
-      console.log(this.data);
       var current = this.currentPage * this.parPage; // console.log('current:' + current);
 
       var start = current - this.parPage; // console.log('start:' + start);
@@ -38131,7 +38158,7 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.getItems, function(project) {
         return _c(
-          "ul",
+          "div",
           [_c("project-item", { attrs: { project: project, url: _vm.url } })],
           1
         )
@@ -38162,22 +38189,83 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", {}, [
-    _vm._v(
-      "\n  ProjectItem\n  " +
-        _vm._s(_vm.project.id) +
-        ":\n  " +
-        _vm._s(_vm.project.project_title) +
-        "\n  "
-    ),
-    _c(
-      "a",
-      { attrs: { href: "/projects/" + _vm.project.user_id + "/profile" } },
-      [_vm._v(_vm._s(_vm.project.user.name))]
-    )
+  return _c("div", { staticClass: "c-card" }, [
+    _vm._v("\n  ProjectItem:" + _vm._s(_vm.project.id) + ":\n  "),
+    _c("div", { staticClass: "c-card__header" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("span", { staticClass: "c-card__status" }, [_vm._v("レベニュー案件")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "c-card__text-sub" }, [
+        _vm._v("募集期限：" + _vm._s(_vm.project.project_reception_end))
+      ]),
+      _vm._v(" "),
+      _c("h3", { staticClass: "c-card__title" }, [
+        _c("a", { staticClass: "c-card__title--link", attrs: { href: "#" } }, [
+          _vm._v("\n        " + _vm._s(_vm.project.project_title) + "\n      ")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "c-card__text-emphasis" }, [
+        _vm._v(_vm._s(_vm.project.project_mini_amount) + ",000")
+      ]),
+      _vm._v("〜"),
+      _c("span", { staticClass: "c-card__text-emphasis" }, [
+        _vm._v(_vm._s(_vm.project.project_max_amount) + ",000")
+      ]),
+      _vm._v("円\n  ")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "c-card__body" }, [
+      _c("p", { staticClass: "c-card__text" }, [
+        _vm._v("\n      " + _vm._s(_vm.project.project_detail_desc) + "\n    ")
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "c-card__footer" }, [
+      _c("div", { staticClass: "p-profile__mini" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "a",
+          { attrs: { href: "/projects/" + _vm.project.user_id + "/profile" } },
+          [_vm._v(_vm._s(_vm.project.user.name))]
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "c-card__status" }, [
+      _c("i", { staticClass: "fas fa-comment-alt" }),
+      _vm._v("\n      募集中！\n    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "c-img__container--mini" }, [
+      _c("img", { staticClass: "c-img__img", attrs: { src: "", alt: "" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "c-btn__right" }, [
+      _c("a", { staticClass: "c-btn__medi", attrs: { href: "#" } }, [
+        _vm._v("詳細を見る")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -38199,7 +38287,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {}, [
+  return _c("section", { staticClass: "p-projects__list" }, [
     _vm._v("\n  I'm an ProjectList Compoent.\n  "),
     _vm.errored
       ? _c("section", [

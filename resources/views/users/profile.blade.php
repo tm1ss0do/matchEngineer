@@ -10,7 +10,7 @@
 <p>{{ $user->id }}</p>
 <p>{{ $user->name }}</p>
 
-
+{!! nl2br(e($user->self_introduction)) !!}
 
 
 @endsection
