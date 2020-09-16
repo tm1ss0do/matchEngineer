@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
             $table->dateTime('project_reception_end');
             $table->integer('project_max_amount')->nullable();
             $table->integer('project_mini_amount')->nullable();
-            $table->string('project_detail_desc',2000);
+            $table->string('project_detail_desc',5000);
             $table->timestamps();
         });
     }

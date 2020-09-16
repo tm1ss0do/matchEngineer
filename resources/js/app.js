@@ -44,7 +44,7 @@ Vue.component('search-component', require('./components/SearchComponent.vue').de
 Vue.component('pagination-component', require('./components/PaginationComponent.vue').default);
 Vue.component('project-item', require('./components/ProjectItem.vue').default);
 Vue.component('calender-component', require('./components/CalenderComponent.vue').default);
-
+Vue.component('counter-component', require('./components/CounterComponent.vue').default);
 
 
 /**

@@ -1,5 +1,5 @@
 <template>
-    <datepicker :disabled-dates="disabledDates" :format="DatePickerFormat" :bootstrap-styling="true" :language="ja" placeholder="日付を選択してください"></datepicker>
+    <datepicker name="project_reception_end" :disabled-dates="disabledDates" :format="DatePickerFormat" :bootstrap-styling="true" :language="ja" placeholder="日付を選択してください"></datepicker>
 </template>
 
 <script>

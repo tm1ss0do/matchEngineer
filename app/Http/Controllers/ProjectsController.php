@@ -37,6 +37,27 @@ class ProjectsController extends Controller
       return view('projects.new', compact('user'));
     }
 
+    public function create_project( Request $request ){
+
+      $request->validate([
+           'project_title' => 'required|string|max:100',
+           'project_status' => 'boolean',
+           'project_type' => 'required|string|max:255',
+           'project_reception_end' => 'required|date_format:Y-m-d',
+           'project_max_amount' => 'integer|nullable',
+           'project_mini_amount' => 'integer|nullable',
+           'project_detail_desc' => 'string|max:2000',
+       ]);
+
+       $project = new Project;
+       $fillData = $request->all();
+       $fillData += array('user_id' => Auth::id());
+
+       $project->fill($fillData)->save();
+
+       return redirect('projects/all')->with('flash_message', __('Registered.'));
+    }
+
     public function show_project_detail($id){
       // 渡されたidにしたがって、projectの詳細ページを表示
       if(!ctype_digit($id)){
