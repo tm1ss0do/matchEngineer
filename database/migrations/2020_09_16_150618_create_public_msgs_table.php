@@ -17,10 +17,6 @@ class CreatePublicMsgsTable extends Migration
             $table->id();
             $table->datetime('send_date');
             $table->string('content',1000);
-            // $table->unsignedBigInteger('sender_id');
-            // $table->foreign('sender_id')->references('id')->on('users');
-            // $table->unsignedBigInteger('project_id');
-            // $table->foreign('project_id')->references('id')->on('projects');
             $table->boolean('read_flg');
             $table->timestamps();
         });
