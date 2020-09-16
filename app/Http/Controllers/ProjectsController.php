@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Project;
+use App\PublicMsg;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
 
@@ -69,6 +70,8 @@ class ProjectsController extends Controller
 
         $project = Project::find($id);
         $user = $project->user;
+
+        // $publicmsgs = new PublicMsg;
 
         return view('projects.detail', compact('project', 'user'));
 

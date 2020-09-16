@@ -2,6 +2,8 @@
 
 namespace App;
 use App\User;
+use App\PublicMsg;
+
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,5 +15,9 @@ class Project extends Model
      public function user()
     {
         return $this->belongsTo('App\User');
+    }
+    public function public_msgs()
+    {
+      return $this->hasMany('App\PublicMsg');
     }
 }
