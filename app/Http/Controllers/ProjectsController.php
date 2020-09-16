@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreProjectPost;
 
 class ProjectsController extends Controller
 {
@@ -37,17 +38,19 @@ class ProjectsController extends Controller
       return view('projects.new', compact('user'));
     }
 
-    public function create_project( Request $request ){
+    public function create_project( StoreProjectPost $request ){
 
-      $request->validate([
-           'project_title' => 'required|string|max:100',
-           'project_status' => 'boolean',
-           'project_type' => 'required|string|max:255',
-           'project_reception_end' => 'required|date_format:Y-m-d',
-           'project_max_amount' => 'integer|nullable',
-           'project_mini_amount' => 'integer|nullable',
-           'project_detail_desc' => 'string|max:2000',
-       ]);
+      // $request->validate([
+      //      'project_title' => 'required|string|max:100',
+      //      'project_status' => 'boolean',
+      //      'project_type' => 'required|string|max:255',
+      //      'project_reception_end' => 'required|date_format:Y-m-d',
+      //      'project_max_amount' => 'integer|nullable',
+      //      'project_mini_amount' => 'integer|nullable',
+      //      'project_detail_desc' => 'string|max:2000',
+      //  ]);
+
+       $request->validated();
 
        $project = new Project;
        $fillData = $request->all();
