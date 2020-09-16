@@ -7,18 +7,19 @@
     該当の情報が見つかりません。条件や単語を変えてお試しください。
     </p>
   </section>
-  <ul v-for="project in getItems">
+  <div v-for="project in getItems">
     <project-item
     :project="project"
+    :url = "url"
     ></project-item>
-  </ul>
+  </div>
 
 </div>
 </template>
 
 <script>
 export default {
-  props: ['getItems','searchNotFlg'],
+  props: ['getItems','searchNotFlg','url'],
     mounted() {
         console.log('Project mounted.')
     }

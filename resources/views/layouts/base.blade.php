@@ -29,6 +29,12 @@
 </head>
 <body>
   <div id="app">
+    <!-- フラッシュメッセージ -->
+       @if (session('flash_message'))
+           <div class="">
+               {{ session('flash_message') }}
+           </div>
+       @endif
 
     <header id="header" class="l-header">
       <div class="c-header__container">

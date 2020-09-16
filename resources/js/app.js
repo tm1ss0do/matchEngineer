@@ -15,6 +15,16 @@ var VueScrollTo = require('vue-scrollto');
 var Paginate = require('vuejs-paginate');
 Vue.component('paginate', Paginate);
 
+// import moment from 'vue-moment';
+var moment = require('vue-moment');
+Vue.use(moment);
+
+// import Datepicker from "vuejs-datepicker";
+
+// var datepicker = require('vuejs-datepicker');
+// Vue.component(datepicker);
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -33,7 +43,8 @@ Vue.component('project-list', require('./components/ProjectList.vue').default);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('pagination-component', require('./components/PaginationComponent.vue').default);
 Vue.component('project-item', require('./components/ProjectItem.vue').default);
-
+Vue.component('calender-component', require('./components/CalenderComponent.vue').default);
+Vue.component('counter-component', require('./components/CounterComponent.vue').default);
 
 
 /**
@@ -45,38 +56,3 @@ Vue.component('project-item', require('./components/ProjectItem.vue').default);
 const app = new Vue({
     el: '#app',
 });
-
-
-/*
-<ul>
-  <project-component></project-component>
-  <paginate name="paginate-log" :list="logs" :per="5">
-      <li v-for="log in paginated('paginate-log')">
-        {{ log.id }}: {{ log.name }}
-      </li>
-  </paginate>
-</ul>
-<paginate-links for="paginate-log" class="pagination" :show-step-links="true"></paginate-links> -
-
-
-
-
-<pagination-component
-  :data="data"
-  v-model="page"
-  :length="length">
-</pagination-component>
-
-<project-component
-    :data = "data"
-></project-component>
-
-
-      <ul v-for="project in getItems">
-        <li>
-          {{ project.id }}:
-          {{ project.name }}
-        </li>
-      </ul>
-
-*/

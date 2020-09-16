@@ -1,8 +1,7 @@
 <template>
 
-<div class="">
+<section class="p-projects__list">
   I'm an ProjectList Compoent.
-
   <section v-if="errored">
     <p>
     現在、この情報を取得できません。しばらくしてからもう一度お試しください
@@ -21,6 +20,7 @@
       <p>{{ from }} 〜 {{ to }}件 / {{ total }}件中</p>
 
       <project-component
+      :url = "url"
       :getItems = "getItems"
       :searchNotFlg = "searchNotFlg"
       ></project-component>
@@ -39,12 +39,12 @@
     </div>
 
   </section>
-
-</div>
+</section>
 </template>
 
 <script>
     export default {
+        props: ['url'],
         data: function() {
             return {
                 data: [], //projectのデータ一覧(json形式で取得)
@@ -58,7 +58,6 @@
                 total: "",//該当の全件数
                 currentPage: 1, //現在のページ番号
                 parPage: 2, //1ページに表示する件数
-
             }
         },
         methods: {
@@ -158,6 +157,7 @@
         },
         computed: {
             getItems: function() { //現在のページのアイテムを返す
+
                 let current = this.currentPage * this.parPage;
                 // console.log('current:' + current);
                 let start = current - this.parPage;

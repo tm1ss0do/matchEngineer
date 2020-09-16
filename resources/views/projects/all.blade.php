@@ -7,18 +7,8 @@
   project indexアクション
   案件一覧ページです。
   Homeでもあります。 -->
-
-    <!-- <ul> -->
-      <!-- @foreach ( $projects as $project ) -->
-
-      <!-- <li>{{ $project->id }}</li> -->
-      <!-- <li>{{!! $project->project_title !!}}</li> -->
-
-      <!-- @endforeach -->
-
-    <!-- </ul> -->
-    <project-list>
-  </project-list>
+    <project-list
+    url="{{ url('/') }}"></project-list>
 
 
   <!-- search -->
