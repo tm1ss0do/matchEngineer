@@ -13,8 +13,9 @@ class PublicMsg extends Model
 
     public function user()
      {
-         return $this->belongsTo('App\User');
+         return $this->belongsTo('App\User', 'sender_id');
      }
+
      public function project()
      {
        return $this->belongsTo('App\Project');

@@ -11,8 +11,13 @@
 
 <p>{{ $user->name }}</p>
 
-<p>{{ $publicmsgs }}</p>
+  <message-component
+  :publicmsgs = "{{ $publicmsgs }}"
+  ></message-component>
 
-
+  <form class="" action="index.html" method="post">
+    <textarea name="name" rows="8" cols="80"></textarea>
+    <input type="submit" name="" value="">
+  </form>
 
 @endsection

@@ -72,8 +72,10 @@ class ProjectsController extends Controller
         $user = $project->user;
 
         $publicmsgs = PublicMsg::where('project_id', $id)
+                      ->with('user')
                       ->orderBy('send_date', 'asc')
                       ->get();
+
 
         return view('projects.detail', compact('project', 'user' , 'publicmsgs'));
 
