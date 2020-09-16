@@ -71,9 +71,11 @@ class ProjectsController extends Controller
         $project = Project::find($id);
         $user = $project->user;
 
-        // $publicmsgs = new PublicMsg;
+        $publicmsgs = PublicMsg::where('project_id', $id)
+                      ->orderBy('send_date', 'asc')
+                      ->get();
 
-        return view('projects.detail', compact('project', 'user'));
+        return view('projects.detail', compact('project', 'user' , 'publicmsgs'));
 
     }
     public function profile($id){

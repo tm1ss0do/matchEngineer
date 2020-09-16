@@ -11,4 +11,8 @@
 
 <p>{{ $user->name }}</p>
 
+<p>{{ $publicmsgs }}</p>
+
+
+
 @endsection
