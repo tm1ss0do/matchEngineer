@@ -26,10 +26,12 @@ Route::get('/projects/json', 'ProjectsController@json_data');
 Route::get('/projects/{id}/msg_json', 'ProjectsController@json_data_msg');
 Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('project.profile');
 Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('project.detail');
+Route::get('/projects/{id}/application', 'ProjectsController@apply')->name('project.apply');
 
 
 Route::post('/projects/new', 'ProjectsController@create_project')->name('project.create');
 Route::post('/projects/{id}', 'ProjectsController@public')->name('project.public');
+Route::post('/projects/{id}/application', 'ProjectsController@applied')->name('project.apply');
 
 //
 // Auth::routes();

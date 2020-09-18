@@ -41,13 +41,37 @@ class ProjectsController extends Controller
 
     }
 
+    public function apply($id){
+
+      if(!ctype_digit($id)){
+        return back()->with('flash_message', __('Invalid operation was performed.'));
+        }
+
+        $project = Project::find($id);
+        $user = $project->user;
+
+      $projects = Project::with('user')->get();
+
+      return view('projects.apply', compact('project', 'user'));
+
+    }
+    public function applied($id){
+
+      if(!ctype_digit($id)){
+        return back()->with('flash_message', __('Invalid operation was performed.'));
+        }
+
+        // $project = Project::find($id);
+        // $user = $project->user;
+
+      // $projects = Project::with('user')->get();
+
+      // return view('mypage.index', compact('project', 'user'));
+      return view('mypages.registered');
+
+    }
+
     public function new(){
-      // $user = \Auth::user();
-      // if($user){
-      //   $user = \Auth::user();
-      // }else{
-        // $user = User::fund('2');
-      // }
       $user = Auth::user();   #ログインユーザー情報を取得します。
       return view('projects.new', compact('user'));
     }
@@ -95,10 +119,6 @@ class ProjectsController extends Controller
     }
 
     public function public( StoreMessageRequest $request, $id){
-
-      // $request->validate([
-      //      'content' => 'required|string|max:1000',
-      //  ]);
 
        $request->validated();
 
