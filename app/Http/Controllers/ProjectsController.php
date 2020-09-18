@@ -55,19 +55,30 @@ class ProjectsController extends Controller
       return view('projects.apply', compact('project', 'user'));
 
     }
-    public function applied($id){
+    public function applied(StoreMessageRequest $request, $id){
 
       if(!ctype_digit($id)){
         return back()->with('flash_message', __('Invalid operation was performed.'));
         }
 
-        // $project = Project::find($id);
-        // $user = $project->user;
+       $request->validated();
 
-      // $projects = Project::with('user')->get();
+       //  $publicmsgs = new PublicMsg;
+       //
+       //  $fillData = $request->all();
+       //  $fillData += array(
+       //    'send_date' => Carbon::now(),
+       //    'read_flg' => 0,
+       //    'sender_id' => Auth::id(),
+       //    'project_id' => $id,
+       //  );
+       //
+       // $publicmsgs->fill($fillData)->save();
+       //
+       // return back()->with('flash_message', __('投稿しました.'));
 
-      // return view('mypage.index', compact('project', 'user'));
-      return view('mypages.registered');
+      return view('mypages.registered')->with('flash_message', __('応募しました.'));
+      // return view('mypages.registered');
 
     }
 
