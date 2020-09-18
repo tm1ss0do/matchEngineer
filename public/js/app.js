@@ -1954,14 +1954,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['countnum', 'ex', 'id', 'name'],
   data: function data() {
     return {
-      detail: ''
+      message: ''
     };
   },
   computed: {
     getLength: function getLength() {
-      return this.detail.length;
+      return this.message.length;
     }
   },
   mounted: function mounted() {}
@@ -38164,39 +38165,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "p-search" }, [
+  return _c("section", {}, [
     _c("textarea", {
       directives: [
         {
           name: "model",
           rawName: "v-model",
-          value: _vm.detail,
-          expression: "detail"
+          value: _vm.message,
+          expression: "message"
         }
       ],
       staticClass: "js-count-area",
       attrs: {
-        id: "案件詳細",
-        name: "project_detail_desc",
+        id: _vm.id,
+        name: _vm.name,
         rows: "8",
         cols: "80",
-        placeholder:
-          "例：既存ブログサイトのデザインを変えたいです。優しいデザインが得意な方を募集します。"
+        placeholder: _vm.ex
       },
-      domProps: { value: _vm.detail },
+      domProps: { value: _vm.message },
       on: {
         input: function($event) {
           if ($event.target.composing) {
             return
           }
-          _vm.detail = $event.target.value
+          _vm.message = $event.target.value
         }
       }
     }),
     _c("br"),
     _vm._v(" "),
     _c("span", { staticClass: "js-counter" }, [
-      _vm._v(_vm._s(_vm.getLength) + "/5000文字")
+      _vm._v(_vm._s(_vm.getLength) + "/" + _vm._s(_vm.countnum) + "文字")
     ]),
     _c("br")
   ])

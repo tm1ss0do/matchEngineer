@@ -41,9 +41,13 @@
   〜
   <input type="text" name="project_max_amount" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,'');" />,000円
   </br>
-  <label for="amount">案件詳細</label></br>
-  <counter-component>
-  </counter-component>
+  <label for="detail">案件詳細</label></br>
+  <counter-component
+    :countnum = "5000"
+    ex = "例：既存ブログサイトのデザインを変えたいです。優しいデザインが得意な方を募集します。"
+    id = "detail"
+    name = "project_detail_desc"
+  ></counter-component>
   <input type="submit" name="" value="案件登録">
 </form>
 

@@ -8,6 +8,8 @@ use App\Project;
 use App\PublicMsg;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Route;
 
 class ProjectsController extends Controller
 {
@@ -90,6 +92,39 @@ class ProjectsController extends Controller
         return view('projects.detail', compact('project', 'user' , 'publicmsgs'));
 
     }
+
+    public function public(Request $request, $id){
+
+      $request->validate([
+           'content' => 'required|string|max:1000',
+       ]);
+
+       // $request->validated();
+
+       $publicmsgs = new PublicMsg;
+       // $fillData += array(
+       //                    'send_date' => Carbon::now(),
+       //                  );
+       // $fillData = $request->all();
+       // $fillData += array(
+         // 'read_flg' => 0,
+         // 'sender_id' => Auth::id(),
+         // 'project_id' => $id,
+       //                  );
+       
+       $fillData = $request->all();
+       $fillData += array(
+         'send_date' => Carbon::now(),
+         'read_flg' => 0,
+         'sender_id' => Auth::id(),
+         'project_id' => $id,
+       );
+
+      // $project->fill($fillData)->save();
+
+      return back()->with('flash_message', __('投稿しました.'));
+    }
+
     public function profile($id){
       // 渡されたidにしたがって、userのprofileページを表示
       if(!ctype_digit($id)){
