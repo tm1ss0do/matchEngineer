@@ -8,6 +8,7 @@ use App\Project;
 use App\PublicMsg;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
+use App\Http\Requests\StoreMessageRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
@@ -93,25 +94,16 @@ class ProjectsController extends Controller
 
     }
 
-    public function public(Request $request, $id){
+    public function public( StoreMessageRequest $request, $id){
 
-      $request->validate([
-           'content' => 'required|string|max:1000',
-       ]);
+      // $request->validate([
+      //      'content' => 'required|string|max:1000',
+      //  ]);
 
-       // $request->validated();
+       $request->validated();
 
        $publicmsgs = new PublicMsg;
-       // $fillData += array(
-       //                    'send_date' => Carbon::now(),
-       //                  );
-       // $fillData = $request->all();
-       // $fillData += array(
-         // 'read_flg' => 0,
-         // 'sender_id' => Auth::id(),
-         // 'project_id' => $id,
-       //                  );
-       
+
        $fillData = $request->all();
        $fillData += array(
          'send_date' => Carbon::now(),
@@ -120,7 +112,7 @@ class ProjectsController extends Controller
          'project_id' => $id,
        );
 
-      // $project->fill($fillData)->save();
+      $publicmsgs->fill($fillData)->save();
 
       return back()->with('flash_message', __('投稿しました.'));
     }
