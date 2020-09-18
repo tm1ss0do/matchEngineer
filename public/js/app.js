@@ -2029,10 +2029,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['publicmsgs'],
+  props: ['project'],
   data: function data() {
-    return {};
+    return {
+      publicmsgs: [],
+      //関連するメッセージをjson形式で取得
+      loading: true,
+      errored: false
+    };
+  },
+  mounted: function mounted() {
+    //非同期通信を使い、json形式で該当の情報を取得
+    var self = this;
+    var url = '/projects/' + self.project.id + '/msg_json'; //取得対象をdataに格納
+
+    axios.get(url).then(function (response) {
+      return self.publicmsgs = response.data;
+    })["catch"](function (error) {
+      console.log(error);
+      self.errored = true;
+    })["finally"](function () {
+      return self.loading = false;
+    });
   }
 });
 
@@ -38242,26 +38271,42 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\nメッセージコンポーネント！\n"),
-    _vm.publicmsgs
-      ? _c(
-          "div",
-          _vm._l(_vm.publicmsgs, function(msg) {
-            return _c("p", [
-              _vm._v(
-                "\nメッセージ" +
-                  _vm._s(msg.id) +
-                  "：\n" +
-                  _vm._s(msg.content) +
-                  "\n" +
-                  _vm._s(msg.user.name) +
-                  "\n"
-              )
-            ])
-          }),
-          0
-        )
-      : _c("p", [_vm._v("\nまだメッセージはありません。\n")])
+    _vm.errored
+      ? _c("section", [
+          _c("p", [
+            _vm._v(
+              "\n    現在、この情報を取得できません。しばらくしてからもう一度お試しください\n    "
+            )
+          ])
+        ])
+      : _c("section", [
+          _vm.loading
+            ? _c("div", [_vm._v("Now Loading...")])
+            : _c("div", [
+                _vm._v("\n      メッセージコンポーネント！\n      "),
+                _vm.publicmsgs
+                  ? _c(
+                      "div",
+                      _vm._l(_vm.publicmsgs, function(msg) {
+                        return _c("p", [
+                          _vm._v(
+                            "\n      メッセージ" +
+                              _vm._s(msg.id) +
+                              "：\n      " +
+                              _vm._s(msg.content) +
+                              "\n      " +
+                              _vm._s(msg.user.name) +
+                              "\n      "
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  : _c("p", [
+                      _vm._v("\n      まだメッセージはありません。\n      ")
+                    ])
+              ])
+        ])
   ])
 }
 var staticRenderFns = []

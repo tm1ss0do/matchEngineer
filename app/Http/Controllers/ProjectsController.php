@@ -28,6 +28,16 @@ class ProjectsController extends Controller
 
     }
 
+    public function json_data_msg($id){
+
+      $publicmsgs = PublicMsg::where('project_id', $id)
+                    ->with('user')
+                    ->orderBy('send_date', 'asc')
+                    ->get();
+      return $publicmsgs->toJson();
+
+    }
+
     public function new(){
       // $user = \Auth::user();
       // if($user){
