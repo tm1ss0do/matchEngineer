@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use App\PublicMsg;
+use App\DirectMsgsBoard;
+use App\DirectMsgs;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
 use App\Http\Requests\StoreMessageRequest;
@@ -41,7 +43,7 @@ class ProjectsController extends Controller
 
     }
 
-    public function apply($id){
+    public function apply_form($id){
 
       if(!ctype_digit($id)){
         return back()->with('flash_message', __('Invalid operation was performed.'));
@@ -55,7 +57,7 @@ class ProjectsController extends Controller
       return view('projects.apply', compact('project', 'user'));
 
     }
-    public function applied(StoreMessageRequest $request, $id){
+    public function apply(StoreMessageRequest $request, $id){
 
       if(!ctype_digit($id)){
         return back()->with('flash_message', __('Invalid operation was performed.'));
@@ -63,8 +65,29 @@ class ProjectsController extends Controller
 
        $request->validated();
 
-       //  $publicmsgs = new PublicMsg;
+       // $direct_msgs_board = DirectMsgsBoard::with('project')->get();
+       // $direct_msgs_board = DirectMsgsBoard::where('project_id', $id)->get();
+       // $board_id = DirectMsgsBoard::where('project_id', $id)->select('id')->get();
+       // $direct_msgs = $board_id;
        //
+       // $directs = DirectMsgsBoard::with('project')->get();
+
+       // directメッセージボードの、
+       // $directs = DirectMsgsBoard::with('project')->get();
+
+       // プロジェクトのuser_idが、自分でないモノを全て取得
+
+       // directメッセージボードの中から、recruiter_idまたはapplicant_idに、自分のidが入っているものを探し出す
+       // 募集者または応募者になっている
+
+       // プロジェクトテーブルの中から、user_id = 自分のモノの、idを全て取得
+
+
+       // $user = Auth::user();
+       // $id = Auth::id();
+
+       // $publicmsgs_board = new PublicMsgBoard;
+
        //  $fillData = $request->all();
        //  $fillData += array(
        //    'send_date' => Carbon::now(),
@@ -72,15 +95,45 @@ class ProjectsController extends Controller
        //    'sender_id' => Auth::id(),
        //    'project_id' => $id,
        //  );
-       //
        // $publicmsgs->fill($fillData)->save();
        //
        // return back()->with('flash_message', __('投稿しました.'));
 
-      return view('mypages.registered')->with('flash_message', __('応募しました.'));
-      // return view('mypages.registered');
+       // $direct_msgs_board = DirectMsgsBoard::with('project')->get();
+       // $direct_msgs_board = DirectMsgsBoard::where('project_id', $id)->get();
+       // $board_id = DirectMsgsBoard::where('project_id', $id)->select('id')->get();
+       // $direct_msgs = $board_id;
+       //
+       // DirectMsgsBoard::where('project_id', $id)->user();
+
+       return view('mypages.applied', compact('direct_msgs'))->with('flash_message', __('応募しました'));
 
     }
+
+
+
+    public function applied(){
+
+      $auther_id = Auth::id();
+
+      $direct_msgs = DirectMsgsBoard::where('applicant_id', $auther_id)->with('project')->get();
+
+      return view('mypages.applied', compact('direct_msgs'));
+
+    }
+
+    public function show_dm_list(){
+
+      // return view('mypages.dmlist', compact('direct_msgs'));
+      return view('mypages.dm_list');
+    }
+
+    public function show_dm_board($id){
+
+      // return view('mypages.dmlist', compact('direct_msgs'));
+      return view('mypages.dm_board');
+    }
+
 
     public function new(){
       $user = Auth::user();   #ログインユーザー情報を取得します。
@@ -88,16 +141,6 @@ class ProjectsController extends Controller
     }
 
     public function create_project( StoreProjectPost $request ){
-
-      // $request->validate([
-      //      'project_title' => 'required|string|max:100',
-      //      'project_status' => 'boolean',
-      //      'project_type' => 'required|string|max:255',
-      //      'project_reception_end' => 'required|date_format:Y-m-d',
-      //      'project_max_amount' => 'integer|nullable',
-      //      'project_mini_amount' => 'integer|nullable',
-      //      'project_detail_desc' => 'string|max:2000',
-      //  ]);
 
        $request->validated();
 
