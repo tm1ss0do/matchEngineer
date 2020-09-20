@@ -16,6 +16,7 @@
     </div>
 @endif
 
+
 <!-- 応募するプロジェクト詳細 -->
 <p>{{ $project->project_title }}</p>
 

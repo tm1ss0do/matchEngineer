@@ -33,7 +33,7 @@
 
   <form class="" action="" method="post">
     @csrf
-    <label for="content"></label>
+    <label for="pub_msg">メッセージ送信フォーム</label>
      <counter-component
       :countnum = "1000"
       ex = "募集者へ質問してみましょう。"

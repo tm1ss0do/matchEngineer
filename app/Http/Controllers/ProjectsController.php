@@ -64,52 +64,49 @@ class ProjectsController extends Controller
         return back()->with('flash_message', __('Invalid operation was performed.'));
         }
 
+
        $request->validated();
 
-       // $direct_msgs_board = DirectMsgsBoard::with('project')->get();
-       // $direct_msgs_board = DirectMsgsBoard::where('project_id', $id)->get();
-       // $board_id = DirectMsgsBoard::where('project_id', $id)->select('id')->get();
-       // $direct_msgs = $board_id;
-       //
-       // $directs = DirectMsgsBoard::with('project')->get();
+       $project = Project::find($id);
+       $recruiter_id = $project->user_id;
 
-       // directメッセージボードの、
-       // $directs = DirectMsgsBoard::with('project')->get();
+         // DirectMsgsBoardの処理ーーーーーーー
+         // メッセージを保管するボードを新規作成
+         $fillDataBoard = array(
+           'created_at'  => Carbon::now(),
+           'updated_at'  => Carbon::now(),
+           'reciever_id' => $recruiter_id,
+           'sender_id' => Auth::id(),
+           'project_id' => $id,
+         );
 
-       // プロジェクトのuser_idが、自分でないモノを全て取得
+         $direct_msgs_boards = new DirectMsgsBoard;
+         $direct_msgs_boards->fill($fillDataBoard)->save();
 
-       // directメッセージボードの中から、reciever_idまたはsender_idに、自分のidが入っているものを探し出す
-       // 募集者または応募者になっている
+         // DirectMsgの処理ーーーーーーー
+         // 先ほど作ったボードにメッセージを登録
 
-       // プロジェクトテーブルの中から、user_id = 自分のモノの、idを全て取得
+         $fillDataMsg = $request->all();
+         $fillDataMsg += array(
+           'send_date'  => Carbon::now(),
+           'read_flg'  => 0,
+           'created_at' => Carbon::now(),
+           'updated_at' => Carbon::now(),
+           'sender_id' => Auth::id(),
+           'board_id' => $direct_msgs_boards->id //直前にinsertしたDirectMsgsBoardのID
+         );
 
 
-       // $user = Auth::user();
-       // $id = Auth::id();
+         $direct_msgs = new DirectMsgs;
+         $direct_msgs->fill($fillDataMsg)->save();
 
-       // $publicmsgs_board = new PublicMsgBoard;
 
-       //  $fillData = $request->all();
-       //  $fillData += array(
-       //    'send_date' => Carbon::now(),
-       //    'read_flg' => 0,
-       //    'sender_id' => Auth::id(),
-       //    'project_id' => $id,
-       //  );
-       // $publicmsgs->fill($fillData)->save();
-       //
-       // return back()->with('flash_message', __('投稿しました.'));
-
-       // $direct_msgs_board = DirectMsgsBoard::with('project')->get();
-       // $direct_msgs_board = DirectMsgsBoard::where('project_id', $id)->get();
-       // $board_id = DirectMsgsBoard::where('project_id', $id)->select('id')->get();
-       // $direct_msgs = $board_id;
-       //
-       // DirectMsgsBoard::where('project_id', $id)->user();
-
+       // 応募済み：project_idが入っている物だけを取得
        $auther_id = Auth::id();
-
-       $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)->with('project')->get();
+       $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
+                      ->whereNotNull('project_id')
+                      ->with('project')
+                      ->get();
 
        // 応募済み案件一覧へリダイレクトさせる
        return view('mypages.applied', compact('direct_msgs'))->with('flash_message', __('応募しました'));
@@ -122,10 +119,22 @@ class ProjectsController extends Controller
       // 応募済み案件一覧画面
       $auther_id = Auth::id();
 
-      $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)->with('project')->get();
+      $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
+                     ->whereNotNull('project_id')
+                     ->with('project')
+                     ->get();
 
       return view('mypages.applied', compact('direct_msgs'));
 
+    }
+
+    public function registered(){
+      // 登録済み案件一覧画面表示
+      $user = Auth::id();
+      $projects = Project::where('user_id',$user)
+                  ->get();
+
+      return view('mypages.registered', compact('projects','user'));
     }
 
     public function show_dm_list(){
@@ -149,6 +158,30 @@ class ProjectsController extends Controller
                     ->get();
 
       return view('mypages.dm_board', compact('directmsgs'));
+    }
+
+    public function send_dm(StoreMessageRequest $request, $id){
+
+      // 送信内容のバリデーション
+      $request->validated();
+
+      // DirectMsgの処理ーーーーーーー
+      // メッセージを登録
+
+      $fillDataMsg = $request->all();
+      $fillDataMsg += array(
+        'send_date'  => Carbon::now(),
+        'read_flg'  => 0,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+        'sender_id' => Auth::id(),
+        'board_id' => $id
+      );
+
+      $direct_msgs = new DirectMsgs;
+      $direct_msgs->fill($fillDataMsg)->save();
+
+      return back()->with('flash_message', '送信しました');
     }
 
 
@@ -218,6 +251,8 @@ class ProjectsController extends Controller
         return view('users.profile', compact('user'));
     }
 
+
+
     public function dm_form($id){
       if(!ctype_digit($id)){
         return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
@@ -226,10 +261,44 @@ class ProjectsController extends Controller
       return view('users.dm_form');
     }
 
-    public function dm_new($id){
+    public function dm_new( StoreMessageRequest $request, $id){
       if(!ctype_digit($id)){
         return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
         }
+        // 案件なしのダイレクトメッセージをDB保存
+
+        // 投稿内容をバリデーション
+        $request->validated();
+
+        // DirectMsgsBoardの処理ーーーーーーー
+        // メッセージを保管するボードを新規作成
+        $fillDataBoard = array(
+          'created_at'  => Carbon::now(),
+          'updated_at'  => Carbon::now(),
+          'reciever_id' => $id,
+          'sender_id' => Auth::id(),
+          'project_id' => null,
+        );
+
+        $direct_msgs_boards = new DirectMsgsBoard;
+        $direct_msgs_boards->fill($fillDataBoard)->save();
+
+        // DirectMsgの処理ーーーーーーー
+        // 先ほど作ったボードにメッセージを登録
+
+        $fillDataMsg = $request->all();
+        $fillDataMsg += array(
+          'send_date'  => Carbon::now(),
+          'read_flg'  => 0,
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now(),
+          'sender_id' => Auth::id(),
+          'board_id' => $direct_msgs_boards->id //直前にinsertしたDirectMsgsBoardのID
+        );
+
+
+        $direct_msgs = new DirectMsgs;
+        $direct_msgs->fill($fillDataMsg)->save();
 
       return redirect('/mypages/direct_msg')->with('flash_message', __('送信しました'));
     }

@@ -16,4 +16,38 @@
     </div>
 @endif
 
+<ul>
+  <li>
+    <a href="{{ url('/') }}/mypages/registered">登録済み案件一覧</a>
+  </li>
+  <li>
+    <a href="{{ url('/') }}/mypages/applied">応募済み案件一覧</a>
+  </li>
+  <li>
+    <a href="">パブリックメッセージ一覧</a>
+  </li>
+  <li>
+    <a href="{{ url('/') }}/mypages/direct_msg">ダイレクトメッセージ一覧</a>
+  </li>
+  <li>
+    <a href="{{ url('/') }}/projects/{{ $user }}/profile">プロフィール</a>
+  </li>
+  <li>
+    <a href="#">退会</a>
+  </li>
+</ul>
+
+<ul>
+    @foreach ($projects as $project)
+
+    @if($project)
+      <li>{{ $project->project_title }}</li>
+    @else
+      <li>登録した案件はありません</li>
+    @endif
+
+    @endforeach
+</ul>
+
+
 @endsection

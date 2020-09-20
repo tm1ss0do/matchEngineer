@@ -32,8 +32,10 @@ Route::get('/projects/dm/{id}', 'ProjectsController@dm_form')->name('project.dm_
 Route::get('/mypages/applied', 'ProjectsController@applied')->name('project.applied');
 Route::get('/mypages/direct_msg', 'ProjectsController@show_dm_list')->name('project.show_dm_list');
 Route::get('/mypages/direct_msg/{id}', 'ProjectsController@show_dm_board')->name('project.show_dm_board');
+Route::get('/mypages/registered', 'ProjectsController@registered')->name('project.registered');
 
 Route::post('/projects/dm/{id}', 'ProjectsController@dm_new')->name('project.dm_new');
 Route::post('/projects/new', 'ProjectsController@create_project')->name('project.create');
 Route::post('/projects/{id}', 'ProjectsController@public')->name('project.public');
 Route::post('/projects/{id}/application', 'ProjectsController@apply')->name('project.apply');
+Route::post('/mypages/direct_msg/{id}', 'ProjectsController@send_dm')->name('project.send_dm');
