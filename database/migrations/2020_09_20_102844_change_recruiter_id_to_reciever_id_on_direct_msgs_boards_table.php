@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRecruiterIdToDirectMsgsBoards extends Migration
+class ChangeRecruiterIdToRecieverIdOnDirectMsgsBoardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,7 @@ class AddRecruiterIdToDirectMsgsBoards extends Migration
     {
         Schema::table('direct_msgs_boards', function (Blueprint $table) {
             //
-            DB::statement('DELETE FROM direct_msgs_boards');
-            $table->unsignedBigInteger('reciever_id');
-            $table->foreign('reciever_id')->references('id')->on('users');
+            $table->renameColumn('reciever_id', 'reciever_id');
         });
     }
 
@@ -29,9 +27,8 @@ class AddRecruiterIdToDirectMsgsBoards extends Migration
     public function down()
     {
         Schema::table('direct_msgs_boards', function (Blueprint $table) {
-          //
-          $table->dropForeign(['reciever_id']);
-          $table->dropColumn('reciever_id');
+            //
+            $table->renameColumn('reciever_id', 'reciever_id');
         });
     }
 }

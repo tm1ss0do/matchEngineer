@@ -16,4 +16,12 @@
     </div>
 @endif
 
+@foreach ( $directmsgs as $directmsg )
+<p>{{ $directmsg->user->name }}</p>さんから
+<p>{{ $directmsg->content }}</p>
+<p>{{ $directmsg->send_date }}</p>
+
+
+@endforeach
+
 @endsection

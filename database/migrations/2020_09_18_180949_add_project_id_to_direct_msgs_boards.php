@@ -16,7 +16,7 @@ class AddProjectIdToDirectMsgsBoards extends Migration
         Schema::table('direct_msgs_boards', function (Blueprint $table) {
             //
             DB::statement('DELETE FROM direct_msgs_boards');
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_id')->nullable();
             $table->foreign('project_id')->references('id')->on('projects');
         });
     }

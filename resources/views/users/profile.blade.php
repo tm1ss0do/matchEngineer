@@ -7,10 +7,12 @@
 
 ユーザーのプロフィール表示画面
 
+
 <p>{{ $user->id }}</p>
 <p>{{ $user->name }}</p>
 
 {!! nl2br(e($user->self_introduction)) !!}
 
+<a href="{{ url('/') }}/projects/dm/{{ $user->id }}">ダイレクトメッセージを送る</a>
 
 @endsection

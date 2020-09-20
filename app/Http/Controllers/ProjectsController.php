@@ -58,6 +58,7 @@ class ProjectsController extends Controller
 
     }
     public function apply(StoreMessageRequest $request, $id){
+      // 応募フォームの内容をバリデーション
 
       if(!ctype_digit($id)){
         return back()->with('flash_message', __('Invalid operation was performed.'));
@@ -77,7 +78,7 @@ class ProjectsController extends Controller
 
        // プロジェクトのuser_idが、自分でないモノを全て取得
 
-       // directメッセージボードの中から、recruiter_idまたはapplicant_idに、自分のidが入っているものを探し出す
+       // directメッセージボードの中から、reciever_idまたはsender_idに、自分のidが入っているものを探し出す
        // 募集者または応募者になっている
 
        // プロジェクトテーブルの中から、user_id = 自分のモノの、idを全て取得
@@ -106,6 +107,11 @@ class ProjectsController extends Controller
        //
        // DirectMsgsBoard::where('project_id', $id)->user();
 
+       $auther_id = Auth::id();
+
+       $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)->with('project')->get();
+
+       // 応募済み案件一覧へリダイレクトさせる
        return view('mypages.applied', compact('direct_msgs'))->with('flash_message', __('応募しました'));
 
     }
@@ -113,10 +119,10 @@ class ProjectsController extends Controller
 
 
     public function applied(){
-
+      // 応募済み案件一覧画面
       $auther_id = Auth::id();
 
-      $direct_msgs = DirectMsgsBoard::where('applicant_id', $auther_id)->with('project')->get();
+      $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)->with('project')->get();
 
       return view('mypages.applied', compact('direct_msgs'));
 
@@ -124,14 +130,25 @@ class ProjectsController extends Controller
 
     public function show_dm_list(){
 
+      $auther_id = Auth::id();
+
+      // 現在ログイン中のuserが属しているダイレクトメッセージボードを全て取得
+      $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
+                     ->orWhere('reciever_id',$auther_id)
+                     ->get();
+
       // return view('mypages.dmlist', compact('direct_msgs'));
-      return view('mypages.dm_list');
+      return view('mypages.dm_list', compact('direct_msgs'));
     }
 
     public function show_dm_board($id){
 
-      // return view('mypages.dmlist', compact('direct_msgs'));
-      return view('mypages.dm_board');
+      $directmsgs = DirectMsgs::where('board_id', $id)
+                    ->with('user')
+                    ->orderBy('send_date', 'asc')
+                    ->get();
+
+      return view('mypages.dm_board', compact('directmsgs'));
     }
 
 
@@ -199,6 +216,22 @@ class ProjectsController extends Controller
 
         $user = User::find($id);
         return view('users.profile', compact('user'));
+    }
+
+    public function dm_form($id){
+      if(!ctype_digit($id)){
+        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+        }
+
+      return view('users.dm_form');
+    }
+
+    public function dm_new($id){
+      if(!ctype_digit($id)){
+        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+        }
+
+      return redirect('/mypages/direct_msg')->with('flash_message', __('送信しました'));
     }
 
 }

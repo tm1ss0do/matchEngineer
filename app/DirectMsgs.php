@@ -14,12 +14,12 @@ class DirectMsgs extends Model
 
     public function user()
    {
-       return $this->belongsTo('App\User');
+       return $this->belongsTo('App\User','sender_id');
    }
 
    public function direct_msgs_board()
    {
-     return $this->belongsTo('App\DirectMsgsBoard');
+     return $this->belongsTo('App\DirectMsgsBoard', 'board_id');
    }
 
 

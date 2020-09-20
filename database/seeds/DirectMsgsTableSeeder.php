@@ -50,5 +50,14 @@ class DirectMsgsTableSeeder extends Seeder
             'sender_id'=> '2',
             'board_id' => '1',
         ]);
+        DB::table('direct_msgs')->insert([
+            'send_date' => Carbon::now(),
+            'content' => '未読です・・・案件なし。project_id="0"。直接ダイレクトメッセをtest1->test2へ。',
+            'read_flg' => '0',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'sender_id'=> '1',
+            'board_id' => '3',
+        ]);
     }
 }

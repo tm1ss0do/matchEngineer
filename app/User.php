@@ -3,6 +3,8 @@
 namespace App;
 use App\Project;
 use App\PublicMsg;
+use App\DirectMsgs;
+use App\DirectMsgsBoard;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -28,6 +30,15 @@ class User extends Authenticatable
      public function public_msgs()
      {
        return $this->hasMany('App\PublicMsg');
+     }
+
+     public function direct_msgs()
+     {
+       return $this->hasMany('App\DirectMsgs');
+     }
+     public function direct_msgs_boards()
+     {
+       return $this->hasMany('App\DirectMsgsBoard');
      }
 
 

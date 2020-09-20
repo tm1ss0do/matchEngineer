@@ -14,16 +14,31 @@ class DirectMsgsBoardTable extends Seeder
     {
         //
         DB::table('direct_msgs_boards')->insert([
-            'recruiter_id' => '1',
-            'applicant_id' => '2',
+            'reciever_id' => '1',
+            'sender_id' => '2',
             'project_id' => '1',
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
         DB::table('direct_msgs_boards')->insert([
-            'recruiter_id' => '2',
-            'applicant_id' => '1',
+            'reciever_id' => '2',
+            'sender_id' => '1',
             'project_id' => '2',
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('direct_msgs_boards')->insert([
+            'reciever_id' => '2',
+            'sender_id' => '1',
+            'project_id' => null,
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('direct_msgs_boards')->insert([
+            'reciever_id' => '3',
+            'sender_id' => '2',
+            'project_id' => null,
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

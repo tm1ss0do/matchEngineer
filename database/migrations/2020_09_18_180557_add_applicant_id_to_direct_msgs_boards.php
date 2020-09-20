@@ -14,10 +14,10 @@ class AddApplicantIdToDirectMsgsBoards extends Migration
     public function up()
     {
         Schema::table('direct_msgs_boards', function (Blueprint $table) {
-          
+
           DB::statement('DELETE FROM direct_msgs_boards');
-          $table->unsignedBigInteger('applicant_id');
-          $table->foreign('applicant_id')->references('id')->on('users');
+          $table->unsignedBigInteger('sender_id');
+          $table->foreign('sender_id')->references('id')->on('users');
         });
     }
 
@@ -30,8 +30,8 @@ class AddApplicantIdToDirectMsgsBoards extends Migration
     {
         Schema::table('direct_msgs_boards', function (Blueprint $table) {
             //
-            $table->dropForeign(['applicant_id']);
-            $table->dropColumn('applicant_id');
+            $table->dropForeign(['sender_id']);
+            $table->dropColumn('sender_id');
         });
     }
 }
