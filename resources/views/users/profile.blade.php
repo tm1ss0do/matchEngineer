@@ -11,6 +11,7 @@
 <p>ユーザID:{{ $user->id }}</p>
 <p>name:{{ $user->name }}</p>
 <p>icon:{{ $user->profile_icon }}</p>
+<img src="{{ asset('storage/avatar/' . $user->profile_icon) }}">
 
 自己紹介:
 <p>
