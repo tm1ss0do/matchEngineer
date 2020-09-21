@@ -11,6 +11,7 @@ use App\DirectMsgs;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
 use App\Http\Requests\StoreMessageRequest;
+use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -285,14 +286,22 @@ class ProjectsController extends Controller
 
         return view('users.profile_edit_form', compact('user'));
     }
-    public function profile_edit_post(Request $request, $id){
+    public function profile_edit_post(StoreProfileRequest $request, $id){
       if(!ctype_digit($id)){
         return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
         }
         // ユーザーのプロフィール更新処理
         $user = User::find($id);
+        // バリデーション
+        $request->validated();
+
+        $fillData = $request->all();
+        $fillData += array(
+          'updated_at' => Carbon::now(),
+        );
+
         // 更新データとの差分をみるため、save()を使用。(updateは差分を見ない)
-        $user->fill($request->all())->save();
+        $user->fill($fillData)->save();
 
         // profile画面へ遷移させる
         return view('users.profile', compact('user'))->with('flash_message', __('Registered.'));
