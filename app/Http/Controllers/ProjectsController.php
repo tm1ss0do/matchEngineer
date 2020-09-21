@@ -13,6 +13,7 @@ use App\Http\Requests\StoreProjectPost;
 use App\Http\Requests\StoreMessageRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 class ProjectsController extends Controller
 {
@@ -136,6 +137,29 @@ class ProjectsController extends Controller
 
       return view('mypages.registered', compact('projects','user'));
     }
+    public function show_pm_list(){
+
+      $auther_id = Auth::id();
+
+      // 現在ログイン中のuserが、パブリックメッセージを送ったことがある、projectのidを全て取得
+      $projects = PublicMsg::where('sender_id', $auther_id)
+                  ->groupBy('project_id')
+                  ->get(['project_id']);
+
+      // ORDER BY と GROUP BYを使うと、先にグループ分けされソートされてしまうのでクエリを使う。
+      // idの大きい方を最新のパブリックコメントとして取得
+      $publics = PublicMsg::whereIn('id', function($query) {
+                 $query->select(DB::raw('MAX(id) As id'))->from('public_msgs')
+                 ->groupBy('project_id');
+                 });
+      // さらに自分がコメントしたことがあるモノに絞って取得
+      $publics = $publics->whereIn('project_id', $projects)
+                 ->with('user')
+                 ->with('project')
+                 ->get();
+
+      return view('mypages.pm_list', compact('projects', 'publics'));
+    }
 
     public function show_dm_list(){
 
@@ -251,7 +275,13 @@ class ProjectsController extends Controller
         return view('users.profile', compact('user'));
     }
 
+    public function profile_edit_form($id){
+      if(!ctype_digit($id)){
+        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+        }
 
+        return view('users.profile_edit_form');
+    }
 
     public function dm_form($id){
       if(!ctype_digit($id)){

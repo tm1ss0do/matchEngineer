@@ -24,7 +24,7 @@
     <a href="{{ url('/') }}/mypages/applied">応募済み案件一覧</a>
   </li>
   <li>
-    <a href="">パブリックメッセージ一覧</a>
+    <a href="{{ url('/') }}/mypages/public_msg">パブリックメッセージ一覧</a>
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/direct_msg">ダイレクトメッセージ一覧</a>
@@ -33,7 +33,7 @@
     <a href="{{ url('/') }}/projects/{{ $user }}/profile">プロフィール</a>
   </li>
   <li>
-    <a href="#">退会</a>
+    <a href="{{ url('/') }}/mypages/withdraw">退会</a>
   </li>
 </ul>
 
