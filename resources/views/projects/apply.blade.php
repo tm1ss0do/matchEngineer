@@ -32,6 +32,7 @@
     ex = "例：はじめまして。ウェブデザイナーの募集を見て応募いたしました。"
     id = "detail"
     name = "content"
+    message = ""
   ></counter-component>
   <input type="submit" name="" value="応募">
 </form>

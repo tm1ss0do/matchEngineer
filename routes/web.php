@@ -28,6 +28,7 @@ Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('pr
 Route::get('/projects/{id}/application', 'ProjectsController@apply_form')->name('project.apply_form');
 Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('project.profile');
 Route::get('/mypages/{id}/profile/edit', 'ProjectsController@profile_edit_form')->name('project.profile_edit_form');
+Route::post('/mypages/{id}/profile/edit', 'ProjectsController@profile_edit_post')->name('project.profile_edit_post');
 
 
 Route::get('/projects/dm/{id}', 'ProjectsController@dm_form')->name('project.dm_form');

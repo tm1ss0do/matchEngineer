@@ -39,6 +39,7 @@
       ex = "募集者へ質問してみましょう。"
       id = "pub_msg"
       name = "content"
+      message = ""
       ></counter-component>
     <input type="submit" name="" value="送信">
   </form>

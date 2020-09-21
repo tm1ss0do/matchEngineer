@@ -8,11 +8,17 @@
 ユーザーのプロフィール表示画面
 
 
-<p>{{ $user->id }}</p>
-<p>{{ $user->name }}</p>
+<p>ユーザID:{{ $user->id }}</p>
+<p>name:{{ $user->name }}</p>
+<p>icon:{{ $user->profile_icon }}</p>
 
-{!! nl2br(e($user->self_introduction)) !!}
+自己紹介:
+<p>
+  {!! nl2br(e($user->self_introduction)) !!}
+</p>
+
 
 <a href="{{ url('/') }}/projects/dm/{{ $user->id }}">ダイレクトメッセージを送る</a>
+<a href="{{ url('/') }}/mypages/{{$user->id}}/profile/edit">編集する</a>
 
 @endsection

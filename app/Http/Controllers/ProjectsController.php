@@ -279,8 +279,23 @@ class ProjectsController extends Controller
       if(!ctype_digit($id)){
         return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
         }
+        // プロフィール編集画面を表示
+        $user = User::find($id);
 
-        return view('users.profile_edit_form');
+
+        return view('users.profile_edit_form', compact('user'));
+    }
+    public function profile_edit_post(Request $request, $id){
+      if(!ctype_digit($id)){
+        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+        }
+        // ユーザーのプロフィール更新処理
+        $user = User::find($id);
+        // 更新データとの差分をみるため、save()を使用。(updateは差分を見ない)
+        $user->fill($request->all())->save();
+
+        // profile画面へ遷移させる
+        return view('users.profile', compact('user'))->with('flash_message', __('Registered.'));
     }
 
     public function dm_form($id){

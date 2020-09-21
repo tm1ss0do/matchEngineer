@@ -32,6 +32,7 @@
     ex = ""
     id = "content"
     name = "content"
+    message = ""
     ></counter-component>
   <input type="submit" name="" value="送信">
 </form>
