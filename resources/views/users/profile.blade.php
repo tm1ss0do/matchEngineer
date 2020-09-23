@@ -10,8 +10,11 @@
 
 <p>ユーザID:{{ $user->id }}</p>
 <p>name:{{ $user->name }}</p>
+
+@if( $user->profile_icon )
 <p>icon:{{ $user->profile_icon }}</p>
 <img src="{{ asset('storage/avatar/' . $user->profile_icon) }}">
+@endif
 
 自己紹介:
 <p>

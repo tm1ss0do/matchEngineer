@@ -25,10 +25,11 @@ Route::get('/projects/new', 'ProjectsController@new')->name('project.new');
 Route::get('/projects/json', 'ProjectsController@json_data');
 Route::get('/projects/{id}/msg_json', 'ProjectsController@json_data_msg');
 Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('project.detail');
+Route::get('/projects/{id}/edit', 'ProjectsController@project_edit_form')->name('project.project_edit_form');
 Route::get('/projects/{id}/application', 'ProjectsController@apply_form')->name('project.apply_form');
 Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('project.profile');
 Route::get('/mypages/{id}/profile/edit', 'ProjectsController@profile_edit_form')->name('project.profile_edit_form');
-Route::post('/mypages/{id}/profile/edit', 'ProjectsController@profile_edit_post')->name('project.profile_edit_post');
+
 
 
 Route::get('/projects/dm/{id}', 'ProjectsController@dm_form')->name('project.dm_form');
@@ -48,3 +49,5 @@ Route::post('/projects/new', 'ProjectsController@create_project')->name('project
 Route::post('/projects/{id}', 'ProjectsController@public')->name('project.public');
 Route::post('/projects/{id}/application', 'ProjectsController@apply')->name('project.apply');
 Route::post('/mypages/direct_msg/{id}', 'ProjectsController@send_dm')->name('project.send_dm');
+Route::post('/mypages/{id}/profile/edit', 'ProjectsController@profile_edit_post')->name('project.profile_edit_post');
+Route::post('/projects/{id}/edit', 'ProjectsController@project_edit_post')->name('project.project_edit_post');

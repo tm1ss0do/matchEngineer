@@ -27,8 +27,18 @@ class StoreProfileRequest extends FormRequest
         return [
             //
                 'name' => 'required|string|max:255',
-                'profile_icon' => 'string|max:255',
+                // 'profile_icon' => 'string|max:255',
+                'profile_icon' => 'image|mimes:jpeg,png,jpg,gif|max:1024|',
                 'self_introduction' => 'string|max:1000',
+        ];
+    }
+    public function messages()
+    {
+        return [
+        "image" => "指定されたファイルが画像ではありません。",
+        "mines" => "指定された拡張子（JPEG/PNG/JPG/GIF）ではありません。",
+        "max" => "１Ｍを超えています。",
+        // "dimensions" => "画像の比率は1：1で横は最大300pxです。",
         ];
     }
 }

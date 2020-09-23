@@ -21,7 +21,11 @@
 
 <p>{{ $user->name }}</p>
 
+@if( $project->user_id === $user->id )
+<a href="{{ url('projects/'.$project->id.'/edit' ) }}">編集する</a>
+@else
 <a href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
+@endif
 
 <!-- ここから、メッセージ一覧 -->
 

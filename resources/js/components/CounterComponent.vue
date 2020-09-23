@@ -11,7 +11,7 @@
         props: ['countnum', 'ex', 'id', 'name', 'message'],
         data: function() {
           return {
-          
+
           }
         },
         computed: {

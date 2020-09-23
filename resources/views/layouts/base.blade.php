@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.png') }}">
 
@@ -19,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
+
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
@@ -94,7 +96,6 @@
     </header>
 
 
-
     <main id="main" class="l-main">
       <div class="l-main__wrap">
         @yield('content')
@@ -154,5 +155,8 @@
       <p class="text-align__center font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
     </footer>
   </div>
+  <input class="input" id="myCal" type="text" />
+
 </body>
+
 </html>

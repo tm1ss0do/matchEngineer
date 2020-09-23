@@ -29,12 +29,12 @@ class User extends Authenticatable
      }
      public function public_msgs()
      {
-       return $this->hasMany('App\PublicMsg');
+       return $this->hasMany('App\PublicMsg','sender_id');
      }
 
      public function direct_msgs()
      {
-       return $this->hasMany('App\DirectMsgs');
+       return $this->hasMany('App\DirectMsgs','sender_id');
      }
      public function direct_msgs_boards()
      {
