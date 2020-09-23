@@ -17,10 +17,10 @@
 @endif
 
 @foreach ( $publics as $public)
-    <p>{{ $public->id }}</p>
     <li>案件名：{{ $public->project->project_title }}</li>
     <li>{{ $public->user->name }}</li>
     <li>{{ $public->content }}</li>
+    <a href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>
 @endforeach
 
 

@@ -16,6 +16,7 @@
     </div>
 @endif
 
+
 <ul>
   <li>
     <a href="{{ url('/') }}/mypages/registered">登録済み案件一覧</a>
@@ -25,9 +26,19 @@
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/public_msg">パブリックメッセージ一覧</a>
+    @if( $public_msgs_yet )
+    未読あり
+    @else
+    未読なし
+    @endif
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/direct_msg">ダイレクトメッセージ一覧</a>
+    @if(  $direct_msgs_yet )
+    未読あり
+    @else
+    未読なし
+    @endif
   </li>
   <li>
     <a href="{{ url('/') }}/projects/{{ $user }}/profile">プロフィール</a>

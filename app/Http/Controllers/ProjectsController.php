@@ -15,7 +15,7 @@ use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-use \Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
 {
@@ -133,11 +133,18 @@ class ProjectsController extends Controller
 
     public function registered(){
       // 登録済み案件一覧画面表示
-      $user = Auth::id();
-      $projects = Project::where('user_id',$user)
-                  ->get();
+      $user = Auth::user();
+      $projects = $user->projects;
+      // 未読フラグ回収（パブリックメッセージ）
+      $public_msgs_yet = $user->public_msgs
+                         ->where('read_flg','0')
+                         ->first();
+      // 未読フラグ回収（ダイレクトメッセージ）
+      $direct_msgs_yet = $user->direct_msgs
+                         ->where('read_flg','0')
+                         ->first();
 
-      return view('mypages.registered', compact('projects','user'));
+      return view('mypages.registered', compact('projects','user','public_msgs_yet','direct_msgs_yet'));
     }
     public function show_pm_list(){
 
@@ -228,6 +235,37 @@ class ProjectsController extends Controller
 
        return redirect('projects/all')->with('flash_message', __('Registered.'));
     }
+    public function project_edit_form($id){
+      if(!ctype_digit($id)){
+        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+        }
+      $user = Auth::user();
+      $project = Project::where('id',$id)->first();
+
+      return view('projects.edit', compact('user','project'));
+    }
+    public function project_edit_post(StoreProjectPost $request, $id){
+      if(!ctype_digit($id)){
+        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+        }
+      $project = Project::find($id);
+      $request->validated();
+      // 変更があれば更新処理ーーーー
+      $fillData = $request->all();
+      $fillData += array(
+        'updated_at' => Carbon::now(),
+      );
+      $project->fill($fillData)->save();
+      // ーーーーーーーー
+      $user = $project->user;
+      $publicmsgs = PublicMsg::where('project_id', $id)
+                    ->with('user')
+                    ->orderBy('send_date', 'asc')
+                    ->get();
+
+
+      return view('projects.detail', compact('project', 'user', 'publicmsgs'))->with('flash_message', __('Registered.'));;
+    }
 
     public function show_project_detail($id){
       // 渡されたidにしたがって、projectの詳細ページを表示
@@ -284,60 +322,33 @@ class ProjectsController extends Controller
         // プロフィール編集画面を表示
         $user = User::find($id);
 
-
         return view('users.profile_edit_form', compact('user'));
     }
-    public function profile_edit_post(Request $request, $id){
+    public function profile_edit_post(StoreProfileRequest $request, $id){
       if(!ctype_digit($id)){
         return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
         }
         // ユーザーのプロフィール更新処理
         $user = User::find($id);
-        // $input = Input::all();
-        // $fileName = $input['profile_icon']->getClientOriginalName();
-
-
         // バリデーション
-        // $request->validated();
-        $this->validate($request, [
-            'profile_icon' => [
-                // 画像ファイルであること
-                'image',
-                // MIMEタイプを指定
-                'mimes:jpeg,png',
-                // 最小縦横120px 最大縦横400px（プロフィール画像の推奨サイズは400x400ピクセルです。）
-                // 'dimensions:min_width=120,min_height=120,max_width=600,max_height=600',
-            ]
-        ]);
-        // 画像のリサイズ
-        // $file = $request->profile_icon;
-        //アスペクト比を維持、画像サイズを横幅400pxにして保存する。
-        // Image::make($file)->resize(400, null, function ($constraint) {$constraint->aspectRatio();});
+        $request->validated();
 
-        // 更新処理
+        // 更新処理ーーーー
         $user->name = $request->name;
         $user->self_introduction = $request->self_introduction;
         $user->updated_at = Carbon::now();
-
-        // $path = $request->file('profile_icon')->store('public/avatar');
+        // 元の画像を削除
+        $path_prev = $user->profile_icon;
+        $pathdel = storage_path() . '/app/public/avatar/'.$path_prev;
+        \File::delete($pathdel);
+        // 新しい画像はstorage配下へ保存
         $path = $request->profile_icon->store('public/avatar');
         $user->profile_icon = basename($path);
         $user->save();
-
-        // $file = $request->file('profile_icon');
-
-
-        // $fillData = $request->all();
-        // $fillData += array(
-        //   'updated_at' => Carbon::now(),
-        // );
-
-        // 更新データとの差分をみるため、save()を使用。(updateは差分を見ない)
-        // $user->fill($fillData)->save();
+        // ーーーーーーーー
 
         // profile画面へ遷移させる
-        // return view('users.profile', compact('user','file'))->with('flash_message', __('Registered.'));
-        return view('users.profile', compact('user','file'))->with('flash_message',  basename($path));
+        return view('users.profile', compact('user','file'))->with('flash_message', __('Registered.'));
     }
 
     public function dm_form($id){
