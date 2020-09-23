@@ -3,6 +3,7 @@
 namespace App;
 use App\User;
 use App\PublicMsg;
+use App\PublicNotify;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -21,5 +22,10 @@ class Project extends Model
     public function public_msgs()
     {
       return $this->hasMany('App\PublicMsg');
+    }
+
+    public function public_notify()
+    {
+      return $this->hasMany('App\PublicNotify', 'public_board_id');
     }
 }

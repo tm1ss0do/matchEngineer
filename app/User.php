@@ -5,6 +5,8 @@ use App\Project;
 use App\PublicMsg;
 use App\DirectMsgs;
 use App\DirectMsgsBoard;
+use App\PublicNotify;
+
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -39,6 +41,11 @@ class User extends Authenticatable
      public function direct_msgs_boards()
      {
        return $this->hasMany('App\DirectMsgsBoard');
+     }
+
+     public function public_notify()
+     {
+       return $this->hasMany('App\PublicNotify');
      }
 
 

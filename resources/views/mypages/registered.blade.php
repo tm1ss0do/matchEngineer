@@ -26,7 +26,7 @@
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/public_msg">パブリックメッセージ一覧</a>
-    @if( $public_msgs_yet )
+    @if(  $public_msgs_yet )
     未読あり
     @else
     未読なし

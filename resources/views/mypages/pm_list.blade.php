@@ -16,7 +16,12 @@
     </div>
 @endif
 
-@foreach ( $publics as $public)
+@foreach ( $publics as $public )
+    @if( $public_msgs_yet )
+      未読あり
+    @else
+      未読なし
+    @endif
     <li>案件名：{{ $public->project->project_title }}</li>
     <li>{{ $public->user->name }}</li>
     <li>{{ $public->content }}</li>
