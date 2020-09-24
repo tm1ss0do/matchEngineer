@@ -10,6 +10,7 @@ use App\DirectMsgsBoard;
 use App\DirectMsgs;
 use App\PublicNotify;
 use App\DirectNotify;
+use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
 use App\Http\Requests\StoreMessageRequest;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ProjectsController extends Controller
 {
@@ -69,6 +71,9 @@ class ProjectsController extends Controller
 
       return view('users.email_edit');
     }
+
+    
+
 
 
 

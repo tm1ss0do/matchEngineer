@@ -31,7 +31,11 @@ Route::get('/projects/{id}/application', 'ProjectsController@apply_form')->name(
 Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('project.profile');
 Route::get('/mypages/{id}/profile/edit', 'ProjectsController@profile_edit_form')->name('project.profile_edit_form');
 Route::get('/mypages/{id}/password/edit', 'ProjectsController@pass_edit_form')->name('project.pass_edit_form');
+
+
 Route::get('/mypages/{id}/email/edit', 'ProjectsController@email_edit_form')->name('project.email_edit_form');
+Route::get('reset/{token}', 'ChangeEmailController@email_reset');
+Route::post('/mypages/{id}/email/edit', 'ChangeEmailController@email_edit_post')->name('project.email_edit_post');
 
 
 
