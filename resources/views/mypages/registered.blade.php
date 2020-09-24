@@ -40,7 +40,7 @@
     @endif
   </li>
   <li>
-    <a href="{{ url('/') }}/projects/{{ $user }}/profile">プロフィール</a>
+    <a href="{{ url('/') }}/projects/{{ $user->id }}/profile">プロフィール</a>
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/withdraw">退会</a>

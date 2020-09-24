@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class ProjectsController extends Controller
 {
@@ -30,6 +31,46 @@ class ProjectsController extends Controller
       return view('projects.all', compact('projects'));
 
     }
+
+    public function pass_edit_form($id){
+
+      return view('users.password_edit');
+    }
+
+    public function pass_edit_post(Request $request, $id){
+
+        //現在のパスワードが正しいかを調べる
+        if(!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            return redirect()->back()->with('flash_message', '現在のパスワードが間違っています。');
+        }
+
+        //現在のパスワードと新しいパスワードが違っているかを調べる
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
+            return redirect()->back()->with('flash_message', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
+        }
+
+        //パスワードのバリデーション。新しいパスワードは8文字以上、new-password_confirmationフィールドの値と一致しているかどうか。
+        $validated_data = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:8|confirmed',
+        ]);
+
+        //パスワードを変更
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+
+        return redirect()->back()->with('flash_message', 'パスワードを変更しました。');
+
+      // return view('users.password_edit');
+    }
+
+    public function email_edit_form($id){
+
+      return view('users.email_edit');
+    }
+
+
 
     public function json_data(){
 

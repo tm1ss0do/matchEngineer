@@ -35,7 +35,7 @@
   <input type="submit" name="profile" value="保存">
 </form>
 
-<a href="#">パスワード更新</a>
-<a href="#">メールアドレスの変更</a>
+<a href="{{ url('/') }}/mypages/{{$user->id}}/password/edit">パスワード更新</a>
+<a href="{{ url('/') }}/mypages/{{$user->id}}/email/edit">メールアドレスの変更</a>
 
 @endsection
