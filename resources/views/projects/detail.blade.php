@@ -21,6 +21,8 @@
 
 <p>{{ $user->name }}</p>
 
+<a href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
+
 <!-- ここから、メッセージ一覧 -->
 
 <h3>メッセージ一覧</h3>
