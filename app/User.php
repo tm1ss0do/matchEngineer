@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Project;
+use App\PublicMsg;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,9 +22,13 @@ class User extends Authenticatable
     ];
 
     public function projects()
-   {
-       return $this->hasMany('App\Project');
-   }
+     {
+         return $this->hasMany('App\Project');
+     }
+     public function public_msgs()
+     {
+       return $this->hasMany('App\PublicMsg');
+     }
 
 
 }

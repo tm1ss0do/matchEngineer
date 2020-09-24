@@ -37,14 +37,18 @@ Vue.use(moment);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('pagetop-component', require('./components/PagetopComponent.vue').default);
+
 Vue.component('project-component', require('./components/ProjectComponent.vue').default);
 Vue.component('project-list', require('./components/ProjectList.vue').default);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
-Vue.component('pagination-component', require('./components/PaginationComponent.vue').default);
 Vue.component('project-item', require('./components/ProjectItem.vue').default);
+
+Vue.component('pagination-component', require('./components/PaginationComponent.vue').default);
+Vue.component('pagetop-component', require('./components/PagetopComponent.vue').default);
 Vue.component('calender-component', require('./components/CalenderComponent.vue').default);
 Vue.component('counter-component', require('./components/CounterComponent.vue').default);
+
+Vue.component('message-component', require('./components/MessageComponent.vue').default);
 
 
 /**

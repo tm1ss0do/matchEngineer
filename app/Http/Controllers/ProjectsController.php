@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Project;
+use App\PublicMsg;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
 
@@ -24,6 +25,16 @@ class ProjectsController extends Controller
 
       $projects = Project::with('user')->get();
       return $projects->toJson();
+
+    }
+
+    public function json_data_msg($id){
+
+      $publicmsgs = PublicMsg::where('project_id', $id)
+                    ->with('user')
+                    ->orderBy('send_date', 'asc')
+                    ->get();
+      return $publicmsgs->toJson();
 
     }
 
@@ -70,7 +81,13 @@ class ProjectsController extends Controller
         $project = Project::find($id);
         $user = $project->user;
 
-        return view('projects.detail', compact('project', 'user'));
+        $publicmsgs = PublicMsg::where('project_id', $id)
+                      ->with('user')
+                      ->orderBy('send_date', 'asc')
+                      ->get();
+
+
+        return view('projects.detail', compact('project', 'user' , 'publicmsgs'));
 
     }
     public function profile($id){
