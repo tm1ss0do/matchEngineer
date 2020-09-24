@@ -16,7 +16,8 @@ class AddMsgIdToPublicNotifies extends Migration
         Schema::table('public_notifies', function (Blueprint $table) {
             //
             DB::statement('DELETE FROM public_notifies');
-            $table->unsignedBigInteger('public_board_id')->nullable();
+            // $table->unsignedBigInteger('public_board_id')->nullable();
+            $table->unsignedBigInteger('public_board_id');
             $table->foreign('public_board_id')->references('id')->on('public_msgs');
         });
     }

@@ -9,6 +9,7 @@ use App\PublicMsg;
 use App\DirectMsgsBoard;
 use App\DirectMsgs;
 use App\PublicNotify;
+use App\DirectNotify;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
 use App\Http\Requests\StoreMessageRequest;
@@ -68,7 +69,6 @@ class ProjectsController extends Controller
         return back()->with('flash_message', __('Invalid operation was performed.'));
         }
 
-
        $request->validated();
 
        $project = Project::find($id);
@@ -93,16 +93,30 @@ class ProjectsController extends Controller
          $fillDataMsg = $request->all();
          $fillDataMsg += array(
            'send_date'  => Carbon::now(),
-           'read_flg'  => 0,
            'created_at' => Carbon::now(),
            'updated_at' => Carbon::now(),
            'sender_id' => Auth::id(),
            'board_id' => $direct_msgs_boards->id //直前にinsertしたDirectMsgsBoardのID
          );
 
-
          $direct_msgs = new DirectMsgs;
          $direct_msgs->fill($fillDataMsg)->save();
+
+       // 既読・未読の処理ーーーーーーー
+       // sender_idを既読・reciever_idを未読として登録
+       // sender
+       $direct_notify = new DirectNotify;
+       $direct_notify->direct_board_id = $direct_msgs_boards->id; //直線に登録したボードのID
+       $direct_notify->user_id = Auth::id();
+       $direct_notify->read_flg = 1; //既読
+       $direct_notify->save();
+
+       // reciever
+       $direct_notify = new DirectNotify;
+       $direct_notify->direct_board_id = $direct_msgs_boards->id; //直線に登録したボードのID
+       $direct_notify->user_id = $recruiter_id;
+       $direct_notify->read_flg = 0; //未読
+       $direct_notify->save();
 
 
        // 応募済み：project_idが入っている物だけを取得
@@ -142,7 +156,7 @@ class ProjectsController extends Controller
                          ->first();
 
       // 未読フラグ回収（ダイレクトメッセージ）
-      $direct_msgs_yet = $user->direct_msgs
+      $direct_msgs_yet = $user->direct_notify
                          ->where('read_flg','0')
                          ->first();
 
@@ -164,12 +178,12 @@ class ProjectsController extends Controller
                  $query->select(DB::raw('MAX(id) As id'))->from('public_msgs')
                  ->groupBy('project_id');
                  })
+                 ->orderBy('updated_at', 'desc')
                  ->get();
+
       // 未読フラグ回収（パブリックメッセージ）
       $public_msgs_yet = $auther->public_notify
-                         ->where('read_flg','0')
-                         ->first();
-
+                         ->where('read_flg','0');
 
       return view('mypages.pm_list', compact('projects', 'publics', 'public_msgs_yet'));
     }
@@ -177,46 +191,90 @@ class ProjectsController extends Controller
     public function show_dm_list(){
 
       $auther_id = Auth::id();
+      $auther = Auth::user();
 
       // 現在ログイン中のuserが属しているダイレクトメッセージボードを全て取得
-      $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
+      $direct_msgs_boards = DirectMsgsBoard::where('sender_id', $auther_id)
                      ->orWhere('reciever_id',$auther_id)
+                     ->orderBy('updated_at', 'desc')
                      ->get();
+      // 未読フラグ回収（ダイレクトメッセージ）
+      $direct_msgs_yet = $auther->direct_notify
+                         ->where('read_flg','0');
 
       // return view('mypages.dmlist', compact('direct_msgs'));
-      return view('mypages.dm_list', compact('direct_msgs'));
+      return view('mypages.dm_list', compact('direct_msgs_boards','direct_msgs_yet'));
     }
 
     public function show_dm_board($id){
-
+      // ダイレクトメッセージを表示
       $directmsgs = DirectMsgs::where('board_id', $id)
                     ->with('user')
                     ->orderBy('send_date', 'asc')
                     ->get();
+      // 該当のnotifyテーブルに既読フラグを立てる
+      $auther = Auth::user();
+      $direct_notify = $auther->direct_notify->where('direct_board_id', $id)->first();
+      if( !$direct_notify->read_flg ){
+        $direct_notify->read_flg = '1';
+        $direct_notify->save();
+      }
 
       return view('mypages.dm_board', compact('directmsgs'));
     }
 
-    public function send_dm(StoreMessageRequest $request, $id){
+    public function send_dm_at_board(StoreMessageRequest $request, $id){
+      // ボードにあるフォームで、ダイレクトメッセージを送る機能
 
       // 送信内容のバリデーション
       $request->validated();
 
       // DirectMsgの処理ーーーーーーー
       // メッセージを登録
-
+      $auher_id = Auth::id();
       $fillDataMsg = $request->all();
       $fillDataMsg += array(
         'send_date'  => Carbon::now(),
-        'read_flg'  => 0,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now(),
-        'sender_id' => Auth::id(),
+        'sender_id' => $auher_id,
         'board_id' => $id
       );
 
       $direct_msgs = new DirectMsgs;
       $direct_msgs->fill($fillDataMsg)->save();
+
+      // DirectMsgBoardの処理ーーーーーーー
+      // ボードのupdate時間を現在に登録
+      $board = DirectMsgsBoard::where('id',$id)->first();
+      $board->updated_at = Carbon::now();
+      $board->save();
+
+      // 未読・既読の処理ーーーーーーー
+      // メッセージ送信者を既読として登録
+      $notify_sender = DirectNotify::where('direct_board_id', $id)
+                       ->where('user_id', $auher_id)
+                       ->first();
+      if( !$notify_sender->read_flg ){
+        $notify_sender->read_flg = '1';
+        $notify_sender->save();
+      }
+
+      // このダイレクトメッセージの受け取り手を取得
+      // 受取手はボードのreciever_idまたはsender_idの内、ログインユーザーIDではない方( $read_yet_id に格納)
+      if( $board->reciever->id != $auher_id ){
+        $read_yet_id = $board->reciever->id;
+      }elseif( $board->sender->id != $auher_id ){
+        $read_yet_id = $board->sender->id;
+      }
+      // 受取手を未読者として登録
+      $notify_reciever = DirectNotify::where('user_id', $read_yet_id)
+                         ->where('direct_board_id', $id)
+                         ->first();
+      if( $notify_reciever->read_flg ){
+        $notify_reciever->read_flg = '0';
+        $notify_reciever->save();
+      }
 
       return back()->with('flash_message', '送信しました');
     }
@@ -236,6 +294,18 @@ class ProjectsController extends Controller
        $fillData += array('user_id' => Auth::id());
 
        $project->fill($fillData)->save();
+
+       // 投稿者をpublicコメントの参加者として登録。
+       // 未読メッセージはないので、既読フラグを立てて新規保存
+
+       $id = $project->id; //直前に登録したprojectのID
+       $auther = Auth::user();
+
+       $public_notify = new PublicNotify;
+       $public_notify->public_board_id = $id;
+       $public_notify->user_id = $auther;
+       $public_notify->read_flg = '1';
+       $public_notify->save();
 
        return redirect('projects/all')->with('flash_message', __('Registered.'));
     }
@@ -293,7 +363,7 @@ class ProjectsController extends Controller
           $public_notify->save();
         }
 
-        return view('projects.detail', compact('project', 'user' , 'publicmsgs','public_notify'));
+        return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify'));
 
     }
 
@@ -304,7 +374,6 @@ class ProjectsController extends Controller
        $fillData = $request->all();
        $fillData += array(
          'send_date' => Carbon::now(),
-         'read_flg' => 0,
          'sender_id' => Auth::id(),
          'project_id' => $id,
        );
@@ -404,7 +473,7 @@ class ProjectsController extends Controller
       if(!ctype_digit($id)){
         return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
         }
-        // 案件なしのダイレクトメッセージをDB保存
+        // 案件なしで直接ダイレクトメッセージを送る
 
         // 投稿内容をバリデーション
         $request->validated();
@@ -428,16 +497,30 @@ class ProjectsController extends Controller
         $fillDataMsg = $request->all();
         $fillDataMsg += array(
           'send_date'  => Carbon::now(),
-          'read_flg'  => 0,
           'created_at' => Carbon::now(),
           'updated_at' => Carbon::now(),
           'sender_id' => Auth::id(),
           'board_id' => $direct_msgs_boards->id //直前にinsertしたDirectMsgsBoardのID
         );
 
-
         $direct_msgs = new DirectMsgs;
         $direct_msgs->fill($fillDataMsg)->save();
+
+        // 既読・未読の処理ーーーーーーー
+        // sender_idを既読・reciever_idを未読として登録
+        // sender
+        $direct_notify = new DirectNotify;
+        $direct_notify->direct_board_id = $direct_msgs_boards->id; //直線に登録したボードのID
+        $direct_notify->user_id = Auth::id();
+        $direct_notify->read_flg = 1; //既読
+        $direct_notify->save();
+
+        // reciever
+        $direct_notify = new DirectNotify;
+        $direct_notify->direct_board_id = $direct_msgs_boards->id; //直線に登録したボードのID
+        $direct_notify->user_id = $id;
+        $direct_notify->read_flg = 0; //未読
+        $direct_notify->save();
 
       return redirect('/mypages/direct_msg')->with('flash_message', __('送信しました'));
     }

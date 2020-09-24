@@ -48,6 +48,6 @@ Route::post('/projects/dm/{id}', 'ProjectsController@dm_new')->name('project.dm_
 Route::post('/projects/new', 'ProjectsController@create_project')->name('project.create');
 Route::post('/projects/{id}', 'ProjectsController@public')->name('project.public');
 Route::post('/projects/{id}/application', 'ProjectsController@apply')->name('project.apply');
-Route::post('/mypages/direct_msg/{id}', 'ProjectsController@send_dm')->name('project.send_dm');
+Route::post('/mypages/direct_msg/{id}', 'ProjectsController@send_dm_at_board')->name('project.send_dm_at_board');
 Route::post('/mypages/{id}/profile/edit', 'ProjectsController@profile_edit_post')->name('project.profile_edit_post');
 Route::post('/projects/{id}/edit', 'ProjectsController@project_edit_post')->name('project.project_edit_post');

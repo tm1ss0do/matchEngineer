@@ -6,7 +6,7 @@ use App\PublicMsg;
 use App\DirectMsgs;
 use App\DirectMsgsBoard;
 use App\PublicNotify;
-
+use App\DirectNotify;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,6 +46,11 @@ class User extends Authenticatable
      public function public_notify()
      {
        return $this->hasMany('App\PublicNotify');
+     }
+
+     public function direct_notify()
+     {
+       return $this->hasMany('App\DirectNotify');
      }
 
 

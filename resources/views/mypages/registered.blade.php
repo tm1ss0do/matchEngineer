@@ -16,7 +16,6 @@
     </div>
 @endif
 
-
 <ul>
   <li>
     <a href="{{ url('/') }}/mypages/registered">登録済み案件一覧</a>

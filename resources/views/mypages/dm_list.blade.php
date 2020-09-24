@@ -18,20 +18,29 @@
 
 
 <div class="">
-    @foreach( $direct_msgs  as $direct_msg )
 
-    <p>ダイレクトメッセージのid：{{ $direct_msg->id }}</p>
+    @foreach( $direct_msgs_boards  as $direct_msg_board )
 
-    @if ( $direct_msg->project )
-    <p>案件名：{{ $direct_msg->project->project_title }}</p>
-    @endif
+      <p>ダイレクトメッセージのid：{{ $direct_msg_board->id }}
 
-    <a href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg->id }}">メッセージページへ</a>
+      @foreach($direct_msgs_yet as $direct )
+        @if( $direct->direct_board_id === $direct_msg_board->id )
+        <span>未読</span>
+        @endif
+      @endforeach
 
-    @if ( $direct_msg->project )
-    <a href="{{ url('/') }}/projects/{{ $direct_msg->project->id }}">案件詳細をみる</a>
-    @endif
-    
+      </p>
+
+      @if ( $direct_msg_board->project )
+        <p>案件名：{{ $direct_msg_board->project->project_title }}</p>
+      @endif
+
+      <a href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg_board->id }}">メッセージページへ</a>
+
+      @if ( $direct_msg_board->project )
+        <a href="{{ url('/') }}/projects/{{ $direct_msg_board->project->id }}">案件詳細をみる</a>
+      @endif
+
     @endforeach
 
 </div>

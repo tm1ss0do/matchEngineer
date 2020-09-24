@@ -17,11 +17,13 @@
 @endif
 
 @foreach ( $publics as $public )
-    @if( $public_msgs_yet )
-      未読あり
-    @else
-      未読なし
-    @endif
+
+    @foreach($public_msgs_yet as $public )
+      @if( $public->public_board_id === $public->project->id )
+      未読
+      @endif
+    @endforeach
+
     <li>案件名：{{ $public->project->project_title }}</li>
     <li>{{ $public->user->name }}</li>
     <li>{{ $public->content }}</li>
