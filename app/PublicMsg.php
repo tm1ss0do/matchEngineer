@@ -3,13 +3,14 @@
 namespace App;
 use App\User;
 use App\Project;
+use App\PublicNotify;
 
 use Illuminate\Database\Eloquent\Model;
 
 class PublicMsg extends Model
 {
     //
-    protected $fillable = ['send_date', 'content', 'read_flg', 'sender_id', 'project_id'];
+    protected $fillable = ['send_date', 'content', 'sender_id', 'project_id'];
 
     public function user()
      {
@@ -20,5 +21,10 @@ class PublicMsg extends Model
      {
        return $this->belongsTo('App\Project');
      }
+
+     // public function public_notify()
+     // {
+     //   return $this->hasMany('App\PublicNotify', 'public_board_id');
+     // }
 
 }

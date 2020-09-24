@@ -21,9 +21,12 @@ Vue.use(moment);
 
 // import Datepicker from "vuejs-datepicker";
 
-// var datepicker = require('vuejs-datepicker');
-// Vue.component(datepicker);
+// var Datepicker = require('vuejs-datepicker');
+// Vue.component('datepicker', Datepicker);
 
+//flatPickr
+// const flatPickr = require('vue-flatpickr-component');
+// require('flatpickr/dist/flatpickr.css');
 
 /**
  * The following block of code may be used to automatically register your
@@ -49,6 +52,7 @@ Vue.component('calender-component', require('./components/CalenderComponent.vue'
 Vue.component('counter-component', require('./components/CounterComponent.vue').default);
 
 Vue.component('message-component', require('./components/MessageComponent.vue').default);
+// Vue.component('flat-pickr-component', require('./components/FlatPickrComponent.vue').default);
 
 
 /**

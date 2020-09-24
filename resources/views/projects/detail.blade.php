@@ -21,7 +21,18 @@
 
 <p>{{ $user->name }}</p>
 
+@if( $project->user_id === $auther->id )
+<a href="{{ url('projects/'.$project->id.'/edit' ) }}">編集する</a>
+@else
 <a href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
+@endif
+
+<!-- twitter share -->
+<a class="twitter-share-button"
+   href="https://twitter.com/share"
+   data-dnt="true"
+   data-text="match｜案件名：{{ mb_substr($project->project_title, 0, 80) }}...">Tweet</a>
+
 
 <!-- ここから、メッセージ一覧 -->
 
@@ -33,12 +44,13 @@
 
   <form class="" action="" method="post">
     @csrf
-    <label for="content"></label>
+    <label for="pub_msg">メッセージ送信フォーム</label>
      <counter-component
       :countnum = "1000"
       ex = "募集者へ質問してみましょう。"
       id = "pub_msg"
       name = "content"
+      message = ""
       ></counter-component>
     <input type="submit" name="" value="送信">
   </form>

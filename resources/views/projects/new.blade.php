@@ -47,6 +47,7 @@
     ex = "例：既存ブログサイトのデザインを変えたいです。優しいデザインが得意な方を募集します。"
     id = "detail"
     name = "project_detail_desc"
+    message = ""
   ></counter-component>
   <input type="submit" name="" value="案件登録">
 </form>

@@ -8,7 +8,13 @@
       募集中！
     </span>
     <span class="c-card__status">レベニュー案件</span>
-    <p class="c-card__text-sub">募集期限：{{ project.created_at | moment("YYYY/MM/DD") }} 〜 {{ project.project_reception_end | moment("YYYY/MM/DD") }}</p>
+    <p class="c-card__text-sub">募集期限：
+    {{ project.created_at | moment("YYYY/MM/DD") }} 〜
+    <span v-if="project.project_reception_end">{{ project.project_reception_end | moment("YYYY/MM/DD") }}</span>
+    <span v-else>
+    未定です
+    </span>
+    </p>
     <h3 class="c-card__title">
       <a class="c-card__title--link" :href="'/projects/'+project.id" >{{ project.project_title }}</a>
     </h3>
@@ -37,8 +43,14 @@
 <script>
 export default {
     props: ['project','url'],
+    data: function() {
+        return {
+          
+        }
+    },
     mounted() {
         console.log('ProjectItem mounted.');
+
     }
 }
 </script>

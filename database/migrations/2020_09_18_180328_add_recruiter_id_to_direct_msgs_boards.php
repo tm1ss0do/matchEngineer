@@ -16,8 +16,8 @@ class AddRecruiterIdToDirectMsgsBoards extends Migration
         Schema::table('direct_msgs_boards', function (Blueprint $table) {
             //
             DB::statement('DELETE FROM direct_msgs_boards');
-            $table->unsignedBigInteger('recruiter_id');
-            $table->foreign('recruiter_id')->references('id')->on('users');
+            $table->unsignedBigInteger('reciever_id');
+            $table->foreign('reciever_id')->references('id')->on('users');
         });
     }
 
@@ -30,8 +30,8 @@ class AddRecruiterIdToDirectMsgsBoards extends Migration
     {
         Schema::table('direct_msgs_boards', function (Blueprint $table) {
           //
-          $table->dropForeign(['recruiter_id']);
-          $table->dropColumn('recruiter_id');
+          $table->dropForeign(['reciever_id']);
+          $table->dropColumn('reciever_id');
         });
     }
 }

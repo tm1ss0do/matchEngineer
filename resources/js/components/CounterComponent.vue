@@ -8,10 +8,10 @@
 
 <script>
     export default {
-        props: ['countnum', 'ex', 'id', 'name'],
+        props: ['countnum', 'ex', 'id', 'name', 'message'],
         data: function() {
           return {
-            message: '',
+
           }
         },
         computed: {

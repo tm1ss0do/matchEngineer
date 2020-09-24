@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('project_title', 100);
             $table->boolean('project_status');
             $table->string('project_type');
-            $table->dateTime('project_reception_end');
+            $table->dateTime('project_reception_end')->nullable();
             $table->integer('project_max_amount')->nullable();
             $table->integer('project_mini_amount')->nullable();
             $table->string('project_detail_desc',5000);
