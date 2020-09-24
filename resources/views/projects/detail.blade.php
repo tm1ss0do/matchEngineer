@@ -7,6 +7,16 @@
 案件詳細画面
 
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <p>{{ $project->project_title }}</p>
 
 <p>{{ $user->name }}</p>
@@ -19,11 +29,16 @@
   :project = "{{ $project }}"
   ></message-component>
 
-  <form class="" action="index.html" method="post">
-    <textarea name="content" rows="8" cols="80"></textarea>
-    <input type="submit" name="" value="">
+  <form class="" action="" method="post">
+    @csrf
+    <label for="content"></label>
+     <counter-component
+      :countnum = "1000"
+      ex = "募集者へ質問してみましょう。"
+      id = "pub_msg"
+      name = "content"
+      ></counter-component>
+    <input type="submit" name="" value="送信">
   </form>
-
-  
 
 @endsection

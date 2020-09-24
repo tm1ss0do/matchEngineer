@@ -1,21 +1,22 @@
 <template>
 
-  <section class="p-search">
-    <textarea v-model="detail" class="js-count-area" id="案件詳細" name="project_detail_desc" rows="8" cols="80" placeholder="例：既存ブログサイトのデザインを変えたいです。優しいデザインが得意な方を募集します。"></textarea></br>
-    <span class="js-counter">{{ getLength }}/5000文字</span></br>
+  <section class="">
+    <textarea v-model="message" class="js-count-area" :id="id" :name="name" rows="8" cols="80" :placeholder="ex"></textarea></br>
+    <span class="js-counter">{{ getLength }}/{{ countnum }}文字</span></br>
   </section>
 </template>
 
 <script>
     export default {
+        props: ['countnum', 'ex', 'id', 'name'],
         data: function() {
           return {
-            detail: '',
+            message: '',
           }
         },
         computed: {
           getLength: function() {
-            return this.detail.length;
+            return this.message.length;
           },
         },
         mounted () {

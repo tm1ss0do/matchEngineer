@@ -27,7 +27,10 @@ Route::get('/projects/{id}/msg_json', 'ProjectsController@json_data_msg');
 Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('project.profile');
 Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('project.detail');
 
+
 Route::post('/projects/new', 'ProjectsController@create_project')->name('project.create');
+Route::post('/projects/{id}', 'ProjectsController@public')->name('project.public');
+
 //
 // Auth::routes();
 //
