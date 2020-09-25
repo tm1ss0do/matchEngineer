@@ -13,31 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 // Auth::routes();
 Auth::routes(['verify' => true]);
-
-// *******************************************************
-// 誰でも許可
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Home Controller
-Route::get('/home', 'HomeController@index')->name('home');
-
-// Projects Controller
-
-Route::get('/projects/all', 'ProjectsController@show_project_all')->name('project.all');
-Route::get('/projects/json', 'ProjectsController@json_data');
-Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('project.detail');
-Route::get('/projects/{id}/msg_json', 'ProjectsController@json_data_msg');
-Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('project.profile');
-
-Route::get('/projects/new', 'ProjectsController@new')->name('project.new');
-
 
 // *******************************************************
 // ログインユーザーのみ許可-----------
@@ -89,3 +66,26 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/mypages/withdraw', 'WithdrawController@index')->name('withdraw.index');
   Route::post('/mypages/withdraw', 'WithdrawController@delete_user_logical')->name('withdraw.index');
 });
+
+
+
+// *******************************************************
+// 誰でも許可
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Home Controller
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Projects Controller
+
+Route::get('/projects/all', 'ProjectsController@show_project_all')->name('project.all');
+Route::get('/projects/json', 'ProjectsController@json_data');
+Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('project.detail');
+Route::get('/projects/{id}/msg_json', 'ProjectsController@json_data_msg');
+Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('project.profile');
+
+Route::get('/projects/new', 'ProjectsController@new')->name('project.new');
