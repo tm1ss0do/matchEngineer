@@ -18,6 +18,9 @@
 
 <ul>
   <li>
+    <a href="{{ url('/') }}/projects/new">案件登録</a>
+  </li>
+  <li>
     <a href="{{ url('/') }}/mypages/registered">登録済み案件一覧</a>
   </li>
   <li>
@@ -58,6 +61,8 @@
 
     @endforeach
 </ul>
+
+{{ $projects->links() }}
 
 
 @endsection

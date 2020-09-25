@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+<p>email認証が済んでいなければ、ログイン画面もここになります。</p>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

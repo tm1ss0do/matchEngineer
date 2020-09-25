@@ -39,6 +39,7 @@ Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('projec
 // *******************************************************
 // ログインユーザーのみ許可-----------
 Route::group(['middleware' => 'auth'], function() {
+  
   // CreateProject Controller
   Route::get('/projects/new', 'CreateProjectController@new')->name('project.new');
   Route::post('/projects/new', 'CreateProjectController@create_project')->name('project.create');
