@@ -67,12 +67,16 @@ class ProjectsController extends Controller
                       ->with('user')
                       ->orderBy('send_date', 'asc')
                       ->get();
-        // 該当のnotifyテーブルに既読フラグを立てる
+        // 該当のnotifyレコードを取得
         $auther = Auth::user();
         $public_notify = $auther->public_notify->where('public_board_id', $id)->first();
-        if( !$public_notify->read_flg ){
-          $public_notify->read_flg = '1';
-          $public_notify->save();
+        // ユーザーがこのpublicテーブルに参加していた場合
+          if($public_notify){
+            // 該当のnotifyテーブルに既読フラグを立てる
+            if( !$public_notify->read_flg ){
+              $public_notify->read_flg = '1';
+              $public_notify->save();
+            }
         }
 
         return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify'));

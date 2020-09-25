@@ -18,8 +18,8 @@
 
 @foreach ( $publics as $public )
 
-    @foreach($public_msgs_yet as $public )
-      @if( $public->public_board_id === $public->project->id )
+    @foreach($public_msgs_yet as $pub_msg )
+      @if( $pub_msg->public_board_id === $public->project->id )
       未読
       @endif
     @endforeach
