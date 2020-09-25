@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('profile_icon')->nullable();
             $table->string('self_introduction',1000)->nullable();
-            $table->boolean('delete_flg');
+            // $table->boolean('delete_flg');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'test1',
             'email' => 'test1@example.com',
-            'delete_flg' => '0',
+            'deleted_at' => NULL,
             'self_introduction'=> "自己紹介文
             こちらにプロフィールを記載します。
             例：\nエンジニア歴10年です。\r\nweb制作会社を経て自社開発企業に就職し、5年勤めました。\r\n現在はフリーランスとして活動しています。",
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'test2',
             'email' => 'test2@example.com',
-            'delete_flg' => '1',
+            'deleted_at' => NULL,
             'self_introduction'=> "自己紹介文2
             ここに自己紹介文を入れます。
             （勤務した会社・勤務年数・所有資格・扱っている言語など）",
@@ -36,7 +36,29 @@ class UsersTableSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        DB::table('users')->insert([
+            'name' => 'test3',
+            'email' => 'test3@example.com',
+            'deleted_at' => NULL,
+            'self_introduction'=> "自己紹介文2
+            ここに自己紹介文を入れます。
+            （勤務した会社・勤務年数・所有資格・扱っている言語など）",
+            'password' => bcrypt('pas3word'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
 
+        DB::table('users')->insert([
+            'name' => 'test4',
+            'email' => 'test4@example.com',
+            'deleted_at' => NULL,
+            'self_introduction'=> "自己紹介文2
+            ここに自己紹介文を入れます。
+            （勤務した会社・勤務年数・所有資格・扱っている言語など）",
+            'password' => bcrypt('pas4word'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
         //factoryを使ってダミーデータ
         // factory(App\User\::class, 10)->create();
          factory(App\User::class, 10)->create();
