@@ -38,7 +38,7 @@ Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('projec
 
 // *******************************************************
 // ログインユーザーのみ許可-----------
-// Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function() {
   // CreateProject Controller
   Route::get('/projects/new', 'CreateProjectController@new')->name('project.new');
   Route::post('/projects/new', 'CreateProjectController@create_project')->name('project.create');
@@ -84,4 +84,4 @@ Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('projec
   // Withdraw Controller
   Route::get('/mypages/withdraw', 'WithdrawController@index')->name('withdraw.index');
   Route::post('/mypages/withdraw', 'WithdrawController@delete_user_logical')->name('withdraw.index');
-// });
+});
