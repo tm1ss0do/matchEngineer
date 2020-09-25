@@ -18,6 +18,8 @@ use Illuminate\Notifications\Notifiable;
 use App\Notifications\CustomVerifyEmail;
 use App\Notifications\CustomResetPassword;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 // class User extends Authenticatable
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -29,8 +31,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
      *
      * @var array
      */
+    // 論理削除を行う
+    use SoftDeletes;
+
     protected $fillable = [
-        'name', 'email', 'password', 'profile_icon', 'self_introduction', 'delete_flg'
+        'name', 'email', 'password', 'profile_icon', 'self_introduction', 'deleted_at'
     ];
 
     public function sendEmailVerificationNotification()

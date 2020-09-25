@@ -20,15 +20,19 @@
 <p>{{ $project->project_title }}</p>
 
 <p>{{ $user->name }}</p>
-
-@if( $project->user_id === $auther->id )
-<a href="{{ url('projects/'.$project->id.'/edit' ) }}">編集する</a>
-@elseif( $already_apply )
- <a href="{{ url('mypages/direct_msg/'.$already_apply->id ) }}">
-   この案件は応募済みです
- </a>
+@if( $auther )
+  @if( $project->user_id === $auther->id )
+  <a href="{{ url('projects/'.$project->id.'/edit' ) }}">編集する</a>
+  @elseif( $already_apply )
+   <a href="{{ url('mypages/direct_msg/'.$already_apply->id ) }}">
+     この案件は応募済みです
+   </a>
+  @else
+  <a href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
+  @endif
 @else
-<a href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
+ログインして応募しましょう！
+
 @endif
 
 <!-- twitter share -->

@@ -69,21 +69,26 @@ class ProjectsController extends Controller
                       ->get();
         // 該当のnotifyレコードを取得
         $auther = Auth::user();
-        $public_notify = $auther->public_notify->where('public_board_id', $id)->first();
-        // ユーザーがこのpublicテーブルに参加していた場合
-          if($public_notify){
-            // 該当のnotifyテーブルに既読フラグを立てる
-            if( !$public_notify->read_flg ){
-              $public_notify->read_flg = '1';
-              $public_notify->save();
-            }
+        // ゲストユーザーでない場合
+        if( $auther ){
+          $public_notify = $auther->public_notify->where('public_board_id', $id)->first();
+          // ユーザーがこのpublicテーブルに参加していた場合
+            if($public_notify){
+              // 該当のnotifyテーブルに既読フラグを立てる
+              if( !$public_notify->read_flg ){
+                $public_notify->read_flg = '1';
+                $public_notify->save();
+              }
+          }
+
+          // ログインユーザーがこのプロジェクトにすでに応募しているか判定
+          // （応募した場合はDirectMsgsBoardが作成されるので、その中から該当するものを探す）
+          $already_apply = DirectMsgsBoard::where('project_id', $id)
+                                ->where('sender_id', $auther->id)
+                                ->first();
         }
 
-        // ログインユーザーがこのプロジェクトにすでに応募しているか判定
-        // （応募した場合はDirectMsgsBoardが作成されるので、その中から該当するものを探す）
-        $already_apply = DirectMsgsBoard::where('project_id', $id)
-                              ->where('sender_id', $auther->id)
-                              ->first();
+
 
         return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify', 'already_apply'));
 

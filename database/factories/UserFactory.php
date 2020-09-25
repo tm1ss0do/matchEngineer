@@ -26,6 +26,6 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
         'profile_icon' => '',
         'self_introduction' => $faker->realText(512),
-        'delete_flg' => 0
+        'deleted_at' => NULL
     ];
 });
