@@ -12,18 +12,19 @@ class WithdrawController extends Controller
     public function index(){
       // ユーザーの退会画面表示(論理削除用)
 
-      return view('mypages.withdraw');
+      return view('withdraws.withdraw');
 
     }
     public function delete_user_logical(Request $request){
       // ユーザーの論理削除を実行( deleted_at にタイムスタンプが入る )
       $user_id = Auth::id();
+      // Auth::logout(); // ログアウト、update処理が行われる。
       $user = User::find($user_id);
       $user->delete();
       // $user->delete_flg = true;
       // $user->save();
 
-      return view('mypages.withdrawn',compact('user'));
+      return view('withdraws.withdrawn',compact('user'));
     }
 
 }
