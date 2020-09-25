@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile_icon')->nullable();
@@ -25,6 +25,13 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
+
+            // 論理削除されていれば NULL， されていなければ 1 になる生成列を定義
+            $table->boolean('exist')->nullable()->storedAs('case when deleted_at is null then 1 else null end');
+
+            // 複合ユニーク制約
+            $table->unique(['email', 'exist']);
+
         });
     }
 
