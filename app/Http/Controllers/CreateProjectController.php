@@ -33,7 +33,7 @@ class CreateProjectController extends Controller
       // 登録済み案件一覧画面表示
       $user = Auth::user();
       // $projects = $user->projects;
-      $projects = Project::where('user_id', $user->id)->paginate(1);
+      $projects = Project::where('user_id', $user->id)->paginate(2);
 
       // 未読フラグ回収（パブリックメッセージ）
       $public_msgs_yet = $user->public_notify

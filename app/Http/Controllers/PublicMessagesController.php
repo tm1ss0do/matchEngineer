@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 // use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Str;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class PublicMessagesController extends Controller
 {
@@ -42,7 +44,7 @@ class PublicMessagesController extends Controller
                  ->groupBy('project_id');
                  })
                  ->orderBy('updated_at', 'desc')
-                 ->get();
+                 ->paginate(2);
 
       // 未読フラグ回収（パブリックメッセージ）
       $public_msgs_yet = $auther->public_notify

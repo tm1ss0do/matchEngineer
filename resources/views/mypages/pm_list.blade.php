@@ -30,5 +30,6 @@
     <a href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>
 @endforeach
 
+{{ $publics->links() }}
 
 @endsection

@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 // use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Str;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class ApplyForProjectController extends Controller
 {
@@ -32,7 +34,8 @@ class ApplyForProjectController extends Controller
       $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
                      ->whereNotNull('project_id')
                      ->with('project')
-                     ->get();
+                     ->paginate(2);
+
 
       return view('mypages.applied', compact('direct_msgs'));
 

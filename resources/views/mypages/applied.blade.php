@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', '案件詳細')
+@section('title', '応募済み案件一覧')
 
 @section('content')
 
@@ -29,5 +29,8 @@
     @endforeach
 
 </div>
+
+{{ $direct_msgs->links() }}
+
 
 @endsection

@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\Storage;
 // use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Str;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+
 
 class DirectMessagesController extends Controller
 {
@@ -98,7 +101,7 @@ class DirectMessagesController extends Controller
       $direct_msgs_boards = DirectMsgsBoard::where('sender_id', $auther_id)
                      ->orWhere('reciever_id',$auther_id)
                      ->orderBy('updated_at', 'desc')
-                     ->get();
+                     ->paginate(10);
       // 未読フラグ回収（ダイレクトメッセージ）
       $direct_msgs_yet = $auther->direct_notify
                          ->where('read_flg','0');

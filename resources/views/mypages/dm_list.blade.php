@@ -45,5 +45,7 @@
 
 </div>
 
+{{ $direct_msgs_boards->links() }}
+
 
 @endsection

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use App\PublicMsg;
-// use App\DirectMsgsBoard;
+use App\DirectMsgsBoard;
 // use App\DirectMsgs;
 // use App\PublicNotify;
 // use App\DirectNotify;
@@ -79,7 +79,13 @@ class ProjectsController extends Controller
             }
         }
 
-        return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify'));
+        // ログインユーザーがこのプロジェクトにすでに応募しているか判定
+        // （応募した場合はDirectMsgsBoardが作成されるので、その中から該当するものを探す）
+        $already_apply = DirectMsgsBoard::where('project_id', $id)
+                              ->where('sender_id', $auther->id)
+                              ->first();
+
+        return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify', 'already_apply'));
 
     }
 

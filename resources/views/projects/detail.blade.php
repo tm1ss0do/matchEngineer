@@ -23,6 +23,10 @@
 
 @if( $project->user_id === $auther->id )
 <a href="{{ url('projects/'.$project->id.'/edit' ) }}">編集する</a>
+@elseif( $already_apply )
+ <a href="{{ url('mypages/direct_msg/'.$already_apply->id ) }}">
+   この案件は応募済みです
+ </a>
 @else
 <a href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
 @endif
