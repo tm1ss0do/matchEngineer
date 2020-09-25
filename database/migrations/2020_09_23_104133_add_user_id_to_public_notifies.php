@@ -16,7 +16,7 @@ class AddUserIdToPublicNotifies extends Migration
         Schema::table('public_notifies', function (Blueprint $table) {
             //
             DB::statement('DELETE FROM public_notifies');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

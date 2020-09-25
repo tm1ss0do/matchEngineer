@@ -40,5 +40,12 @@ class PublicNotifiesTableSeeder extends Seeder
             'user_id' => '2',
             'read_flg' => '1',
         ]);
+        DB::table('public_notifies')->insert([
+            'created_at'=> '2020-09-16 12:30:49',
+            'updated_at' => '2020-09-16 12:30:49',
+            'public_board_id' => '3', //project_id
+            'user_id' => '3',
+            'read_flg' => '1',
+        ]);
     }
 }

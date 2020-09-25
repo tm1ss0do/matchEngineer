@@ -36,12 +36,15 @@ Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('pr
 Route::get('/projects/{id}/msg_json', 'ProjectsController@json_data_msg');
 Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('project.profile');
 
+Route::get('/projects/new', 'ProjectsController@new')->name('project.new');
+
+
 // *******************************************************
 // ログインユーザーのみ許可-----------
 Route::group(['middleware' => 'auth'], function() {
-  
+
   // CreateProject Controller
-  Route::get('/projects/new', 'CreateProjectController@new')->name('project.new');
+  // Route::get('/projects/new', 'CreateProjectController@new')->name('project.new');
   Route::post('/projects/new', 'CreateProjectController@create_project')->name('project.create');
   Route::get('/mypages/registered', 'CreateProjectController@registered')->name('project.registered');
 

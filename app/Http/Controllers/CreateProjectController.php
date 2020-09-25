@@ -6,21 +6,21 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use App\PublicMsg;
-// use App\DirectMsgsBoard;
-// use App\DirectMsgs;
+use App\DirectMsgsBoard;
+use App\DirectMsgs;
 use App\PublicNotify;
-// use App\DirectNotify;
-// use App\EmailReset;
+use App\DirectNotify;
+use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
-// use App\Http\Requests\StoreMessageRequest;
-// use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\StoreMessageRequest;
+use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 
@@ -46,12 +46,11 @@ class CreateProjectController extends Controller
       return view('mypages.registered', compact('projects','user', 'public_msgs_yet', 'direct_msgs_yet', 'join_users'));
     }
 
-    public function new(){
-      // 案件登録画面表示
-      $user = Auth::user();   #ログインユーザー情報を取得します。
-      return view('projects.new', compact('user'));
-    }
-
+    // public function new(){
+    //   // 案件登録画面表示
+    //   $user = Auth::user();   #ログインユーザー情報を取得します。
+    //   return view('projects.new', compact('user'));
+    // }
 
     public function create_project( StoreProjectPost $request ){
 

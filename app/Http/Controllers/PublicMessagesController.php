@@ -66,17 +66,20 @@ class PublicMessagesController extends Controller
       // 自分以外にこのパブリックメッセージへ参加している人がいる場合は、未読フラグを立ててpublic_notifiesへ保存
       // このメッセージへの参加者を取得
       $join_users = PublicNotify::where('public_board_id', $id)
-                    ->select('user_id')->get();
-      // 全員を未読として登録
-      foreach( $join_users as $join_user){
-        $notify = PublicNotify::where('user_id',$join_user->user_id)
-                      ->where('public_board_id', $id)
-                      ->first();
-        if( $notify->read_flg ){
-          $notify->read_flg = '0';
-          $notify->save();
+                    ->select('user_id')
+                    ->get();
+      // if( !empty($join_users) ){
+        // 全員を未読として登録
+        foreach( $join_users as $join_user){
+          $notify = PublicNotify::where('user_id',$join_user->user_id)
+                        ->where('public_board_id', $id)
+                        ->first();
+          if( $notify->read_flg ){
+            $notify->read_flg = '0';
+            $notify->save();
+          }
         }
-      }
+      // }
 
       // 初めてこのプロジェクトのパブリックメッセージに投稿するか、notifyレコードの有無を判定
       $auther = Auth::user();
@@ -85,7 +88,7 @@ class PublicMessagesController extends Controller
         // notifyテーブルに既読フラグを立てて新規保存
         $public_notify = new PublicNotify;
         $public_notify->public_board_id = $id;
-        $public_notify->user_id = $auther;
+        $public_notify->user_id = $auther->id;
         $public_notify->read_flg = '1';
         $public_notify->save();
       }else{

@@ -21,12 +21,15 @@
 
 <p>{{ $user->name }}</p>
 
-@if( $project->user_id === $auther->id )
-<a href="{{ url('projects/'.$project->id.'/edit' ) }}">編集する</a>
+@if( $auther )
+  @if( $project->user_id === $auther->id )
+  <a href="{{ url('projects/'.$project->id.'/edit' ) }}">編集する</a>
+  @else
+  <a href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
+  @endif
 @else
-<a href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
+<p>応募するためには、ログインしてください</p>
 @endif
-
 <!-- twitter share -->
 <a class="twitter-share-button"
    href="https://twitter.com/share"

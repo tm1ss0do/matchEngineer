@@ -69,7 +69,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
      public function direct_notify()
      {
-       return $this->hasMany('App\DirectNotify');
+       return $this->hasMany('App\DirectNotify', 'user_id');
      }
 
 

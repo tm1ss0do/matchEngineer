@@ -28,11 +28,32 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'test2',
             'email' => 'test2@example.com',
-            'delete_flg' => '1',
+            'delete_flg' => '0',
             'self_introduction'=> "自己紹介文2
             ここに自己紹介文を入れます。
             （勤務した会社・勤務年数・所有資格・扱っている言語など）",
             'password' => bcrypt('pas2word'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'test3',
+            'email' => 'test3@example.com',
+            'delete_flg' => '0',
+            'self_introduction'=> "自己紹介文3
+            ここに自己紹介文を入れます。
+            （勤務した会社・勤務年数・所有資格・扱っている言語など）",
+            'password' => bcrypt('pas3word'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'test4',
+            'email' => 'test4@example.com',
+            'delete_flg' => '1',
+            'self_introduction'=> "自己紹介文4
+            削除されているはずのユーザーです",
+            'password' => bcrypt('pas4word'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
