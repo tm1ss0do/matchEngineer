@@ -48,7 +48,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
      }
 
 
-
     public function projects()
      {
          return $this->hasMany('App\Project');

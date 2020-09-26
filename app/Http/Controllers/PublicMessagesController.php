@@ -33,9 +33,9 @@ class PublicMessagesController extends Controller
       $auther = Auth::user();
 
       // 現在ログイン中のuserが、パブリックメッセージを送ったことがある、projectのidを全て取得
-      $projects = PublicMsg::where('sender_id', $auther_id)
-                  ->groupBy('project_id')
-                  ->get(['project_id']);
+      // $projects = PublicMsg::where('sender_id', $auther_id)
+      //             ->groupBy('project_id')
+      //             ->get(['project_id']);
 
       // // 現在ログイン中のユーザーがパブリックメッセージを送ったことがあるなら、
       // if( $auther->public_msg ){
@@ -79,8 +79,18 @@ class PublicMessagesController extends Controller
       //             ->where('sender_id', $auther_id)
       //             ->orderBy('updated_at', 'desc')
       //             ->paginate(2);
-      // 自分が参加しているPublicMsgを取得
-      $publics = PublicMsg::where('sender_id', $auther_id)
+      // 自分が投稿したprojectに紐づく、PublicMsgを取得
+      $projects = $auther->projects;
+      $arr = array();
+      foreach($projects as $project ){
+        $arr[] = $project->id;
+      }
+      // $projects = $arr;
+      // $publics = PublicMsg::where('sender_id', $auther_id)
+      //             ->orWhere('sender_id', '=' ,2)
+      $publics = PublicMsg::whereIn('project_id', $arr)
+                  ->orWhere('sender_id', $auther_id)
+      // $publics = PublicMsg::whereIn('project_id', [$projects])
                   // さらにproject_idでグループ分けしたモノの中から、idが大きいもの（新しいモノ）を取得
                   ->whereIn('id', function($query) {
                                   $query->select(DB::raw('MAX(id) As id'))
@@ -91,7 +101,7 @@ class PublicMessagesController extends Controller
                   ->paginate(2);
 
 
-      return view('mypages.pm_list', compact('publics', 'public_msgs_yet'));
+      return view('mypages.pm_list', compact('arr', 'projects', 'publics', 'public_msgs_yet'));
     }
 
     public function public( StoreMessageRequest $request, $id){
