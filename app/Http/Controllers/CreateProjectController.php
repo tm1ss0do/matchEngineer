@@ -58,6 +58,8 @@ class CreateProjectController extends Controller
 
     public function create_project( StoreProjectPost $request ){
 
+      // プロジェクトを新規保存
+
        $request->validated();
 
        $project = new Project;
@@ -74,7 +76,7 @@ class CreateProjectController extends Controller
 
        $public_notify = new PublicNotify;
        $public_notify->public_board_id = $id;
-       $public_notify->user_id = $auther;
+       $public_notify->user_id = $auther->id;
        $public_notify->read_flg = '1';
        $public_notify->save();
 

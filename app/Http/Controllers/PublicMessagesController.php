@@ -36,21 +36,62 @@ class PublicMessagesController extends Controller
       $projects = PublicMsg::where('sender_id', $auther_id)
                   ->groupBy('project_id')
                   ->get(['project_id']);
+
+      // // 現在ログイン中のユーザーがパブリックメッセージを送ったことがあるなら、
+      // if( $auther->public_msg ){
+      //   // project_idでまとめて取得
+      //   $projects = $auther->public_msg
+      //               ->groupBy('project_id')
+      //               ->get(['project_id']);
+      //   // project_idとuser_idに合致するメッセージを取得
+      //   $publics = $auther->public_msg
+      //               ->whereIn('project_id', $projects)
+      //               ->orderBy('updated_at', 'desc')
+      //               ->paginate(2);
+      //
+      // 未読フラグ回収（パブリックメッセージ）
+         $public_msgs_yet = $auther->public_notify
+                            ->where('read_flg','0');
+      // }else{
+      //   $publics = "";
+      //   $public_msgs_yet = "";
+      // }
+
+
       // 対象のプロジェクトにあるメッセージの中で、最新のものを取得
       // （idの大きい方を最新のパブリックコメントとして取得）
       // （ORDER BY と GROUP BYを使うと、先にグループ分けされソートされてしまうのでクエリを使う。）
-      $publics = PublicMsg::whereIn('id', function($query) {
-                 $query->select(DB::raw('MAX(id) As id'))->from('public_msgs')
-                 ->groupBy('project_id');
-                 })
-                 ->orderBy('updated_at', 'desc')
-                 ->paginate(2);
+      // $publics = PublicMsg::whereIn('id', function($query) {
+      //              $query->select(DB::raw('MAX(id) As id'))
+      //              ->from('public_msgs')
+      //              ->groupBy('project_id');
+      //            })
+      //            ->orderBy('updated_at', 'desc')
+      //            ->paginate(2);
 
-      // 未読フラグ回収（パブリックメッセージ）
-      $public_msgs_yet = $auther->public_notify
-                         ->where('read_flg','0');
+      // $publics = $auther->public_msgs->paginate(2);
 
-      return view('mypages.pm_list', compact('projects', 'publics', 'public_msgs_yet'));
+      // $publics = PublicMsg::whereIn('id', function($query) {
+      //             $query->select(DB::raw('MAX(id) As id'))
+      //                   ->from('public_msgs')
+      //                   ->groupBy('project_id');
+      //             })
+      //             ->where('sender_id', $auther_id)
+      //             ->orderBy('updated_at', 'desc')
+      //             ->paginate(2);
+      // 自分が参加しているPublicMsgを取得
+      $publics = PublicMsg::where('sender_id', $auther_id)
+                  // さらにproject_idでグループ分けしたモノの中から、idが大きいもの（新しいモノ）を取得
+                  ->whereIn('id', function($query) {
+                                  $query->select(DB::raw('MAX(id) As id'))
+                                        ->from('public_msgs')
+                                        ->groupBy('project_id');
+                                  })
+                  ->orderBy('updated_at', 'desc')
+                  ->paginate(2);
+
+
+      return view('mypages.pm_list', compact('publics', 'public_msgs_yet'));
     }
 
     public function public( StoreMessageRequest $request, $id){
