@@ -16,20 +16,24 @@
     </div>
 @endif
 
-@foreach ( $publics as $public )
+@if($publics)
 
-    @foreach($public_msgs_yet as $pub_msg )
-      @if( $pub_msg->public_board_id === $public->project->id )
-      未読
-      @endif
-    @endforeach
+  @foreach ( $publics as $public )
 
-    <li>案件名：{{ $public->project->project_title }}</li>
-    <li>{{ $public->user->name }}</li>
-    <li>{{ $public->content }}</li>
-    <a href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>
-@endforeach
+      @foreach($public_msgs_yet as $pub_msg )
+        @if( $pub_msg->public_board_id === $public->project->id )
+        未読
+        @endif
+      @endforeach
 
-{{ $publics->links() }}
+      <li>案件名：{{ $public->project->project_title }}</li>
+      <li>{{ $public->user->name }}</li>
+      <li>{{ $public->content }}</li>
+      <a href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>
+  @endforeach
+
+  {{ $publics->links() }}
+
+@endif
 
 @endsection

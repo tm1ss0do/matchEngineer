@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', '案件詳細')
+@section('title', '登録済み案件一覧')
 
 @section('content')
 
@@ -19,8 +19,37 @@
 
 <!-- ****************************** -->
 <!-- sidemenu mypage -->
+@component('components.sidebar')
+  @slot('name')
+    {{ $user->name }}
+  @endslot
+  <!-- public message の有無 -->
+  @if( $public_msgs_yet )
+    @slot('public_msgs_yet')
+      未読あり
+    @endslot
+  @else
+    @slot('public_msgs_yet')
+      未読なし
+    @endslot
+  @endif
+<!-- direct message の有無 -->
+  @if( $direct_msgs_yet )
+    @slot('direct_msgs_yet')
+      未読あり
+    @endslot
+  @else
+    @slot('direct_msgs_yet')
+      未読なし
+    @endslot
+  @endif
+<!-- user_id -->
+  @slot('user_id')
+    {{ $user->id }}
+  @endslot
+
+@endcomponent
 <p>{{ $user->name }}さんのマイページ</p>
-<x-side-menu :user="$user" />
 
 <ul>
   <li>
@@ -34,7 +63,7 @@
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/public_msg">パブリックメッセージ一覧</a>
-    @if(  $public_msgs_yet )
+    @if( $public_msgs_yet )
       未読あり
     @else
       未読なし
