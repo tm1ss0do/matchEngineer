@@ -16,6 +16,12 @@
     </div>
 @endif
 
+
+<!-- ****************************** -->
+<!-- sidemenu mypage -->
+<p>{{ $user->name }}さんのマイページ</p>
+<x-side-menu :user="$user" />
+
 <ul>
   <li>
     <a href="{{ url('/') }}/projects/new">案件登録</a>
@@ -29,17 +35,17 @@
   <li>
     <a href="{{ url('/') }}/mypages/public_msg">パブリックメッセージ一覧</a>
     @if(  $public_msgs_yet )
-    未読あり
+      未読あり
     @else
-    未読なし
+      未読なし
     @endif
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/direct_msg">ダイレクトメッセージ一覧</a>
     @if(  $direct_msgs_yet )
-    未読あり
+      未読あり
     @else
-    未読なし
+      未読なし
     @endif
   </li>
   <li>
@@ -49,6 +55,9 @@
     <a href="{{ url('/') }}/mypages/withdraw">退会</a>
   </li>
 </ul>
+
+
+
 
 <ul>
     @foreach ($projects as $project)
