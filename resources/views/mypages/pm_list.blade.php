@@ -16,7 +16,7 @@
     </div>
 @endif
 
-@if($publics)
+@if( $publics )
 
   @foreach ( $publics as $public )
 
@@ -26,10 +26,15 @@
         @endif
       @endforeach
 
-      <li>案件名：{{ $public->project->project_title }}</li>
-      <li>{{ $public->user->name }}</li>
-      <li>{{ $public->content }}</li>
-      <a href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>
+      @if( $public->project )
+        <li>案件名：{{ $public->project->project_title }}</li>
+        <li>{{ $public->user->name }}</li>
+        <li>{{ $public->content }}</li>
+        <a href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>
+      @else
+        <p>このパブリックメッセージは削除されたか、ユーザーが退会しています。</p>
+      @endif
+
   @endforeach
 
   {{ $publics->links() }}

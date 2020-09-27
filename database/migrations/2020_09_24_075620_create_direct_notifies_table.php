@@ -17,6 +17,8 @@ class CreateDirectNotifiesTable extends Migration
             $table->id();
             $table->boolean('read_flg');
             $table->timestamps();
+
+             $table->softDeletes();
         });
     }
 

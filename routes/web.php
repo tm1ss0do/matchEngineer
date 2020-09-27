@@ -77,11 +77,12 @@ Route::get('/', function () {
 });
 
 // Home Controller
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 // Projects Controller
 
-Route::get('/projects/all', 'ProjectsController@show_project_all')->name('project.all');
+// Route::get('/projects/all', 'ProjectsController@show_project_all')->name('project.all');
+Route::get('/home', 'ProjectsController@show_project_all')->name('project.all');
 Route::get('/projects/json', 'ProjectsController@json_data');
 Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('project.detail');
 Route::get('/projects/{id}/msg_json', 'ProjectsController@json_data_msg');

@@ -16,6 +16,8 @@ class CreateDirectMsgsBoardsTable extends Migration
         Schema::create('direct_msgs_boards', function (Blueprint $table) {
           $table->id();
           $table->timestamps();
+
+           $table->softDeletes();
         });
     }
 

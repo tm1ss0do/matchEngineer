@@ -50,7 +50,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function projects()
      {
-         return $this->hasMany('App\Project');
+         // return $this->hasMany('App\Project');
+         return $this->hasMany('App\Project')->withTrashed();
      }
      public function public_msgs()
      {
@@ -63,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      }
      public function direct_msgs_boards()
      {
-       return $this->hasMany('App\DirectMsgsBoard');
+       return $this->hasMany('App\DirectMsgsBoard', 'reciever_id');
      }
 
      public function public_notify()
@@ -75,6 +76,20 @@ class User extends Authenticatable implements MustVerifyEmailContract
      {
        return $this->hasMany('App\DirectNotify');
      }
+
+     public static function boot()
+      {
+          parent::boot();
+
+          static::deleted(function ($user) {
+              $user->projects()->delete();
+              $user->public_msgs()->delete();
+              $user->direct_msgs()->delete();
+              $user->direct_msgs_boards()->delete();
+              $user->public_notify()->delete();
+              $user->direct_notify()->delete();
+          });
+      }
 
 
 }

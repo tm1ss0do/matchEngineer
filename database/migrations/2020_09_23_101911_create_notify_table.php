@@ -16,6 +16,8 @@ class CreateNotifyTable extends Migration
         Schema::create('notifies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+             $table->softDeletes();
         });
     }
 

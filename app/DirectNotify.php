@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\DirectMsgsBoard;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DirectNotify extends Model
 {
+  use SoftDeletes;
+  
     //
     protected $table = 'direct_notifies';
     //

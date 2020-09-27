@@ -17,13 +17,21 @@
 @endif
 
 @foreach ( $directmsgs as $directmsg )
-<p>{{ $directmsg->user->name }}</p>
-<p>{{ $directmsg->content }}</p>
-<p>{{ $directmsg->send_date }}</p>
-
+  @if ( $directmsg->user )
+    <p>From:{{ $directmsg->user->name }}</p>
+  @else
+    <p>このユーザーは退会しています</p>
+  @endif
+  <p>{{ $directmsg->content }}</p>
+  <p>{{ $directmsg->send_date }}</p>
 
 @endforeach
 
+
+@if($no_form)
+このユーザーは退会しているため、メッセージは送れません。
+
+@else
 <form class="" action="" method="post">
   @csrf
   <label for="content"></label>
@@ -36,6 +44,8 @@
     ></counter-component>
   <input type="submit" name="" value="送信">
 </form>
+
+@endif
 
 
 @endsection

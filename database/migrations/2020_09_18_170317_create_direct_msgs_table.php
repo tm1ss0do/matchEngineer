@@ -19,6 +19,8 @@ class CreateDirectMsgsTable extends Migration
           $table->string('content',1000);
           $table->boolean('read_flg');
           $table->timestamps();
+
+           $table->softDeletes();
         });
     }
 

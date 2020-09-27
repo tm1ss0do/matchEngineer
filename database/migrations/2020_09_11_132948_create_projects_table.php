@@ -23,6 +23,8 @@ class CreateProjectsTable extends Migration
             $table->integer('project_mini_amount')->nullable();
             $table->string('project_detail_desc',5000);
             $table->timestamps();
+
+             $table->softDeletes();
         });
     }
 

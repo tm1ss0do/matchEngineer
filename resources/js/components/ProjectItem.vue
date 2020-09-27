@@ -28,12 +28,13 @@
   <div class="c-card__footer">
     <div class="p-profile__mini">
       <div class="c-img__container--mini">
-        <img class="c-img__img" src="" alt="">
+        <img v-if="project.user.profile_icon" class="c-img__img" :src="url+'/storage/avatar/'+project.user.profile_icon" :alt="project.user.profile_icon">
+        <img v-else class="c-img__img" :src="url+'/img/default_prof.png'" :alt="default_icon_image">
       </div>
       <a :href="'/projects/'+project.user_id+'/profile'" >{{ project.user.name }}</a>
     </div>
     <div class="c-btn__right">
-      <a class="c-btn__medi" href="#">詳細を見る</a>
+      <a class="c-btn__medi" :href="'/projects/'+project.id">詳細を見る</a>
     </div>
   </div>
 
@@ -45,7 +46,7 @@ export default {
     props: ['project','url'],
     data: function() {
         return {
-          
+
         }
     },
     mounted() {

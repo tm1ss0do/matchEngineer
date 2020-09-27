@@ -7,10 +7,13 @@ use App\DirectMsgs;
 use App\DirectNotify;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DirectMsgsBoard extends Model
 {
     //
+    use SoftDeletes;
+    
     protected $fillable = ['reciever_id', 'sender_id', 'project_id'];
 
     public function reciever()

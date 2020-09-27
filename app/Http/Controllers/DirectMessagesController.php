@@ -112,7 +112,8 @@ class DirectMessagesController extends Controller
 
     public function show_dm_board($id){
       // ダイレクトメッセージを表示
-      $directmsgs = DirectMsgs::where('board_id', $id)
+      $directmsgs = DirectMsgs::withTrashed()
+                    ->where('board_id', $id)
                     ->with('user')
                     ->orderBy('send_date', 'asc')
                     ->get();
@@ -124,7 +125,19 @@ class DirectMessagesController extends Controller
         $direct_notify->save();
       }
 
-      return view('mypages.dm_board', compact('directmsgs'));
+      // 該当のダイレクトメッセージボードを取得
+      $board = DirectMsgsBoard::where('id',$id)->first();
+      // このボードに参加するどちらか一方が退会済みの場合
+      if( !$board->reciever ){
+          $no_form = true;
+      }elseif( !$board->sender ){
+          $no_form = true;
+      }else{
+          $no_form = false;
+      }
+
+
+      return view('mypages.dm_board', compact('directmsgs', 'no_form'));
     }
 
     public function send_dm_at_board(StoreMessageRequest $request, $id){

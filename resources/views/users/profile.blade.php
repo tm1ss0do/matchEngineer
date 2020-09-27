@@ -11,9 +11,12 @@
 <p>ユーザID:{{ $user->id }}</p>
 <p>name:{{ $user->name }}</p>
 
+<p>プロフィールアイコン</p>
 @if( $user->profile_icon )
 <p>icon:{{ $user->profile_icon }}</p>
 <img src="{{ asset('storage/avatar/' . $user->profile_icon) }}">
+@else
+  <img class="c-img__img" src="{{ asset('/img/default_prof.png') }}" alt="">
 @endif
 
 自己紹介:

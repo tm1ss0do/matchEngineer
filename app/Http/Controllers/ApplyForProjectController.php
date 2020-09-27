@@ -36,7 +36,6 @@ class ApplyForProjectController extends Controller
                      ->with('project')
                      ->paginate(2);
 
-
       return view('mypages.applied', compact('direct_msgs'));
 
     }

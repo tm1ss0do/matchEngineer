@@ -6,10 +6,13 @@ use App\DirectMsgsBoard;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DirectMsgs extends Model
 {
     //
+    use SoftDeletes;
+    
     protected $fillable = ['send_date', 'content', 'read_flg', 'sender_id', 'board_id'];
 
     public function user()

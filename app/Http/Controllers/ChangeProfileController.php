@@ -49,13 +49,25 @@ class ChangeProfileController extends Controller
         $user->name = $request->name;
         $user->self_introduction = $request->self_introduction;
         $user->updated_at = Carbon::now();
-        // 元の画像を削除
-        $path_prev = $user->profile_icon;
-        $pathdel = storage_path() . '/app/public/avatar/'.$path_prev;
-        \File::delete($pathdel);
         // 新しい画像はstorage配下へ保存
-        $path = $request->profile_icon->store('public/avatar');
-        $user->profile_icon = basename($path);
+        if( $request->profile_icon ){
+          // 新しい画像ファイルがPOSTされていた場合
+          // 元の画像を削除
+          $path_prev = $user->profile_icon;
+          $pathdel = storage_path() . '/app/public/avatar/'.$path_prev;
+          \File::delete($pathdel);
+          // 新しい画像を登録
+          $path = $request->profile_icon->store('public/avatar');
+          $user->profile_icon = basename($path);
+
+        }elseif( $user->profile_icon ){
+          // 新しい画像がPOSTされていない、かつ、古い画像があった場合
+          $user->profile_icon = $user->profile_icon;
+        }else{
+          // 画像が一度も保存されていない場合は空で登録しdefault_imageを表示
+          $user->profile_icon = NULL;
+        }
+
         $user->save();
         // ーーーーーーーー
 
