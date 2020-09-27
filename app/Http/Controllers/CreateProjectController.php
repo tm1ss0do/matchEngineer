@@ -30,22 +30,27 @@ class CreateProjectController extends Controller
     //
 
     public function registered(){
+
+      // ---------------------------
+      // サイドバー用変数まとめ（ビューコンポーザー）
       // 登録済み案件一覧画面表示
       $user = Auth::user();
-      // $projects = $user->projects;
-      $projects = Project::where('user_id', $user->id)->paginate(2);
-
       // 未読フラグ回収（パブリックメッセージ）
-      $public_msgs_yet = $user->public_notify
+      $pm_yet_notify_flg = $user->public_notify
                          ->where('read_flg','0')
                          ->first();
 
       // 未読フラグ回収（ダイレクトメッセージ）
-      $direct_msgs_yet = $user->direct_notify
+      $dm_yet_notify_flg = $user->direct_notify
                          ->where('read_flg','0')
                          ->first();
+      // ---------------------------
 
-      return view('mypages.registered', compact('projects','user', 'public_msgs_yet', 'direct_msgs_yet', 'join_users'));
+      // $projects = $user->projects;
+      $projects = Project::where('user_id', $user->id)->paginate(2);
+
+
+      return view('mypages.registered', compact('projects', 'join_users','user', 'pm_yet_notify_flg', 'dm_yet_notify_flg'));
     }
 
 

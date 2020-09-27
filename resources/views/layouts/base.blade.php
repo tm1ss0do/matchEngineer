@@ -45,7 +45,7 @@
     <header id="header" class="l-header">
       <div class="c-header__container">
         <h1 class="c-title__header-logo">
-          <a class="c-title__header-link" href="#">match</a>
+          <a class="c-title__header-link" href="{{ route('project.all') }}">match</a>
         </h1>
         <nav class="c-nav__right">
             @if (Route::has('login'))
@@ -56,21 +56,17 @@
                   <i class="fas fa-home"></i>
                   Home
                 </a>
-                <a class="c-nav__item--top" href="{{ route('project.all') }}">
-                  <i class="fas fa-clipboard-list"></i>
-                  案件を探す
-                </a>
-                <a class="c-nav__item--top" href="{{ route('project.all') }}">
+                <a class="c-nav__item--top" href="{{ route('mypage.registered') }}">
                   <i class="far fa-user"></i>
                   マイページ
                 </a>
-                <a class="c-nav__item--top" href="#">
+                <a class="c-nav__item--top" href="{{ route('project.new') }}">
                   <i class="far fa-handshake"></i>
                   依頼する
                 </a>
                 @else
                 <!-- ゲストの場合 -->
-                <a class="c-nav__item--top" href="#">
+                <a class="c-nav__item--top" href="{{ route('project.all') }}">
                   <i class="fas fa-clipboard-list"></i>
                   案件を見てみる
                 </a>
@@ -105,10 +101,9 @@
         @yield('content')
       </div>
 
+      <a href="{{ url()->previous() }}">戻る</a>
+
       <pagetop-component></pagetop-component>
-
-      <!-- <div class="c-page-top"><a href="#"></a></div> -->
-
 
     </main>
 
@@ -122,21 +117,17 @@
                 <i class="fas fa-home"></i>
                 Home
               </a>
-              <a class="c-nav__item--small" href="#">
-                <i class="fas fa-clipboard-list"></i>
-                案件を探す
-              </a>
-              <a class="c-nav__item--small" href="#">
+              <a class="c-nav__item--small" href="{{ route('mypage.registered') }}">
                 <i class="far fa-user"></i>
                 マイページ
               </a>
-              <a class="c-nav__item--small" href="#">
+              <a class="c-nav__item--small" href="{{ route('project.new') }}">
                 <i class="far fa-handshake"></i>
                 依頼する
               </a>
               @else
               <!-- ゲストの場合 -->
-              <a class="c-nav__item--small" href="#">
+              <a class="c-nav__item--small" href="{{ route('project.all') }}">
                 <i class="fas fa-clipboard-list"></i>
                 案件を見てみる
               </a>
@@ -159,7 +150,6 @@
       <p class="text-align__center font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
     </footer>
   </div>
-  <input class="input" id="myCal" type="text" />
 
 </body>
 

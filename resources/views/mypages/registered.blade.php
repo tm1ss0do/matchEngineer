@@ -6,16 +6,6 @@
 
 登録済み案件一覧です。
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 
 <!-- ****************************** -->
 <!-- sidemenu mypage -->
@@ -24,22 +14,22 @@
     {{ $user->name }}
   @endslot
   <!-- public message の有無 -->
-  @if( $public_msgs_yet )
-    @slot('public_msgs_yet')
+  @if( $pm_yet_notify_flg )
+    @slot('pm_yet_notify_flg')
       未読あり
     @endslot
   @else
-    @slot('public_msgs_yet')
+    @slot('pm_yet_notify_flg')
       未読なし
     @endslot
   @endif
 <!-- direct message の有無 -->
-  @if( $direct_msgs_yet )
-    @slot('direct_msgs_yet')
+  @if( $dm_yet_notify_flg )
+    @slot('dm_yet_notify_flg')
       未読あり
     @endslot
   @else
-    @slot('direct_msgs_yet')
+    @slot('dm_yet_notify_flg')
       未読なし
     @endslot
   @endif
@@ -49,6 +39,7 @@
   @endslot
 
 @endcomponent
+
 <p>{{ $user->name }}さんのマイページ</p>
 
 <ul>
@@ -63,7 +54,7 @@
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/public_msg">パブリックメッセージ一覧</a>
-    @if( $public_msgs_yet )
+    @if( $pm_yet_notify_flg )
       未読あり
     @else
       未読なし
@@ -71,7 +62,7 @@
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/direct_msg">ダイレクトメッセージ一覧</a>
-    @if(  $direct_msgs_yet )
+    @if(  $dm_yet_notify_flg )
       未読あり
     @else
       未読なし

@@ -15,11 +15,11 @@
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/public_msg">パブリックメッセージ一覧</a>
-    {{ $public_msgs_yet }}
+    {{ $pm_yet_notify_flg }}
   </li>
   <li>
     <a href="{{ url('/') }}/mypages/direct_msg">ダイレクトメッセージ一覧</a>
-    {{ $direct_msgs_yet }}
+    {{ $dm_yet_notify_flg }}
   </li>
   <li>
     <a href="{{ url('/') }}/projects/{{ $user_id }}/profile">プロフィール</a>
