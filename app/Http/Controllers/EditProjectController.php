@@ -55,8 +55,8 @@ class EditProjectController extends Controller
                     ->orderBy('send_date', 'asc')
                     ->get();
 
-
-      return view('projects.detail', compact('project', 'user', 'publicmsgs'))->with('flash_message', __('Registered.'));;
+      Session::flash('flash_message', __('Registered.')); //session表示用
+      return view('projects.detail', compact('project', 'user', 'publicmsgs'));
     }
 
 }

@@ -182,6 +182,9 @@ return [
         // Add Intervention Image.
         Intervention\Image\ImageServiceProvider::class,
 
+        // ComposerServiceProvider(ビューコンポーザー)
+        // App\Providers\ComposerServiceProvider::class,
+
     ],
 
     /*

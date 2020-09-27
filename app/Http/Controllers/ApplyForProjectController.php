@@ -136,7 +136,8 @@ class ApplyForProjectController extends Controller
                       ->get();
 
        // 応募済み案件一覧へリダイレクトさせる
-       return view('mypages.applied', compact('direct_msgs'))->with('flash_message', __('応募しました'));
+       Session::flash('flash_message', __('応募しました')); //session表示用
+       return view('mypages.applied', compact('direct_msgs'));
 
     }
 }
