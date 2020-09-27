@@ -30,21 +30,6 @@ class ApplyForProjectController extends Controller
     public function applied(){
       // 応募済み案件一覧画面
 
-      // ---------------------------
-      // サイドバー用変数まとめ（ビューコンポーザー）
-      // 登録済み案件一覧画面表示
-      $user = Auth::user();
-      // 未読フラグ回収（パブリックメッセージ）
-      $pm_yet_notify_flg = $user->public_notify
-                         ->where('read_flg','0')
-                         ->first();
-
-      // 未読フラグ回収（ダイレクトメッセージ）
-      $dm_yet_notify_flg = $user->direct_notify
-                         ->where('read_flg','0')
-                         ->first();
-      // ---------------------------
-
       $auther_id = Auth::id();
 
       $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
@@ -52,7 +37,7 @@ class ApplyForProjectController extends Controller
                      ->with('project')
                      ->paginate(2);
 
-      return view('mypages.applied', compact('direct_msgs', 'user', 'pm_yet_notify_flg', 'dm_yet_notify_flg' ));
+      return view('mypages.applied', compact('direct_msgs'));
 
     }
 

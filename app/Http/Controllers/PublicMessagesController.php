@@ -29,21 +29,6 @@ class PublicMessagesController extends Controller
     //
     public function show_pm_list(){
 
-      // ---------------------------
-      // サイドバー用変数まとめ（ビューコンポーザー）
-      // 登録済み案件一覧画面表示
-      $user = Auth::user();
-      // 未読フラグ回収（パブリックメッセージ）
-      $pm_yet_notify_flg = $user->public_notify
-                         ->where('read_flg','0')
-                         ->first();
-
-      // 未読フラグ回収（ダイレクトメッセージ）
-      $dm_yet_notify_flg = $user->direct_notify
-                         ->where('read_flg','0')
-                         ->first();
-      // ---------------------------
-
       $auther_id = Auth::id();
       $auther = Auth::user();
 
@@ -116,7 +101,7 @@ class PublicMessagesController extends Controller
                   ->paginate(2);
 
 
-      return view('mypages.pm_list', compact('arr', 'projects', 'publics', 'public_msgs_yet','user', 'pm_yet_notify_flg', 'dm_yet_notify_flg'));
+      return view('mypages.pm_list', compact('arr', 'projects', 'publics', 'public_msgs_yet'));
     }
 
     public function send_pm( StoreMessageRequest $request, $id){
