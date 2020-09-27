@@ -18,6 +18,16 @@
 @endif
 
 <p>{{ $project->project_title }}</p>
+@if( $project->project_type === 'revenue' )
+  レベニュー案件
+  金額は応相談
+@elseif( $project->project_type === 'single' )
+  単発案件
+  金額
+  {{ $project->project_mini_amount }},000〜{{ $project->project_max_amount }},000円
+@endif
+
+
 
 <p>{{ $user->name }}</p>
 @if( $auther )
