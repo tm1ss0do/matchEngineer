@@ -104,7 +104,7 @@ class PublicMessagesController extends Controller
       return view('mypages.pm_list', compact('arr', 'projects', 'publics', 'public_msgs_yet'));
     }
 
-    public function public( StoreMessageRequest $request, $id){
+    public function send_pm( StoreMessageRequest $request, $id){
       // パブリックメッセージの登録機能
        $request->validated();
        $publicmsgs = new PublicMsg;

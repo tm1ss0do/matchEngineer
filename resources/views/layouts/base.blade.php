@@ -16,7 +16,7 @@
     <script>
     window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
     </script>
-    
+
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.png') }}">
 
@@ -56,11 +56,11 @@
                   <i class="fas fa-home"></i>
                   Home
                 </a>
-                <a class="c-nav__item--top" href="#">
+                <a class="c-nav__item--top" href="{{ route('project.all') }}">
                   <i class="fas fa-clipboard-list"></i>
                   案件を探す
                 </a>
-                <a class="c-nav__item--top" href="#">
+                <a class="c-nav__item--top" href="{{ route('project.all') }}">
                   <i class="far fa-user"></i>
                   マイページ
                 </a>
