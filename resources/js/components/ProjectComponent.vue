@@ -11,6 +11,7 @@
     <project-item
     :project="project"
     :url = "url"
+    :display="true"
     ></project-item>
   </div>
 

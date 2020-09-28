@@ -24,8 +24,11 @@
   {!! nl2br(e($user->self_introduction)) !!}
 </p>
 
+@if( Auth::id() !== $user->id )
+  <a href="{{ url('/') }}/projects/dm/{{ $user->id }}">ダイレクトメッセージを送る</a>
+@elseif( Auth::id() === $user->id )
+  <a href="{{ url('/') }}/mypages/{{$user->id}}/profile/edit">編集する</a>
+@endif
 
-<a href="{{ url('/') }}/projects/dm/{{ $user->id }}">ダイレクトメッセージを送る</a>
-<a href="{{ url('/') }}/mypages/{{$user->id}}/profile/edit">編集する</a>
 
 @endsection

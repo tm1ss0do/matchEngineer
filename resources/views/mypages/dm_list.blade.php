@@ -54,10 +54,25 @@
 
       </p>
 
+
       @if ( $direct_msg_board->project )
         <p>案件名：{{ $direct_msg_board->project->project_title }}</p>
+      @else
+        <p>個人的に直接受け取ったメッセージです</p>
       @endif
 
+      -------
+      @if($direct_msg_board->reciever['name'] && $direct_msg_board->sender['name'])
+        @if( $direct_msg_board->reciever['id'] !== Auth::id() )
+            {{ $direct_msg_board->reciever['name'] }}
+        @else
+          {{ $direct_msg_board->sender['name'] }}
+        @endif
+      @else
+        退会したユーザー
+      @endif
+      さんとのやりとり
+      -----
       <a href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg_board->id }}">メッセージページへ</a>
 
       @if ( $direct_msg_board->project )

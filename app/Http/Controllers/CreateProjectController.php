@@ -33,9 +33,9 @@ class CreateProjectController extends Controller
 
       $auther_id = Auth::id();
       // $projects = $user->projects;
-      $projects = Project::where('user_id', $auther_id)->paginate(2);
+      $projects = Project::with('user')->where('user_id', $auther_id)->paginate(2);
 
-      return view('mypages.registered', compact('projects', 'join_users'));
+      return view('mypages.registered', compact('projects'));
     }
 
 
@@ -70,7 +70,7 @@ class CreateProjectController extends Controller
        $public_notify->read_flg = '1';
        $public_notify->save();
 
-       return redirect('projects/all')->with('flash_message', __('Registered.'));
+       return redirect('mypages/registered')->with('flash_message', __('Registered.'));
     }
 
 

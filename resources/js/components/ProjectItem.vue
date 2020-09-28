@@ -1,7 +1,6 @@
 <template>
 
 <div class="c-card">
-  ProjectItem:{{ project.id }}
   <div class="c-card__header">
 
       <span v-if="project.project_status" class="c-card__status">
@@ -26,7 +25,10 @@
       <a class="c-card__title--link" :href="'/projects/'+project.id" >{{ project.project_title }}</a>
     </h3>
     <div v-if="project.project_type === 'single'">
-      <span class="c-card__text-emphasis">{{ project.project_mini_amount }},000</span>〜<span class="c-card__text-emphasis">{{ project.project_max_amount }},000</span>円
+      <span v-if="project.project_mini_amount" class="c-card__text-emphasis">{{ project.project_mini_amount }},000円</span>
+      <span v-if="project.project_max_amount || project.project_mini_amount">〜</span>
+      <span v-if="project.project_max_amount" class="c-card__text-emphasis">{{ project.project_max_amount }},000円</span>
+      <span v-if="!project.project_max_amount && !project.project_mini_amount">応相談</span>
     </div>
     <div v-if="project.project_type === 'revenue'">
       <span class="c-card__text-emphasis">応相談</span>
@@ -45,7 +47,7 @@
       </div>
       <a :href="'/projects/'+project.user_id+'/profile'" >{{ project.user.name }}</a>
     </div>
-    <div class="c-btn__right">
+    <div class="c-btn__right" :class="classObject">
       <a class="c-btn__medi" :href="'/projects/'+project.id">詳細を見る</a>
     </div>
   </div>
@@ -55,9 +57,12 @@
 
 <script>
 export default {
-    props: ['project','url'],
+    props: ['project', 'url' , 'display'],
     data: function() {
         return {
+        classObject: {
+          isDisplay: this.display,
+        }
 
         }
     },

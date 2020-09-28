@@ -47,7 +47,11 @@
     @foreach ($projects as $project)
 
     @if($project)
-      <li>{{ $project->project_title }}</li>
+      <project-item
+      :project="{{ $project }}"
+      url="{{ url('/') }}"
+      :display="true"
+      ></project-item>
     @else
       <li>登録した案件はありません</li>
     @endif

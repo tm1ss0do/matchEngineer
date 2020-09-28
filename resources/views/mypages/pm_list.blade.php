@@ -50,7 +50,10 @@
       @endforeach
 
       @if( $public->project )
-        <li>案件名：{{ $public->project->project_title }}</li>
+
+        <li>案件名：
+          <a class="c-card__title--link" href="{{ url('/') }}/projects/{{ $public->project_id }}" >{{ $public->project->project_title }}</a>
+        </li>
         <li>{{ $public->user->name }}</li>
         <li>{{ $public->content }}</li>
         <a href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>
