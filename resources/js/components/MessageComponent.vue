@@ -12,11 +12,12 @@
         メッセージコンポーネント！
         <div v-if="publicmsgs">
 
-        <p v-for="msg in publicmsgs" >
-        メッセージ{{ msg.id }}：
-        {{ msg.content }}
-        {{ msg.user.name }}
-        </p>
+          <div v-for="msg in publicmsgs" >
+            メッセージ{{ msg.id }}：
+            <p>{{ msg.content }}</p>
+            {{ msg.user.name }}
+            {{ msg.created_at }}
+          </div>
         </div>
         <p v-else>
         まだメッセージはありません。
