@@ -56,14 +56,27 @@
                   <i class="fas fa-home"></i>
                   Home
                 </a>
-                <a class="c-nav__item--top" href="{{ route('mypage.registered') }}">
-                  <i class="far fa-user"></i>
-                  マイページ
-                </a>
+
                 <a class="c-nav__item--top" href="{{ route('project.new') }}">
                   <i class="far fa-handshake"></i>
                   依頼する
                 </a>
+                <a class="c-nav__item--top" href="{{ route('mypage.registered') }}">
+                  <i class="far fa-user"></i>
+                  マイページ
+                </a>
+                    <div class="">
+                        <a class="c-nav__item--top" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('js-logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="js-logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+
                 @else
                 <!-- ゲストの場合 -->
                 <a class="c-nav__item--top" href="{{ route('project.all') }}">
