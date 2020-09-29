@@ -50,7 +50,7 @@
       <project-item
       :project="{{ $project }}"
       url="{{ url('/') }}"
-      :display="true"
+      :non-display="false"
       ></project-item>
     @else
       <li>登録した案件はありません</li>

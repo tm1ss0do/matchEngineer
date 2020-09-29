@@ -689,3 +689,7 @@ body {
   text-align: center;
 }
 
+.nonDisplay {
+  display: none;
+}
+

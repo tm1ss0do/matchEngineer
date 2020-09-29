@@ -52,6 +52,8 @@ Vue.component('calender-component', require('./components/CalenderComponent.vue'
 Vue.component('counter-component', require('./components/CounterComponent.vue').default);
 
 Vue.component('message-component', require('./components/MessageComponent.vue').default);
+
+Vue.component('select-status', require('./components/SelectStatus.vue').default);
 // Vue.component('flat-pickr-component', require('./components/FlatPickrComponent.vue').default);
 
 

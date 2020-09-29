@@ -16,7 +16,7 @@ DM送信フォーム表示画面
     ex = "例：はじめまして。プロフィールを拝見し、ぜひ一度弊社の案件をご検討いただきたく連絡いたしました。"
     id = "detail"
     name = "content"
-    message = ""
+    value="{{ old('content') }}"
   ></counter-component>
   <input type="submit" name="" value="送信">
 </form>

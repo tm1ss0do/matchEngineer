@@ -28,7 +28,7 @@
       <span v-if="project.project_mini_amount" class="c-card__text-emphasis">{{ project.project_mini_amount }},000円</span>
       <span v-if="project.project_max_amount || project.project_mini_amount">〜</span>
       <span v-if="project.project_max_amount" class="c-card__text-emphasis">{{ project.project_max_amount }},000円</span>
-      <span v-if="!project.project_max_amount && !project.project_mini_amount">応相談</span>
+      <span v-if="!project.project_max_amount && !project.project_mini_amount" class="c-card__text-emphasis" >応相談</span>
     </div>
     <div v-if="project.project_type === 'revenue'">
       <span class="c-card__text-emphasis">応相談</span>
@@ -47,7 +47,7 @@
       </div>
       <a :href="'/projects/'+project.user_id+'/profile'" >{{ project.user.name }}</a>
     </div>
-    <div class="c-btn__right" :class="classObject">
+    <div class="c-btn__right" :class="classObject_detail_btn">
       <a class="c-btn__medi" :href="'/projects/'+project.id">詳細を見る</a>
     </div>
   </div>
@@ -57,11 +57,11 @@
 
 <script>
 export default {
-    props: ['project', 'url' , 'display'],
+    props: ['project', 'url' , 'non-display'],
     data: function() {
         return {
-        classObject: {
-          isDisplay: this.display,
+        classObject_detail_btn: {
+          nonDisplay: this.nonDisplay,
         }
 
         }

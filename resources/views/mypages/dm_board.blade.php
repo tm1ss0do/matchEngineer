@@ -40,7 +40,7 @@
     ex = ""
     id = "content"
     name = "content"
-    message = ""
+    value="{{ old('content') }}"
     ></counter-component>
   <input type="submit" name="" value="送信">
 </form>

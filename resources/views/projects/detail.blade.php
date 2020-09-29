@@ -4,8 +4,6 @@
 
 @section('content')
 
-案件詳細画面
-
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -20,7 +18,7 @@
 <project-item
 :project="{{ $project }}"
 url="{{ url('/') }}"
-:display="false"
+:non-display="true"
 ></project-item>
 
 @if( $auther )
@@ -61,7 +59,7 @@ url="{{ url('/') }}"
       ex = "募集者へ質問してみましょう。"
       id = "pub_msg"
       name = "content"
-      message = ""
+      value="{{ old('content') }}"
       ></counter-component>
     <input type="submit" name="" value="送信">
   </form>

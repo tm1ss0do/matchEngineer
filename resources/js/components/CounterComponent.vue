@@ -1,23 +1,24 @@
 <template>
 
   <section class="">
-    <textarea v-model="message" class="js-count-area" :id="id" :name="name" rows="8" cols="80" :placeholder="ex"></textarea></br>
-    <span class="js-counter">{{ getLength }}/{{ countnum }}文字</span></br>
+    <textarea @keyup="inputText($event)" class="js-count-area" :id="id" :name="name" rows="8" cols="80" :placeholder="ex">{{ value }}</textarea></br>
+    <span class="js-counter">{{ length }}/{{ countnum }}文字</span></br>
   </section>
 </template>
 
 <script>
     export default {
-        props: ['countnum', 'ex', 'id', 'name', 'message'],
+        props: ['countnum', 'ex', 'id', 'name', 'value'],
         data: function() {
           return {
-
+            length: '0'
           }
         },
-        computed: {
-          getLength: function() {
-            return this.message.length;
-          },
+        methods: {
+         inputText(event){
+             console.log(event.target.value);
+             return this.length = event.target.value.length;
+         }
         },
         mounted () {
 
