@@ -12,6 +12,7 @@ use App\PublicNotify;
 use App\DirectNotify;
 // use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 // use App\Http\Requests\StoreProjectPost;
 // use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\StoreProfileRequest;

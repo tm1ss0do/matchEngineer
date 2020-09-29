@@ -71,7 +71,7 @@ Route::group(['middleware' => 'auth'], function() {
 // *******************************************************
 // 誰でも許可
 
-
+// ウェルカムページ画面
 Route::get('/', function () {
     return view('welcome');
 });

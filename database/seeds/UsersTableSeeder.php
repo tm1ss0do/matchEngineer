@@ -26,7 +26,6 @@ class UsersTableSeeder extends Seeder
             'deleted_at' => NULL,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            // 'exist' => 1
         ]);
         DB::table('users')->insert([
             'name' => 'test2',
@@ -40,7 +39,6 @@ class UsersTableSeeder extends Seeder
             'deleted_at' => NULL,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            // 'exist' => 1
         ]);
         DB::table('users')->insert([
             'name' => 'test3',
@@ -54,7 +52,6 @@ class UsersTableSeeder extends Seeder
             'deleted_at' => NULL,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            // 'exist' => 1
         ]);
 
 

@@ -13,6 +13,7 @@ use App\PublicNotify;
 use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
+use Illuminate\Support\Facades\Session;
 // use App\Http\Requests\StoreMessageRequest;
 // use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;

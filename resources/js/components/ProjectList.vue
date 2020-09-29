@@ -1,7 +1,6 @@
 <template>
 
 <section class="p-projects__list">
-  I'm an ProjectList Compoent.
   <section v-if="errored">
     <p>
     現在、この情報を取得できません。しばらくしてからもう一度お試しください
