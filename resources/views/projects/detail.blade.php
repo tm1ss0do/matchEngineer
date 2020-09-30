@@ -17,6 +17,7 @@
 
 <project-item
 :project="{{ $project }}"
+:user="{{ $project->user }}"
 url="{{ url('/') }}"
 :non-display="true"
 ></project-item>

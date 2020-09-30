@@ -39,15 +39,15 @@
       {{ project.project_detail_desc }}
     </p>
   </div>
-  <div class="c-card__footer">
+  <div class="c-card__footer" >
     <div class="p-profile__mini">
       <div class="c-img__container--mini">
-        <img v-if="project.user.profile_icon" class="c-img__img" :src="url+'/storage/avatar/'+project.user.profile_icon" :alt="project.user.profile_icon">
-        <img v-else class="c-img__img" :src="url+'/img/default_prof.png'" :alt="default_icon_image">
+        <img v-if="user.profile_icon" class="c-img__img" :src="url+'/storage/avatar/'+user.profile_icon" :alt="user.profile_icon">
+        <img v-else class="c-img__img" :src="url+'/img/default_prof.png'" alt="default_icon_image">
       </div>
-      <a :href="'/projects/'+project.user_id+'/profile'" >{{ project.user.name }}</a>
+      <a :href="'/projects/'+user.id+'/profile'" >{{ user.name }}</a>
     </div>
-    <div class="c-btn__right" :class="classObject_detail_btn">
+    <div class="c-btn__right" :class="classObjectDetailBtn">
       <a class="c-btn__medi" :href="'/projects/'+project.id">詳細を見る</a>
     </div>
   </div>
@@ -57,18 +57,13 @@
 
 <script>
 export default {
-    props: ['project', 'url' , 'non-display'],
+    props: ['project', 'url' , 'non-display', 'user'],
     data: function() {
         return {
-        classObject_detail_btn: {
-          nonDisplay: this.nonDisplay,
-        }
-
+          classObjectDetailBtn: {
+            nonDisplay: this.nonDisplay,
+          },
         }
     },
-    mounted() {
-        console.log('ProjectItem mounted.');
-
-    }
 }
 </script>

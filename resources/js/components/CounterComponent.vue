@@ -16,7 +16,6 @@
         },
         methods: {
          inputText(event){
-             console.log(event.target.value);
              return this.length = event.target.value.length;
          }
         },

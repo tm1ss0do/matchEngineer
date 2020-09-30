@@ -4,8 +4,6 @@
 
 @section('content')
 
-応募済み案件一覧です。
-
 <!-- ****************************** -->
 <!-- sidemenu mypage -->
 @component('components.sidebar')
@@ -39,24 +37,35 @@
 
 @endcomponent
 
+<!-- ****************************** -->
+応募済み案件一覧です。
+
+
 <div class="">
     @foreach( $direct_msgs  as $direct_msg )
 
-      @if( $direct_msg->project )
-        <project-item
-        :project="{{ $direct_msg->project }}"
-        url="{{ url('/') }}"
-        :display="true"
-        ></project-item>
+      @if($direct_msg)
+        @if( $direct_msg->project )
+          <project-item
+          :project="{{ $direct_msg->project }}"
+          :user="{{ $direct_msg->project->user }}"
+          url="{{ url('/') }}"
+          :non-display="true"
+          ></project-item>
 
-        <a href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg->id }}">メッセージページへ</a>
+          <a href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg->id }}">メッセージページへ</a>
+
+        @else
+          この案件は削除されました
+        @endif
 
       @else
-        この案件は削除されました
+
+        まだ応募していません
       @endif
 
-    @endforeach
 
+    @endforeach
 </div>
 
 {{ $direct_msgs->links() }}

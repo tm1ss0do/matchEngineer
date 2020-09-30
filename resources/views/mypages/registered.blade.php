@@ -41,20 +41,19 @@
 @endcomponent
 
 
-
-
 <ul>
     @foreach ($projects as $project)
 
-    @if($project)
-      <project-item
-      :project="{{ $project }}"
-      url="{{ url('/') }}"
-      :non-display="false"
-      ></project-item>
-    @else
-      <li>登録した案件はありません</li>
-    @endif
+      @if($project)
+        <project-item
+        :project="{{ $project }}"
+        :user="{{ $project->user }}"
+        url="{{ url('/') }}"
+        :non-display="false"
+        ></project-item>
+      @else
+        <li>登録した案件はありません</li>
+      @endif
 
     @endforeach
 </ul>
