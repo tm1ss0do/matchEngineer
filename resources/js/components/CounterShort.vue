@@ -1,7 +1,7 @@
 <template>
 
   <section class="">
-    <textarea @keyup="inputText($event)" class="js-count-area" :id="id" :name="name" rows="8" cols="80" :placeholder="ex">{{ value }}</textarea></br>
+    <input @keyup="inputText($event)" v-model.trim="title" :name="name" class="js-count-area" :id="id" :maxlength="countnum" :placeholder="ex" /></br>
     <span class="js-counter">{{ length }}/{{ countnum }}文字</span></br>
     <span>{{ error }}</span>
   </section>
@@ -9,11 +9,12 @@
 
 <script>
     export default {
-        props: ['countnum', 'ex', 'id', 'name', 'value'],
+        props: ['countnum', 'ex', 'id','old','name'],
         data: function() {
           return {
             length: '0',
-            error: ''
+            error: '',
+            title: this.old[this.name],
           }
         },
         methods: {

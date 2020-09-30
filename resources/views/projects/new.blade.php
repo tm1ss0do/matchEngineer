@@ -20,7 +20,14 @@
 <form class="" action="" method="post">
   @csrf
   <label for="title">タイトル</label></br>
-  <input type="text" name="project_title" value="{{ old('project_title') }}" id="title"></br>
+  <counter-short
+  :countnum = "100"
+  ex = "案件名を入力します。"
+  id = "title"
+  name="project_title"
+  :old="{{ json_encode(Session::getOldInput()) }}">
+  </counter-short>
+
   <label for="status">ステータス</label></br>
   <select id="status" class="" name="project_status" value="{{ old('project_status') }}">
     <option value="0">募集中</option>

@@ -49,9 +49,12 @@ Vue.component('project-item', require('./components/ProjectItem.vue').default);
 Vue.component('pagination-component', require('./components/PaginationComponent.vue').default);
 Vue.component('pagetop-component', require('./components/PagetopComponent.vue').default);
 Vue.component('calender-component', require('./components/CalenderComponent.vue').default);
+
 Vue.component('counter-component', require('./components/CounterComponent.vue').default);
+Vue.component('counter-short', require('./components/CounterShort.vue').default);
 
 Vue.component('message-component', require('./components/MessageComponent.vue').default);
+// Vue.component('message-form', require('./components/MessageForm.vue').default);
 
 Vue.component('select-type', require('./components/SelectType.vue').default);
 // Vue.component('flat-pickr-component', require('./components/FlatPickrComponent.vue').default);

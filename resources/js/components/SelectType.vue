@@ -14,11 +14,13 @@
     <label for="amount">金額(千円単位)</label></br>
     <span>半角数字でご入力ください。</span></br>
     <span v-show="compare">最低金額と最高金額をご確認ください。</span></br>
-    <input v-model="miniAmount" type="number" name="project_mini_amount" maxlength="5" />,000
+    <input v-model.trim="miniAmount" pattern="^[0-9]+" name="project_mini_amount" maxlength="5" />,000
     〜
-    <input v-model="maxAmount" type="number" name="project_max_amount" maxlength="5" />,000円
+    <input v-model.trim="maxAmount" pattern="^[0-9]+" name="project_max_amount" maxlength="5" />,000円
+
   </div>
   <p v-if="consult">金額は応相談項目です。</p>
+
 
 
 </div>
@@ -70,6 +72,14 @@ export default {
     computed: {
       compare(){
         if( Number(this.maxAmount) < Number(this.miniAmount) ){
+            return true;
+        }else{
+            return false;
+        }
+      },
+      amLen(){
+        if( this.maxAmount > 11 || this.miniAmount > 11 ){
+        console.log(this.maxAmount);
             return true;
         }else{
             return false;

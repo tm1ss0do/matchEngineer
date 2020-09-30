@@ -65,4 +65,6 @@ url="{{ url('/') }}"
     <input type="submit" name="" value="送信">
   </form>
 
+
+
 @endsection

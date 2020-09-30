@@ -21,7 +21,14 @@
 <form class="" action="" method="post" enctype='multipart/form-data'>
   @csrf
   <label for="name">名前</label></br>
-  <input id="name" type="text" name="name" value="{{ old('name', $user->name) }}"></br>
+  <counter-short
+  :countnum = "100"
+  ex = "お名前をご入力ください"
+  id = "name"
+  name="name"
+  :old="{{ $user }}">
+  </counter-short>
+
   <label for="profile_icon">プロフィール画像</label></br>
   <input id="profile_icon" type="file" name="profile_icon" value="{{ old('profile_icon', $user->profile_icon) }}"></br>
 
