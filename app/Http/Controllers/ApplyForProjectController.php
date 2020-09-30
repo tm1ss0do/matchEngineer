@@ -36,7 +36,7 @@ class ApplyForProjectController extends Controller
       $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
                      ->whereNotNull('project_id')
                      ->with('project')
-                     ->paginate(2);
+                     ->paginate(10);
 
       return view('mypages.applied', compact('direct_msgs'));
 

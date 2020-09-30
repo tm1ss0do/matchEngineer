@@ -33,7 +33,7 @@ class CreateProjectController extends Controller
 
       $auther_id = Auth::id();
       // $projects = $user->projects;
-      $projects = Project::with('user')->where('user_id', $auther_id)->paginate(2);
+      $projects = Project::with('user')->where('user_id', $auther_id)->paginate(10);
 
       return view('mypages.registered', compact('projects'));
     }
