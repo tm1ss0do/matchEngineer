@@ -23,7 +23,7 @@ class PublicNotify extends Model
     // }
     public function projects()
     {
-      return $this->belongsTo('App\PublicMsg');
+      return $this->belongsTo('App\Project', 'public_board_id');
       // return $this->belongsTo('App\PublicMsg')->withTrashed();
     }
     public function user()
