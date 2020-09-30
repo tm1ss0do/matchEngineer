@@ -16,7 +16,7 @@
             メッセージ{{ msg.id }}：
             <p>{{ msg.content }}</p>
             {{ msg.user.name }}
-            {{ msg.created_at }}
+            {{ msg.send_date }}
           </div>
         </div>
         <p v-else>
