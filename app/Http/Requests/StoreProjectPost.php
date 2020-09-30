@@ -31,8 +31,8 @@ class StoreProjectPost extends FormRequest
             'project_status' => 'boolean',
             'project_type' => 'required|string|max:255',
             'project_reception_end' => '',
-            'project_max_amount' => 'integer|nullable',
-            'project_mini_amount' => 'integer|nullable',
+            'project_max_amount' => 'integer|nullable|min:project_mini_amount',
+            'project_mini_amount' => 'integer|nullable|',
             'project_detail_desc' => 'string|max:2000',
         ];
     }

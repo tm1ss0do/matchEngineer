@@ -185,6 +185,10 @@ return [
         // ComposerServiceProvider(ビューコンポーザー)
         App\Providers\ComposerServiceProvider::class,
 
+        // Validation
+        App\Providers\CustomValidateProvider::class,
+
+
     ],
 
     /*

@@ -116,6 +116,28 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+
+      // projects
+      'project_title'=>'案件名',
+      'project_status'=>'募集状況',
+      'project_type'=>'案件種別',
+      'project_reception_end'=>'募集終了日',
+      'project_max_amount'=>'最高金額',
+      'project_mini_amount'=>'最低金額',
+      'project_detail_desc'=>'案件の詳細説明文',
+
+      // message
+      'send_date'=>'送信日',
+      'content'=>'内容',
+
+      // User
+      'name'=>'ユーザー名前',
+      'email'=>'メールアドレス',
+      'password'=>'パスワード',
+      'profile_icon'=>'プロフィール画像',
+      'self_introduction'=>'自己紹介',
+
+    ],
 
 ];
