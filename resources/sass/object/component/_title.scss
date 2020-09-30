@@ -1,7 +1,7 @@
 .c-title{
 
   &__header-logo{
-    
+
   }
   &__header-link{
     font-family: $font-family-logo;
@@ -16,5 +16,25 @@
   &__sub{
     font-family: $font-family-sub;
   }
+
+  &__page{
+    font-size: $font-l;
+    margin-top: $spacing-2;
+    padding: $spacing-2;
+    font-weight: inherit;
+  }
+  &__section{
+    font-size: $font-l;
+    margin-top: $spacing-2;
+    padding: $spacing-2;
+    font-weight: inherit;
+  }
+  &__small{
+    font-size: $font-m;
+    margin-top: $spacing-2;
+    padding: $spacing-2;
+    font-weight: inherit;
+  }
+
 
 }

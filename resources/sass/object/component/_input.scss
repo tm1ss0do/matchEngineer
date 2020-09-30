@@ -3,6 +3,13 @@
     width: 100%;
     padding: $padding-ss;
   }
+  &__textarea{
+    width: 100%;
+    padding: $padding-ss;
+    font-size: $font-s;
+    border: 1px solid $color-sub;
+    border-radius: $radius-ss;
+  }
   &__check{
     margin-right: $spacing-1;
   }

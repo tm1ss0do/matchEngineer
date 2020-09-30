@@ -51,6 +51,7 @@
           :user="{{ $direct_msg->project->user }}"
           url="{{ url('/') }}"
           :non-display="true"
+          :all="false"
           ></project-item>
 
           <a href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg->id }}">メッセージページへ</a>

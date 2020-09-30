@@ -1,22 +1,21 @@
 <template>
 
-<section class="p-projects__list">
-  <section v-if="errored">
-    <p>
+<section class="p-projects">
+  <section v-if="errored" class="p-error__wrap">
+    <p class="u-font__sub">
     現在、この情報を取得できません。しばらくしてからもう一度お試しください
     </p>
   </section>
 
-  <section v-else>
-    <div v-if="loading">Now Loading...</div>
-    <div v-else>
-
+  <section v-else class="p-projects__list">
+    <div v-if="loading" class="u-font__sub" >Now Loading...</div>
+    <div v-else class="p-projects__wrap">
       <search-component
         :data="data"
         @search="searchProject($event)"
       ></search-component>
 
-      <p>{{ from }} 〜 {{ to }}件 / {{ total }}件中</p>
+      <p class="u-font__sub">{{ from }} 〜 {{ to }}件 / {{ total }}件中</p>
 
       <project-component
       :url = "url"

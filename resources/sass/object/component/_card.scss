@@ -1,9 +1,10 @@
 .c-card{
-  padding: $padding-s;
+  padding: $padding-m;
   box-sizing: border-box;
   border: 1px solid $color-black-sub;
   border-radius: $radius-ss;
   margin-bottom: $spacing-2;
+  margin-top: $spacing-2;
   &__header{
     padding: $padding-ss;
   }

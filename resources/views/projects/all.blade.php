@@ -4,6 +4,8 @@
 
 @section('content')
   <!-- 案件一覧ページです。Homeでもあります。 -->
+
+
     <project-list
     url="{{ url('/') }}"
     ></project-list>

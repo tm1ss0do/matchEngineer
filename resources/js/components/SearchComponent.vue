@@ -1,6 +1,6 @@
 <template>
 
-<section class="p-search">
+<section class="p-search__wrap">
   <form class="" action="" method="post">
 
     <div class="c-search__container--border">

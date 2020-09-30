@@ -1,19 +1,19 @@
 <template>
-
-  <section class="">
-    <textarea @keyup="inputText($event)" class="js-count-area" :id="id" :name="name" rows="8" cols="80" :placeholder="ex">{{ value }}</textarea></br>
-    <span class="js-counter">{{ length }}/{{ countnum }}文字</span></br>
-    <span>{{ error }}</span>
-  </section>
+  <div class="c-comment__body">
+    <textarea @keyup="inputText($event)" v-model.trim="message" :name="name" class="js-count-area c-input__textarea" :id="id"  rows="8" cols="80" :placeholder="ex" :maxlength="countnum"></textarea>
+    <span class="js-counter u-font__ss">{{ length }}/{{ countnum }}文字</span></br>
+    <span class="u-font__error">{{ error }}</span>
+  </div>
 </template>
 
 <script>
     export default {
-        props: ['countnum', 'ex', 'id', 'name', 'value'],
+        props: ['countnum', 'ex', 'id', 'name', 'old'],
         data: function() {
           return {
             length: '0',
-            error: ''
+            error: '',
+            message: this.old[this.name],
           }
         },
         methods: {
@@ -27,7 +27,7 @@
               }
 
              return this.length;
-         }
+         },
         },
         mounted () {
 

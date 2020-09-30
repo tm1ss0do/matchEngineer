@@ -1,5 +1,16 @@
-.font{
+.u-font{
   &__ss{
     font-size: $font-ss;
+  }
+  &__s{
+    font-size: $font-s;
+  }
+
+  &__sub{
+    font-size: $font-s;
+    color: $color-black-sub;
+  }
+  &__error{
+    color: $color-emphasis;
   }
 }

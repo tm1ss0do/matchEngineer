@@ -1,0 +1,21 @@
+.c-comment{
+  &__wrap{
+    margin: $spacing-1 0;
+    padding: $spacing-1;
+    border: 1px solid $color-sub;
+    border-radius: $radius-ss;
+  }
+  &__header{
+    margin-bottom: $spacing-half;
+  }
+  &__body{
+    margin-bottom: $spacing-half;
+    padding: $spacing-1;
+  }
+  &__footer{
+    font-size: $font-ss;
+  }
+  &__info{
+
+  }
+}

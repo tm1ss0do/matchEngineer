@@ -1,22 +1,71 @@
 .c-btn{
+  margin: $spacing-1;
+  padding: $padding-s;
+  border-radius: $radius-ss;
+  text-align: center;
+  text-decoration: none;
+  &__panel{
+    display: flex;
+    justify-content: center;
+    &--left{
+      display: flex;
+    }
+  }
   &__right{
     display: flex;
     justify-content: flex-end;
     width: 50%;
   }
   &__medi{
-    padding: $padding-s;
+    @extend .c-btn;
     background: $color-main;
     color: $color-white;
-    border-radius: $radius-ss;
     min-width: $btn-width-medi;
-    text-align: center;
-    text-decoration: none;
     &:hover{
       background: $color-sub;
     }
   }
-  &__submit{
-    background: $color-black-sub;
+  &__half{
+    @extend .c-btn;
+    background: $color-main;
+    color: $color-white;
+    min-width: $btn-width-half;
+    width: $btn-width-half;
+    &:hover{
+      background: $color-sub;
+    }
   }
+  &__emphasis{
+    @extend .c-btn;
+    background: $color-emphasis;
+    color: $color-white;
+    min-width: $btn-width-medi;
+    &:hover{
+      background: $color-sub;
+    }
+  }
+  &__sub{
+    @extend .c-btn;
+    background: $color-sub;
+    color: $color-black-main;
+    min-width: $btn-width-medi;
+    &:hover{
+      background: $color-main;
+    }
+  }
+  &__submit{
+    @extend .c-btn__half;
+  }
+  &__moderate{
+    @extend .c-btn;
+    text-decoration: underline;
+    color: $color-black-main;
+    min-width: $btn-width-half;
+    display: block;
+    &:hover{
+      background: $color-sub;
+      cursor: pointer;
+    }
+  }
+
 }

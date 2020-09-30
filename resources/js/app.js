@@ -36,6 +36,8 @@ Vue.use(moment);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
+
+
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
@@ -58,6 +60,7 @@ Vue.component('message-component', require('./components/MessageComponent.vue').
 
 Vue.component('select-type', require('./components/SelectType.vue').default);
 // Vue.component('flat-pickr-component', require('./components/FlatPickrComponent.vue').default);
+
 
 
 /**

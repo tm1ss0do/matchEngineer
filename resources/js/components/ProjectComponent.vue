@@ -1,9 +1,9 @@
 <template>
 
-<div class="card-body">
+<div class="p-cards__wrap">
 
   <section v-if="searchNotFlg" >
-    <p>
+    <p class="u-font__sub">
     該当の情報が見つかりません。条件や単語を変えてお試しください。
     </p>
   </section>
@@ -13,6 +13,7 @@
     :user="project.user"
     :url = "url"
     :non-display="false"
+    :all="false"
     ></project-item>
   </div>
 

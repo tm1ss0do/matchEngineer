@@ -64,8 +64,8 @@ class ProjectsController extends Controller
 
         // パブリックメッセージを表示
         $publicmsgs = PublicMsg::where('project_id', $id)
+                      ->orderBy('send_date', 'desc')
                       ->with('user')
-                      ->orderBy('send_date', 'asc')
                       ->get();
         // 該当のnotifyレコードを取得
         $auther = Auth::user();

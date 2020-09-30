@@ -35,9 +35,8 @@
     </div>
   </div>
   <div class="c-card__body">
-    <p class="c-card__text">
-      {{ project.project_detail_desc }}
-    </p>
+    <p v-if="!all" class="c-card__text">{{ project.project_detail_desc | truncate }}</p>
+    <p v-else class="c-card__text u-indention">{{ project.project_detail_desc }}</p>
   </div>
   <div class="c-card__footer" >
     <div class="p-profile__mini">
@@ -57,13 +56,23 @@
 
 <script>
 export default {
-    props: ['project', 'url' , 'non-display', 'user'],
+    props: ['project', 'url' , 'non-display', 'user', 'all'],
     data: function() {
         return {
           classObjectDetailBtn: {
             nonDisplay: this.nonDisplay,
           },
         }
+    },
+    filters: {
+      truncate: function(value) {
+        var length = 200;
+        var ommision = "...";
+        if (value.length <= length) {
+          return value;
+        }
+        return value.substring(0, length) + ommision;
+      }
     },
 }
 </script>

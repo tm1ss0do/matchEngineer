@@ -114,7 +114,9 @@
         @yield('content')
       </div>
 
-      <a href="{{ url()->previous() }}">戻る</a>
+      <div class="c-btn__panel--left">
+        <a class="c-btn__moderate" href="{{ url()->previous() }}"><<戻る</a>
+      </div>
 
       <pagetop-component></pagetop-component>
 
@@ -160,7 +162,7 @@
             </div>
           @endif
       </nav>
-      <p class="text-align__center font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
+      <p class="text-align__center u-font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
     </footer>
   </div>
 

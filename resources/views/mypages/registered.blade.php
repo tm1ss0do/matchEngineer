@@ -50,6 +50,7 @@
         :user="{{ $project->user }}"
         url="{{ url('/') }}"
         :non-display="false"
+        :all="false"
         ></project-item>
       @else
         <li>登録した案件はありません</li>
