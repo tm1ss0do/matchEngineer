@@ -53,7 +53,7 @@ Vue.component('counter-component', require('./components/CounterComponent.vue').
 
 Vue.component('message-component', require('./components/MessageComponent.vue').default);
 
-Vue.component('select-status', require('./components/SelectStatus.vue').default);
+Vue.component('select-type', require('./components/SelectType.vue').default);
 // Vue.component('flat-pickr-component', require('./components/FlatPickrComponent.vue').default);
 
 
