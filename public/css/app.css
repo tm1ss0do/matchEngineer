@@ -435,6 +435,22 @@ body {
   background: #2699FB;
 }
 
+.c-btn__simple {
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  background: #2699FB;
+  color: #FFFFFF;
+  min-width: 100px;
+  width: 100px;
+}
+
+.c-btn__simple:hover {
+  background: #BCE0FD;
+}
+
 .c-btn__moderate {
   text-decoration: underline;
   color: #707070;
@@ -481,6 +497,13 @@ body {
   font-size: 18px;
   margin-top: 16px;
   padding: 16px;
+  font-weight: inherit;
+}
+
+.c-title__label {
+  font-size: 16px;
+  margin-top: 16px;
+  padding: 8px;
   font-weight: inherit;
 }
 
@@ -641,6 +664,8 @@ body {
 .c-input__text {
   width: 100%;
   padding: 4px;
+  border: 1px solid #BCE0FD;
+  border-radius: 4px;
 }
 
 .c-input__textarea {
@@ -653,6 +678,52 @@ body {
 
 .c-input__check {
   margin-right: 8px;
+}
+
+.c-input__line {
+  margin-bottom: 4px;
+  padding: 8px;
+}
+
+.c-input__line--inner {
+  margin-bottom: 4px;
+}
+
+.c-input__select--wrap {
+  position: relative;
+}
+
+.c-input__select--wrap:after {
+  display: block;
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;
+  background: url("/img/arrow-down.png") 0 0 no-repeat;
+  background-size: 20px;
+  pointer-events: none;
+}
+
+.c-input__select {
+  margin-bottom: 4px;
+  padding: 8px;
+  border: 1px solid #BCE0FD;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.c-input__num {
+  padding: 4px;
+  border: 1px solid #BCE0FD;
+  border-radius: 4px;
+}
+
+.c-input__num--container {
+  margin-bottom: 4px;
+  padding: 8px;
 }
 
 .c-search__container,
@@ -880,6 +951,11 @@ body {
   color: #2699FB;
 }
 
+.c-text__right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .p-comments__content {
   margin: 16px 0;
 }
@@ -922,11 +998,13 @@ body {
 
 .u-font__sub {
   font-size: 16px;
-  color: #95989A;
+  color: #707070;
+  padding: 8px;
 }
 
 .u-font__error {
   color: #fa4b51;
+  padding: 8px;
 }
 
 .text-align__center {

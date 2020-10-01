@@ -2,24 +2,36 @@
 
 <div class="">
 
-  <label for="status">案件種別</label></br>
-  <select @change="changeDisplay($event)" class="" name="project_type">
-    <option value="">案件種別を選択してください</option>
-    <option v-if="project && project.project_type  == 'revenue'" selected value="revenue">レベニュー</option>
-    <option v-else value="revenue">レベニュー</option>
-    <option v-if="project && project.project_type == 'single'" selected value="single">単発</option>
-    <option v-else value="single">単発</option>
-  </select></br>
-  <div class="js-amount-block" :class="classObjectSelect">
-    <label for="amount">金額(千円単位)</label></br>
-    <span>半角数字でご入力ください。</span></br>
-    <span v-show="compare">最低金額と最高金額をご確認ください。</span></br>
-    <input v-model.trim="miniAmount" pattern="^[0-9]+" name="project_mini_amount" maxlength="5" />,000
-    〜
-    <input v-model.trim="maxAmount" pattern="^[0-9]+" name="project_max_amount" maxlength="5" />,000円
+  <label class="c-title__label" for="status">案件種別</label></br>
+
+  <section class="c-input__line">
+    <div class="c-input__select--wrap">
+      <select @change="changeDisplay($event)" class="c-input__select" name="project_type">
+        <option value="" class="c-input__option">案件種別を選択してください</option>
+        <option v-if="project && project.project_type  == 'revenue'" selected value="revenue" class="c-input__option">レベニュー</option>
+        <option v-else value="revenue" class="c-input__option">レベニュー</option>
+        <option v-if="project && project.project_type == 'single'" selected value="single" class="c-input__option">単発</option>
+        <option v-else value="single" class="c-input__option">単発</option>
+      </select>
+    </div>
+  </section>
+  <div class="c-input__line--inner" :class="classObjectSelect">
+    <label class="c-title__label" for="amount">金額(千円単位)</label></br>
+    <span class="u-font__sub" >半角数字でご入力ください。</span></br>
+    <span v-if="compare" class="u-font__error">最低金額と最高金額をご確認ください。</span>
+    <div class="c-input__num--container">
+      <span class="c-input__num--wrap">
+        <input v-model.trim="miniAmount" pattern="^[0-9]+" name="project_mini_amount" maxlength="5" class="c-input__num" />
+      ,000〜
+      </span>
+      <span class="c-input__num--wrap">
+        <input v-model.trim="maxAmount" pattern="^[0-9]+" name="project_max_amount" maxlength="5" class="c-input__num" />
+      ,000
+      </span>
+    </div>
 
   </div>
-  <p v-if="consult">金額は応相談項目です。</p>
+  <p v-if="consult" class="u-font__sub">金額は応相談項目です。</p>
 
 
 

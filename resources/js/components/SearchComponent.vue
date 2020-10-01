@@ -19,7 +19,7 @@
         <input v-model="searchStatus" class="c-input__check" type="checkbox" name="recruiting" value="recruiting">募集中のみ表示
       </div>
     </div>
-    <button class="c-btn__submit" type="submit" name="search" @click="clickSearch">検索</button>
+    <button class="c-btn__simple" type="submit" name="search" @click="clickSearch">検索</button>
   </form>
 </section>
 </template>

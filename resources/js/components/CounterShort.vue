@@ -1,9 +1,9 @@
 <template>
 
-  <section class="">
-    <input @keyup="inputText($event)" v-model.trim="title" :name="name" class="js-count-area" :id="id" :maxlength="countnum" :placeholder="ex" /></br>
-    <span class="js-counter">{{ length }}/{{ countnum }}文字</span></br>
-    <span>{{ error }}</span>
+  <section class="c-input__line">
+    <input @keyup="inputText($event)" type="text" v-model.trim="title" :name="name" class="c-input__text" :id="id" :maxlength="countnum" :placeholder="ex" /></br>
+    <span class="u-font__s c-text__righ">{{ length }}/{{ countnum }}文字</span></br>
+    <span v-if="error" class="u-font__error">{{ error }}</span>
   </section>
 </template>
 

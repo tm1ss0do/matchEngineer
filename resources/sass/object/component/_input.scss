@@ -2,6 +2,8 @@
   &__text{
     width: 100%;
     padding: $padding-ss;
+    border: 1px solid $color-sub;
+    border-radius: $radius-ss;
   }
   &__textarea{
     width: 100%;
@@ -12,5 +14,48 @@
   }
   &__check{
     margin-right: $spacing-1;
+  }
+  &__line{
+    margin-bottom: $spacing-half;
+    padding: $padding-s;
+    &--inner{
+      margin-bottom: $spacing-half;
+    }
+  }
+  &__select--wrap{
+    position: relative;
+    &:after{
+      display: block;
+      content: " ";
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      width: 20px;
+      height: 20px;
+      margin-top: -8px;
+      background: url("/img/arrow-down.png") 0 0 no-repeat;
+      background-size: 20px;
+      pointer-events: none;
+    }
+  }
+  &__select{
+    margin-bottom: $spacing-half;
+    padding: $padding-s;
+    border: 1px solid $color-sub;
+    border-radius: $radius-ss;
+    width:100%;
+  }
+  &__option{
+
+  }
+  &__num{
+    padding: $spacing-half;
+    border: 1px solid $color-sub;
+    border-radius: $radius-ss;
+    &--container{
+      margin-bottom: $spacing-half;
+      padding: $spacing-1;
+    }
+
   }
 }

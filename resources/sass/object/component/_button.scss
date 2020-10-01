@@ -60,6 +60,20 @@
   &__submit{
     @extend .c-btn__half;
   }
+  &__simple{
+    margin: $spacing-1 0;
+    padding: $padding-s;
+    border-radius: $radius-ss;
+    text-align: center;
+    text-decoration: none;
+    background: $color-main;
+    color: $color-white;
+    min-width: $btn-width-half;
+    width: $btn-width-half;
+    &:hover{
+      background: $color-sub;
+    }
+  }
   &__moderate{
     @extend .c-btn;
     text-decoration: underline;

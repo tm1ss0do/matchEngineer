@@ -29,7 +29,9 @@
         <input class="c-input__check" type="checkbox" name="recruiting" value="1">募集中のみ表示
       </div>
     </div>
-    <button class="c-btn__submit" type="submit" name="search">検索</button>
+    <div class="c-btn__end">
+      <button class="c-btn__submit" type="submit" name="search">検索</button>
+    </div>
   </section>
 
   <section class="p-projects__list">

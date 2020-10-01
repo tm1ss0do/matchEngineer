@@ -1,5 +1,5 @@
 <template>
-    <datepicker name="project_reception_end" :disabled-dates="disabledDates" :format="DatePickerFormat" :bootstrap-styling="false" :language="ja" placeholder="日付を選択してください" :value="state.date"></datepicker>
+    <datepicker id="date" class="c-input__line" name="project_reception_end" :disabled-dates="disabledDates" :format="DatePickerFormat" :bootstrap-styling="false" :language="ja" placeholder="日付を選択してください" :value="state.date"></datepicker>
 </template>
 
 <script>
