@@ -32,40 +32,50 @@
 
     @foreach( $direct_msgs_boards  as $direct_msg_board )
 
-      <p>ダイレクトメッセージのid：{{ $direct_msg_board->id }}
-
+      <p>
       @foreach($direct_msgs_yet as $direct )
         @if( $direct->direct_board_id === $direct_msg_board->id )
         <span>未読</span>
         @endif
       @endforeach
-
       </p>
 
+      <div class="c-comment__wrap--new">
+        <div class="c-comment__header">
+          <span class="c-comment__info">
+            From:
+            @if($direct_msg_board->reciever['name'] && $direct_msg_board->sender['name'])
+              @if( $direct_msg_board->reciever['id'] !== Auth::id() )
+                <a class="c-comment__link" href="{{ url('/') }}/projects/{{ $direct_msg_board->reciever['id'] }}/profile" >
+                  {{ $direct_msg_board->reciever['name'] }}
+                </a>
+              @else
+                <a class="c-comment__link" href="{{ url('/') }}/projects/{{ $direct_msg_board->sender['id'] }}/profile" >
+                  {{ $direct_msg_board->sender['name'] }}
+                </a>
+              @endif
+            @else
+              退会したユーザー
+            @endif
+          </span>
+        </div>
+        <div class="c-comment__body">
+          @if ( $direct_msg_board->project )
+            <p>案件名：
+              <a class="c-card__title--link" href="{{ url('/') }}/projects/{{ $direct_msg_board->project->id }}">{{ $direct_msg_board->project->project_title }}</a>
+            </p>
+          @else
+            <p>案件名：-</p>
+          @endif
+          <div class="c-btn__end">
+            <a class="c-btn__medi" href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg_board->id }}">メッセージページへ</a>
+          </div>
+        </div>
+        <div class="c-comment__footer">
+          <span class="c-comment__info" >最終更新日：{{ $direct_msg_board->updated_at }}</span>
+        </div>
+      </div>
 
-      @if ( $direct_msg_board->project )
-        <p>案件名：{{ $direct_msg_board->project->project_title }}</p>
-      @else
-        <p>個人的に直接受け取ったメッセージです</p>
-      @endif
-
-      -------
-      @if($direct_msg_board->reciever['name'] && $direct_msg_board->sender['name'])
-        @if( $direct_msg_board->reciever['id'] !== Auth::id() )
-            {{ $direct_msg_board->reciever['name'] }}
-        @else
-          {{ $direct_msg_board->sender['name'] }}
-        @endif
-      @else
-        退会したユーザー
-      @endif
-      さんとのやりとり
-      -----
-      <a href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg_board->id }}">メッセージページへ</a>
-
-      @if ( $direct_msg_board->project )
-        <a href="{{ url('/') }}/projects/{{ $direct_msg_board->project->id }}">案件詳細をみる</a>
-      @endif
 
     @endforeach
 

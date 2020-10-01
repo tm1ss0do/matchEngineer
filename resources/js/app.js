@@ -56,6 +56,7 @@ Vue.component('counter-component', require('./components/CounterComponent.vue').
 Vue.component('counter-short', require('./components/CounterShort.vue').default);
 
 Vue.component('message-component', require('./components/MessageComponent.vue').default);
+Vue.component('direct-message', require('./components/DirectMessage.vue').default);
 // Vue.component('message-form', require('./components/MessageForm.vue').default);
 
 Vue.component('select-type', require('./components/SelectType.vue').default);

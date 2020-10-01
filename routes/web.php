@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/mypages/direct_msg', 'DirectMessagesController@show_dm_list')->name('dm.show_dm_list');
   Route::get('/mypages/direct_msg/{id}', 'DirectMessagesController@show_dm_board')->name('dm.show_dm_board');
   Route::post('/mypages/direct_msg/{id}', 'DirectMessagesController@send_dm_at_board')->name('dm.send_dm_at_board');
+  Route::get('/mypages/direct_msg/{id}/msg_json', 'DirectMessagesController@json_data_dm');
+
 
   // PublicMessages Controller
   Route::get('/mypages/public_msg', 'PublicMessagesController@show_pm_list')->name('pm.show_pm_list');

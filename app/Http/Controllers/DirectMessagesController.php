@@ -137,7 +137,16 @@ class DirectMessagesController extends Controller
       }
 
 
-      return view('mypages.dm_board', compact('directmsgs', 'no_form'));
+      return view('mypages.dm_board', compact('directmsgs', 'no_form', 'board'));
+    }
+
+    public function json_data_dm($id){
+      // 該当のボードIDに紐付いたダイレクトメッセージの情報をjson形式で取得
+      $directmsgs = DirectMsgs::where('board_id', $id)
+                    ->with('user')
+                    ->orderBy('send_date', 'asc')
+                    ->get();
+      return $directmsgs->toJson();
     }
 
     public function send_dm_at_board(StoreMessageRequest $request, $id){
