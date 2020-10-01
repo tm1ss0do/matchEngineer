@@ -31,7 +31,7 @@
            </div>
            <div v-else>
             <p class="u-font__s">全件表示中</p>
-            <p @click="closeMsg" class="c-btn__moderate">最新のコメントだけ表示する</p>
+            <p v-if="publicmsgs.length > 5" @click="closeMsg" class="c-btn__moderate">最新のコメントだけ表示する</p>
              <div class="c-comment__wrap" v-for="msg in publicmsgs" >
                <div class="c-comment__header">
                  <span class="c-comment__info">
