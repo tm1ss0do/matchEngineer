@@ -11,25 +11,13 @@
     {{ $user->name }}
   @endslot
   <!-- public message の有無 -->
-  @if( $pm_yet_notify_flg )
-    @slot('pm_yet_notify_flg')
-      未読あり
-    @endslot
-  @else
-    @slot('pm_yet_notify_flg')
-      未読なし
-    @endslot
-  @endif
+  @slot('pm_yet_notify_flg')
+    {{ $pm_yet_notify_flg }}
+  @endslot
 <!-- direct message の有無 -->
-  @if( $dm_yet_notify_flg )
-    @slot('dm_yet_notify_flg')
-      未読あり
-    @endslot
-  @else
-    @slot('dm_yet_notify_flg')
-      未読なし
-    @endslot
-  @endif
+  @slot('dm_yet_notify_flg')
+    {{ $dm_yet_notify_flg }}
+  @endslot
 <!-- user_id -->
   @slot('user_id')
     {{ $user->id }}
@@ -38,8 +26,8 @@
 @endcomponent
 
 <!-- ****************************** -->
-応募済み案件一覧です。
 
+<h3 class="c-title__page">応募済み案件一覧</h3>
 
 <div class="">
     @foreach( $direct_msgs  as $direct_msg )
@@ -50,11 +38,14 @@
           :project="{{ $direct_msg->project }}"
           :user="{{ $direct_msg->project->user }}"
           url="{{ url('/') }}"
-          :non-display="true"
+          :non-display="false"
           :all="false"
           ></project-item>
 
-          <a href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg->id }}">メッセージページへ</a>
+          <a class="c-btn__medi" href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg->id }}">
+            <i class="far fa-hand-point-right"></i>
+            メッセージページへ
+          </a>
 
         @else
           この案件は削除されました
@@ -69,7 +60,7 @@
     @endforeach
 </div>
 
-{{ $direct_msgs->links() }}
+{{ $direct_msgs->links('vendor/pagination/custom') }}
 
 
 @endsection

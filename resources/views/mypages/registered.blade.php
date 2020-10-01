@@ -4,8 +4,6 @@
 
 @section('content')
 
-登録済み案件一覧です。
-
 
 <!-- ****************************** -->
 <!-- sidemenu mypage -->
@@ -14,25 +12,13 @@
     {{ $user->name }}
   @endslot
   <!-- public message の有無 -->
-  @if( $pm_yet_notify_flg )
-    @slot('pm_yet_notify_flg')
-      未読あり
-    @endslot
-  @else
-    @slot('pm_yet_notify_flg')
-      未読なし
-    @endslot
-  @endif
+  @slot('pm_yet_notify_flg')
+    {{ $pm_yet_notify_flg }}
+  @endslot
 <!-- direct message の有無 -->
-  @if( $dm_yet_notify_flg )
-    @slot('dm_yet_notify_flg')
-      未読あり
-    @endslot
-  @else
-    @slot('dm_yet_notify_flg')
-      未読なし
-    @endslot
-  @endif
+  @slot('dm_yet_notify_flg')
+    {{ $dm_yet_notify_flg }}
+  @endslot
 <!-- user_id -->
   @slot('user_id')
     {{ $user->id }}
@@ -40,6 +26,7 @@
 
 @endcomponent
 
+<h3 class="c-title__page">登録済み案件一覧</h3>
 
 <ul>
     @foreach ($projects as $project)
@@ -59,6 +46,6 @@
     @endforeach
 </ul>
 
-{{ $projects->links() }}
+{{ $projects->links('vendor/pagination/custom') }}
 
 @endsection

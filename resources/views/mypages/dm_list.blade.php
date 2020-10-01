@@ -1,10 +1,8 @@
 @extends('layouts.base')
 
-@section('title', '案件詳細')
+@section('title', 'ダイレクトメッセージ一覧')
 
 @section('content')
-
-ダイレクトメッセージの一覧画面です。
 
 <!-- ****************************** -->
 <!-- sidemenu mypage -->
@@ -13,25 +11,13 @@
     {{ $user->name }}
   @endslot
   <!-- public message の有無 -->
-  @if( $pm_yet_notify_flg )
-    @slot('pm_yet_notify_flg')
-      未読あり
-    @endslot
-  @else
-    @slot('pm_yet_notify_flg')
-      未読なし
-    @endslot
-  @endif
+  @slot('pm_yet_notify_flg')
+    {{ $pm_yet_notify_flg }}
+  @endslot
 <!-- direct message の有無 -->
-  @if( $dm_yet_notify_flg )
-    @slot('dm_yet_notify_flg')
-      未読あり
-    @endslot
-  @else
-    @slot('dm_yet_notify_flg')
-      未読なし
-    @endslot
-  @endif
+  @slot('dm_yet_notify_flg')
+    {{ $dm_yet_notify_flg }}
+  @endslot
 <!-- user_id -->
   @slot('user_id')
     {{ $user->id }}
@@ -39,6 +25,8 @@
 
 @endcomponent
 
+
+<h3 class="c-title__page">ダイレクトメッセージ一覧</h3>
 
 <div class="">
 
@@ -83,7 +71,7 @@
 
 </div>
 
-{{ $direct_msgs_boards->links() }}
+{{ $direct_msgs_boards->links('vendor/pagination/custom') }}
 
 
 @endsection
