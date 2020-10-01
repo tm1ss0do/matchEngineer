@@ -18,9 +18,10 @@
                 <div class="c-comment__header">
                   <span class="c-comment__info">
                     From:
-                    <a class="c-comment__link" :href="'/projects/'+msg.user.id+'/profile'" >
+                    <a v-if="msg.user.name" class="c-comment__link" :href="'/projects/'+msg.user.id+'/profile'" >
                       {{ msg.user.name }}
                     </a>
+                    <span v-else >このユーザーは退会しています</span>
                   </span>
                 </div>
                 <div class="c-comment__body u-indention">{{ msg.content }}</div>
@@ -36,9 +37,10 @@
                <div class="c-comment__header">
                  <span class="c-comment__info">
                    From:
-                   <a class="c-comment__link" :href="'/projects/'+msg.user.id+'/profile'" >
+                   <a v-if="msg.user.name" class="c-comment__link" :href="'/projects/'+msg.user.id+'/profile'" >
                      {{ msg.user.name }}
                    </a>
+                   <span v-else >このユーザーは退会しています</span>
                  </span>
                </div>
                <div class="c-comment__body u-indention">{{ msg.content }}</div>
