@@ -23,16 +23,25 @@
       :searchNotFlg = "searchNotFlg"
       ></project-component>
 
-      <paginate
-        :page-count="getPageCount"
-        :page-range="3"
-        :margin-pages="2"
-        :click-handler="paginateCallback"
-        :prev-text="'＜'"
-        :next-text="'＞'"
-        :container-class="'c-pagination'"
-        :page-class="'c-pagination__item'">
-      </paginate>
+      <div class="p-pagination">
+        <paginate
+          :page-count="getPageCount"
+          :page-range="3"
+          :margin-pages="2"
+          :click-handler="paginateCallback"
+          :prev-text="'＜'"
+          :next-text="'＞'"
+          :container-class="'c-pagination__container'"
+          :page-class="'c-pagination__item'"
+          :page-link-class="'c-pagination__link'"
+          :prev-class="'c-pagination__item--prev'"
+          :prev-link-class="'c-pagination__link--prev'"
+          :next-class="'c-pagination__item--next'"
+          :next-link-class="'c-pagination__link--next'"
+          :active-class="'u-pagination__disable'"
+          :disabled-class="'u-pagination__disable'">
+        </paginate>
+      </div>
 
     </div>
 
