@@ -387,6 +387,11 @@ body {
   width: 50%;
 }
 
+.c-btn__end {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .c-btn__medi {
   background: #2699FB;
   color: #FFFFFF;
@@ -817,11 +822,18 @@ body {
   background: #95989A;
 }
 
-.c-comment__wrap {
+.c-comment__wrap,
+.c-comment__wrap--new {
   margin: 8px 0;
   padding: 8px;
   border: 1px solid #BCE0FD;
   border-radius: 4px;
+}
+
+.c-comment__wrap--new {
+  border-top: none;
+  margin-bottom: 24px;
+  margin-top: 0;
 }
 
 .c-comment__header {

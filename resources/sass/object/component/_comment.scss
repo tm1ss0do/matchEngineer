@@ -4,6 +4,12 @@
     padding: $spacing-1;
     border: 1px solid $color-sub;
     border-radius: $radius-ss;
+    &--new{
+      @extend .c-comment__wrap;
+      border-top: none;
+      margin-bottom: $spacing-3;
+      margin-top: 0;
+    }
   }
   &__header{
     margin-bottom: $spacing-half;

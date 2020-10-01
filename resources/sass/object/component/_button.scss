@@ -16,6 +16,10 @@
     justify-content: flex-end;
     width: 50%;
   }
+  &__end{
+    display: flex;
+    justify-content: flex-end;
+  }
   &__medi{
     @extend .c-btn;
     background: $color-main;
