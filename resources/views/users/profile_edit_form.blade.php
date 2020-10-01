@@ -1,11 +1,12 @@
 @extends('layouts.base')
 
-@section('title', 'プロフィール編集画面')
+@section('title', 'プロフィール編集')
 
 @section('content')
 <!-- プロフィール編集画面 -->
 
-プロフィール編集画面
+
+<h3 class="c-title__page">プロフィール編集</h3>
 
 
 @if ($errors->any())
@@ -43,7 +44,16 @@
   <input type="submit" name="profile" value="保存">
 </form>
 
-<a href="{{ url('/') }}/mypages/{{$user->id}}/password/edit">パスワード更新</a>
-<a href="{{ url('/') }}/mypages/{{$user->id}}/email/edit">メールアドレスの変更</a>
+<ul>
+  <li>
+    <a href="{{ url('/') }}/mypages/{{$user->id}}/password/edit">パスワード更新</a>
+  </li>
+  <li>
+    <a href="{{ url('/') }}/mypages/{{$user->id}}/email/edit">メールアドレスの変更</a>
+  </li>
+  <li>
+    <a href="{{ url('/') }}/mypages/withdraw">退会</a>
+  </li>
+</ul>
 
 @endsection

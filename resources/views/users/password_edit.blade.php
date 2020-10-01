@@ -1,11 +1,13 @@
 @extends('layouts.base')
 
-@section('title', 'プロフィール')
+@section('title', 'パスワード変更')
 
 @section('content')
 <!-- ユーザーのプロフィール表示画面 -->
 
-パスワード変更画面
+
+<h3 class="c-title__page">パスワード変更</h3>
+
 
 <div class="">パスワード変更</div>
 

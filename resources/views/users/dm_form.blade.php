@@ -5,7 +5,8 @@
 @section('content')
 <!-- DM送信フォーム表示画面 -->
 
-DM送信フォーム表示画面
+<h3 class="c-title__page">DM送信フォーム表示画面</h3>
+
 
 
 <form class="" action="" method="post">

@@ -1,10 +1,11 @@
 @extends('layouts.base')
 
-@section('title', '案件詳細')
+@section('title', '案件登録')
 
 @section('content')
 
-案件登録画面
+<h3 class="c-title__page">案件登録</h3>
+
 
 @if ($errors->any())
     <div class="alert alert-danger">

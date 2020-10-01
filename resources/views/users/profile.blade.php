@@ -5,7 +5,7 @@
 @section('content')
 <!-- ユーザーのプロフィール表示画面 -->
 
-ユーザーのプロフィール表示画面
+<h3 class="c-title__page">プロフィール</h3>
 
 
 <p>ユーザID:{{ $user->id }}</p>

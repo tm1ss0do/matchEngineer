@@ -1,11 +1,11 @@
 @extends('layouts.base')
 
-@section('title', 'プロフィール')
+@section('title', 'メール変更')
 
 @section('content')
 <!-- ユーザーのプロフィール表示画面 -->
 
-メール変更画面
+<h3 class="c-title__page">メール変更</h3>
 
 <div class="">
     <div class="">
