@@ -1,10 +1,10 @@
 @extends('layouts.base')
 
-@section('title', '案件詳細')
+@section('title', 'ダイレクトメッセージボード')
 
 @section('content')
 
-ダイレクトメッセージのやりとり画面です。
+<h3 class="c-title__page">ダイレクトメッセージボード</h3>
 
 @if ($errors->any())
     <div class="alert alert-danger">
