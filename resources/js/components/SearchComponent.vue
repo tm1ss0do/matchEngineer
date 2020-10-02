@@ -16,7 +16,8 @@
         </select>
       </div>
       <div class="c-search__item">
-        <input v-model="searchStatus" class="c-input__check" type="checkbox" name="recruiting" value="recruiting">募集中のみ表示
+        <input v-model="searchStatus" class="c-input__check" type="checkbox" name="recruiting" value="recruiting">
+        <label class="c-title__label--check">募集中のみ表示</label></br>
       </div>
     </div>
     <button class="c-btn__simple" type="submit" name="search" @click="clickSearch">検索</button>

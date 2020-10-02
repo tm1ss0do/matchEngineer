@@ -381,6 +381,12 @@ body {
   display: flex;
 }
 
+.c-btn__panel--column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .c-btn__right {
   display: flex;
   justify-content: flex-end;
@@ -503,6 +509,12 @@ body {
 .c-title__label {
   font-size: 16px;
   margin-top: 16px;
+  padding: 8px;
+  font-weight: inherit;
+}
+
+.c-title__label--check {
+  font-size: 16px;
   padding: 8px;
   font-weight: inherit;
 }
@@ -677,7 +689,9 @@ body {
 }
 
 .c-input__check {
-  margin-right: 8px;
+  margin-left: 8px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .c-input__line {
@@ -689,6 +703,10 @@ body {
   margin-bottom: 4px;
 }
 
+.c-input__line--check {
+  display: flex;
+}
+
 .c-input__select--wrap {
   position: relative;
 }
@@ -698,12 +716,12 @@ body {
   content: " ";
   position: absolute;
   top: 50%;
-  right: 20px;
-  width: 20px;
-  height: 20px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
   margin-top: -8px;
   background: url("/img/arrow-down.png") 0 0 no-repeat;
-  background-size: 20px;
+  background-size: 24px;
   pointer-events: none;
 }
 
@@ -988,6 +1006,11 @@ body {
   flex-direction: column;
 }
 
+.p-form__form--midi {
+  min-width: 375px;
+  max-width: 520px;
+}
+
 .u-font__ss {
   font-size: 14px;
 }
@@ -1007,12 +1030,20 @@ body {
   padding: 8px;
 }
 
-.text-align__center {
+.u-text-align__center {
   text-align: center;
 }
 
 .nonDisplay {
   display: none;
+}
+
+.u-flex {
+  display: flex;
+}
+
+.u-flex__center {
+  justify-content: center;
 }
 
 .u-indention {

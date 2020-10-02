@@ -1,3 +1,9 @@
 .nonDisplay{
   display: none;
 }
+.u-flex{
+  display: flex;
+  &__center{
+    justify-content: center;  
+  }
+}

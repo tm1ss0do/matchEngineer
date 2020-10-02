@@ -13,13 +13,18 @@
     border-radius: $radius-ss;
   }
   &__check{
-    margin-right: $spacing-1;
+    margin-left: $spacing-1;
+    margin-top: auto;
+    margin-bottom: auto;
   }
   &__line{
     margin-bottom: $spacing-half;
     padding: $padding-s;
     &--inner{
       margin-bottom: $spacing-half;
+    }
+    &--check{
+      display: flex;
     }
   }
   &__select--wrap{
@@ -29,12 +34,12 @@
       content: " ";
       position: absolute;
       top: 50%;
-      right: 20px;
-      width: 20px;
-      height: 20px;
-      margin-top: -8px;
+      right: $spacing-3;
+      width: $spacing-3;
+      height: $spacing-3;
+      margin-top: - $spacing-1;
       background: url("/img/arrow-down.png") 0 0 no-repeat;
-      background-size: 20px;
+      background-size: $spacing-3;
       pointer-events: none;
     }
   }

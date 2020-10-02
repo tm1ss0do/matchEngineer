@@ -40,6 +40,11 @@
     margin-top: $spacing-2;
     padding: $padding-s;
     font-weight: inherit;
+    &--check{
+      font-size: $font-s;
+      padding: $padding-s;
+      font-weight: inherit;
+    }
   }
 
 

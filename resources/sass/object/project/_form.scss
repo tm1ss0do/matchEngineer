@@ -1,0 +1,8 @@
+.p-form{
+  &__form{
+    &--midi{
+      min-width: $mobile-width * .5;
+      max-width: $max-width * .5;
+    }
+  }
+}

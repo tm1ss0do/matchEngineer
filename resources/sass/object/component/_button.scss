@@ -10,6 +10,11 @@
     &--left{
       display: flex;
     }
+    &--column{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
   &__right{
     display: flex;

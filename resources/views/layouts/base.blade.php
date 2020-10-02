@@ -162,7 +162,7 @@
             </div>
           @endif
       </nav>
-      <p class="text-align__center u-font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
+      <p class="u-text-align__center u-font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
     </footer>
   </div>
 
