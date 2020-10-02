@@ -7,28 +7,41 @@
 
 <h3 class="c-title__page">プロフィール</h3>
 
+<div class="c-card__simple">
 
-<p>ユーザID:{{ $user->id }}</p>
-<p>name:{{ $user->name }}</p>
+  <div class="c-card__body">
+    <div class="c-card__item">
+      <p class="c-card__title">ユーザー名</p>
+      <p class="c-card__text">{{ $user->name }}</p>
+    </div>
+    <div class="c-card__item">
+      <p class="c-card__title">プロフィールアイコン</p>
+      <div class="c-img__container--midi">
+        @if( $user->profile_icon )
+          <img class="c-img__img" src="{{ asset('storage/avatar/' . $user->profile_icon) }}">
+        @else
+          <img class="c-img__img" src="{{ asset('/img/default_prof.png') }}" alt="">
+        @endif
+      </div>
+    </div>
+    <div class="c-card__item">
+      <p class="c-card__title">自己紹介</p>
+      <p class="c-card__text">
+        {!! nl2br(e($user->self_introduction)) !!}
+      </p>
+    </div>
+  </div>
 
-<p>プロフィールアイコン</p>
-@if( $user->profile_icon )
-<p>icon:{{ $user->profile_icon }}</p>
-<img src="{{ asset('storage/avatar/' . $user->profile_icon) }}">
-@else
-  <img class="c-img__img" src="{{ asset('/img/default_prof.png') }}" alt="">
-@endif
+  <div class="c-btn__panel--left">
+    @if( Auth::id() !== $user->id )
+      <a class="c-btn__medi" href="{{ url('/') }}/projects/dm/{{ $user->id }}">ダイレクトメッセージを送る</a>
+    @elseif( Auth::id() === $user->id )
+      <a class="c-btn__moderate" href="{{ url('/') }}/mypages/{{$user->id}}/profile/edit">編集する</a>
+    @endif
 
-自己紹介:
-<p>
-  {!! nl2br(e($user->self_introduction)) !!}
-</p>
+  </div>
 
-@if( Auth::id() !== $user->id )
-  <a href="{{ url('/') }}/projects/dm/{{ $user->id }}">ダイレクトメッセージを送る</a>
-@elseif( Auth::id() === $user->id )
-  <a href="{{ url('/') }}/mypages/{{$user->id}}/profile/edit">編集する</a>
-@endif
+</div>
 
 
 @endsection

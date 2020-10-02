@@ -12,7 +12,7 @@
 
 
   <!-- search -->
-  <section class="p-search">
+  <!-- <section class="p-search">
     <div class="c-search__container--border">
       <span class="c-icon__center"><i class="fas fa-search"></i></span>
       <input class="c-input__text" type="text" placeholder="案件を検索する 例：デザイナー">
@@ -32,9 +32,9 @@
     <div class="c-btn__end">
       <button class="c-btn__submit" type="submit" name="search">検索</button>
     </div>
-  </section>
+  </section> -->
 
-  <section class="p-projects__list">
+  <!-- <section class="p-projects__list">
     <div class="c-card">
       <div class="c-card__header">
         <span class="c-card__status">
@@ -111,7 +111,7 @@
 
 
 
-  </section>
+  </section> -->
 
 
 

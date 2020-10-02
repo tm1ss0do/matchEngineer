@@ -8,7 +8,12 @@
   &__header{
     padding: $padding-ss;
   }
+  &__item{
+    margin-bottom: $spacing-2;
+    padding: $padding-s;
+  }
   &__title{
+    margin-bottom: $spacing-1;
     &--link{
       color: $color-main;
       &:hover{

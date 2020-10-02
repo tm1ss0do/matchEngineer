@@ -62,6 +62,10 @@ Vue.component('direct-message', require('./components/DirectMessage.vue').defaul
 Vue.component('select-type', require('./components/SelectType.vue').default);
 // Vue.component('flat-pickr-component', require('./components/FlatPickrComponent.vue').default);
 
+// image preview
+Vue.component('image-preview', require('./components/ImagePreview.vue').default);
+
+
 
 
 /**

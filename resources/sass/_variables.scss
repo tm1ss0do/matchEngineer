@@ -30,7 +30,8 @@ $session-height: 56px;
 
 
 $height-m: 50px; // topのボタン ・ prof-iconのサイズ
-
+$height-l: 100px;
+$height-ll: 180px; //しっかりと確認して欲しいときなど（例：プロフィール確認画面のプロフ画像）
 
 // ------------------------------------------------------
 // width
@@ -93,9 +94,9 @@ $padding-l: 24px;
 // マップ型変数
 $breakpoints: (
   'sm': 'screen and (max-width: 576px)',
-  'md': 'screen and (max-width: 768px)',
+  'md': 'screen and (max-width: 750px)',
   'lg': 'screen and (max-width: 992px)',
-  'xl': 'screen and (max-width: 1200px)',
+  'xl': 'screen and (max-width: 1040px)',
 ) !default;
 
 // mixin

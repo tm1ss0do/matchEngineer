@@ -10,6 +10,11 @@
       width: $height-m;
       height: $height-m;
     }
+    &--midi{
+      @extend .c-img__container;
+      width: $height-ll;
+      height: $height-ll;
+    }
   }
   &__img{
     width: 100%;

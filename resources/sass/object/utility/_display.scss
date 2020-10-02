@@ -4,6 +4,12 @@
 .u-flex{
   display: flex;
   &__center{
-    justify-content: center;  
+    justify-content: center;
+  }
+  &__baseline{
+    align-items: baseline;
+  }
+  &__column{
+    flex-direction: column;
   }
 }
