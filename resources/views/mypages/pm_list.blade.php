@@ -14,11 +14,11 @@
 
   @if($pm_yet_notify_flg)
     @slot('pm_yet_notify_flg')
-      <li class="c-my-menu__item c-notify">
+    <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/public_msg">
     @endslot
   @else
     @slot('pm_yet_notify_flg')
-      <li class="c-my-menu__item">
+    <a class="c-my-menu__link" href="{{ url('/') }}/mypages/public_msg">
     @endslot
   @endif
 
@@ -26,11 +26,11 @@
 
   @if($dm_yet_notify_flg)
     @slot('dm_yet_notify_flg')
-      <li class="c-my-menu__item c-notify">
+      <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/direct_msg">
     @endslot
   @else
     @slot('dm_yet_notify_flg')
-      <li class="c-my-menu__item">
+      <a class="c-my-menu__link" href="{{ url('/') }}/mypages/direct_msg">
     @endslot
   @endif
 
@@ -50,7 +50,10 @@
 
       @foreach($public_msgs_yet as $pub_msg )
         @if( $pub_msg->public_board_id === $public->project->id )
-        未読
+        <p class="u-font__bold u-color__main">
+          <i class="far fa-flag"></i>
+          未読
+        </p>
         @endif
       @endforeach
 

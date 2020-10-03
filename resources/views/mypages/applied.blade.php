@@ -14,11 +14,11 @@
 
   @if($pm_yet_notify_flg)
     @slot('pm_yet_notify_flg')
-      <li class="c-my-menu__item c-notify">
+    <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/public_msg">
     @endslot
   @else
     @slot('pm_yet_notify_flg')
-      <li class="c-my-menu__item">
+    <a class="c-my-menu__link" href="{{ url('/') }}/mypages/public_msg">
     @endslot
   @endif
 
@@ -26,11 +26,11 @@
 
   @if($dm_yet_notify_flg)
     @slot('dm_yet_notify_flg')
-      <li class="c-my-menu__item c-notify">
+      <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/direct_msg">
     @endslot
   @else
     @slot('dm_yet_notify_flg')
-      <li class="c-my-menu__item">
+      <a class="c-my-menu__link" href="{{ url('/') }}/mypages/direct_msg">
     @endslot
   @endif
 

@@ -37,7 +37,7 @@ class ProjectsController extends Controller
 
     public function json_data(){
 
-      $projects = Project::with('user')->get();
+      $projects = Project::with('user')->orderBy('updated_at','desc')->get();
       return $projects->toJson();
 
     }

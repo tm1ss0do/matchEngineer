@@ -27,8 +27,8 @@ class ChangeEmailController extends Controller
     //
 
     public function email_edit_form($id){
-
-      return view('users.email_edit');
+      $user = Auth::user();
+      return view('users.email_edit', compact('user'));
     }
 
     public function email_edit_post(Request $request, $id){

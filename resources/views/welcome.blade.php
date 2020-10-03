@@ -2,7 +2,7 @@
 
 @section('title', 'welcomeページ')
 
-@section('content')
+@section('hero')
 
 <!-- **************************** -->
 <!-- hero hedder -->
@@ -17,6 +17,12 @@
     </div>
   </section>
 </div>
+
+@endsection
+
+@section('content')
+
+
 
 <!-- **************************** -->
 <!-- サービスの概要説明 -->
@@ -49,7 +55,7 @@
 
     <section class="c-side-box__container u-display__md">
       <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
+        <img class="c-img__img" src="{{ asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
       </div>
       <div class="c-card__no-boarder--half u-width__half">
         <h3 class="c-card__title u-color__main">
@@ -79,7 +85,7 @@
         </div>
       </div>
       <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
+        <img class="c-img__img" src="{{ asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
       </div>
     </section>
 
@@ -101,7 +107,7 @@
         </div>
       </div>
       <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
+        <img class="c-img__img" src="{{ asset('/img/soudan-3.jpg') }}" alt="soudan-1.jpg">
       </div>
     </section>
 
@@ -129,7 +135,7 @@
       <section class="p-desc__container">
         <div class="c-card__no-boarder">
           <h3 class="c-card__title">
-            <span class="u-font__strong">１</span>
+            <span class="u-font__num">１</span>
             まずは無料登録
           </h3>
           <div class="c-card__body--desc">
@@ -143,14 +149,14 @@
           </div>
         </div>
         <div class="c-img__container--sqwide">
-          <img class="c-img__img" src="{{ asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
+          <img class="c-img__img" src="{{ asset('/img/desc-1.jpg') }}" alt="soudan-1.jpg">
         </div>
       </section>
 
       <section class="p-desc__container">
         <div class="c-card__no-boarder">
           <h3 class="c-card__title">
-            <span class="u-font__strong">２</span>
+            <span class="u-font__num">２</span>
             案件の発注・応募
           </h3>
           <div class="c-card__body--desc">
@@ -162,14 +168,14 @@
           </div>
         </div>
         <div class="c-img__container--sqwide">
-          <img class="c-img__img" src="{{ asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
+          <img class="c-img__img" src="{{ asset('/img/desc-2.jpg') }}" alt="soudan-1.jpg">
         </div>
       </section>
 
       <section class="p-desc__container">
         <div class="c-card__no-boarder">
           <h3 class="c-card__title">
-            <span class="u-font__strong">３</span>
+            <span class="u-font__num">３</span>
             マッチング
           </h3>
           <div class="c-card__body--desc">
@@ -181,7 +187,7 @@
           </div>
         </div>
         <div class="c-img__container--sqwide">
-          <img class="c-img__img" src="{{ asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
+          <img class="c-img__img" src="{{ asset('/img/desc-3.jpg') }}" alt="soudan-1.jpg">
         </div>
       </section>
     </div>

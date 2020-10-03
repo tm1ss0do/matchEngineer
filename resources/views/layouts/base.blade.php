@@ -35,10 +35,15 @@
 </head>
 <body>
   <div id="app">
-    <!-- フラッシュメッセージ -->
+       <!-- フラッシュメッセージ -->
        @if (session('flash_message'))
-           <div class="">
-               {{ session('flash_message') }}
+         <div class="c-session-msg">
+           {{ session('flash_message') }}
+         </div>
+       @endif
+       @if (session('status'))
+           <div class="c-session-msg">
+               {{ session('status') }}
            </div>
        @endif
 
@@ -103,16 +108,11 @@
             @endif
         </nav>
       </div>
-      @if (session('status'))
-          <div class="c-session-msg">
-              {{ session('status') }}
-              例文メッセージです：登録しました！
-          </div>
-      @endif
     </header>
 
 
     <main id="main" class="l-main">
+        @yield('hero')
       <div class="l-main__wrap">
         @yield('content')
       </div>

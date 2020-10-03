@@ -470,6 +470,7 @@ body {
 
 .c-title__header-logo {
   font-family: "Montserrat", sans-serif;
+  color: #2699FB;
 }
 
 .c-title__header-link {
@@ -543,7 +544,6 @@ body {
   background: #BCE0FD;
   overflow: hidden;
   position: fixed;
-  z-index: -10;
   width: 100%;
   -webkit-animation: session 6s ease 1s 1;
           animation: session 6s ease 1s 1;
@@ -863,7 +863,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 250px;
+  height: 200px;
 }
 
 .c-card__status {
@@ -1049,7 +1049,7 @@ body {
   font-size: 14px;
 }
 
-.c-notify::after {
+.c-notify::before {
   content: "\25CF";
   color: #2699FB;
   position: relative;
@@ -1157,14 +1157,19 @@ body {
   max-width: 520px;
 }
 
+.p-hero__container {
+  background: url("/img/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 .p-hero__wrap {
   padding: 16px;
 }
 
 .p-desc__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: block;
+  width: 100%;
 }
 
 .u-font__ss {
@@ -1185,9 +1190,20 @@ body {
   padding: 8px;
 }
 
+.u-font__bold {
+  font-weight: bold;
+}
+
 .u-font__error {
   color: #fa4b51;
   padding: 8px;
+}
+
+.u-font__num {
+  background: #2699FB;
+  padding: 4px;
+  border-radius: 4px;
+  color: #FFFFFF;
 }
 
 .u-text-align__center {

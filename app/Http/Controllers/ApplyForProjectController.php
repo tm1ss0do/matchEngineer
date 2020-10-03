@@ -36,6 +36,7 @@ class ApplyForProjectController extends Controller
       $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
                      ->whereNotNull('project_id')
                      ->with('project')
+                     ->orderBy('updated_at','desc')
                      ->paginate(10);
 
       return view('mypages.applied', compact('direct_msgs'));
@@ -119,6 +120,7 @@ class ApplyForProjectController extends Controller
                       ->whereNotNull('project_id')
                       ->with('project')
                       ->paginate(10);
+        
 
        // 応募済み案件一覧へリダイレクトさせる
        Session::flash('flash_message', __('応募しました')); //session表示用

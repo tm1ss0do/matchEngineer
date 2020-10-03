@@ -13,8 +13,17 @@
     color: $color-black-main;
     padding: $padding-s;
   }
+  &__bold{
+    font-weight: bold;
+  }
   &__error{
     color: $color-emphasis;
     padding: $spacing-1;
+  }
+  &__num{
+    background: $color-main;
+    padding: $padding-ss;
+    border-radius: $radius-ss;
+    color: $color-white;
   }
 }

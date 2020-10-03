@@ -6,7 +6,6 @@
   background: $color-sub;
   overflow: hidden;
   position: fixed;
-  z-index: -10;
   width: 100%;
   animation: session 6s ease 1s 1;
   transform: translateY( - $session-height );

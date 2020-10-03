@@ -28,7 +28,7 @@
     id = "title"
     name="project_title"
     :old = "{{json_encode(Session::getOldInput())}}"
-    :db = "{{ $project }}">
+    :db = "''">
     </counter-short>
 
     <label class="c-title__label" for="status">ステータス</label></br>

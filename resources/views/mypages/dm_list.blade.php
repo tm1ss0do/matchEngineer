@@ -14,11 +14,11 @@
 
   @if($pm_yet_notify_flg)
     @slot('pm_yet_notify_flg')
-      <li class="c-my-menu__item c-notify">
+    <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/public_msg">
     @endslot
   @else
     @slot('pm_yet_notify_flg')
-      <li class="c-my-menu__item">
+    <a class="c-my-menu__link" href="{{ url('/') }}/mypages/public_msg">
     @endslot
   @endif
 
@@ -26,11 +26,11 @@
 
   @if($dm_yet_notify_flg)
     @slot('dm_yet_notify_flg')
-      <li class="c-my-menu__item c-notify">
+      <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/direct_msg">
     @endslot
   @else
     @slot('dm_yet_notify_flg')
-      <li class="c-my-menu__item">
+      <a class="c-my-menu__link" href="{{ url('/') }}/mypages/direct_msg">
     @endslot
   @endif
 
@@ -48,13 +48,14 @@
 
     @foreach( $direct_msgs_boards  as $direct_msg_board )
 
-      <p>
       @foreach($direct_msgs_yet as $direct )
         @if( $direct->direct_board_id === $direct_msg_board->id )
-        <span>未読</span>
+        <p class="u-font__bold u-color__main">
+          <i class="far fa-flag"></i>
+          未読
+        </p>
         @endif
       @endforeach
-      </p>
 
       <div class="c-comment__wrap--new">
         <div class="c-comment__header">

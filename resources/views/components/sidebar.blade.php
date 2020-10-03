@@ -27,14 +27,14 @@
         <span class="c-my-menu__text">応募済み案件</span>
       </a>
     </li>
-    {{ $pm_yet_notify_flg }}
-        <a class="c-my-menu__link" href="{{ url('/') }}/mypages/public_msg">
+    <li class="c-my-menu__item">
+      {{ $pm_yet_notify_flg }}
           <i class="far fa-comments"></i>
           <span class="c-my-menu__text">パブリックメッセージ</span>
         </a>
       </li>
-    {{ $dm_yet_notify_flg }}
-        <a class="c-my-menu__link" href="{{ url('/') }}/mypages/direct_msg">
+    <li class="c-my-menu__item">
+      {{ $dm_yet_notify_flg }}
           <i class="far fa-envelope"></i>
           <span class="c-my-menu__text">ダイレクトメッセージ</span>
         </a>
