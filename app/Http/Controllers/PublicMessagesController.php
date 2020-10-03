@@ -133,12 +133,13 @@ class PublicMessagesController extends Controller
 
       // 初めてこのプロジェクトのパブリックメッセージに投稿するか、notifyレコードの有無を判定
       $auther = Auth::user();
+      $auther_id = Auth::id();
       $notify = $auther->public_notify->where('public_board_id', $id)->first();
       if( !$notify ){ // 初めてこのフォームに投稿する場合
         // notifyテーブルに既読フラグを立てて新規保存
         $public_notify = new PublicNotify;
         $public_notify->public_board_id = $id;
-        $public_notify->user_id = $auther;
+        $public_notify->user_id = $auther_id;
         $public_notify->read_flg = '1';
         $public_notify->save();
       }else{

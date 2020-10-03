@@ -33,7 +33,9 @@
   <label class="c-title__label" for="profile_icon">プロフィール画像</label></br>
 
   <image-preview
-  src="{{ asset('storage/avatar/' . $user->profile_icon) }}">
+  icon="{{ $user->profile_icon }}"
+  src="{{ asset('storage/avatar/' . $user->profile_icon) }}"
+  default="{{ asset('/img/default_prof.png') }}">
   </image-preview>
 
   <label class="c-title__label" for="self_introduction">自己紹介文</label></br>

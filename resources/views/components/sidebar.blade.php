@@ -27,21 +27,13 @@
         <span class="c-my-menu__text">応募済み案件</span>
       </a>
     </li>
-    @if( $pm_yet_notify_flg )
-      <li class="c-my-menu__item c-notify">
-    @else
-      <li class="c-my-menu__item">
-    @endif
+    {{ $pm_yet_notify_flg }}
         <a class="c-my-menu__link" href="{{ url('/') }}/mypages/public_msg">
           <i class="far fa-comments"></i>
           <span class="c-my-menu__text">パブリックメッセージ</span>
         </a>
       </li>
-    @if( $dm_yet_notify_flg )
-      <li class="c-my-menu__item c-notify">
-    @else
-      <li class="c-my-menu__item">
-    @endif
+    {{ $dm_yet_notify_flg }}
         <a class="c-my-menu__link" href="{{ url('/') }}/mypages/direct_msg">
           <i class="far fa-envelope"></i>
           <span class="c-my-menu__text">ダイレクトメッセージ</span>

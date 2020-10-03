@@ -11,13 +11,29 @@
     {{ $user->name }}
   @endslot
   <!-- public message の有無 -->
-  @slot('pm_yet_notify_flg')
-    {{ $pm_yet_notify_flg }}
-  @endslot
+
+  @if($pm_yet_notify_flg)
+    @slot('pm_yet_notify_flg')
+      <li class="c-my-menu__item c-notify">
+    @endslot
+  @else
+    @slot('pm_yet_notify_flg')
+      <li class="c-my-menu__item">
+    @endslot
+  @endif
+
 <!-- direct message の有無 -->
-  @slot('dm_yet_notify_flg')
-    {{ $dm_yet_notify_flg }}
-  @endslot
+
+  @if($dm_yet_notify_flg)
+    @slot('dm_yet_notify_flg')
+      <li class="c-my-menu__item c-notify">
+    @endslot
+  @else
+    @slot('dm_yet_notify_flg')
+      <li class="c-my-menu__item">
+    @endslot
+  @endif
+
 <!-- user_id -->
   @slot('user_id')
     {{ $user->id }}

@@ -51,10 +51,9 @@ class ApplyForProjectController extends Controller
         $project = Project::find($id);
         $user = $project->user;
 
-      $projects = Project::with('user')->get();
+        $projects = Project::with('user')->get();
 
       return view('projects.apply', compact('project', 'user'));
-
     }
 
     public function apply(StoreMessageRequest $request, $id){
@@ -119,7 +118,7 @@ class ApplyForProjectController extends Controller
        $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
                       ->whereNotNull('project_id')
                       ->with('project')
-                      ->get();
+                      ->paginate(10);
 
        // 応募済み案件一覧へリダイレクトさせる
        Session::flash('flash_message', __('応募しました')); //session表示用

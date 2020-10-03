@@ -2,14 +2,16 @@
   <section class="c-input__line">
     <input class="c-input__text" @change="setImage" ref="file" id="profile_icon" type="file" name="profile_icon" value="old.profile_icon"></br>
     <div class="c-img__container--midi">
-      <img class="js-preview c-img__img" :src="data.image" alt="">
+      <img aaaa v-if="data.image" class="js-preview c-img__img" :src="data.image" alt="">
+      <img aaaa v-else-if="this.icon" class="js-preview c-img__img" :src="src" alt="">
+      <img v-else class="js-preview c-img__img" :src="this.default" alt="">
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  props:['old'],
+  props:['icon', 'src', 'default'],
   data () {
     return {
       data: {
