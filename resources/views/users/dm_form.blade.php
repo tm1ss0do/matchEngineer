@@ -17,7 +17,8 @@
     ex = "例：はじめまして。プロフィールを拝見し、ぜひ一度弊社の案件をご検討いただきたく連絡いたしました。"
     id = "detail"
     name = "content"
-    value="{{ old('content') }}"
+    :old="{{ json_encode(Session::getOldInput()) }}"
+    :db="''"
   ></counter-component>
   <input type="submit" name="" value="送信">
 </form>

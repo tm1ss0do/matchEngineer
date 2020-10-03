@@ -84,7 +84,7 @@
         id = "pub_msg"
         name = "content"
         :old="{{json_encode(Session::getOldInput())}}"
-        :db = ""
+        :db = "''"
         ></counter-component>
       </label>
     <div class="c-btn__panel">

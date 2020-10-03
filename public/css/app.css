@@ -390,7 +390,6 @@ body {
 .c-btn__right {
   display: flex;
   justify-content: flex-end;
-  width: 50%;
 }
 
 .c-btn__end {
@@ -878,9 +877,22 @@ body {
   padding: 8px 16px;
 }
 
+.c-card__link {
+  padding: 4px 8px;
+  color: #707070;
+  border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+}
+
+.c-card__link:hover {
+  color: #2699FB;
+}
+
 .c-card__footer {
-  display: flex;
-  align-items: center;
   padding: 4px;
 }
 
@@ -1018,6 +1030,21 @@ body {
   padding: 8px;
 }
 
+.c-comment__link {
+  padding: 4px 8px;
+  color: #707070;
+  border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+}
+
+.c-comment__link:hover {
+  color: #2699FB;
+}
+
 .c-comment__footer {
   font-size: 14px;
 }
@@ -1036,7 +1063,6 @@ body {
   display: flex;
   list-style: none;
   padding: 4px 0;
-  justify-content: space-between;
   border-bottom: 1px solid #95989A;
   margin: 16px 0;
 }
@@ -1046,11 +1072,22 @@ body {
   color: #707070;
   text-decoration: none;
   border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
 .c-my-menu__link:hover {
   text-decoration: underline;
   color: #2699FB;
+}
+
+.c-my-menu__item {
+  overflow: hidden;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

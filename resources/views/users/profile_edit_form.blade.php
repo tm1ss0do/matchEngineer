@@ -27,7 +27,8 @@
   ex = "お名前をご入力ください"
   id = "name"
   name="name"
-  :old="{{ $user }}">
+  :old = "{{json_encode(Session::getOldInput())}}"
+  :db = "{{ $user }}">
   </counter-short>
 
   <label class="c-title__label" for="profile_icon">プロフィール画像</label></br>

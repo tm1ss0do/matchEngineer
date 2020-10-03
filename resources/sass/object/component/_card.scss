@@ -77,9 +77,20 @@
     box-sizing: border-box;
     padding: $padding-s $padding-m;
   }
+  &__link{
+    padding: $padding-ss $padding-s;
+    color: $color-black-main;
+    border-radius: $radius-ss;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    &:hover{
+      color: $color-main;
+    }
+  }
   &__footer{
-    display: flex;
-    align-items: center;
     padding: $padding-ss;
   }
 }

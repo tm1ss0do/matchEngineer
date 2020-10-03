@@ -18,6 +18,19 @@
     margin-bottom: $spacing-half;
     padding: $spacing-1;
   }
+  &__link{
+    padding: $padding-ss $padding-s;
+    color: $color-black-main;
+    border-radius: $radius-ss;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    &:hover{
+      color: $color-main;
+    }
+  }
   &__footer{
     font-size: $font-ss;
   }

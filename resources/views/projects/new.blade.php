@@ -27,7 +27,8 @@
     ex = "案件名を入力します。"
     id = "title"
     name="project_title"
-    :old="{{ json_encode(Session::getOldInput()) }}">
+    :old = "{{json_encode(Session::getOldInput())}}"
+    :db = "{{ $project }}">
     </counter-short>
 
     <label class="c-title__label" for="status">ステータス</label></br>
@@ -57,6 +58,7 @@
       id = "detail"
       name = "project_detail_desc"
       :old="{{ json_encode(Session::getOldInput()) }}"
+      :db="''"
     ></counter-component>
     <div class="c-btn__panel">
       <input class="c-btn__submit" type="submit" name="" value="案件登録">

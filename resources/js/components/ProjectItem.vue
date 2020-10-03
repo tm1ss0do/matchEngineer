@@ -44,7 +44,7 @@
         <img v-if="user.profile_icon" class="c-img__img" :src="url+'/storage/avatar/'+user.profile_icon" :alt="user.profile_icon">
         <img v-else class="c-img__img" :src="url+'/img/default_prof.png'" alt="default_icon_image">
       </div>
-      <a :href="'/projects/'+user.id+'/profile'" >{{ user.name }}</a>
+      <a class="c-card__link" :href="'/projects/'+user.id+'/profile'" >{{ user.name }}</a>
     </div>
     <div class="c-btn__right" :class="classObjectDetailBtn">
       <a class="c-btn__medi" :href="'/projects/'+project.id">詳細を見る</a>

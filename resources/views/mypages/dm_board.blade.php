@@ -36,7 +36,7 @@
       id = "content"
       name = "content"
       :old = "{{json_encode(Session::getOldInput())}}"
-      :db = ""
+      :db = "''"
       ></counter-component>
     <div class="c-btn__panel">
       <input class="c-btn__submit" type="submit" name="" value="送信">

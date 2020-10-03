@@ -1,7 +1,9 @@
 <template>
 
   <section class="c-input__line">
-    <input @keyup="inputText($event)" type="text" v-model.trim="title" :name="name" class="c-input__text" :id="id" :maxlength="countnum" :placeholder="ex" /></br>
+    <input v-if="value && !title" @keyup="inputText($event)" type="text" v-model.trim="value" :name="name" class="c-input__text" :id="id" :maxlength="countnum" :placeholder="ex" />
+    <input v-else @keyup="inputText($event)" type="text" v-model.trim="title" :name="name" class="c-input__text" :id="id" :maxlength="countnum" :placeholder="ex" />
+    </br>
     <span class="u-font__s c-text__righ">{{ length }}/{{ countnum }}文字</span></br>
     <span v-if="error" class="u-font__error">{{ error }}</span>
   </section>
@@ -9,12 +11,13 @@
 
 <script>
     export default {
-        props: ['countnum', 'ex', 'id','old','name'],
+        props: ['countnum', 'ex', 'id', 'old', 'name', 'db'],
         data: function() {
           return {
             length: '0',
             error: '',
             title: this.old[this.name],
+            value: this.db[this.name],
           }
         },
         methods: {

@@ -25,7 +25,8 @@
   ex = "案件名を入力します。"
   id = "title"
   name="project_title"
-  :old="{{ $project }}">
+  :old = "{{json_encode(Session::getOldInput())}}"
+  :db = "{{ $project }}">
   </counter-short>
 
 
