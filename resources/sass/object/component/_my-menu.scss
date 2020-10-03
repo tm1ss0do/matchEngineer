@@ -20,5 +20,10 @@
   &__item{
 
   }
+  &__text{
+    @include md() {
+      display: none;
+    }
+  }
 
 }

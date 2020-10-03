@@ -1,0 +1,9 @@
+.c-side-box{
+  &__container{
+    display: flex;
+    @include sm{
+      display: block;
+    }
+  }
+
+}

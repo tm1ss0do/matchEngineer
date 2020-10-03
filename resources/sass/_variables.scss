@@ -28,6 +28,7 @@ $font-xl: 46px; //表題・サービスタイトルなど
 $header-height: 56px;
 $session-height: 56px;
 
+$box-height-m: 250px; //cardのbodyの高さ
 
 $height-m: 50px; // topのボタン ・ prof-iconのサイズ
 $height-l: 100px;
@@ -94,13 +95,32 @@ $padding-l: 24px;
 // マップ型変数
 $breakpoints: (
   'sm': 'screen and (max-width: 576px)',
-  'md': 'screen and (max-width: 750px)',
+  'md': 'screen and (max-width: 768px)',
   'lg': 'screen and (max-width: 992px)',
-  'xl': 'screen and (max-width: 1040px)',
+  'xl': 'screen and (max-width: 1200px)',
 ) !default;
 
 // mixin
-@mixin mq($breakpoint: sm) {
+@mixin sm($breakpoint: sm) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+
+@mixin md($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin lg($breakpoint: lg) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin xl($breakpoint: xl) {
   @media #{map-get($breakpoints, $breakpoint)} {
     @content;
   }

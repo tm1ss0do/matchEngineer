@@ -20,7 +20,7 @@
         @if( $user->profile_icon )
           <img class="c-img__img" src="{{ asset('storage/avatar/' . $user->profile_icon) }}">
         @else
-          <img class="c-img__img" src="{{ asset('/img/default_prof.png') }}" alt="">
+          <img class="c-img__img" src="{{ asset('/img/default_prof.png') }}" alt="default_prof.png">
         @endif
       </div>
     </div>

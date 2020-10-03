@@ -54,22 +54,24 @@
                 <!-- ログインしていた場合 -->
                 <a class="c-nav__item--top" href="{{ url('/home') }}">
                   <i class="fas fa-home"></i>
-                  Home
+                  <span class="c-nav__text">Home</span>
                 </a>
 
                 <a class="c-nav__item--top" href="{{ route('project.new') }}">
                   <i class="far fa-handshake"></i>
-                  依頼する
+                  <span class="c-nav__text">依頼する</span>
                 </a>
                 <a class="c-nav__item--top" href="{{ route('mypage.registered') }}">
                   <i class="far fa-user"></i>
-                  マイページ
+                  <span class="c-nav__text">マイページ</span>
+
                 </a>
                     <div class="">
                         <a class="c-nav__item--top" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('js-logout-form').submit();">
-                            {{ __('Logout') }}
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="c-nav__text">{{ __('Logout') }}</span>
                         </a>
                         <form id="js-logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
@@ -81,17 +83,18 @@
                 <!-- ゲストの場合 -->
                 <a class="c-nav__item--top" href="{{ route('project.all') }}">
                   <i class="fas fa-clipboard-list"></i>
-                  案件を見てみる
+                  <span class="c-nav__text">案件を見てみる</span>
                 </a>
                 <a class="c-nav__item--top" href="{{ route('login') }}">
                   <i class="fas fa-sign-in-alt"></i>
-                  ログイン
+                  <span class="c-nav__text">ログイン</span>
+
                 </a>
 
                   @if (Route::has('register'))
                   <a class="c-nav__item--top" href="{{ route('register') }}">
                     <i class="fas fa-user-plus"></i>
-                    新規登録
+                    <span class="c-nav__text">新規登録</span>
                   </a>
                   @endif
 
@@ -130,31 +133,36 @@
               <!-- ログインしていた場合 -->
               <a class="c-nav__item--top" href="{{ url('/home') }}">
                 <i class="fas fa-home"></i>
-                Home
+                <span class="c-nav__text">Home</span>
               </a>
               <a class="c-nav__item--small" href="{{ route('mypage.registered') }}">
                 <i class="far fa-user"></i>
-                マイページ
+                <span class="c-nav__text">マイページ</span>
+
               </a>
               <a class="c-nav__item--small" href="{{ route('project.new') }}">
                 <i class="far fa-handshake"></i>
-                依頼する
+                <span class="c-nav__text">依頼する</span>
+
               </a>
               @else
               <!-- ゲストの場合 -->
               <a class="c-nav__item--small" href="{{ route('project.all') }}">
                 <i class="fas fa-clipboard-list"></i>
-                案件を見てみる
+                <span class="c-nav__text">案件を見てみる</span>
+
               </a>
               <a class="c-nav__item--small" href="{{ route('login') }}">
                 <i class="fas fa-sign-in-alt"></i>
-                ログイン
+                <span class="c-nav__text">ログイン</span>
+
               </a>
 
                 @if (Route::has('register'))
                 <a class="c-nav__item--small" href="{{ route('register') }}">
                   <i class="fas fa-user-plus"></i>
-                  新規登録
+                  <span class="c-nav__text">新規登録</span>
+
                 </a>
                 @endif
 

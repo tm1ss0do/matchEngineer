@@ -5,6 +5,21 @@
   border-radius: $radius-ss;
   margin-bottom: $spacing-2;
   margin-top: $spacing-2;
+  &__no-boarder{
+    padding: $padding-m;
+    box-sizing: border-box;
+    margin-bottom: $spacing-2;
+    margin-top: $spacing-2;
+    border: none;
+    &--half{
+      @extend .c-card__no-boarder;
+      width: 50%;
+      @include sm{
+        width: 100%;
+      }
+    }
+
+  }
   &__header{
     padding: $padding-ss;
   }
@@ -14,6 +29,11 @@
   }
   &__title{
     margin-bottom: $spacing-1;
+    font-size: $font-l;
+    @include sm(){
+      font-size: $font-m;
+    }
+
     &--link{
       color: $color-main;
       &:hover{
@@ -32,7 +52,21 @@
   }
   &__body{
     padding: $padding-ss;
+    &--desc{
+      @extend .c-card__body;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 250px;
+    }
   }
+  // &__body--desc{
+  //   @extend .c-card__body;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: space-between;
+  //   height: 250px;
+  // }
   &__status{
     font-size: $font-ss;
     display: inline-block;
