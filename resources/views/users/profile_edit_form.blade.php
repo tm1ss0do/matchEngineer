@@ -44,7 +44,8 @@
     ex = "例：エンジニア歴10年です。web制作会社を経て自社開発、5年勤めました。現在はフリーランスとして活動しています。"
     id = "self_introduction"
     name = "self_introduction"
-    old = "{{ old('self_introduction', $user->self_introduction) }}"
+    :old = "{{json_encode(Session::getOldInput())}}"
+    :db = "{{ $user }}"
   ></counter-component>
   <div class="c-btn__panel">
     <input class="c-btn__medi" type="submit" name="profile" value="保存">
