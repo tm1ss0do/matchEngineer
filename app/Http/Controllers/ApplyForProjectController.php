@@ -45,6 +45,7 @@ class ApplyForProjectController extends Controller
 
     public function apply_form($id){
       // 応募フォーム
+      // 数値でなかった場合
       if(!ctype_digit($id)){
         return back()->with('flash_message', __('Invalid operation was performed.'));
         }
@@ -58,12 +59,11 @@ class ApplyForProjectController extends Controller
     }
 
     public function apply(StoreMessageRequest $request, $id){
-      // 応募フォームの内容をバリデーション
-
       if(!ctype_digit($id)){
         return back()->with('flash_message', __('Invalid operation was performed.'));
         }
 
+       // 応募フォームの内容をバリデーション
        $request->validated();
 
        $project = Project::find($id);
@@ -118,9 +118,9 @@ class ApplyForProjectController extends Controller
        $auther_id = Auth::id();
        $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
                       ->whereNotNull('project_id')
+                      ->orderBy('updated_at','desc')
                       ->with('project')
                       ->paginate(10);
-        
 
        // 応募済み案件一覧へリダイレクトさせる
        Session::flash('flash_message', __('応募しました')); //session表示用

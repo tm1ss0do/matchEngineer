@@ -5,8 +5,10 @@
 <h3 class="c-title__page text-align u-text-align__center">{{ __('Register') }}</h3>
 
 <div class="p-form__container u-flex u-flex__center">
-  <form class="p-form__form--midi" method="POST" action="{{ route('register') }}">
+  <form class="p-form__form--midi js-form" method="POST" action="{{ route('register') }}">
       @csrf
+      <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
       <section class="c-input__line">
         <label class="c-title__label" for="name">{{ __('Name') }}</label></br>
         <input id="name" type="text" class="c-input__text @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -44,7 +46,7 @@
       </section>
 
       <section class="c-btn">
-        <button type="submit" class="c-btn__submit">
+        <button type="submit" class="c-btn__submit js-submit">
             {{ __('Register') }}
         </button>
       </section>

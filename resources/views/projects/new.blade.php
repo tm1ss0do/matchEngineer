@@ -7,20 +7,21 @@
 <h3 class="c-title__page">案件登録</h3>
 
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
 <div class="p-form__container">
 
-  <form class="p-form__form" action="" method="post">
+  @if ($errors->any())
+    <ul class="u-font__error" role="alert">
+      @foreach ($errors->all() as $error)
+        <li class="u-list__none">{{ $error }}</li>
+      @endforeach
+    </ul>
+  @endif
+
+  <form class="p-form__form js-form" action="" method="post">
     @csrf
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
     <label class="c-title__label" for="title">タイトル</label></br>
     <counter-short
     :countnum = "100"
@@ -61,7 +62,7 @@
       :db="''"
     ></counter-component>
     <div class="c-btn__panel">
-      <input class="c-btn__submit" type="submit" name="" value="案件登録">
+      <input class="c-btn__submit js-submit" type="submit" name="" value="案件登録">
     </div>
   </form>
 

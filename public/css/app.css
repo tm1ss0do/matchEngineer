@@ -360,6 +360,7 @@ body {
 
 .c-btn,
 .c-btn__moderate,
+.c-btn__forbid,
 .c-btn__sub,
 .c-btn__emphasis,
 .c-btn__half,
@@ -438,6 +439,11 @@ body {
 
 .c-btn__sub:hover {
   background: #2699FB;
+}
+
+.c-btn__forbid {
+  background: #95989A;
+  cursor: not-allowed;
 }
 
 .c-btn__simple {
@@ -1260,5 +1266,9 @@ body {
 
 .u-color__main {
   color: #2699FB;
+}
+
+.u-list__none {
+  list-style: none;
 }
 

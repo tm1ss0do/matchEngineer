@@ -64,6 +64,11 @@
   &__submit{
     @extend .c-btn__half;
   }
+  &__forbid{
+    @extend .c-btn;
+    background: $color-black-sub;
+    cursor: not-allowed;
+  }
   &__simple{
     margin: $spacing-1 0;
     padding: $padding-s;

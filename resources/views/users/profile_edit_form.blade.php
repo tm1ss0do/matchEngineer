@@ -10,17 +10,17 @@
 
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+  <ul class="u-font__error" role="alert">
+    @foreach ($errors->all() as $error)
+      <li class="u-list__none">{{ $error }}</li>
+    @endforeach
+  </ul>
 @endif
 
-<form class="p-form__form" action="" method="post" enctype='multipart/form-data'>
+<form class="p-form__form js-form" action="" method="post" enctype='multipart/form-data'>
   @csrf
+  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
   <label class="c-title__label" for="name">名前</label></br>
   <counter-short
   :countnum = "100"
@@ -49,7 +49,7 @@
     :db = "{{ $user }}"
   ></counter-component>
   <div class="c-btn__panel">
-    <input class="c-btn__medi" type="submit" name="profile" value="保存">
+    <input class="c-btn__medi js-submit" type="submit" name="profile" value="保存">
   </div>
 </form>
 

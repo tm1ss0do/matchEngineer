@@ -57,7 +57,8 @@
 
   <h3 class="c-title__section">メッセージ</h3>
   <p class="u-font__sub">この依頼に関する質問などを送りましょう！</br>
-    例）ご希望の完成像について、具体的なイメージに近いサイトがあれば教えてください。</p>
+    例）ご希望の完成像について、具体的なイメージに近いサイトがあれば教えてください。
+  </p>
 
 
   <message-component
@@ -66,17 +67,17 @@
   ></message-component>
 
   @if ($errors->any())
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
+    <ul class="u-font__error" role="alert">
+      @foreach ($errors->all() as $error)
+        <li class="u-list__none">{{ $error }}</li>
+      @endforeach
+    </ul>
   @endif
 
-  <form class="" action="" method="post">
+  <form class="js-form" action="" method="post">
     @csrf
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
     <label class="c-title__small" for="pub_msg">メッセージ送信フォーム
        <counter-component
         :countnum = "1000"
@@ -88,7 +89,7 @@
         ></counter-component>
       </label>
     <div class="c-btn__panel">
-      <input class="c-btn__submit" type="submit" name="" value="送信">
+      <input class="c-btn__submit js-submit" type="submit" name="" value="送信">
     </div>
   </form>
 

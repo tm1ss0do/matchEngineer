@@ -24,17 +24,16 @@
 <h3 class="c-title__small">応募メッセージ</h3>
 
 @if ($errors->any())
-    <div class="">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li class="u-font__error">{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+  <ul class="u-font__error" role="alert">
+    @foreach ($errors->all() as $error)
+      <li class="u-list__none">{{ $error }}</li>
+    @endforeach
+  </ul>
 @endif
 
-<form class="" action="" method="post">
+<form class="js-form" action="" method="post">
   @csrf
+  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
   <counter-component
     :countnum = "1000"
     ex = "例：はじめまして。ウェブデザイナーの募集を見て応募いたしました。"
@@ -44,8 +43,11 @@
     :db = "''"
   ></counter-component>
   <div class="c-btn__panel">
-    <input class="c-btn__submit" type="submit" name="" value="応募">
+    <input class="c-btn__submit js-submit" type="submit" name="" value="応募">
   </div>
 </form>
+
+
+
 
 @endsection

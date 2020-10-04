@@ -5,9 +5,6 @@
 @section('content')
 
 
-
-
-
 <h3 class="c-title__page u-text-align__center">退会しました。</h3>
 
 <div class="p-form__container u-flex u-flex__center u-flex__column">

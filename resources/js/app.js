@@ -5,8 +5,9 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
+
+// require('/direct');
 
 var VueScrollTo = require('vue-scrollto');
 // Vue.use(VueScrollTo)

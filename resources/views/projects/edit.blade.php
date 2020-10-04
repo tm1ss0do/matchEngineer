@@ -6,19 +6,19 @@
 
 <h3 class="c-title__page">案件編集</h3>
 
-
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+  <ul class="u-font__error" role="alert">
+    @foreach ($errors->all() as $error)
+      <li class="u-list__none">{{ $error }}</li>
+    @endforeach
+  </ul>
 @endif
 
-<form class="" action="" method="post">
+
+<form class="js-form" action="" method="post">
   @csrf
+  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
   <label for="title">タイトル</label></br>
   <counter-short
   :countnum = "100"
@@ -68,7 +68,9 @@
     :old = "{{json_encode(Session::getOldInput())}}"
     :db = "{{ $project }}"
   ></counter-component>
-  <input type="submit" name="" value="案件登録">
+  <div class="c-btn__panel">
+    <input class="c-btn__submit js-submit" type="submit" name="" value="案件登録">
+  </div>
 </form>
 
 @endsection

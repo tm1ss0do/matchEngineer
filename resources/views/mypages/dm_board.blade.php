@@ -12,23 +12,22 @@
 ></direct-message>
 
 @if($no_form)
-このユーザーは退会しているため、メッセージは送れません。
+<p class="u-font__error">このユーザーは退会しているため、メッセージは送れません。</p>
 
 @else
 
   @if ($errors->any())
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
+    <ul class="u-font__error" role="alert">
+      @foreach ($errors->all() as $error)
+        <li class="u-list__none">{{ $error }}</li>
+      @endforeach
+    </ul>
   @endif
 
-
-  <form class="" action="" method="post">
+  <form class="js-form" action="" method="post">
     @csrf
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
     <label for="content">メッセージ投稿フォーム</label>
      <counter-component
       :countnum = "1000"
@@ -39,7 +38,7 @@
       :db = "''"
       ></counter-component>
     <div class="c-btn__panel">
-      <input class="c-btn__submit" type="submit" name="" value="送信">
+      <input class="c-btn__submit js-submit" type="submit" name="" value="送信">
     </div>
   </form>
 
