@@ -66,3 +66,6 @@
 {{ $projects->links('vendor/pagination/custom') }}
 
 @endsection
+@section('back')
+  
+@endsection

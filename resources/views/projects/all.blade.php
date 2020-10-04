@@ -116,3 +116,7 @@
 
 
 @endsection
+
+@section('back')
+  <a class="c-btn__moderate" href="{{ route('mypage.registered') }}">マイページへ</a>
+@endsection

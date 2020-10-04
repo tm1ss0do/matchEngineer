@@ -119,7 +119,9 @@
       </div>
 
       <div class="c-btn__panel--left">
-        <a class="c-btn__moderate" href="{{ url()->previous() }}"><<戻る</a>
+        @section('back')
+          <a class="c-btn__moderate" href="{{ url()->previous() }}"><<戻る</a>
+        @show
       </div>
 
       <pagetop-component></pagetop-component>
