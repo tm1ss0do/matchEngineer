@@ -23,7 +23,7 @@
 
   <label class="c-title__label" for="name">名前</label></br>
   <counter-short
-  :countnum = "100"
+  :countnum = "255"
   ex = "お名前をご入力ください"
   id = "name"
   name="name"

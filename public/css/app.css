@@ -1135,6 +1135,12 @@ body {
   width: 50%;
 }
 
+@media screen and (max-width: 576px) {
+  .p-profile__mini {
+    width: 100%;
+  }
+}
+
 .p-projects__list {
   margin-top: 16px;
 }

@@ -6,22 +6,15 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use App\PublicMsg;
-// use App\DirectMsgsBoard;
-// use App\DirectMsgs;
 use App\PublicNotify;
-// use App\DirectNotify;
 use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
 use Illuminate\Support\Facades\Session;
-// use App\Http\Requests\StoreMessageRequest;
-// use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Str;
 
 
 class EditProjectController extends Controller
@@ -46,7 +39,6 @@ class EditProjectController extends Controller
 
 
       // 変更があれば更新処理ーーーー
-      // $fillData = $request->all();
 
       $fillData = array(
         'project_title' => $request->project_title,

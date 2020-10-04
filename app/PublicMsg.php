@@ -18,18 +18,13 @@ class PublicMsg extends Model
     public function user()
      {
        return $this->belongsTo('App\User', 'sender_id');
-         // return $this->belongsTo('App\User', 'sender_id')->withTrashed();
+         
      }
 
      public function project()
      {
        return $this->belongsTo('App\Project');
-       // return $this->belongsTo('App\Project')->withTrashed();
-     }
 
-     // public function public_notify()
-     // {
-     //   return $this->hasMany('App\PublicNotify', 'public_board_id');
-     // }
+     }
 
 }

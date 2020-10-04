@@ -26,17 +26,9 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        // View::composers([
-        //   SidebarComposer::class    => 'mypages.applied',
-        // ]);
         View::composer(
             ['mypages.applied', 'mypages.registered', 'mypages.pm_list', 'mypages.dm_list'],
             SidebarComposer::class
         );
-        // View::composer(
-        //     'welcome', 'App\Http\ViewComposers\SidebarComposer'
-        // );
-        // View::composer('welcome', SidebarComposer::class);
     }
 }

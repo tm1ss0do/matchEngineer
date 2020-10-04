@@ -22,7 +22,6 @@ class CreateProjectController extends Controller
     public function registered(){
 
       $auther_id = Auth::id();
-      // $projects = $user->projects;
       $projects = Project::with('user')->where('user_id', $auther_id)->orderBy('updated_at','desc')->paginate(10);
 
       return view('mypages.registered', compact('projects'));

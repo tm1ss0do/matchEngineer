@@ -17,19 +17,15 @@ class PublicNotify extends Model
     //
     protected $fillable = ['public_board_id', 'user_id', 'read_flg'];
 
-    // public function public_msg()
-    // {
-    //   return $this->belongsTo('App\PublicMsg');
-    // }
+
     public function projects()
     {
       return $this->belongsTo('App\Project', 'public_board_id');
-      // return $this->belongsTo('App\PublicMsg')->withTrashed();
+
     }
     public function user()
     {
       return $this->belongsTo('App\User');
-      // return $this->belongsTo('App\User')->withTrashed();
     }
 
 }
