@@ -10,60 +10,91 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Http\Requests\StoreProfileRequest;
 
+use Illuminate\Http\UploadedFile;
+
 
 class StoreProfileRequestTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-     /**
-       * カスタムリクエストのバリデーションテスト
-       *
-       * @param string 項目名
-       * @param string 値
-       * @param boolean 期待値(true:バリデーションOK、false:バリデーションNG)
-       * @dataProvider dataproviderStoreProfileRequest
-       */
-       public function testValidation($item, $data, $expect)
-       {
-         //入力項目（$item）とその値($data)
-         $dataList = [$item => $data];
+  use RefreshDatabase;
+  /**
+   * @test
+   * @return void
+   */
 
-         $request = new StoreProfileRequest();
-         //フォームリクエストで定義したルールを取得
-         $rules = $request->rules();
+   public function profileの必須エラー(): void
+   {
+     // $data は、 $request->all() の返り値を想定
+       $data = [
+           'name' => null, //required
+           'profile_icon' => null,
+           'self_introduction' => null,
+       ];
+       // フォームリクエストの生成
+       $request = new StoreProfileRequest();
 
-         //Validatorファサードでバリデーターのインスタンスを取得、その際に入力情報とバリデーションルールを引数で渡す
-         $validator = Validator::make($dataList, $rules);
-         //入力情報がバリデーショルールを満たしている場合はtrue、満たしていな場合はfalseが返る
-         $result = $validator->passes();
-         //期待値($expect)と結果($result)を比較
-         $this->assertEquals($expect, $result);
-       }
+       //フォームリクエストで定義したルールを取得
+       $rules = $request->rules();
 
-       public function dataproviderStoreProfileRequest()
-       {
+       // バリデータインスタンスを生成
+       // 第一引数：バリデーションを行うデータ($data)
+       // 第二引数：データに適用するバリデーションルール
+       $validator = Validator::make($data, $rules);
 
-         return [
-           '正常' => ['name', 'ユーザー名', true],
-           '正常' => ['profile_icon', 'プロフィール画像', ''], //nullable
-           '正常' => ['profile_icon', 'プロフィール画像', 'Z9Tb.jpeg'], //img(jpeg)
-           '正常' => ['profile_icon', 'プロフィール画像', 'Z9Tb.png'], //img(png)
-           '正常' => ['profile_icon', 'プロフィール画像', 'Z9Tb.jpg'], //img(jpg)
-           '正常' => ['profile_icon', 'プロフィール画像', 'Z9Tb.gif'], //img(gif)
-           '正常' => ['profile_icon', 'プロフィール画像', 'Z9Tb.gif'], //img(gif)
-           '正常' => ['profile_icon', 'プロフィール画像', ''], //img(gif)
-           '正常' => ['self_introduction', '自己紹介', ''], //nullable
+       // バリデーションが成功ならtrue、失敗ならfalseを返す
+       $result = $validator->passes();
+       //falseが返るか確認
+       $this->assertFalse($result);
+       // 失敗の中身も期待通りか確認
+       $expectedFailed = [
+           'name' => ['Required' => [],],
+       ];
+       // どのルールが失敗したか＞ $validator->failed()
+       $this->assertEquals($expectedFailed, $validator->failed());
+   }
 
-           '必須エラー' => ['name', '', false],
-           '形式エラー' => ['profile_icon', 'Z9Tb.txt', false],
-           //str_repeat('a', 256)で、256文字の文字列を作成(aが256個できる)
-           '最大文字数エラー' => ['content', str_repeat('a', 256), false],
-           '最大文字数エラー' => ['self_introduction', str_repeat('a', 1001), false],
-         ];
-       }
+   /**
+    * @test
+    * @return void
+    */
 
-    
+   public function profileのmaxエラー(): void
+   {
+     // ダミー画像を用意
+     $dummy_image = UploadedFile::fake()->image('avatar.jpg', 100, 100)->size(1025);
+     // $data は、 $request->all() の返り値を想定
+       $data = [
+           'name' => str_repeat('a', 256), //required
+           'profile_icon' => $dummy_image,
+           'self_introduction' => str_repeat('a', 1001),
+           // 'name' => 'required|string|max:255',
+           // // 'profile_icon' => 'string|max:255',
+           // 'profile_icon' => 'image|mimes:jpeg,png,jpg,gif|max:1024|nullable',
+           // 'self_introduction' => 'string|max:1000|nullable',
+       ];
+       // フォームリクエストの生成
+       $request = new StoreProfileRequest();
+
+       //フォームリクエストで定義したルールを取得
+       $rules = $request->rules();
+
+       // バリデータインスタンスを生成
+       // 第一引数：バリデーションを行うデータ($data)
+       // 第二引数：データに適用するバリデーションルール
+       $validator = Validator::make($data, $rules);
+
+       // バリデーションが成功ならtrue、失敗ならfalseを返す
+       $result = $validator->passes();
+       //falseが返るか確認
+       $this->assertFalse($result);
+       // 失敗の中身も期待通りか確認
+       $expectedFailed = [
+           'name' => ['Max' => [100],],
+           'profile_icon' => ['Max' => [1024],],
+           'self_introduction' => ['Max' => [1000],]
+       ];
+       // どのルールが失敗したか＞ $validator->failed()
+       $this->assertEquals($expectedFailed, $validator->failed());
+   }
+
+
 }

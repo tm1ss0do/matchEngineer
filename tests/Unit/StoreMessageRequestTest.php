@@ -12,8 +12,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Http\Requests\StoreMessageRequest;
 
 
+
 class StoreMessageRequestTest extends TestCase
 {
+  use RefreshDatabase;
   /**
     * カスタムリクエストのバリデーションテスト
     *

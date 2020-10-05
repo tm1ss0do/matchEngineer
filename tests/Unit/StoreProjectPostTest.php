@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-// use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,6 +12,7 @@ use App\Http\Requests\StoreProjectPost;
 
 class StoreProjectPostTest extends TestCase
 {
+  use RefreshDatabase;
   /**
    * @test
    * @return void
