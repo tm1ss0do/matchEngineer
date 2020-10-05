@@ -132,7 +132,7 @@ return [
       'content'=>'内容',
 
       // User
-      'name'=>'ユーザー名前',
+      'name'=>'ユーザー名',
       'email'=>'メールアドレス',
       'password'=>'パスワード',
       'profile_icon'=>'プロフィール画像',
