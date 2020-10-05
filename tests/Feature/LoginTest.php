@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-class UserTest extends TestCase
+class LoginTest extends TestCase
 {
     use RefreshDatabase;
     /**

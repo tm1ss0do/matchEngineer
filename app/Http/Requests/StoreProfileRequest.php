@@ -28,8 +28,8 @@ class StoreProfileRequest extends FormRequest
             //
                 'name' => 'required|string|max:255',
                 // 'profile_icon' => 'string|max:255',
-                'profile_icon' => 'image|mimes:jpeg,png,jpg,gif|max:1024|',
-                'self_introduction' => 'string|max:1000',
+                'profile_icon' => 'image|mimes:jpeg,png,jpg,gif|max:1024|nullable',
+                'self_introduction' => 'string|max:1000|nullable',
         ];
     }
     public function messages()
