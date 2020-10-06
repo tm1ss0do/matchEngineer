@@ -1,5 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
+@section('title', 'パスワードリセット-パスワード変更画面-')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

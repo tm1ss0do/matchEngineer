@@ -12,8 +12,8 @@ class DirectMsgs extends Model
 {
     //
     use SoftDeletes;
-    
-    protected $fillable = ['send_date', 'content', 'read_flg', 'sender_id', 'board_id'];
+
+    protected $fillable = ['send_date', 'content', 'sender_id', 'board_id'];
 
     public function user()
    {
