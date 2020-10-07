@@ -2,6 +2,10 @@
 
 @section('title', 'パスワード変更')
 
+@section('scripts')
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
 @section('content')
 
 <h3 class="c-title__page u-text-align__center">{{ __('Reset Password') }}</h3>

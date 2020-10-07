@@ -8,19 +8,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>match | @yield('title', 'Home')</title>
-    
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/direct.js') }}" defer></script>
-
-    <!-- twitter share -->
-    @yield('twitter-script')
+    @yield('scripts')
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.jpg') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
@@ -124,11 +120,13 @@
         @show
       </div>
 
-      <pagetop-component></pagetop-component>
+      <div class="c-page-top js-scroll-top" v-scroll-to="'#header'" >
+        <a href="#"></a>
+      </div>
 
     </main>
 
-    <footer class="l-footer">
+    <footer id="footer" class="l-footer">
       <nav class="c-nav">
           @if (Route::has('login'))
             <div class="c-nav__container">

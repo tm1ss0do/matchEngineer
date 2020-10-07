@@ -45,10 +45,10 @@ export default {
         return {
           consult: false,
           classObjectSelect: {
-            nonDisplay: false,
+            'u-non': false,
           },
           classObjectAmountError: {
-            nonDisplay: true,
+            'u-non': true,
           },
           miniAmount: this.project.project_mini_amount,
           maxAmount: this.project.project_max_amount,
@@ -59,11 +59,11 @@ export default {
 
           if( event.target.value === 'revenue' ){
             this.consult = true;
-            return this.classObjectSelect.nonDisplay = true;
+            return this.classObjectSelect['u-non'] = true;
 
           }else if( event.target.value === 'single' ){
             this.consult = false;
-            return this.classObjectSelect.nonDisplay = false;
+            return this.classObjectSelect['u-non'] = false;
 
           }
         },

@@ -2,6 +2,12 @@
 
 @section('title', 'ダイレクトメッセージボード')
 
+@section('scripts')
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/pagetop.js') }}" defer></script>
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
 @section('content')
 
 <h3 class="c-title__page">ダイレクトメッセージボード</h3>

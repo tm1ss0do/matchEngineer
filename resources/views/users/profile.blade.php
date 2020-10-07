@@ -2,6 +2,10 @@
 
 @section('title', 'プロフィール')
 
+@section('scripts')
+<script src="{{ asset('js/pagetop.js') }}" defer></script>
+@endsection
+
 @section('content')
 <!-- ユーザーのプロフィール表示画面 -->
 

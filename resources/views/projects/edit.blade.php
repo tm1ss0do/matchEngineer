@@ -2,6 +2,14 @@
 
 @section('title', '案件編集')
 
+
+@section('scripts')
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/pagetop.js') }}" defer></script>
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
+
 @section('content')
 
 <h3 class="c-title__page">案件編集</h3>

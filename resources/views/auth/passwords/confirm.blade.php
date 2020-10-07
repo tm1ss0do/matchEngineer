@@ -1,6 +1,9 @@
 @extends('layouts.base')
 
-@section('title', 'パスワードリセット-パスワード変更画面-')
+@section('title', 'パスワードリセット')
+@section('scripts')
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
 
 @section('content')
 <div class="container">

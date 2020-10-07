@@ -2,6 +2,10 @@
 
 @section('title', 'welcomeページ')
 
+@section('scripts')
+<script src="{{ asset('js/pagetop.js') }}" defer></script>
+@endsection
+
 @section('hero')
 
 <!-- **************************** -->
@@ -162,9 +166,7 @@
           <div class="c-card__body--desc">
             お仕事を発注する際は、入力フォームで10の項目を埋めるだけで完了。</br>
             気になったお仕事には、メッセージを送るだけで応募できます。</br>
-            <div class="c-btn__panel">
-              <a class="c-btn__medi" href="{{ route('register') }}">無料登録はこちら</a>
-            </div>
+
           </div>
         </div>
         <div class="c-img__container--sqwide">
@@ -181,9 +183,7 @@
           <div class="c-card__body--desc">
             それぞれの条件に合う方とマッチング。</br>
             お仕事の詳細は、非公開メッセージでやりとりができます。
-            <div class="c-btn__panel">
-              <a class="c-btn__medi" href="{{ route('register') }}">無料登録はこちら</a>
-            </div>
+
           </div>
         </div>
         <div class="c-img__container--sqwide">
@@ -200,5 +200,5 @@
 
 @endsection
 @section('back')
-  
+
 @endsection

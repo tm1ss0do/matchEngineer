@@ -2,6 +2,10 @@
 
 @section('title', 'メールアドレス変更')
 
+@section('scripts')
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
 @section('content')
 <!-- ユーザーのプロフィール表示画面 -->
 
@@ -16,7 +20,7 @@
       @endforeach
     </ul>
   @endif
-  
+
   <form class="p-form__form--midi js-form" action="" method="POST">
     @csrf
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />

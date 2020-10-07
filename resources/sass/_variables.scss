@@ -3,8 +3,8 @@
 
 $color-main: #2699FB;
 $color-sub: #BCE0FD;
-$color-black-main: #707070;
-$color-black-sub: #95989A;
+$color-black-main: #292828;
+$color-black-sub: #575959;
 $color-white: #FFFFFF;
 $color-emphasis: #fa4b51;
 
@@ -18,12 +18,7 @@ $font-l: 24px; //ページタイトルなど(1.5em相当)
 $font-ll: 30px; //h1表題のサブタイトルなど
 $font-xl: 46px; //表題・サービスタイトルなど
 
-// $font-size-base: 0.9rem;
-// $line-height-base: 1.6;
-
 // ------------------------------------------------------
-// height
-
 // header
 $header-height: 56px;
 $session-height: 56px;
@@ -49,7 +44,6 @@ $radius-ss: 4px;
 
 // ------------------------------------------------------
 // Typography
-// $font-family-base: 'Sawarabi Gothic', sans-serif;
 $font-family-base: sans-serif;
 $font-family-sub: "Kokoro", sans-serif;
 $font-family-logo: 'Montserrat', sans-serif;
@@ -80,17 +74,6 @@ $padding-l: 24px;
 
 // ------------------------------------------------------
 // breakpoint
-
-//@media screen and (max-width: 414px){
-//  .btn{
-//    font-size: .7em;
-//  }
-//}
-// @include mq() {
-//     height: 60px;
-//     padding-right: $space_l;
-//     padding-left: $space_l;
-//   }
 
 // マップ型変数
 $breakpoints: (

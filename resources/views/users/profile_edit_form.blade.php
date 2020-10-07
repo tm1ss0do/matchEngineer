@@ -2,6 +2,11 @@
 
 @section('title', 'プロフィール編集')
 
+@section('scripts')
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
+
 @section('content')
 <!-- プロフィール編集画面 -->
 

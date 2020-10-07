@@ -1,6 +1,12 @@
 @extends('layouts.base')
 
-@section('title', '案件詳細')
+@section('title', '退会画面')
+
+
+@section('scripts')
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
 
 @section('content')
 

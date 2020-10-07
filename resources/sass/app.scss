@@ -1,13 +1,6 @@
-// Fonts
-// @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
-
-// Bootstrap
-// @import '~bootstrap/scss/bootstrap';
-
-
 
 // ==========================================================================
 // Foundation
@@ -23,7 +16,6 @@
 @import "layout/_footer";
 @import "layout/_header";
 @import "layout/_main";
-@import "layout/_sidebar";
 
 // ==========================================================================
 // Object
@@ -52,7 +44,6 @@
 @import "object/component/_my-menu";
 @import "object/component/_text";
 @import "object/component/_side-box";
-@import "object/component/_mailtext";
 
 // -----------------------------------------------------------------
 // Project
@@ -63,20 +54,15 @@
 @import "object/project/_search";
 @import "object/project/_cards";
 @import "object/project/_btn-panels";
-@import "object/project/_pagination";
 @import "object/project/_form";
-@import "object/project/_menu";
 @import "object/project/_hero";
-@import "object/project/_side-box";
 @import "object/project/_desc";
-@import "object/project/_mailtext";
 
 
 // -----------------------------------------------------------------
 // Utility
 // -----------------------------------------------------------------
 
-@import "object/utility/_margin";
 @import "object/utility/_fontsize";
 @import "object/utility/_textalign";
 @import "object/utility/_display";

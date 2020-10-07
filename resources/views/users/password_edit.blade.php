@@ -2,6 +2,10 @@
 
 @section('title', 'パスワード変更')
 
+@section('scripts')
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
 @section('content')
 
 
@@ -20,7 +24,7 @@
         @endforeach
       </ul>
     @endif
-    
+
     <section class="c-input__line">
       <label class="c-title__label" for="current-password">現在のパスワード</label></br>
       <input id="current-password" type="password" class="c-input__text @error('current-password') is-invalid @enderror" name="current-password" required autocomplete="off">

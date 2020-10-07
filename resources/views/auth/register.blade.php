@@ -2,9 +2,13 @@
 
 @section('title', '新規登録')
 
+@section('scripts')
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
 @section('content')
 
-<h3 class="c-title__page text-align u-text-align__center">{{ __('Register') }}</h3>
+<h3 class="c-title__page text-align u-text-align__center">新規登録</h3>
 
 <div class="p-form__container u-flex u-flex__center">
   <form class="p-form__form--midi js-form" method="POST" action="{{ route('register') }}">

@@ -2,11 +2,15 @@
 
 @section('title', '案件詳細')
 
-@section('twitter-script')
+@section('scripts')
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/pagetop.js') }}" defer></script>
+<script src="{{ asset('js/direct.js') }}" defer></script>
 <script>
 window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
 </script>
 @endsection
+
 
 @section('content')
 

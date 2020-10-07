@@ -2,6 +2,13 @@
 
 @section('title', 'DM送信画面')
 
+
+@section('scripts')
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/pagetop.js') }}" defer></script>
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
 @section('content')
 <!-- DM送信フォーム表示画面 -->
 

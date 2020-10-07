@@ -60,7 +60,7 @@ export default {
     data: function() {
         return {
           classObjectDetailBtn: {
-            nonDisplay: this.nonDisplay,
+            'u-non': this.nonDisplay,
           },
         }
     },
