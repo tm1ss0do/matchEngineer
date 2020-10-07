@@ -46,6 +46,7 @@ class CustomVerifyEmail extends VerifyEmail
                     // ->line('The introduction to the notification.')
                     // ->action('Notification Action', url('/'))
                     // ->line('Thank you for using our application!');
+                    ->theme('mailchange') //CSSテーマ
                     ->subject(__('Verify Your Email Address'))
                     ->line(__('Please click the link below to verify your email address.'))
                     ->action(__('Verify Email Address'), $this->verificationUrl($notifiable))

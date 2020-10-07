@@ -6,7 +6,10 @@
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
-<b>こんにちは</b>
+<p class="c-mailtext__text">
+  ご利用いただきありがとうございます。</br>
+  {{ config('app.name') }}事務局です。</br>
+</p>
 @endif
 @endif
 
@@ -22,10 +25,10 @@
     switch ($level) {
         case 'success':
         case 'error':
-            $color = '#fa4b51';
+            $color = $level;
             break;
         default:
-            $color = '#2699FB';
+            $color = 'primary';
     }
 ?>
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])

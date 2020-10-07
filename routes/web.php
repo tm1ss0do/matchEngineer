@@ -78,6 +78,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// ChangeEmail Controller
+Route::get('/mypages/{id}/email/edit', 'ChangeEmailController@email_edit_form')->name('email.email_edit_form');
+Route::get('reset/{token}', 'ChangeEmailController@email_reset');
+Route::post('/mypages/{id}/email/edit', 'ChangeEmailController@email_edit_post')->name('email.email_edit_post');
+
+
+
 Route::get('/home', 'ProjectsController@show_project_all')->name('project.all');
 Route::get('/projects/json', 'ProjectsController@json_data');
 Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('project.detail');

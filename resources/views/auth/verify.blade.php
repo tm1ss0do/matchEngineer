@@ -20,40 +20,16 @@
       @csrf
       <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-      <section class="c-btn">
+      <section class="c-btn__panel--column">
         <button type="submit" class="c-btn__medi js-submit">
           {{ __('click here to request another') }}
         </button>
+        <a href="{{ route('email.email_edit_form', ['id' => Auth::id()]) }}" class="c-btn__moderate js-submit">
+          ご登録時のメールアドレスをお間違えの方はこちら
+        </a>
       </section>
     </form>
   </div>
 </div>
 
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline js-form" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-
-                        <button type="submit" class="js-submit">{{ __('click here to request another') }}</button>.
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection

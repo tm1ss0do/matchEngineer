@@ -5,7 +5,7 @@
 
   <div class="c-mailtext__body">
     <p class="c-mailtext__text">
-      いつもご利用いただきありがとうございます。</br>
+      ご利用いただきありがとうございます。</br>
       {{ config('app.name') }}事務局です。</br>
       メールアドレス変更を承りました。</br>
     </p>

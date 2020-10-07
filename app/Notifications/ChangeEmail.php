@@ -25,6 +25,7 @@ class ChangeEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->theme('mailchange') //CSSテーマ
             ->subject('メールアドレス変更') // 件名
             ->view('emails.changeEmail') // メールテンプレートの指定
             ->action(
