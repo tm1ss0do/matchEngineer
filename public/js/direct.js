@@ -104,7 +104,7 @@ eval("// $('.js-submit').on('click', function(){\n//  $('.js-submit').addClass(\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/resources/js/direct.js */"./resources/js/direct.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/docker-laravel-lamp/my-site/resources/js/direct.js */"./resources/js/direct.js");
 
 
 /***/ })

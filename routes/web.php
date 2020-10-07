@@ -19,7 +19,7 @@ Auth::routes(['verify' => true]);
 
 // *******************************************************
 // ログインユーザーのみ許可-----------
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'verified'], function() {
   // CreateProject Controller
   Route::get('/projects/new', 'CreateProjectController@new')->name('project.new');
   Route::post('/projects/new', 'CreateProjectController@create_project')->name('mypage.create');

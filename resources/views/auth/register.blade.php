@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+@section('title', '新規登録')
+
 @section('content')
 
 <h3 class="c-title__page text-align u-text-align__center">{{ __('Register') }}</h3>

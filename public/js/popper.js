@@ -116,7 +116,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/node_modules/popper.js/dist/popper.js */"./node_modules/popper.js/dist/popper.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/docker-laravel-lamp/my-site/node_modules/popper.js/dist/popper.js */"./node_modules/popper.js/dist/popper.js");
 
 
 /***/ })

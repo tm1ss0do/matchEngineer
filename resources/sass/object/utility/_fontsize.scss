@@ -20,6 +20,9 @@
     color: $color-emphasis;
     padding: $spacing-1;
   }
+  &__success{
+    color: $color-main;
+  }
   &__num{
     background: $color-main;
     padding: $padding-ss;

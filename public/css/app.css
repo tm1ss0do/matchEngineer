@@ -1211,6 +1211,10 @@ body {
   padding: 8px;
 }
 
+.u-font__success {
+  color: #2699FB;
+}
+
 .u-font__num {
   background: #2699FB;
   padding: 4px;

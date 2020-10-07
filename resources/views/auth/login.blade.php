@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+@section('title', 'ログイン')
+
 @section('content')
 
 <h3 class="c-title__page text-align u-text-align__center">{{ __('Login') }}</h3>
