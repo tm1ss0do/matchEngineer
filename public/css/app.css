@@ -408,6 +408,12 @@ body {
   background: #BCE0FD;
 }
 
+@media screen and (max-width: 576px) {
+  .c-btn__medi {
+    display: block;
+  }
+}
+
 .c-btn__half,
 .c-btn__submit {
   background: #2699FB;
@@ -1280,5 +1286,11 @@ body {
 
 .u-list__none {
   list-style: none;
+}
+
+.u-textover__reader {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 

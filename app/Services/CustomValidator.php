@@ -27,7 +27,7 @@ class CustomValidator extends \Illuminate\Validation\Validator
 
     // 上記のクロージャを適応するルール
     $this->addReplacers([
-      "min" => $replacer,
+      "min_price" => $replacer,
     ]);
   }
 
@@ -38,7 +38,7 @@ class CustomValidator extends \Illuminate\Validation\Validator
    * @param array $parameters 0 => 比較するカラム名
    * @return true
    */
-  public function validateMin($attribute, $value, $parameters)
+  public function validateMinPrice($attribute, $value, $parameters)
   {
     if (
       !is_numeric($parameters[0]) &&

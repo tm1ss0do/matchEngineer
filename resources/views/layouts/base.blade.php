@@ -8,15 +8,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>match | @yield('title', 'Home')</title>
+    
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/direct.js') }}" defer></script>
 
     <!-- twitter share -->
-    <script>
-    window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
-    </script>
+    @yield('twitter-script')
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.png') }}">
@@ -31,8 +32,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
 
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
   <div id="app">

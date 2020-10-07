@@ -1,0 +1,7 @@
+.u-textover{
+  &__reader{
+    overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+  }
+}

@@ -64,6 +64,7 @@ return [
         'string'  => ':attributeには:min文字以上の文字列を指定してください。',
         'array'   => ':attributeには:min個以上の要素を持つ配列を指定してください。',
     ],
+    'min_price'           =>  ':attributeには、最低金額よりも大きな数字を入れてください。',
     'not_in'               => ':attributeには:valuesのうちいずれとも異なる値を指定してください。',
     'numeric'              => ':attributeには数値を指定してください。',
     'present'              => ':attributeには現在時刻を指定してください。',

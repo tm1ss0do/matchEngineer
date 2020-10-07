@@ -76,7 +76,7 @@
               </a>
             </span>
           </div>
-          <div class="c-comment__body u-indention">{{ $public->content }}</div>
+          <div class="c-comment__body u-indention u-textover__reader">{{ $public->content }}</div>
           <div class="c-comment__footer">
             <span class="c-comment__info" >送信日：{{ $public->send_date }}</span>
             <a class="c-btn__medi" href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>

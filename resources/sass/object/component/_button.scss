@@ -32,6 +32,9 @@
     &:hover{
       background: $color-sub;
     }
+    @include sm{
+      display: block;
+    }
   }
   &__half{
     @extend .c-btn;
