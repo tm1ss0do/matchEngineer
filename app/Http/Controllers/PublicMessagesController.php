@@ -46,9 +46,9 @@ class PublicMessagesController extends Controller
       // （idの大きい方を最新のパブリックコメントとして取得）
       // （ORDER BY と GROUP BYを使うと、先にグループ分けされソートされてしまうのでクエリを使う。）
 
-      // if( $arr ){
         $publics = PublicMsg::whereIn('id', function($query) {
                      $query->select(DB::raw('MAX(id) As id'))
+                           ->where('deleted_at', NULL)
                            ->from('public_msgs')
                            ->groupBy('project_id');
                    })
