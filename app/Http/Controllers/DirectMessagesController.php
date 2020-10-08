@@ -99,8 +99,6 @@ class DirectMessagesController extends Controller
       // 未読フラグ回収（ダイレクトメッセージ）
       $direct_msgs_yet = $auther->direct_notify
                          ->where('read_flg','0');
-
-      // return view('mypages.dmlist', compact('direct_msgs'));
       return view('mypages.dm_list', compact('direct_msgs_boards','direct_msgs_yet'));
     }
 

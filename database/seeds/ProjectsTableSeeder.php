@@ -2,6 +2,9 @@
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Project;
+use App\PublicNotify;
+use App\User;
 
 class ProjectsTableSeeder extends Seeder
 {
@@ -138,7 +141,11 @@ class ProjectsTableSeeder extends Seeder
 
 
         //factoryを使ってダミーデータ
-         factory(App\Project::class, 10)->create();
+         factory(Project::class, 10)->create(
+           [
+              'user_id' => 4,
+           ]
+         );
 
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
+use Illuminate\Support\Arr;
+use App\PublicNotify;
 
 class PublicNotifiesTableSeeder extends Seeder
 {
@@ -42,5 +45,77 @@ class PublicNotifiesTableSeeder extends Seeder
             'user_id' => '1',
             'read_flg' => '1',
         ]);
+
+        //factoryを使ってダミーデータ生成
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 3, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 4, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 5, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 6, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 7, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 8, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 9, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 10, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 11, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
+        factory(PublicNotify::class)->create(
+          [
+            'public_board_id' => 12, //project_id
+            'user_id' => '4',
+            'read_flg' => '1',
+          ]
+        );
     }
 }
