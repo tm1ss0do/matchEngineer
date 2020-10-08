@@ -2,6 +2,10 @@
 
 @section('title', 'ログイン')
 
+@section('scripts')
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
+
 @section('content')
 
 <h3 class="c-title__page text-align u-text-align__center">{{ __('Login') }}</h3>

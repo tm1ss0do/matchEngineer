@@ -22,13 +22,11 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'profile_icon' => NULL,
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        // 'password' => $password ?: $password = bcrypt('password'), // 複数レコード作成時には同じパスワードを生成
-        'remember_token' => Str::random(10),
         'profile_icon' => NULL,
         'self_introduction' => $faker->realText(512),
-        'deleted_at' => NULL
+        'deleted_at' => NULL,
+        'remember_token' => Str::random(10),
     ];
 });

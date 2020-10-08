@@ -22,8 +22,6 @@ Vue.use(moment);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
 Vue.component('project-component', require('./components/ProjectComponent.vue').default);
 Vue.component('project-list', require('./components/ProjectList.vue').default);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);

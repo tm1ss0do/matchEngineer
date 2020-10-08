@@ -23,8 +23,5 @@
 <script>
 export default {
   props: ['getItems','searchNotFlg','url', 'user'],
-    mounted() {
-        console.log('Project mounted.')
-    }
 }
 </script>

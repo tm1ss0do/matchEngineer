@@ -50,7 +50,7 @@ class DirectMsgsTableSeeder extends Seeder
         // ボード３
         DB::table('direct_msgs')->insert([
             'send_date' => Carbon::now(),
-            'content' => '案件なし。直接ダイレクトメッセをtest1->test2へ。',
+            'content' => '案件なし。スカウトメッセージなど、ダイレクトメッセージを直接test1->test2へ送っています。',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'sender_id'=> '1',

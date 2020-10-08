@@ -18,9 +18,6 @@
       </a>
     </section>
 
-    <!-- <p>
-        {{ $actionText }}: <a href="{{ $actionUrl }}">{{ $actionUrl }}</a>
-    </p> -->
     <p class="c-mailtext__normal">
         {{ __('※URLの有効期限は一時間以内です。有効期限が切れた場合は、お手数ですがもう一度最初からお手続きを行ってください。') }}<br>
     </p>

@@ -55,8 +55,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
 
-        //factoryを使ってダミーデータ
-        // factory(App\User\::class, 10)->create();
-         factory(App\User::class, 10)->create();
+        //factoryを使ってダミーデータ生成
+        factory(App\User::class, 10)->create();
     }
 }

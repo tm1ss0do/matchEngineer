@@ -67,16 +67,12 @@ export default {
 
           }
         },
-        //replace(event){
-        //  return event.target.value.replace(/[^0-9]+/i,'');
-        //},
 
         maxNum(event){
-          console.log(this.maxAmount);
+
            this.maxAmount = Number(event.target.value);
         },
         miniNum(event){
-          console.log(this.miniAmount);
 
            this.miniAmount = Number(event.target.value);
         }
@@ -89,14 +85,6 @@ export default {
             return false;
         }
       },
-      amLen(){
-        if( this.maxAmount > 11 || this.miniAmount > 11 ){
-        console.log(this.maxAmount);
-            return true;
-        }else{
-            return false;
-        }
-      }
     },
     mounted () {
 

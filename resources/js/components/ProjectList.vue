@@ -73,9 +73,9 @@
              this.currentPage = Number(pageNum);
              //現在のページのアイテムを返す
              let current = this.currentPage * this.parPage;
-             // console.log('current:' + current);
+
              let start = current - this.parPage;
-             // console.log('start:' + start);
+
              //表示件数の始め
              this.from = start + 1;
              //表示件数の終わり
@@ -85,7 +85,7 @@
                this.to = current;
              }
              //dataの該当箇所のみ表示
-             // console.log(this.data.slice(start, current));
+
              if(this.searchNotFlg){
               //検索結果がなかった場合
               this.sliceData = this.data.slice(start, current);
@@ -122,7 +122,7 @@
               if(searchData['searchStatus'])
               {
                var filterData = filterData.filter(function(project){
-                   return project.project_status;
+                   return !project.project_status;
                });
               }
 
@@ -130,14 +130,11 @@
               if(searchData['searchType'])
               {
               var searchType = searchData['searchType'];
-              console.log('searchType：' + searchData['searchType']);
+              
                var filterData = filterData.filter(function(project){
-                  // return String(project.name).match('野村');
                   if(searchType === 'revenue'){
-                    console.log('revenue!!!');
                     return String(project.project_type).match('revenue');
                   }else if(searchType === 'single'){
-                    console.log('single!!');
                     return String(project.project_type).match('single');
                   }
                });
@@ -166,9 +163,9 @@
             getItems: function() { //現在のページのアイテムを返す
 
                 let current = this.currentPage * this.parPage;
-                // console.log('current:' + current);
+
                 let start = current - this.parPage;
-                // console.log('start:' + start);
+
                 // 表示件数の始め
                   this.from = start + 1;
                 //表示件数の終わり
@@ -184,7 +181,7 @@
                  }else{
                   var useData = this.filterData;
                  }
-                 //console.log(this.data.slice(start, current));
+
                 return useData.slice(start, current);
 
             },
@@ -195,7 +192,7 @@
               }else{
                 var useData = this.filterData;
               }
-             //console.log(this.data.slice(start, current));
+
              //該当の全件数
                 var numberOfProjects = Object.keys(useData).length;
                 this.total = numberOfProjects;

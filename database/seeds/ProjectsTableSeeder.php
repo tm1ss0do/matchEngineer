@@ -13,7 +13,6 @@ class ProjectsTableSeeder extends Seeder
     public function run()
     {
         //
-        //
         DB::table('projects')->insert([
             'project_title' => '【単発案件】サンプルタイトル１！デザイナー＆コーダー募集！やわらかい雰囲気が得意な方！1名！経験のある方優遇！ポートフォリオがあれば未経験可能です！ぜひ、ご応募の際にお見せください。（１００文字です）',
             'project_status' => '0',
@@ -139,7 +138,6 @@ class ProjectsTableSeeder extends Seeder
 
 
         //factoryを使ってダミーデータ
-        // factory(App\User\::class, 10)->create();
          factory(App\Project::class, 10)->create();
 
     }
