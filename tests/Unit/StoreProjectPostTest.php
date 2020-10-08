@@ -185,7 +185,7 @@ class StoreProjectPostTest extends TestCase
        // 失敗の中身(falseで返された値)も期待通りか確認
 
        $expectedFailed = [
-           'project_max_amount' => ['Min' => ['project_mini_amount'],], //integer
+           'project_max_amount' => ['MinPrice' => ['project_mini_amount'],], //integer
 
        ];
 

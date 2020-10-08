@@ -45,7 +45,7 @@ class LoginTest extends TestCase
     {
         $response = $this->get('/mypages/registered');
         $response->assertStatus(302)
-                 ->assertRedirect('/login'); // リダイレクト先を確認
+                 ->assertRedirect('/email/verify'); // リダイレクト先を確認
         // 認証されていないことを確認
         $this->assertGuest();
     }
@@ -57,7 +57,7 @@ class LoginTest extends TestCase
     {
         $response = $this->get('/projects/new');
         $response->assertStatus(302)
-                 ->assertRedirect('/login'); // リダイレクト先を確認
+                 ->assertRedirect('/email/verify'); // リダイレクト先を確認
         // 認証されていないことを確認
         $this->assertGuest();
     }
@@ -74,7 +74,7 @@ class LoginTest extends TestCase
       $response = $this->get('/projects/dm/2');
       // レスポンスを確認
       $response->assertStatus(302)
-               ->assertRedirect('/login'); // リダイレクト先を確認
+               ->assertRedirect('/email/verify'); // リダイレクト先を確認
       // 認証されていないことを確認
       $this->assertGuest();
 
@@ -92,7 +92,7 @@ class LoginTest extends TestCase
       $response = $this->get('/mypages/direct_msg/2');
       // レスポンスを確認
       $response->assertStatus(302)
-               ->assertRedirect('/login'); // リダイレクト先を確認
+               ->assertRedirect('/email/verify'); // リダイレクト先を確認
       // 認証されていないことを確認
       $this->assertGuest();
     }
@@ -106,7 +106,7 @@ class LoginTest extends TestCase
       $response = $this->get('/mypages/direct_msg');
       // レスポンスを確認
       $response->assertStatus(302)
-               ->assertRedirect('/login'); // リダイレクト先を確認
+               ->assertRedirect('/email/verify'); // リダイレクト先を確認
       // 認証されていないことを確認
       $this->assertGuest();
     }
@@ -128,7 +128,7 @@ class LoginTest extends TestCase
       $response = $this->get('/projects/2/application');
       // レスポンスを確認
       $response->assertStatus(302)
-               ->assertRedirect('/login'); // リダイレクト先を確認
+               ->assertRedirect('/email/verify'); // リダイレクト先を確認
       // 認証されていないことを確認
       $this->assertGuest();
     }
@@ -168,7 +168,7 @@ class LoginTest extends TestCase
 
       // リダイレクト先を確認
       $response->assertStatus(302)
-               ->assertRedirect('/login');
+               ->assertRedirect('/email/verify');
       // 認証されていないことを確認
       $this->assertGuest();
     }
