@@ -3,7 +3,7 @@
 <div class="c-card">
   <div class="c-card__header">
 
-      <span v-if="project.project_status" class="c-card__status">
+      <span v-if="!project.project_status" class="c-card__status">
         <i class="fas fa-comment-alt"></i>
         募集中！
       </span>
