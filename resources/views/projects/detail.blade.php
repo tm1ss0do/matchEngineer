@@ -36,7 +36,6 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
   <div class="c-btn__panel">
     @if( $auther )
       @if( $project->user_id === $auther->id )
-
       <a class="c-btn__moderate" href="{{ url('projects/'.$project->id.'/edit' ) }}">
         編集する
       </a>

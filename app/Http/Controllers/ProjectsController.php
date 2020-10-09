@@ -59,7 +59,7 @@ class ProjectsController extends Controller
                       ->get();
         // 該当のnotifyレコードを取得
         $auther = Auth::user();
-        // ゲストユーザーでない場合
+        //ログインユーザーの場合
         if( $auther ){
           $public_notify = $auther->public_notify->where('public_board_id', $id)->first();
           // ユーザーがこのpublicテーブルに参加していた場合
@@ -75,8 +75,10 @@ class ProjectsController extends Controller
           $already_apply = DirectMsgsBoard::where('project_id', $id)
                                 ->where('sender_id', $auther->id)
                                 ->first();
+        }else{
+          // ゲストユーザーの場合
+          $already_apply = false;
         }
-
 
 
         return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs', 'already_apply'));
