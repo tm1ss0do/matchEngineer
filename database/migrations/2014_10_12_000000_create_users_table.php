@@ -26,11 +26,11 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            // 論理削除されていれば NULL， されていなければ 1 になる生成列を定義
-            $table->boolean('exist')->nullable()->storedAs('case when deleted_at is null then 1 else null end');
-
-            // 複合ユニーク制約
-            $table->unique(['email', 'exist']);
+            // // 論理削除されていれば NULL， されていなければ 1 になる生成列を定義
+            // $table->boolean('exist')->nullable()->storedAs('case when deleted_at is null then 1 else null end');
+            //
+            // // 複合ユニーク制約
+            // $table->unique(['email', 'exist']);
 
         });
     }
