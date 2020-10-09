@@ -3,7 +3,7 @@
 @section('title', 'メールをご確認ください')
 
 @section('scripts')
-<script src="{{ asset('js/direct.js') }}" defer></script>
+<script src="{{ secure_asset('js/direct.js') }}" defer></script>
 @endsection
 
 @section('content')

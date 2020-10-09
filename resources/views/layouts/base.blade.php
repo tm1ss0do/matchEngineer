@@ -10,7 +10,7 @@
     <title>match | @yield('title', 'Home')</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     @yield('scripts')
@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.jpg') }}">
+    <link rel="shortcut icon" href="{{ secure_asset('img/match_blue_logo.jpg') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
