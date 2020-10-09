@@ -1,0 +1,36 @@
+.c-my-menu{
+  &__container{
+    display: flex;
+    list-style: none;
+    padding: $spacing-half 0;
+    // justify-content: space-between;
+    border-bottom: 1px solid $color-black-sub;
+    margin: $spacing-2 0;
+  }
+  &__link{
+    padding: $spacing-half $spacing-1;
+    color: $color-black-main;
+    text-decoration: none;
+    border-radius: $radius-ss;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    text-align: center;
+    width: 100%;
+    &:hover{
+      text-decoration: underline;
+      color: $color-main;
+    }
+  }
+  &__item{
+      overflow: hidden;
+      width: 100%;
+  }
+  &__text{
+    @include md() {
+      display: none;
+    }
+  }
+
+}

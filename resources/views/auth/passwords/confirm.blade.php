@@ -1,4 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.base')
+
+@section('title', 'パスワードリセット')
+@section('scripts')
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
 
 @section('content')
 <div class="container">
@@ -20,7 +25,7 @@
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="u-font__error" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

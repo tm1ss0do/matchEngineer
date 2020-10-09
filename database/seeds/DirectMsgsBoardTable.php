@@ -12,7 +12,7 @@ class DirectMsgsBoardTable extends Seeder
      */
     public function run()
     {
-        //
+        //ボード１
         DB::table('direct_msgs_boards')->insert([
             'reciever_id' => '1',
             'sender_id' => '2',
@@ -20,6 +20,7 @@ class DirectMsgsBoardTable extends Seeder
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        // ボード２
         DB::table('direct_msgs_boards')->insert([
             'reciever_id' => '2',
             'sender_id' => '1',
@@ -27,17 +28,10 @@ class DirectMsgsBoardTable extends Seeder
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
-
+        // ボード３
         DB::table('direct_msgs_boards')->insert([
             'reciever_id' => '2',
             'sender_id' => '1',
-            'project_id' => null,
-            'created_at'=> Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-        DB::table('direct_msgs_boards')->insert([
-            'reciever_id' => '3',
-            'sender_id' => '2',
             'project_id' => null,
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),

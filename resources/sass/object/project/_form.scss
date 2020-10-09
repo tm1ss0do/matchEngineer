@@ -1,0 +1,13 @@
+.p-form{
+  &__form{
+    margin-top: $spacing-2;
+    padding: $padding-m;
+    &--midi{
+      min-width: $mobile-width * .5;
+      max-width: $max-width * .5;
+      @include sm{
+        min-width: 100%
+      }
+    }
+  }
+}

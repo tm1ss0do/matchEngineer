@@ -33,8 +33,11 @@
       line-height: inherit;
     }
   }
-
-  // footer
+  &__text{
+    @include sm() {
+      display: none;
+    }
+  }
 
 
 }

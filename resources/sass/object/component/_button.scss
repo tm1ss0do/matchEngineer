@@ -1,22 +1,104 @@
 .c-btn{
+  margin: $spacing-1;
+  padding: $padding-s;
+  border-radius: $radius-ss;
+  text-align: center;
+  text-decoration: none;
+  &__panel{
+    display: flex;
+    justify-content: center;
+    &--left{
+      display: flex;
+    }
+    &--column{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
   &__right{
     display: flex;
     justify-content: flex-end;
-    width: 50%;
+  }
+  &__end{
+    display: flex;
+    justify-content: flex-end;
+    @include sm{
+      flex-direction: column;
+    }
   }
   &__medi{
-    padding: $padding-s;
+    @extend .c-btn;
     background: $color-main;
     color: $color-white;
-    border-radius: $radius-ss;
     min-width: $btn-width-medi;
-    text-align: center;
-    text-decoration: none;
+    &:hover{
+      background: $color-sub;
+    }
+    @include sm{
+      display: block;
+    }
+  }
+  &__half{
+    @extend .c-btn;
+    background: $color-main;
+    color: $color-white;
+    min-width: $btn-width-half;
+    width: $btn-width-half;
     &:hover{
       background: $color-sub;
     }
   }
-  &__submit{
-    background: $color-black-sub;
+  &__emphasis{
+    @extend .c-btn;
+    background: $color-emphasis;
+    color: $color-white;
+    min-width: $btn-width-medi;
+    &:hover{
+      background: $color-sub;
+    }
   }
+  &__sub{
+    @extend .c-btn;
+    background: $color-sub;
+    color: $color-black-main;
+    min-width: $btn-width-medi;
+    &:hover{
+      background: $color-main;
+    }
+  }
+  &__submit{
+    @extend .c-btn__half;
+  }
+  &__forbid{
+    @extend .c-btn;
+    background: $color-black-sub;
+    cursor: not-allowed;
+  }
+  &__simple{
+    margin: $spacing-1 0;
+    padding: $padding-s;
+    border-radius: $radius-ss;
+    text-align: center;
+    text-decoration: none;
+    background: $color-main;
+    color: $color-white;
+    min-width: $btn-width-half;
+    width: $btn-width-half;
+    &:hover{
+      background: $color-sub;
+    }
+  }
+  &__moderate{
+    @extend .c-btn;
+    text-decoration: underline;
+    color: $color-black-main;
+    min-width: $btn-width-half;
+    display: block;
+    &:hover{
+      background: $color-sub;
+      cursor: pointer;
+    }
+  }
+
 }

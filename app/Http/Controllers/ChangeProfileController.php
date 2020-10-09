@@ -10,17 +10,13 @@ use App\DirectMsgsBoard;
 use App\DirectMsgs;
 use App\PublicNotify;
 use App\DirectNotify;
-// use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
-// use App\Http\Requests\StoreProjectPost;
-// use App\Http\Requests\StoreMessageRequest;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Str;
 
 class ChangeProfileController extends Controller
 {
@@ -49,17 +45,30 @@ class ChangeProfileController extends Controller
         $user->name = $request->name;
         $user->self_introduction = $request->self_introduction;
         $user->updated_at = Carbon::now();
-        // 元の画像を削除
-        $path_prev = $user->profile_icon;
-        $pathdel = storage_path() . '/app/public/avatar/'.$path_prev;
-        \File::delete($pathdel);
         // 新しい画像はstorage配下へ保存
-        $path = $request->profile_icon->store('public/avatar');
-        $user->profile_icon = basename($path);
+        if( $request->profile_icon ){
+          // 新しい画像ファイルがPOSTされていた場合
+          // 元の画像を削除
+          $path_prev = $user->profile_icon;
+          $pathdel = storage_path() . '/app/public/avatar/'.$path_prev;
+          \File::delete($pathdel);
+          // 新しい画像を登録
+          $path = $request->profile_icon->store('public/avatar');
+          $user->profile_icon = basename($path);
+
+        }elseif( $user->profile_icon ){
+          // 新しい画像がPOSTされていない、かつ、古い画像があった場合
+          $user->profile_icon = $user->profile_icon;
+        }else{
+          // 画像が一度も保存されていない場合は空で登録しdefault_imageを表示
+          $user->profile_icon = NULL;
+        }
+
         $user->save();
         // ーーーーーーーー
 
         // profile画面へ遷移させる
-        return view('users.profile', compact('user','file'))->with('flash_message', __('Registered.'));
+        Session::flash('flash_message', __('Registered.')); //session表示用
+        return view('users.profile', compact('user','file'));
     }
 }

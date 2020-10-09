@@ -1,7 +1,64 @@
 .c-pagination{
+  list-style: none;
+  &__container{
+    @extend .c-pagination;
+    display: flex;
+    justify-content: center;
+    padding: $spacing-1 $spacing-2;
+    margin: $spacing-1 $spacing-2;
+  }
+  &__disabled{
+    @extend .c-pagination;
+  }
+  &__able{
+    @extend .c-pagination;
 
+  }
   &__item{
-    
+    @extend .c-pagination;
+
+    &--prev{
+      @extend .c-pagination__item;
+    }
+    &--next{
+      @extend .c-pagination__item;
+    }
+  }
+  &__link{
+    @extend .c-pagination;
+    display: block;
+    text-decoration: none;
+    padding: $spacing-1 $spacing-2;
+    border-radius: $radius-ss;
+    color: $color-black-main;
+    &:hover{
+      background: $color-black-sub;
+      color: $color-white;
+    }
+    &--prev{
+      @extend .c-pagination__link;
+    }
+    &--next{
+      @extend .c-pagination__link;
+    }
+  }
+  &__dislink{
+    @extend .c-pagination;
+    display: block;
+    text-decoration: none;
+    padding: $spacing-1 $spacing-2;
+    border-radius: $radius-ss;
+    background: $color-black-sub;
+    &--prev{
+      @extend .c-pagination__dislink;
+    }
+    &--next{
+      @extend .c-pagination__dislink;
+    }
   }
 
+}
+.u-pagination__disable{
+  border-radius: $radius-ss;
+  background: $color-black-sub;
 }

@@ -5,28 +5,15 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
 
 var VueScrollTo = require('vue-scrollto');
-// Vue.use(VueScrollTo)
-// import VuePaginate from 'vue-paginate';
-// Vue.use(VuePaginate);
+Vue.use(VueScrollTo)
 var Paginate = require('vuejs-paginate');
 Vue.component('paginate', Paginate);
 
-// import moment from 'vue-moment';
 var moment = require('vue-moment');
 Vue.use(moment);
-
-// import Datepicker from "vuejs-datepicker";
-
-// var Datepicker = require('vuejs-datepicker');
-// Vue.component('datepicker', Datepicker);
-
-//flatPickr
-// const flatPickr = require('vue-flatpickr-component');
-// require('flatpickr/dist/flatpickr.css');
 
 /**
  * The following block of code may be used to automatically register your
@@ -36,24 +23,31 @@ Vue.use(moment);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
 Vue.component('project-component', require('./components/ProjectComponent.vue').default);
 Vue.component('project-list', require('./components/ProjectList.vue').default);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('project-item', require('./components/ProjectItem.vue').default);
 
+<<<<<<< HEAD
 
 Vue.component('pagination-component', require('./components/PaginationComponent.vue').default);
 Vue.component('pagetop-component', require('./components/PagetopComponent.vue').default);
+=======
+>>>>>>> deploy
 Vue.component('calender-component', require('./components/CalenderComponent.vue').default);
+
 Vue.component('counter-component', require('./components/CounterComponent.vue').default);
+Vue.component('counter-short', require('./components/CounterShort.vue').default);
 
 Vue.component('message-component', require('./components/MessageComponent.vue').default);
-// Vue.component('flat-pickr-component', require('./components/FlatPickrComponent.vue').default);
+Vue.component('direct-message', require('./components/DirectMessage.vue').default);
+
+Vue.component('select-type', require('./components/SelectType.vue').default);
+
+// image preview
+Vue.component('image-preview', require('./components/ImagePreview.vue').default);
+
+
 
 
 /**

@@ -64,6 +64,7 @@ return [
         'string'  => ':attributeには:min文字以上の文字列を指定してください。',
         'array'   => ':attributeには:min個以上の要素を持つ配列を指定してください。',
     ],
+    'min_price'           =>  ':attributeには、最低金額よりも大きな数字を入れてください。',
     'not_in'               => ':attributeには:valuesのうちいずれとも異なる値を指定してください。',
     'numeric'              => ':attributeには数値を指定してください。',
     'present'              => ':attributeには現在時刻を指定してください。',
@@ -116,6 +117,36 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+
+      // projects
+      'project_title'=>'案件名',
+      'project_status'=>'募集状況',
+      'project_type'=>'案件種別',
+      'project_reception_end'=>'募集終了日',
+      'project_reception_end_old' => '前回の募集終了予定日',
+      'project_max_amount'=>'最高金額',
+      'project_mini_amount'=>'最低金額',
+      'project_detail_desc'=>'案件の詳細説明文',
+
+      // message
+      'send_date'=>'送信日',
+      'content'=>'内容',
+
+      // User
+      'name'=>'ユーザー名',
+      'email'=>'メールアドレス',
+      'password'=>'パスワード',
+      'profile_icon'=>'プロフィール画像',
+      'self_introduction'=>'自己紹介',
+
+      // confirm / verify
+      'new-password' => '新しいパスワード',
+      'current-password' => '現在のパスワード',
+      'password_confirmation' => 'パスワード確認用',
+      'new_email' => '新しいメールアドレス',
+
+
+    ],
 
 ];

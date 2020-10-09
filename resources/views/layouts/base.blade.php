@@ -9,16 +9,16 @@
 
     <title>match | @yield('title', 'Home')</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- twitter share -->
-    <script>
-    window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
-    </script>
-    
+    <!-- Scripts -->
+    @yield('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.jpg') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
@@ -30,22 +30,26 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
 
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
   <div id="app">
-    <!-- フラッシュメッセージ -->
+       <!-- フラッシュメッセージ -->
        @if (session('flash_message'))
-           <div class="">
-               {{ session('flash_message') }}
+         <div class="c-session-msg">
+           {{ session('flash_message') }}
+         </div>
+       @endif
+       @if (session('status'))
+           <div class="c-session-msg">
+               {{ session('status') }}
            </div>
        @endif
 
     <header id="header" class="l-header">
       <div class="c-header__container">
         <h1 class="c-title__header-logo">
-          <a class="c-title__header-link" href="#">match</a>
+          <a class="c-title__header-link" href="{{ route('project.all') }}">match</a>
         </h1>
         <nav class="c-nav__right">
             @if (Route::has('login'))
@@ -54,35 +58,45 @@
                 <!-- ログインしていた場合 -->
                 <a class="c-nav__item--top" href="{{ url('/home') }}">
                   <i class="fas fa-home"></i>
-                  Home
+                  <span class="c-nav__text">Home</span>
                 </a>
-                <a class="c-nav__item--top" href="#">
-                  <i class="fas fa-clipboard-list"></i>
-                  案件を探す
-                </a>
-                <a class="c-nav__item--top" href="#">
-                  <i class="far fa-user"></i>
-                  マイページ
-                </a>
-                <a class="c-nav__item--top" href="#">
+
+                <a class="c-nav__item--top" href="{{ route('project.new') }}">
                   <i class="far fa-handshake"></i>
-                  依頼する
+                  <span class="c-nav__text">依頼する</span>
                 </a>
+                <a class="c-nav__item--top" href="{{ route('mypage.registered') }}">
+                  <i class="far fa-user"></i>
+                  <span class="c-nav__text">マイページ</span>
+                </a>
+                <div class="">
+                  <a class="c-nav__item--top" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                  document.getElementById('js-logout-form').submit();">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span class="c-nav__text">{{ __('Logout') }}</span>
+                </a>
+                <form id="js-logout-form" action="{{ route('logout') }}" method="POST">
+                  @csrf
+                </form>
+              </div>
+
                 @else
                 <!-- ゲストの場合 -->
-                <a class="c-nav__item--top" href="#">
+                <a class="c-nav__item--top" href="{{ route('project.all') }}">
                   <i class="fas fa-clipboard-list"></i>
-                  案件を見てみる
+                  <span class="c-nav__text">案件を見てみる</span>
                 </a>
                 <a class="c-nav__item--top" href="{{ route('login') }}">
                   <i class="fas fa-sign-in-alt"></i>
-                  ログイン
+                  <span class="c-nav__text">ログイン</span>
+
                 </a>
 
                   @if (Route::has('register'))
                   <a class="c-nav__item--top" href="{{ route('register') }}">
                     <i class="fas fa-user-plus"></i>
-                    新規登録
+                    <span class="c-nav__text">新規登録</span>
                   </a>
                   @endif
 
@@ -91,28 +105,28 @@
             @endif
         </nav>
       </div>
-      @if (session('status'))
-          <div class="c-session-msg">
-              {{ session('status') }}
-              例文メッセージです：登録しました！
-          </div>
-      @endif
     </header>
 
 
     <main id="main" class="l-main">
+        @yield('hero')
       <div class="l-main__wrap">
         @yield('content')
       </div>
 
-      <pagetop-component></pagetop-component>
+      <div class="c-btn__panel--left">
+        @section('back')
+          <a class="c-btn__moderate" href="{{ url()->previous() }}">＜＜戻る</a>
+        @show
+      </div>
 
-      <!-- <div class="c-page-top"><a href="#"></a></div> -->
-
+      <div class="c-page-top js-scroll-top" v-scroll-to="'#header'" >
+        <a href="#"></a>
+      </div>
 
     </main>
 
-    <footer class="l-footer">
+    <footer id="footer" class="l-footer">
       <nav class="c-nav">
           @if (Route::has('login'))
             <div class="c-nav__container">
@@ -120,35 +134,36 @@
               <!-- ログインしていた場合 -->
               <a class="c-nav__item--top" href="{{ url('/home') }}">
                 <i class="fas fa-home"></i>
-                Home
+                <span class="c-nav__text">Home</span>
               </a>
-              <a class="c-nav__item--small" href="#">
-                <i class="fas fa-clipboard-list"></i>
-                案件を探す
-              </a>
-              <a class="c-nav__item--small" href="#">
+              <a class="c-nav__item--small" href="{{ route('mypage.registered') }}">
                 <i class="far fa-user"></i>
-                マイページ
+                <span class="c-nav__text">マイページ</span>
+
               </a>
-              <a class="c-nav__item--small" href="#">
+              <a class="c-nav__item--small" href="{{ route('project.new') }}">
                 <i class="far fa-handshake"></i>
-                依頼する
+                <span class="c-nav__text">依頼する</span>
+
               </a>
               @else
               <!-- ゲストの場合 -->
-              <a class="c-nav__item--small" href="#">
+              <a class="c-nav__item--small" href="{{ route('project.all') }}">
                 <i class="fas fa-clipboard-list"></i>
-                案件を見てみる
+                <span class="c-nav__text">案件を見てみる</span>
+
               </a>
               <a class="c-nav__item--small" href="{{ route('login') }}">
                 <i class="fas fa-sign-in-alt"></i>
-                ログイン
+                <span class="c-nav__text">ログイン</span>
+
               </a>
 
                 @if (Route::has('register'))
                 <a class="c-nav__item--small" href="{{ route('register') }}">
                   <i class="fas fa-user-plus"></i>
-                  新規登録
+                  <span class="c-nav__text">新規登録</span>
+
                 </a>
                 @endif
 
@@ -156,10 +171,9 @@
             </div>
           @endif
       </nav>
-      <p class="text-align__center font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
+      <p class="u-text-align__center u-font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
     </footer>
   </div>
-  <input class="input" id="myCal" type="text" />
 
 </body>
 

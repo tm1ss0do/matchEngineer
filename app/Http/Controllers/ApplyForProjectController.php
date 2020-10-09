@@ -5,34 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Project;
-// use App\PublicMsg;
 use App\DirectMsgsBoard;
 use App\DirectMsgs;
-// use App\PublicNotify;
 use App\DirectNotify;
-// use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
-// use App\Http\Requests\StoreProjectPost;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreMessageRequest;
-// use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Str;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class ApplyForProjectController extends Controller
 {
-    //
     public function applied(){
       // 応募済み案件一覧画面
+
       $auther_id = Auth::id();
 
       $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
                      ->whereNotNull('project_id')
                      ->with('project')
-                     ->get();
+                     ->orderBy('updated_at','desc')
+                     ->paginate(10);
 
       return view('mypages.applied', compact('direct_msgs'));
 
@@ -40,6 +37,7 @@ class ApplyForProjectController extends Controller
 
     public function apply_form($id){
       // 応募フォーム
+      // 数値でなかった場合
       if(!ctype_digit($id)){
         return back()->with('flash_message', __('Invalid operation was performed.'));
         }
@@ -47,19 +45,17 @@ class ApplyForProjectController extends Controller
         $project = Project::find($id);
         $user = $project->user;
 
-      $projects = Project::with('user')->get();
+        $projects = Project::with('user')->get();
 
       return view('projects.apply', compact('project', 'user'));
-
     }
 
     public function apply(StoreMessageRequest $request, $id){
-      // 応募フォームの内容をバリデーション
-
       if(!ctype_digit($id)){
         return back()->with('flash_message', __('Invalid operation was performed.'));
         }
 
+       // 応募フォームの内容をバリデーション
        $request->validated();
 
        $project = Project::find($id);
@@ -114,11 +110,13 @@ class ApplyForProjectController extends Controller
        $auther_id = Auth::id();
        $direct_msgs = DirectMsgsBoard::where('sender_id', $auther_id)
                       ->whereNotNull('project_id')
+                      ->orderBy('updated_at','desc')
                       ->with('project')
-                      ->get();
+                      ->paginate(10);
 
        // 応募済み案件一覧へリダイレクトさせる
-       return view('mypages.applied', compact('direct_msgs'))->with('flash_message', __('応募しました'));
+       Session::flash('flash_message', __('応募しました')); //session表示用
+       return view('mypages.applied', compact('direct_msgs'));
 
     }
 }

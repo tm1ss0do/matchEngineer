@@ -2,6 +2,9 @@
   -moz-appearance: menulist;
   -webkit-appearance: menulist;
   padding: $padding-ss;
+  @include sm{
+    width: 100%;
+  }
   &::-ms-expand {
     display: block;
   }

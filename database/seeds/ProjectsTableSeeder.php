@@ -2,6 +2,9 @@
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Project;
+use App\PublicNotify;
+use App\User;
 
 class ProjectsTableSeeder extends Seeder
 {
@@ -12,7 +15,6 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         //
         DB::table('projects')->insert([
             'project_title' => '【単発案件】サンプルタイトル１！デザイナー＆コーダー募集！やわらかい雰囲気が得意な方！1名！経験のある方優遇！ポートフォリオがあれば未経験可能です！ぜひ、ご応募の際にお見せください。（１００文字です）',
@@ -203,8 +205,11 @@ class ProjectsTableSeeder extends Seeder
 
 
         //factoryを使ってダミーデータ
-        // factory(App\User\::class, 10)->create();
-         //factory(App\User::class, 10)->create();
+         factory(Project::class, 10)->create(
+           [
+              'user_id' => 4,
+           ]
+         );
 
     }
 }

@@ -1,0 +1,40 @@
+.c-comment{
+  &__wrap{
+    margin: $spacing-1 0;
+    padding: $spacing-1;
+    border: 1px solid $color-sub;
+    border-radius: $radius-ss;
+    &--new{
+      @extend .c-comment__wrap;
+      border-top: none;
+      margin-bottom: $spacing-3;
+      margin-top: 0;
+    }
+  }
+  &__header{
+    margin-bottom: $spacing-half;
+  }
+  &__body{
+    margin-bottom: $spacing-half;
+    padding: $spacing-1;
+  }
+  &__link{
+    padding: $padding-ss $padding-s;
+    color: $color-black-main;
+    border-radius: $radius-ss;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    &:hover{
+      color: $color-main;
+    }
+  }
+  &__footer{
+    font-size: $font-ss;
+  }
+  &__info{
+
+  }
+}

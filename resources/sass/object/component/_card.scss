@@ -1,13 +1,39 @@
 .c-card{
-  padding: $padding-s;
+  padding: $padding-m;
   box-sizing: border-box;
   border: 1px solid $color-black-sub;
   border-radius: $radius-ss;
   margin-bottom: $spacing-2;
+  margin-top: $spacing-2;
+  &__no-boarder{
+    padding: $padding-m;
+    box-sizing: border-box;
+    margin-bottom: $spacing-2;
+    margin-top: $spacing-2;
+    border: none;
+    &--half{
+      @extend .c-card__no-boarder;
+      width: 50%;
+      @include sm{
+        width: 100%;
+      }
+    }
+
+  }
   &__header{
     padding: $padding-ss;
   }
+  &__item{
+    margin-bottom: $spacing-2;
+    padding: $padding-s;
+  }
   &__title{
+    margin-bottom: $spacing-1;
+    font-size: $font-l;
+    @include sm(){
+      font-size: $font-m;
+    }
+
     &--link{
       color: $color-main;
       &:hover{
@@ -26,6 +52,25 @@
   }
   &__body{
     padding: $padding-ss;
+    &--desc{
+      @extend .c-card__body;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 200px;
+      @include sm(){
+        height: auto;
+      }
+      @include md(){
+        height: 280px;
+      }
+      @include md11(){
+        height: 280px;
+      }
+      @include xs(){
+        height: auto;
+      }
+    }
   }
   &__status{
     font-size: $font-ss;
@@ -37,9 +82,20 @@
     box-sizing: border-box;
     padding: $padding-s $padding-m;
   }
+  &__link{
+    padding: $padding-ss $padding-s;
+    color: $color-black-main;
+    border-radius: $radius-ss;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    &:hover{
+      color: $color-main;
+    }
+  }
   &__footer{
-    display: flex;
-    align-items: center;
     padding: $padding-ss;
   }
 }

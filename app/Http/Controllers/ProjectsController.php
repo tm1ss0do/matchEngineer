@@ -6,29 +6,27 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use App\PublicMsg;
+<<<<<<< HEAD
 // use App\DirectMsgsBoard;
 // use App\DirectMsgs;
 use App\PublicNotify;
 // use App\DirectNotify;
 // use App\EmailReset;
+=======
+use App\DirectMsgsBoard;
+>>>>>>> deploy
 use Illuminate\Support\Facades\Auth;
-// use App\Http\Requests\StoreProjectPost;
-// use App\Http\Requests\StoreMessageRequest;
-// use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Str;
 
 class ProjectsController extends Controller
 {
     //
 
     public function show_project_all(){
-
-      // $projects = Project::all();
+      
       $projects = Project::with('user')->get();
 
       return view('projects.all', compact('projects'));
@@ -47,7 +45,7 @@ class ProjectsController extends Controller
 
     public function json_data(){
 
-      $projects = Project::with('user')->get();
+      $projects = Project::with('user')->orderBy('updated_at','desc')->get();
       return $projects->toJson();
 
     }
@@ -74,9 +72,10 @@ class ProjectsController extends Controller
 
         // パブリックメッセージを表示
         $publicmsgs = PublicMsg::where('project_id', $id)
+                      ->orderBy('send_date', 'desc')
                       ->with('user')
-                      ->orderBy('send_date', 'asc')
                       ->get();
+<<<<<<< HEAD
         // ログイン済みユーザーだった場合
         $auther = Auth::user();
         // 該当のnotifyレコードを取得
@@ -95,6 +94,32 @@ class ProjectsController extends Controller
 
 
         return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify'));
+=======
+        // 該当のnotifyレコードを取得
+        $auther = Auth::user();
+        // ゲストユーザーでない場合
+        if( $auther ){
+          $public_notify = $auther->public_notify->where('public_board_id', $id)->first();
+          // ユーザーがこのpublicテーブルに参加していた場合
+            if($public_notify){
+              // 該当のnotifyテーブルに既読フラグを立てる
+              if( !$public_notify->read_flg ){
+                $public_notify->read_flg = '1';
+                $public_notify->save();
+              }
+          }
+
+          // ログインユーザーがこのプロジェクトにすでに応募しているか判定
+          // （応募した場合はDirectMsgsBoardが作成されるので、その中から該当するものを探す）
+          $already_apply = DirectMsgsBoard::where('project_id', $id)
+                                ->where('sender_id', $auther->id)
+                                ->first();
+        }
+
+
+
+        return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify', 'already_apply'));
+>>>>>>> deploy
 
     }
 

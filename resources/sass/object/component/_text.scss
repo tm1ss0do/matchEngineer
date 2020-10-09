@@ -1,0 +1,9 @@
+.c-text{
+  &__container{
+      width: 100%;
+  }
+  &__right{
+    display: flex;
+    justify-content: flex-end;
+  }
+}

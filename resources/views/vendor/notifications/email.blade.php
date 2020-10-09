@@ -6,7 +6,10 @@
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
-<b>こんにちは</b>
+<p class="c-mailtext__text">
+  ご利用いただきありがとうございます。</br>
+  {{ config('app.name') }}事務局です。</br>
+</p>
 @endif
 @endif
 

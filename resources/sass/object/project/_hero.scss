@@ -1,0 +1,10 @@
+.p-hero{
+  &__container{
+    background: url("/img/hero.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  &__wrap{
+    padding: $spacing-2;
+  }
+}

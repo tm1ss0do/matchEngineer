@@ -1,41 +1,57 @@
 @extends('layouts.base')
 
-@section('title', '案件詳細')
+@section('title', 'ダイレクトメッセージボード')
+
+@section('scripts')
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/pagetop.js') }}" defer></script>
+<script src="{{ asset('js/direct.js') }}" defer></script>
+@endsection
 
 @section('content')
 
-ダイレクトメッセージのやりとり画面です。
+<h3 class="c-title__page">ダイレクトメッセージボード</h3>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+<direct-message
+:msgs = "{{ $directmsgs }}"
+:board = "{{ $board }}"
+></direct-message>
+
+@if($no_form)
+<p class="u-font__error">このユーザーは退会しているため、メッセージは送れません。</p>
+
+@else
+
+  @if ($errors->any())
+    <ul class="u-font__error" role="alert">
+      @foreach ($errors->all() as $error)
+        <li class="u-list__none">{{ $error }}</li>
+      @endforeach
+    </ul>
+  @endif
+
+  <form class="js-form" action="" method="post">
+    @csrf
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+    <label for="content">メッセージ投稿フォーム</label>
+     <counter-component
+      :countnum = "1000"
+      ex = ""
+      id = "content"
+      name = "content"
+      :old = "{{json_encode(Session::getOldInput())}}"
+      :db = "''"
+      ></counter-component>
+    <div class="c-btn__panel">
+      <input class="c-btn__submit js-submit" type="submit" name="" value="送信">
     </div>
+  </form>
+
 @endif
 
-@foreach ( $directmsgs as $directmsg )
-<p>{{ $directmsg->user->name }}</p>
-<p>{{ $directmsg->content }}</p>
-<p>{{ $directmsg->send_date }}</p>
 
-
-@endforeach
-
-<form class="" action="" method="post">
-  @csrf
-  <label for="content"></label>
-   <counter-component
-    :countnum = "1000"
-    ex = ""
-    id = "content"
-    name = "content"
-    message = ""
-    ></counter-component>
-  <input type="submit" name="" value="送信">
-</form>
-
+@endsection
+@section('back')
 
 @endsection

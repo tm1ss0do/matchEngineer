@@ -6,21 +6,16 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use App\PublicMsg;
-// use App\DirectMsgsBoard;
-// use App\DirectMsgs;
 use App\PublicNotify;
-// use App\DirectNotify;
 use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
-// use App\Http\Requests\StoreProjectPost;
 use App\Http\Requests\StoreMessageRequest;
-// use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Str;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class PublicMessagesController extends Controller
 {
@@ -30,28 +25,41 @@ class PublicMessagesController extends Controller
       $auther_id = Auth::id();
       $auther = Auth::user();
 
-      // 現在ログイン中のuserが、パブリックメッセージを送ったことがある、projectのidを全て取得
-      $projects = PublicMsg::where('sender_id', $auther_id)
-                  ->groupBy('project_id')
-                  ->get(['project_id']);
+      // 未読フラグ回収（パブリックメッセージ）
+         $public_msgs_yet = $auther->public_notify
+                            ->where('read_flg','0');
+
+      // 自分が投稿したprojectのIDを配列にまとめる
+      $projects = $auther->projects;
+      $arr = array();
+      foreach($projects as $project ){
+        $arr[] = $project->id;
+      }
+
+      // 自分がパブリックメッセージを投稿したことがある、projectのIDを配列にまとめる
+      $mypublics = $auther->public_msgs;
+      foreach($mypublics as $mypublic ){
+        $arr[] = $mypublic->project_id;
+      }
+
       // 対象のプロジェクトにあるメッセージの中で、最新のものを取得
       // （idの大きい方を最新のパブリックコメントとして取得）
       // （ORDER BY と GROUP BYを使うと、先にグループ分けされソートされてしまうのでクエリを使う。）
-      $publics = PublicMsg::whereIn('id', function($query) {
-                 $query->select(DB::raw('MAX(id) As id'))->from('public_msgs')
-                 ->groupBy('project_id');
-                 })
-                 ->orderBy('updated_at', 'desc')
-                 ->get();
 
-      // 未読フラグ回収（パブリックメッセージ）
-      $public_msgs_yet = $auther->public_notify
-                         ->where('read_flg','0');
+        $publics = PublicMsg::whereIn('id', function($query) {
+                     $query->select(DB::raw('MAX(id) As id'))
+                           ->where('deleted_at', NULL)
+                           ->from('public_msgs')
+                           ->groupBy('project_id');
+                   })
+                   ->whereIn('project_id', $arr)
+                   ->orderBy('updated_at', 'desc')
+                   ->paginate(2);
 
-      return view('mypages.pm_list', compact('projects', 'publics', 'public_msgs_yet'));
+      return view('mypages.pm_list', compact('arr', 'projects', 'publics', 'public_msgs_yet'));
     }
 
-    public function public( StoreMessageRequest $request, $id){
+    public function send_pm( StoreMessageRequest $request, $id){
       // パブリックメッセージの登録機能
        $request->validated();
        $publicmsgs = new PublicMsg;
@@ -83,12 +91,17 @@ class PublicMessagesController extends Controller
 
       // 初めてこのプロジェクトのパブリックメッセージに投稿するか、notifyレコードの有無を判定
       $auther = Auth::user();
+      $auther_id = Auth::id();
       $notify = $auther->public_notify->where('public_board_id', $id)->first();
       if( !$notify ){ // 初めてこのフォームに投稿する場合
         // notifyテーブルに既読フラグを立てて新規保存
         $public_notify = new PublicNotify;
         $public_notify->public_board_id = $id;
+<<<<<<< HEAD
         $public_notify->user_id = $auther->id;
+=======
+        $public_notify->user_id = $auther_id;
+>>>>>>> deploy
         $public_notify->read_flg = '1';
         $public_notify->save();
       }else{

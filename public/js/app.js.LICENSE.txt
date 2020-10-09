@@ -5,6 +5,12 @@
   */
 
 /*!
+  * vue-scrollto v2.18.2
+  * (c) 2019 Randjelovic Igor
+  * @license MIT
+  */
+
+/*!
  * Sizzle CSS Selector Engine v2.3.5
  * https://sizzlejs.com/
  *
@@ -68,3 +74,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+//! moment.js

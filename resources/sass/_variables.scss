@@ -3,8 +3,8 @@
 
 $color-main: #2699FB;
 $color-sub: #BCE0FD;
-$color-black-main: #707070;
-$color-black-sub: #95989A;
+$color-black-main: #292828;
+$color-black-sub: #575959;
 $color-white: #FFFFFF;
 $color-emphasis: #fa4b51;
 
@@ -18,19 +18,16 @@ $font-l: 24px; //ページタイトルなど(1.5em相当)
 $font-ll: 30px; //h1表題のサブタイトルなど
 $font-xl: 46px; //表題・サービスタイトルなど
 
-// $font-size-base: 0.9rem;
-// $line-height-base: 1.6;
-
 // ------------------------------------------------------
-// height
-
 // header
 $header-height: 56px;
 $session-height: 56px;
 
+$box-height-m: 250px; //cardのbodyの高さ
 
 $height-m: 50px; // topのボタン ・ prof-iconのサイズ
-
+$height-l: 100px;
+$height-ll: 180px; //しっかりと確認して欲しいときなど（例：プロフィール確認画面のプロフ画像）
 
 // ------------------------------------------------------
 // width
@@ -38,6 +35,7 @@ $max-width: 1040px;
 $mobile-width: 750px;
 
 $btn-width-medi: 200px;
+$btn-width-half: 100px;
 
 // ------------------------------------------------------
 // border-radius
@@ -46,7 +44,6 @@ $radius-ss: 4px;
 
 // ------------------------------------------------------
 // Typography
-// $font-family-base: 'Sawarabi Gothic', sans-serif;
 $font-family-base: sans-serif;
 $font-family-sub: "Kokoro", sans-serif;
 $font-family-logo: 'Montserrat', sans-serif;
@@ -78,27 +75,48 @@ $padding-l: 24px;
 // ------------------------------------------------------
 // breakpoint
 
-//@media screen and (max-width: 414px){
-//  .btn{
-//    font-size: .7em;
-//  }
-//}
-// @include mq() {
-//     height: 60px;
-//     padding-right: $space_l;
-//     padding-left: $space_l;
-//   }
-
-// マップ型変数
+// マップ型変数 (bootstrap参考)
 $breakpoints: (
+  'xs': 'screen and (max-width: 568px)',
   'sm': 'screen and (max-width: 576px)',
   'md': 'screen and (max-width: 768px)',
+  'md11': 'screen and (max-width: 834px)',
   'lg': 'screen and (max-width: 992px)',
   'xl': 'screen and (max-width: 1200px)',
 ) !default;
 
 // mixin
-@mixin mq($breakpoint: sm) {
+@mixin xs($breakpoint: xs) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin sm($breakpoint: sm) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+
+@mixin md($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+@mixin md11($breakpoint: md11) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin lg($breakpoint: lg) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin xl($breakpoint: xl) {
   @media #{map-get($breakpoints, $breakpoint)} {
     @content;
   }

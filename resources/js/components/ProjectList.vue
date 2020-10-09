@@ -1,23 +1,21 @@
 <template>
 
-<section class="p-projects__list">
-  I'm an ProjectList Compoent.
-  <section v-if="errored">
-    <p>
+<section class="p-projects">
+  <section v-if="errored" class="p-error__wrap">
+    <p class="u-font__sub">
     現在、この情報を取得できません。しばらくしてからもう一度お試しください
     </p>
   </section>
 
-  <section v-else>
-    <div v-if="loading">Now Loading...</div>
-    <div v-else>
-
+  <section v-else class="p-projects__list">
+    <div v-if="loading" class="u-font__sub" >Now Loading...</div>
+    <div v-else class="p-projects__wrap">
       <search-component
         :data="data"
         @search="searchProject($event)"
       ></search-component>
 
-      <p>{{ from }} 〜 {{ to }}件 / {{ total }}件中</p>
+      <p class="u-font__sub">{{ from }} 〜 {{ to }}件 / {{ total }}件中</p>
 
       <project-component
       :url = "url"
@@ -25,16 +23,25 @@
       :searchNotFlg = "searchNotFlg"
       ></project-component>
 
-      <paginate
-        :page-count="getPageCount"
-        :page-range="3"
-        :margin-pages="2"
-        :click-handler="paginateCallback"
-        :prev-text="'＜'"
-        :next-text="'＞'"
-        :container-class="'c-pagination'"
-        :page-class="'c-pagination__item'">
-      </paginate>
+      <div class="p-pagination">
+        <paginate
+          :page-count="getPageCount"
+          :page-range="3"
+          :margin-pages="2"
+          :click-handler="paginateCallback"
+          :prev-text="'＜'"
+          :next-text="'＞'"
+          :container-class="'c-pagination__container'"
+          :page-class="'c-pagination__item'"
+          :page-link-class="'c-pagination__link'"
+          :prev-class="'c-pagination__item--prev'"
+          :prev-link-class="'c-pagination__link--prev'"
+          :next-class="'c-pagination__item--next'"
+          :next-link-class="'c-pagination__link--next'"
+          :active-class="'u-pagination__disable'"
+          :disabled-class="'u-pagination__disable'">
+        </paginate>
+      </div>
 
     </div>
 
@@ -57,7 +64,7 @@
                 to: "", //表示している件数の最後の番号
                 total: "",//該当の全件数
                 currentPage: 1, //現在のページ番号
-                parPage: 2, //1ページに表示する件数
+                parPage: 10, //1ページに表示する件数
             }
         },
         methods: {
@@ -66,9 +73,8 @@
              this.currentPage = Number(pageNum);
              //現在のページのアイテムを返す
              let current = this.currentPage * this.parPage;
-             // console.log('current:' + current);
              let start = current - this.parPage;
-             // console.log('start:' + start);
+
              //表示件数の始め
              this.from = start + 1;
              //表示件数の終わり
@@ -78,7 +84,6 @@
                this.to = current;
              }
              //dataの該当箇所のみ表示
-             // console.log(this.data.slice(start, current));
              if(this.searchNotFlg){
               //検索結果がなかった場合
               this.sliceData = this.data.slice(start, current);
@@ -86,6 +91,8 @@
               //検索結果があった場合
              this.sliceData = this.filterData.slice(start, current);
              }
+             this.$scrollTo('#app', 1000, {offset: -60});
+
           },
           searchProject: function(searchData){
             //現在のページを設定
@@ -115,7 +122,7 @@
               if(searchData['searchStatus'])
               {
                var filterData = filterData.filter(function(project){
-                   return project.project_status;
+                   return !project.project_status;
                });
               }
 
@@ -123,14 +130,11 @@
               if(searchData['searchType'])
               {
               var searchType = searchData['searchType'];
-              console.log('searchType：' + searchData['searchType']);
+
                var filterData = filterData.filter(function(project){
-                  // return String(project.name).match('野村');
                   if(searchType === 'revenue'){
-                    console.log('revenue!!!');
                     return String(project.project_type).match('revenue');
                   }else if(searchType === 'single'){
-                    console.log('single!!');
                     return String(project.project_type).match('single');
                   }
                });
@@ -159,9 +163,9 @@
             getItems: function() { //現在のページのアイテムを返す
 
                 let current = this.currentPage * this.parPage;
-                // console.log('current:' + current);
+
                 let start = current - this.parPage;
-                // console.log('start:' + start);
+
                 // 表示件数の始め
                   this.from = start + 1;
                 //表示件数の終わり
@@ -177,7 +181,7 @@
                  }else{
                   var useData = this.filterData;
                  }
-                 //console.log(this.data.slice(start, current));
+
                 return useData.slice(start, current);
 
             },
@@ -188,7 +192,7 @@
               }else{
                 var useData = this.filterData;
               }
-             //console.log(this.data.slice(start, current));
+
              //該当の全件数
                 var numberOfProjects = Object.keys(useData).length;
                 this.total = numberOfProjects;

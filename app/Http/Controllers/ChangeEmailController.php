@@ -4,31 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-// use App\Project;
-// use App\PublicMsg;
-// use App\DirectMsgsBoard;
-// use App\DirectMsgs;
-// use App\PublicNotify;
-// use App\DirectNotify;
 use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
-// use App\Http\Requests\StoreProjectPost;
-// use App\Http\Requests\StoreMessageRequest;
-// use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-// use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class ChangeEmailController extends Controller
 {
-    //
-
     public function email_edit_form($id){
-
-      return view('users.email_edit');
+      $user = Auth::user();
+      return view('users.email_edit', compact('user'));
     }
 
     public function email_edit_post(Request $request, $id){

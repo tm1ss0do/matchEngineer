@@ -10,17 +10,14 @@ use App\DirectMsgsBoard;
 use App\DirectMsgs;
 use App\PublicNotify;
 use App\DirectNotify;
-// use App\EmailReset;
 use Illuminate\Support\Facades\Auth;
-// use App\Http\Requests\StoreProjectPost;
 use App\Http\Requests\StoreMessageRequest;
-// use App\Http\Requests\StoreProfileRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-// use Illuminate\Support\Facades\Storage;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Str;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+
 
 class DirectMessagesController extends Controller
 {
@@ -98,18 +95,17 @@ class DirectMessagesController extends Controller
       $direct_msgs_boards = DirectMsgsBoard::where('sender_id', $auther_id)
                      ->orWhere('reciever_id',$auther_id)
                      ->orderBy('updated_at', 'desc')
-                     ->get();
+                     ->paginate(10);
       // 未読フラグ回収（ダイレクトメッセージ）
       $direct_msgs_yet = $auther->direct_notify
                          ->where('read_flg','0');
-
-      // return view('mypages.dmlist', compact('direct_msgs'));
       return view('mypages.dm_list', compact('direct_msgs_boards','direct_msgs_yet'));
     }
 
     public function show_dm_board($id){
       // ダイレクトメッセージを表示
-      $directmsgs = DirectMsgs::where('board_id', $id)
+      $directmsgs = DirectMsgs::withTrashed()
+                    ->where('board_id', $id)
                     ->with('user')
                     ->orderBy('send_date', 'asc')
                     ->get();
@@ -121,7 +117,28 @@ class DirectMessagesController extends Controller
         $direct_notify->save();
       }
 
-      return view('mypages.dm_board', compact('directmsgs'));
+      // 該当のダイレクトメッセージボードを取得
+      $board = DirectMsgsBoard::where('id',$id)->first();
+      // このボードに参加するどちらか一方が退会済みの場合
+      if( !$board->reciever ){
+          $no_form = true;
+      }elseif( !$board->sender ){
+          $no_form = true;
+      }else{
+          $no_form = false;
+      }
+
+
+      return view('mypages.dm_board', compact('directmsgs', 'no_form', 'board'));
+    }
+
+    public function json_data_dm($id){
+      // 該当のボードIDに紐付いたダイレクトメッセージの情報をjson形式で取得
+      $directmsgs = DirectMsgs::where('board_id', $id)
+                    ->with('user')
+                    ->orderBy('send_date', 'asc')
+                    ->get();
+      return $directmsgs->toJson();
     }
 
     public function send_dm_at_board(StoreMessageRequest $request, $id){

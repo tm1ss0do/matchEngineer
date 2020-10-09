@@ -13,7 +13,7 @@ class DirectMsgsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        //ボード１
         DB::table('direct_msgs')->insert([
             'send_date' => '2020-09-16 12:30:49',
             'content' => 'test1のユーザーが出した募集に、test2ユーザーから、応募がきた体のコメントです。',
@@ -31,6 +31,7 @@ class DirectMsgsTableSeeder extends Seeder
             'board_id' => '1',
         ]);
         DB::table('direct_msgs')->insert([
+<<<<<<< HEAD
             'send_date' => '2020-09-16 12:30:49',
             'content' => 'test2のユーザーが出した募集に、test1ユーザーから、応募がきた体のコメントです。',
             'created_at' => Carbon::now(),
@@ -39,6 +40,8 @@ class DirectMsgsTableSeeder extends Seeder
             'board_id' => '2',
         ]);
         DB::table('direct_msgs')->insert([
+=======
+>>>>>>> deploy
             'send_date' => Carbon::now(),
             'content' => 'test2のユーザーから返信です。',
             'created_at' => Carbon::now(),
@@ -46,9 +49,23 @@ class DirectMsgsTableSeeder extends Seeder
             'sender_id'=> '2',
             'board_id' => '1',
         ]);
+        // ボード２
+        DB::table('direct_msgs')->insert([
+            'send_date' => '2020-09-16 12:30:49',
+            'content' => 'test2のユーザーが出した募集に、test1ユーザーから、応募がきた体のコメントです。',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'sender_id'=> '1',
+            'board_id' => '2',
+        ]);
+        // ボード３
         DB::table('direct_msgs')->insert([
             'send_date' => Carbon::now(),
+<<<<<<< HEAD
             'content' => '案件なし。project_id="0"。直接ダイレクトメッセをtest1->test2へ。',
+=======
+            'content' => '案件なし。スカウトメッセージなど、ダイレクトメッセージを直接test1->test2へ送っています。',
+>>>>>>> deploy
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'sender_id'=> '1',
