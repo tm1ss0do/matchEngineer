@@ -35,7 +35,7 @@
 
   <section class="c-text__cotainer u-flex__column">
     <h2 class="c-title__section">「誰でも」「簡単に」参加できる</h2>
-    <p class="u-font__sub">matchは、「あれ欲しいな」と思った時、手軽に頼める、エンジニアとのマッチングサービスです。</p>
+    <p class="u-font__sub">matchは、誰でも簡単に技術に触れられることを目指した、エンジニアとのマッチングサービスです。</p>
   </section>
 
   <div class="p-side-box">
@@ -161,7 +161,7 @@
         <div class="c-card__no-boarder">
           <h3 class="c-card__title">
             <span class="u-font__num">２</span>
-            案件の発注・応募
+            発注・応募
           </h3>
           <div class="c-card__body--desc">
             お仕事を発注する際は、入力フォームで10の項目を埋めるだけで完了。</br>

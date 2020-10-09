@@ -75,15 +75,23 @@ $padding-l: 24px;
 // ------------------------------------------------------
 // breakpoint
 
-// マップ型変数
+// マップ型変数 (bootstrap参考)
 $breakpoints: (
+  'xs': 'screen and (max-width: 568px)',
   'sm': 'screen and (max-width: 576px)',
   'md': 'screen and (max-width: 768px)',
+  'md11': 'screen and (max-width: 834px)',
   'lg': 'screen and (max-width: 992px)',
   'xl': 'screen and (max-width: 1200px)',
 ) !default;
 
 // mixin
+@mixin xs($breakpoint: xs) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
 @mixin sm($breakpoint: sm) {
   @media #{map-get($breakpoints, $breakpoint)} {
     @content;
@@ -92,6 +100,11 @@ $breakpoints: (
 
 
 @mixin md($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+@mixin md11($breakpoint: md11) {
   @media #{map-get($breakpoints, $breakpoint)} {
     @content;
   }

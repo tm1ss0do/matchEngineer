@@ -58,6 +58,18 @@
       flex-direction: column;
       justify-content: space-between;
       height: 200px;
+      @include sm(){
+        height: auto;
+      }
+      @include md(){
+        height: 280px;
+      }
+      @include md11(){
+        height: 280px;
+      }
+      @include xs(){
+        height: auto;
+      }
     }
   }
   &__status{

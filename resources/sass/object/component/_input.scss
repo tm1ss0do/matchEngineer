@@ -26,6 +26,12 @@
     &--check{
       display: flex;
     }
+
+    & > .vdp-datepicker__calendar{
+      @include sm{
+        width: auto;
+      }
+    }
   }
   &__select--wrap{
     position: relative;

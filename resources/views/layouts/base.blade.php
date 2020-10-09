@@ -14,6 +14,8 @@
 
     <!-- Scripts -->
     @yield('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.jpg') }}">
@@ -66,20 +68,18 @@
                 <a class="c-nav__item--top" href="{{ route('mypage.registered') }}">
                   <i class="far fa-user"></i>
                   <span class="c-nav__text">マイページ</span>
-
                 </a>
-                    <div class="">
-                        <a class="c-nav__item--top" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('js-logout-form').submit();">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span class="c-nav__text">{{ __('Logout') }}</span>
-                        </a>
-                        <form id="js-logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
+                <div class="">
+                  <a class="c-nav__item--top" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                  document.getElementById('js-logout-form').submit();">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span class="c-nav__text">{{ __('Logout') }}</span>
+                </a>
+                <form id="js-logout-form" action="{{ route('logout') }}" method="POST">
+                  @csrf
+                </form>
+              </div>
 
                 @else
                 <!-- ゲストの場合 -->
@@ -116,7 +116,7 @@
 
       <div class="c-btn__panel--left">
         @section('back')
-          <a class="c-btn__moderate" href="{{ url()->previous() }}"><<戻る</a>
+          <a class="c-btn__moderate" href="{{ url()->previous() }}">＜＜戻る</a>
         @show
       </div>
 

@@ -73,7 +73,6 @@
              this.currentPage = Number(pageNum);
              //現在のページのアイテムを返す
              let current = this.currentPage * this.parPage;
-
              let start = current - this.parPage;
 
              //表示件数の始め
@@ -85,7 +84,6 @@
                this.to = current;
              }
              //dataの該当箇所のみ表示
-
              if(this.searchNotFlg){
               //検索結果がなかった場合
               this.sliceData = this.data.slice(start, current);
@@ -93,6 +91,8 @@
               //検索結果があった場合
              this.sliceData = this.filterData.slice(start, current);
              }
+             this.$scrollTo('#app', 1000, {offset: -60});
+
           },
           searchProject: function(searchData){
             //現在のページを設定
@@ -130,7 +130,7 @@
               if(searchData['searchType'])
               {
               var searchType = searchData['searchType'];
-              
+
                var filterData = filterData.filter(function(project){
                   if(searchType === 'revenue'){
                     return String(project.project_type).match('revenue');

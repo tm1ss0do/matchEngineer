@@ -13,8 +13,6 @@
 
 <h3 class="c-title__page">案件登録</h3>
 
-
-
 <div class="p-form__container">
 
   @if ($errors->any())
