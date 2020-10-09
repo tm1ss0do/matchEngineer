@@ -3,7 +3,7 @@
 @section('title', 'welcomeページ')
 
 @section('scripts')
-<script src="{{ secure_asset('js/pagetop.js') }}" defer></script>
+<script src="{{ asset('js/pagetop.js') }}" defer></script>
 @endsection
 
 @section('hero')
@@ -53,13 +53,13 @@
         </div>
       </div>
       <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ secure_asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
+        <img class="c-img__img" src="{{ asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
       </div>
     </section>
 
     <section class="c-side-box__container u-display__md">
       <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ secure_asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
+        <img class="c-img__img" src="{{ asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
       </div>
       <div class="c-card__no-boarder--half u-width__half">
         <h3 class="c-card__title u-color__main">
@@ -89,7 +89,7 @@
         </div>
       </div>
       <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ secure_asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
+        <img class="c-img__img" src="{{ asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
       </div>
     </section>
 
@@ -111,7 +111,7 @@
         </div>
       </div>
       <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ secure_asset('/img/soudan-3.jpg') }}" alt="soudan-1.jpg">
+        <img class="c-img__img" src="{{ asset('/img/soudan-3.jpg') }}" alt="soudan-1.jpg">
       </div>
     </section>
 
@@ -153,7 +153,7 @@
           </div>
         </div>
         <div class="c-img__container--sqwide">
-          <img class="c-img__img" src="{{ secure_asset('/img/desc-1.jpg') }}" alt="soudan-1.jpg">
+          <img class="c-img__img" src="{{ asset('/img/desc-1.jpg') }}" alt="soudan-1.jpg">
         </div>
       </section>
 
@@ -170,7 +170,7 @@
           </div>
         </div>
         <div class="c-img__container--sqwide">
-          <img class="c-img__img" src="{{ secure_asset('/img/desc-2.jpg') }}" alt="soudan-1.jpg">
+          <img class="c-img__img" src="{{ asset('/img/desc-2.jpg') }}" alt="soudan-1.jpg">
         </div>
       </section>
 
@@ -187,7 +187,7 @@
           </div>
         </div>
         <div class="c-img__container--sqwide">
-          <img class="c-img__img" src="{{ secure_asset('/img/desc-3.jpg') }}" alt="soudan-1.jpg">
+          <img class="c-img__img" src="{{ asset('/img/desc-3.jpg') }}" alt="soudan-1.jpg">
         </div>
       </section>
     </div>

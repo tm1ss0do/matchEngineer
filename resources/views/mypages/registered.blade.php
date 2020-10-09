@@ -17,41 +17,6 @@
   @endslot
   <!-- public message の有無 -->
 
-
-<ul>
-  <li>
-    <a href="{{ url('/') }}/projects/new">案件登録</a>
-  </li>
-  <li>
-    <a href="{{ url('/') }}/mypages/registered">登録済み案件一覧</a>
-  </li>
-  <li>
-    <a href="{{ url('/') }}/mypages/applied">応募済み案件一覧</a>
-  </li>
-  <li>
-    <a href="{{ url('/') }}/mypages/public_msg">パブリックメッセージ一覧</a>
-    @if(  $public_msgs_yet )
-    未読あり
-    @else
-    未読なし
-    @endif
-  </li>
-  <li>
-    <a href="{{ url('/') }}/mypages/direct_msg">ダイレクトメッセージ一覧</a>
-    @if(  $direct_msgs_yet )
-    未読あり
-    @else
-    未読なし
-    @endif
-  </li>
-  <li>
-    <a href="{{ url('/') }}/projects/{{ $user->id }}/profile">プロフィール</a>
-  </li>
-  <li>
-    <a href="{{ url('/') }}/mypages/withdraw">退会</a>
-  </li>
-</ul>
-
   @if($pm_yet_notify_flg)
     @slot('pm_yet_notify_flg')
     <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/public_msg">
@@ -84,7 +49,6 @@
 
 <h3 class="c-title__page">登録済み案件一覧</h3>
 
-
 <ul>
     @foreach ($projects as $project)
 
@@ -103,14 +67,9 @@
     @endforeach
 </ul>
 
-
-{{ $projects->links() }}
-
-
 {{ $projects->links('vendor/pagination/custom') }}
 
 @endsection
 @section('back')
-
 
 @endsection

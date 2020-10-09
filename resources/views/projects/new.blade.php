@@ -1,8 +1,5 @@
 @extends('layouts.base')
 
-
-@section('title', '案件登録画面')
-
 @section('title', '案件登録')
 
 

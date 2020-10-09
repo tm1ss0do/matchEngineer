@@ -48,12 +48,6 @@
 
 <h3 class="c-title__page">パブリックメッセージ一覧</h3>
 
-
-@foreach ( $publics as $public )
-
-    @foreach($public_msgs_yet as $pub_msg )
-      @if( $pub_msg->public_board_id === $public->project->id )
-      未読
 @if( $publics )
 
   @foreach ( $publics as $public )

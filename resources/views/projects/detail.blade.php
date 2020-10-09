@@ -58,20 +58,8 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
 </section>
 
-@if( $auther )
-  @if( $project->user_id === $auther->id )
-  <a href="{{ url('projects/'.$project->id.'/edit' ) }}">編集する</a>
-  @else
-  <a href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
-  @endif
-@else
-<p>応募するためには、ログインしてください</p>
-@endif
-<!-- twitter share -->
-<a class="twitter-share-button"
-   href="https://twitter.com/share"
-   data-dnt="true"
-   data-text="match｜案件名：{{ mb_substr($project->project_title, 0, 80) }}...">Tweet</a>
+
+
 
 <!-- ここから、メッセージ一覧 -->
 
