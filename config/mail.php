@@ -35,15 +35,23 @@ return [
 
     'mailers' => [
         'smtp' => [
-            'transport' => 'smtp',
+            'driver' => env('MAIL_DRIVER', 'smtp'),
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
             'port' => env('MAIL_PORT', 587),
+
+            'transport' => 'smtp',
+            // 'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            // 'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => null,
         ],
+        'from' => [
+          'address' => env('MAIL_FROM_ADDRESS', 't.m1ss0.do@gmail.com'),
+          'name' => env('MAIL_FROM_NAME', 'match')
+          ],
 
         'ses' => [
             'transport' => 'ses',
@@ -58,7 +66,7 @@ return [
         ],
 
         'sendmail' => [
-            'transport' => 'sendmail',
+            // 'transport' => 'sendmail',
             'path' => '/usr/sbin/sendmail -bs',
         ],
 
