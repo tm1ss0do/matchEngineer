@@ -3,7 +3,7 @@
 @section('title', '新規登録')
 
 @section('scripts')
-<script src="{{ asset('js/direct.js') }}" defer></script>
+<script src="{{ secure_asset('js/direct.js') }}" defer></script>
 @endsection
 
 @section('content')

@@ -3,8 +3,8 @@
 @section('title', 'プロフィール編集')
 
 @section('scripts')
-<script src="{{ asset('js/app.js') }}" defer></script>
-<script src="{{ asset('js/direct.js') }}" defer></script>
+<script src="{{ secure_asset('js/app.js') }}" defer></script>
+<script src="{{ secure_asset('js/direct.js') }}" defer></script>
 @endsection
 
 
@@ -41,8 +41,8 @@
 
   <image-preview
   icon="{{ $user->profile_icon }}"
-  src="{{ asset('storage/avatar/' . $user->profile_icon) }}"
-  default="{{ asset('/img/default_prof.png') }}">
+  src="{{ secure_asset('storage/avatar/' . $user->profile_icon) }}"
+  default="{{ secure_asset('/img/default_prof.png') }}">
   </image-preview>
 
   <label class="c-title__label" for="self_introduction">自己紹介文</label></br>

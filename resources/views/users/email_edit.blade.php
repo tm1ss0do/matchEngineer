@@ -3,7 +3,7 @@
 @section('title', 'メールアドレス変更')
 
 @section('scripts')
-<script src="{{ asset('js/direct.js') }}" defer></script>
+<script src="{{ secure_asset('js/direct.js') }}" defer></script>
 @endsection
 
 @section('content')
