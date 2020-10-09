@@ -10,7 +10,11 @@
     <title>match | @yield('title', 'Home')</title>
 
     <!-- Styles -->
+    @if(app('env') == 'production')
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    @else
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endif
 
     <!-- Scripts -->
     @yield('scripts')
