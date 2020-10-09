@@ -15,12 +15,12 @@ class CreateEmailResetsTable extends Migration
     {
         Schema::create('email_resets', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->comment('メールアドレスを更新したユーザーID');
-            $table->string('new_email')->comment('ユーザーが新規に設定したメールアドレス');
-            $table->string('token');
-            $table->timestamps();
-
-             $table->softDeletes();
+            // $table->integer('user_id')->comment('メールアドレスを更新したユーザーID');
+            // $table->string('new_email')->comment('ユーザーが新規に設定したメールアドレス');
+            // $table->string('token');
+            // $table->timestamps();
+            //
+            //  $table->softDeletes();
         });
     }
 
