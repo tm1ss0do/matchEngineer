@@ -12,12 +12,6 @@ class SidebarComposer {
 
     protected $auth;
 
-    // public function compose(View $view)
-    // {
-    //     $view->with('message', 'View Composer message!!');
-    // }
-
-
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;

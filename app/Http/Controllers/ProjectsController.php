@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use App\PublicMsg;
-
-use App\PublicNotify;
-
 use App\DirectMsgsBoard;
-
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +16,6 @@ use Illuminate\Support\Facades\Storage;
 class ProjectsController extends Controller
 {
     //
-
     public function show_project_all(){
 
       $projects = Project::with('user')->get();
@@ -29,15 +24,6 @@ class ProjectsController extends Controller
 
     }
 
-    public function new(){
-      // 案件登録画面表示
-      // $user = Auth::user();   #ログインユーザー情報を取得します。
-      // return view('projects.new', compact('user'));
-      // $projects = Project::all();
-      $projects = Project::with('user')->get();
-
-      return view('projects.all', compact('projects'));
-    }
 
     public function json_data(){
 
@@ -71,26 +57,6 @@ class ProjectsController extends Controller
                       ->orderBy('send_date', 'desc')
                       ->with('user')
                       ->get();
-
-        // ログイン済みユーザーだった場合
-        $auther = Auth::user();
-        // 該当のnotifyレコードを取得
-        if($auther){
-          // ユーザーがこのpublicテーブルに参加していた場合
-          $join_user = PublicNotify::where('user_id', $auther)->first();
-          if($join_user){
-            // 該当のnotifyテーブルに既読フラグを立てる
-            $public_notify = $auther->public_notify->where('public_board_id', $id)->first();
-            if( !$public_notify->read_flg ){
-              $public_notify->read_flg = '1';
-              $public_notify->save();
-            }
-          }
-        }
-
-
-        return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify'));
-
         // 該当のnotifyレコードを取得
         $auther = Auth::user();
         // ゲストユーザーでない場合
@@ -115,7 +81,6 @@ class ProjectsController extends Controller
 
 
         return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify', 'already_apply'));
-
 
     }
 
