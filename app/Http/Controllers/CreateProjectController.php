@@ -16,7 +16,6 @@ use App\Http\Requests\StoreProjectPost;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\StoreProfileRequest;
 
-use App\PublicNotify;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectPost;
 
@@ -30,8 +29,6 @@ use Illuminate\Support\Str;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 
 
 class CreateProjectController extends Controller
