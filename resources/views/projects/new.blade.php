@@ -1,8 +1,8 @@
 @extends('layouts.base')
 
-<<<<<<< HEAD
+
 @section('title', '案件登録画面')
-=======
+
 @section('title', '案件登録')
 
 
@@ -11,7 +11,6 @@
 <script src="{{ secure_asset('js/pagetop.js') }}" defer></script>
 <script src="{{ secure_asset('js/direct.js') }}" defer></script>
 @endsection
->>>>>>> deploy
 
 @section('content')
 

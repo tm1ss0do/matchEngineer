@@ -45,7 +45,6 @@ class PublicNotifiesTableSeeder extends Seeder
             'user_id' => '1',
             'read_flg' => '1',
         ]);
-<<<<<<< HEAD
         DB::table('public_notifies')->insert([
             'created_at'=> '2020-09-16 12:30:49',
             'updated_at' => '2020-09-16 12:30:49',
@@ -53,8 +52,6 @@ class PublicNotifiesTableSeeder extends Seeder
             'user_id' => '3',
             'read_flg' => '1',
         ]);
-=======
-
         //factoryを使ってダミーデータ生成
         factory(PublicNotify::class)->create(
           [
@@ -126,6 +123,5 @@ class PublicNotifiesTableSeeder extends Seeder
             'read_flg' => '1',
           ]
         );
->>>>>>> deploy
     }
 }

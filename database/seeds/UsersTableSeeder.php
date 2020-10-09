@@ -30,13 +30,13 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'test2',
             'email' => 'test2@example.com',
-<<<<<<< HEAD
+
             'delete_flg' => '0',
-=======
+
             'email_verified_at' => now(),
             'profile_icon' => NULL,
             'password' => bcrypt('pas2word'),
->>>>>>> deploy
+
             'self_introduction'=> "自己紹介文2
             ここに自己紹介文を入れます。
             （勤務した会社・勤務年数・所有資格・扱っている言語など）",
@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'test3',
             'email' => 'test3@example.com',
-<<<<<<< HEAD
+
             'delete_flg' => '0',
             'self_introduction'=> "自己紹介文3
             ここに自己紹介文を入れます。
@@ -66,7 +66,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
-=======
+
             'email_verified_at' => now(),
             'profile_icon' => NULL,
             'password' => bcrypt('pas3word'),
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
->>>>>>> deploy
+
 
         //factoryを使ってダミーデータ生成
         factory(App\User::class, 10)->create();

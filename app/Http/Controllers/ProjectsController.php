@@ -6,15 +6,11 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use App\PublicMsg;
-<<<<<<< HEAD
-// use App\DirectMsgsBoard;
-// use App\DirectMsgs;
+
 use App\PublicNotify;
-// use App\DirectNotify;
-// use App\EmailReset;
-=======
+
 use App\DirectMsgsBoard;
->>>>>>> deploy
+
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +22,7 @@ class ProjectsController extends Controller
     //
 
     public function show_project_all(){
-      
+
       $projects = Project::with('user')->get();
 
       return view('projects.all', compact('projects'));
@@ -75,7 +71,7 @@ class ProjectsController extends Controller
                       ->orderBy('send_date', 'desc')
                       ->with('user')
                       ->get();
-<<<<<<< HEAD
+
         // ログイン済みユーザーだった場合
         $auther = Auth::user();
         // 該当のnotifyレコードを取得
@@ -94,7 +90,7 @@ class ProjectsController extends Controller
 
 
         return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify'));
-=======
+
         // 該当のnotifyレコードを取得
         $auther = Auth::user();
         // ゲストユーザーでない場合
@@ -119,7 +115,7 @@ class ProjectsController extends Controller
 
 
         return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify', 'already_apply'));
->>>>>>> deploy
+
 
     }
 

@@ -8,7 +8,6 @@
 
 @section('content')
 
-<<<<<<< HEAD
 <p>email認証が済んでいなければ、ログイン画面もここになります。</p>
 
 <div class="container">
@@ -34,7 +33,7 @@
             </div>
         </div>
     </div>
-=======
+
 <h3 class="c-title__page text-align u-text-align__center">{{ __('Verify Your Email Address') }}</h3>
 
 <div class="p-form__container u-flex u-flex__center">
@@ -61,7 +60,7 @@
       </section>
     </form>
   </div>
->>>>>>> deploy
+  
 </div>
 
 @endsection

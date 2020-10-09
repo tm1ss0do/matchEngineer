@@ -17,7 +17,7 @@
   @endslot
   <!-- public message の有無 -->
 
-<<<<<<< HEAD
+
 <ul>
   <li>
     <a href="{{ url('/') }}/projects/new">案件登録</a>
@@ -51,7 +51,7 @@
     <a href="{{ url('/') }}/mypages/withdraw">退会</a>
   </li>
 </ul>
-=======
+
   @if($pm_yet_notify_flg)
     @slot('pm_yet_notify_flg')
     <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/public_msg">
@@ -83,7 +83,7 @@
 
 
 <h3 class="c-title__page">登録済み案件一覧</h3>
->>>>>>> deploy
+
 
 <ul>
     @foreach ($projects as $project)
@@ -103,14 +103,14 @@
     @endforeach
 </ul>
 
-<<<<<<< HEAD
+
 {{ $projects->links() }}
 
-=======
+
 {{ $projects->links('vendor/pagination/custom') }}
 
 @endsection
 @section('back')
->>>>>>> deploy
+
 
 @endsection

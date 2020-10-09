@@ -58,7 +58,6 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
 </section>
 
-<<<<<<< HEAD
 @if( $auther )
   @if( $project->user_id === $auther->id )
   <a href="{{ url('projects/'.$project->id.'/edit' ) }}">編集する</a>
@@ -73,10 +72,6 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
    href="https://twitter.com/share"
    data-dnt="true"
    data-text="match｜案件名：{{ mb_substr($project->project_title, 0, 80) }}...">Tweet</a>
-=======
-
->>>>>>> deploy
-
 
 <!-- ここから、メッセージ一覧 -->
 
