@@ -97,11 +97,9 @@ class PublicMessagesController extends Controller
         // notifyテーブルに既読フラグを立てて新規保存
         $public_notify = new PublicNotify;
         $public_notify->public_board_id = $id;
-<<<<<<< HEAD
+
         $public_notify->user_id = $auther->id;
-=======
         $public_notify->user_id = $auther_id;
->>>>>>> deploy
         $public_notify->read_flg = '1';
         $public_notify->save();
       }else{
