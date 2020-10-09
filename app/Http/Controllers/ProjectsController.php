@@ -70,7 +70,6 @@ class ProjectsController extends Controller
                 $public_notify->save();
               }
           }
-
           // ログインユーザーがこのプロジェクトにすでに応募しているか判定
           // （応募した場合はDirectMsgsBoardが作成されるので、その中から該当するものを探す）
           $already_apply = DirectMsgsBoard::where('project_id', $id)
@@ -80,7 +79,7 @@ class ProjectsController extends Controller
 
 
 
-        return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs','public_notify', 'already_apply'));
+        return view('projects.detail', compact('project', 'user' , 'auther', 'publicmsgs', 'already_apply'));
 
     }
 
