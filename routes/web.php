@@ -18,20 +18,18 @@ Auth::routes(['verify' => true]);
 
 // *******************************************************
 // ログインユーザーのみ許可-----------
-<<<<<<< HEAD
 Route::group(['middleware' => 'auth'], function() {
 
   // CreateProject Controller
   // Route::get('/projects/new', 'CreateProjectController@new')->name('project.new');
   Route::post('/projects/new', 'CreateProjectController@create_project')->name('project.create');
   Route::get('/mypages/registered', 'CreateProjectController@registered')->name('project.registered');
-=======
+
 Route::group(['middleware' => 'verified'], function() {
   // CreateProject Controller
   Route::get('/projects/new', 'CreateProjectController@new')->name('project.new');
   Route::post('/projects/new', 'CreateProjectController@create_project')->name('mypage.create');
   Route::get('/mypages/registered', 'CreateProjectController@registered')->name('mypage.registered');
->>>>>>> deploy
 
   // EditProject Controller
   Route::get('/projects/{id}/edit', 'EditProjectController@project_edit_form')->name('project.project_edit_form');
@@ -74,7 +72,6 @@ Route::group(['middleware' => 'verified'], function() {
 
   // Withdraw Controller
   Route::get('/mypages/withdraw', 'WithdrawController@index')->name('withdraw.index');
-<<<<<<< HEAD
   Route::post('/mypages/withdraw', 'WithdrawController@delete_user_logical')->name('withdraw.index');
 });
 
@@ -83,8 +80,6 @@ Route::group(['middleware' => 'verified'], function() {
 // *******************************************************
 // 誰でも許可
 
-
-=======
   Route::post('/mypages/withdraw', 'WithdrawController@delete_user_logical')->name('withdraw.delete_post');
 });
 
@@ -93,19 +88,16 @@ Route::group(['middleware' => 'verified'], function() {
 // 誰でも許可
 
 // ウェルカムページ画面
->>>>>>> deploy
 Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
 // Home Controller
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Projects Controller
 
 Route::get('/projects/all', 'ProjectsController@show_project_all')->name('project.all');
-=======
 // ChangeEmail Controller
 Route::get('/mypages/{id}/email/edit', 'ChangeEmailController@email_edit_form')->name('email.email_edit_form');
 Route::get('reset/{token}', 'ChangeEmailController@email_reset');
@@ -114,13 +106,11 @@ Route::post('/mypages/{id}/email/edit', 'ChangeEmailController@email_edit_post')
 
 
 Route::get('/home', 'ProjectsController@show_project_all')->name('project.all');
->>>>>>> deploy
+
 Route::get('/projects/json', 'ProjectsController@json_data');
 Route::get('/projects/{id}', 'ProjectsController@show_project_detail')->name('project.detail');
 Route::get('/projects/{id}/msg_json', 'ProjectsController@json_data_msg');
 Route::get('/projects/{id}/profile', 'ProjectsController@profile')->name('project.profile');
-<<<<<<< HEAD
+
 
 Route::get('/projects/new', 'ProjectsController@new')->name('project.new');
-=======
->>>>>>> deploy
