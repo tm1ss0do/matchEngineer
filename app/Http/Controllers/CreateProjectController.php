@@ -16,9 +16,6 @@ use App\Http\Requests\StoreProjectPost;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\StoreProfileRequest;
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreProjectPost;
-
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
