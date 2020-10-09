@@ -16,7 +16,7 @@ class CreatePublicMsgsTable extends Migration
         Schema::create('public_msgs', function (Blueprint $table) {
             $table->id();
             $table->datetime('send_date');
-            $table->string('content',1000)->charset(null);
+            $table->string('content',1000);
             $table->boolean('read_flg');
             $table->timestamps();
 
