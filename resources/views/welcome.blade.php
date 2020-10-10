@@ -3,7 +3,7 @@
 @section('title', 'welcomeページ')
 
 @section('scripts')
-<script src="{{ asset('js/pagetop.js') }}" defer></script>
+<script src="{{ secure_asset('js/pagetop.js') }}" defer></script>
 @endsection
 
 @section('hero')
