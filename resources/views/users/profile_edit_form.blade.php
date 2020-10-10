@@ -46,11 +46,6 @@
   default="{{ secure_asset('/img/default_prof.png') }}">
   </image-preview>
 
-  $user->profile_iconのなかみ:  {{ $user->profile_icon }}
-
-
-  <!-- src="{{ secure_asset('storage/avatar/' . $user->profile_icon) }}" -->
-
 
   <label class="c-title__label" for="self_introduction">自己紹介文</label></br>
   <counter-component

@@ -20,8 +20,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ChangeProfileController extends Controller
 {
-    //
-
     public function profile_edit_form($id){
       if(!ctype_digit($id)){
         return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
@@ -50,7 +48,6 @@ class ChangeProfileController extends Controller
 
 
           // ==aws s3環境（herokuの本番環境用です）==
-          // $image = new Image();
           // アップロードされた画像を$uploadImg変数へ保存
           $user->profile_icon = $request->profile_icon;
           $uploadImg = $request->profile_icon;
@@ -60,16 +57,6 @@ class ChangeProfileController extends Controller
           $paths3 = Storage::disk('s3')->putFile('/', $uploadImg, 'public');
           // S3に保存した画像を取り出すためのパスをDB保存(表示時に取り出し)
           $user->profile_icon = Storage::disk('s3')->url($paths3);
-
-          // // ==ローカル環境（シンボリックリンクを貼ると動きます）==
-          // // 新しい画像ファイルがPOSTされていた場合
-          // // 元の画像を削除
-          // $path_prev = $user->profile_icon;
-          // $pathdel = storage_path() . '/app/public/avatar/'.$path_prev;
-          // \File::delete($pathdel);
-          // // 新しい画像を登録
-          // $path = $request->profile_icon->store('public/avatar');
-          // $user->profile_icon = basename($path);
 
 
         }elseif( $user->profile_icon ){
