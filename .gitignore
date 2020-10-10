@@ -6,6 +6,9 @@
 .env
 .env.backup
 .env.lolipop
+.env.default
+deploy-lolipop.sh
+match.sh
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
