@@ -67,7 +67,7 @@
         <div class="c-comment__header">
           <span class="c-comment__info">
             From:
-            @if($direct_msg_board->reciever['name'] && $direct_msg_board->sender['name'])
+            @if($direct_msg_board->reciever && $direct_msg_board->sender)
               @if( $direct_msg_board->reciever['id'] !== Auth::id() )
                 <a class="c-comment__link" href="{{ url('/') }}/projects/{{ $direct_msg_board->reciever['id'] }}/profile" >
                   {{ $direct_msg_board->reciever['name'] }}
