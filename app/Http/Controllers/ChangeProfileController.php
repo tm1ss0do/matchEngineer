@@ -69,7 +69,8 @@ class ChangeProfileController extends Controller
           // ==aws s3環境（herokuの本番環境用です）==
           // $image = new Image();
           // アップロードされた画像を$uploadImg変数へ保存
-          $uploadImg = $user->profile_icon = $request->profile_icon;
+          $user->profile_icon = $request->profile_icon;
+          $uploadImg = $request->profile_icon;
           // 第一引数：バケット内階層
           // 第二引数：受け取った画像が入っている変数
           // 第三引数：publicに対する他からのアクセス全般を許可（ファイルのURLによるアクセスが可能）

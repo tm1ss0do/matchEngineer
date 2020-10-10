@@ -22,7 +22,8 @@
       <p class="c-card__title">プロフィールアイコン</p>
       <div class="c-img__container--midi">
         @if( $user->profile_icon )
-          <img class="c-img__img" src="{{ secure_asset('storage/avatar/' . $user->profile_icon) }}">
+        <!-- <img class="c-img__img" src="{{ secure_asset('storage/avatar/' . $user->profile_icon) }}"> -->
+          <img class="c-img__img" src="{{ $user->profile_icon }}">
         @else
           <img class="c-img__img" src="{{ secure_asset('/img/default_prof.png') }}" alt="default_prof.png">
         @endif
