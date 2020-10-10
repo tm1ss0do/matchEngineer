@@ -30,13 +30,14 @@ class ChangeProfileController extends Controller
       $user = User::find($id);
 
       // ユーザーのプロフィール画像
-      $images = $user->profile_icon;
+      // $image = $user->profile_icon;
       // $images = Image::all();
       // return view('index', ['images'=>$images]);
 
       // $paths3 = Storage::disk('s3')->url('hoge.jpg');
 
-      return view('users.profile_edit_form', compact('user', 'images'));
+      // return view('users.profile_edit_form', compact('user', 'images'));
+      return view('users.profile_edit_form', compact('user'));
     }
 
     public function profile_edit_post(StoreProfileRequest $request, $id){

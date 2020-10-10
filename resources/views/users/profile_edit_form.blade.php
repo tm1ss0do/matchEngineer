@@ -42,11 +42,11 @@
 
   <image-preview
   icon="{{ $user->profile_icon }}"
-  src="{{ $image }}"
+  src="{{ $user->profile_icon }}"
   default="{{ secure_asset('/img/default_prof.png') }}">
   </image-preview>
 
-  $imagesのなかみ:  {{ $images }}
+  $imagesのなかみ:  {{ $user->profile_icon }}
 
 
   <!-- src="{{ secure_asset('storage/avatar/' . $user->profile_icon) }}" -->
