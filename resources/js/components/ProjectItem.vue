@@ -41,7 +41,7 @@
   <div class="c-card__footer" >
     <div class="p-profile__mini">
       <div class="c-img__container--mini">
-        <img v-if="user.profile_icon" class="c-img__img" :src="url+'/storage/avatar/'+user.profile_icon" :alt="user.profile_icon">
+        <img v-if="user.profile_icon" class="c-img__img" :src="user.profile_icon" :alt="user.profile_icon">
         <img v-else class="c-img__img" :src="url+'/img/default_prof.png'" alt="default_icon_image">
       </div>
       <a class="c-card__link" :href="'/projects/'+user.id+'/profile'" >{{ user.name }}</a>
