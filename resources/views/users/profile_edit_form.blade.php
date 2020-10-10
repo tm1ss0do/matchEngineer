@@ -39,16 +39,15 @@
 
   <label class="c-title__label" for="profile_icon">プロフィール画像</label></br>
 
-  @foreach($images as $image)
-    <image-preview
-    icon="{{ $user->profile_icon }}"
-    src="{{ $image->profile_icon }}"
-    default="{{ secure_asset('/img/default_prof.png') }}">
-    </image-preview>
-  @endforeach
 
-  $imagesのなかみ:
-    {{ $images }}
+  <image-preview
+  icon="{{ $user->profile_icon }}"
+  src="{{ $image }}"
+  default="{{ secure_asset('/img/default_prof.png') }}">
+  </image-preview>
+
+  $imagesのなかみ:  {{ $images }}
+
 
   <!-- src="{{ secure_asset('storage/avatar/' . $user->profile_icon) }}" -->
 
