@@ -77,7 +77,7 @@ class ChangeProfileController extends Controller
           // S3に保存した画像を取り出すためのパスをDB保存(表示時に取り出し)
           $user->profile_icon = Storage::disk('s3')->url($paths3);
           // $image->save();
-          return redirect('/');
+          // return redirect('/');
 
 
           // ==aws s3環境（herokuの本番環境用です）==
@@ -90,8 +90,6 @@ class ChangeProfileController extends Controller
           // // $paths3 = Storage::disk('s3')->putFile('/hoge', $file, 'public');
           // // ファイル名を指定する場合はputFileAsを利用する
           // // $paths3 = Storage::disk('s3')->putFileAs('/', $file, 'hoge.jpg', 'public');
-
-
 
 
         }elseif( $user->profile_icon ){
