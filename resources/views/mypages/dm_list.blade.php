@@ -50,6 +50,8 @@
 
 <div class="">
 
+  @if($direct_msgs_boards)
+
     @foreach( $direct_msgs_boards  as $direct_msg_board )
 
       @foreach($direct_msgs_yet as $direct )
@@ -97,8 +99,9 @@
         </div>
       </div>
 
+      @endforeach
 
-    @endforeach
+    @endif
 
 </div>
 
