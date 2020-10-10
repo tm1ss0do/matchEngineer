@@ -69,6 +69,6 @@ class ChangeProfileController extends Controller
 
         // profile画面へ遷移させる
         Session::flash('flash_message', __('Registered.')); //session表示用
-        return view('users.profile', compact('user','file'));
+        return view('users.profile', compact('user'));
     }
 }
