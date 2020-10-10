@@ -2,56 +2,43 @@
 
 namespace Spatie\PdfToImage;
 
-use Imagick;
+use Org_Heigl\Ghostscript\Ghostscript;
 use Spatie\PdfToImage\Exceptions\InvalidFormat;
-use Spatie\PdfToImage\Exceptions\PageDoesNotExist;
 use Spatie\PdfToImage\Exceptions\PdfDoesNotExist;
+use Spatie\PdfToImage\Exceptions\PageDoesNotExist;
 
 class Pdf
 {
-    protected $pdfFile;
+    /** @var \Org_Heigl\Ghostscript\Ghostscript */
+    protected $ghostscript;
 
-    protected $resolution = 144;
+    /** @var string */
+    protected $outputFormat = '';
 
-    protected $outputFormat = 'jpg';
-
+    /** @var int */
     protected $page = 1;
-
-    public $imagick;
-
-    protected $numberOfPages;
 
     protected $validOutputFormats = ['jpg', 'jpeg', 'png'];
 
-    protected $layerMethod = Imagick::LAYERMETHOD_FLATTEN;
-
-    protected $colorspace;
-
-    protected $compressionQuality;
-
     public function __construct(string $pdfFile)
     {
-        if (! file_exists($pdfFile)) {
-            throw new PdfDoesNotExist("File `{$pdfFile}` does not exist");
+        if (! filter_var($pdfFile, FILTER_VALIDATE_URL) && ! file_exists($pdfFile)) {
+            throw new PdfDoesNotExist();
         }
 
-        $this->imagick = new Imagick();
-
-        $this->imagick->pingImage($pdfFile);
-
-        $this->numberOfPages = $this->imagick->getNumberImages();
-
-        $this->pdfFile = $pdfFile;
+        $this->ghostscript = (new Ghostscript())
+            ->setInputFile($pdfFile)
+            ->setResolution(144);
     }
 
-    public function setResolution(int $resolution)
+    public function setResolution(int $resolution): self
     {
-        $this->resolution = $resolution;
+        $this->ghostscript->setResolution($resolution);
 
         return $this;
     }
 
-    public function setOutputFormat(string $outputFormat)
+    public function setOutputFormat(string $outputFormat): self
     {
         if (! $this->isValidOutputFormat($outputFormat)) {
             throw new InvalidFormat("Format {$outputFormat} is not supported");
@@ -62,157 +49,57 @@ class Pdf
         return $this;
     }
 
-    public function getOutputFormat(): string
+    public function setPage(int $pageNumber): self
     {
-        return $this->outputFormat;
-    }
+        $this->ghostscript->setPages($pageNumber);
 
-    /**
-     * Sets the layer method for Imagick::mergeImageLayers()
-     * If int, should correspond to a predefined LAYERMETHOD constant.
-     * If null, Imagick::mergeImageLayers() will not be called.
-     *
-     * @param int|null
-     *
-     * @return $this
-     *
-     * @throws \Spatie\PdfToImage\Exceptions\InvalidLayerMethod
-     *
-     * @see https://secure.php.net/manual/en/imagick.constants.php
-     * @see Pdf::getImageData()
-     */
-    public function setLayerMethod(?int $layerMethod)
-    {
-        $this->layerMethod = $layerMethod;
-
-        return $this;
-    }
-
-    public function isValidOutputFormat(string $outputFormat): bool
-    {
-        return in_array($outputFormat, $this->validOutputFormats);
-    }
-
-    public function setPage(int $page)
-    {
-        if ($page > $this->getNumberOfPages() || $page < 1) {
-            throw new PageDoesNotExist("Page {$page} does not exist");
+        if ($pageNumber > $this->getNumberOfPages()) {
+            throw new PageDoesNotExist("Page {$pageNumber} does not exist");
         }
-
-        $this->page = $page;
 
         return $this;
     }
 
     public function getNumberOfPages(): int
     {
-        return $this->numberOfPages;
+        return 1;
     }
 
-    public function saveImage(string $pathToImage): bool
+    public function getGhostscript(): Ghostscript
     {
-        if (is_dir($pathToImage)) {
-            $pathToImage = rtrim($pathToImage, '\/').DIRECTORY_SEPARATOR.$this->page.'.'.$this->outputFormat;
-        }
-
-        $imageData = $this->getImageData($pathToImage);
-
-        return file_put_contents($pathToImage, $imageData) !== false;
+        return $this->ghostscript;
     }
 
-    public function saveAllPagesAsImages(string $directory, string $prefix = ''): array
+    public function saveImage($pathToImage)
     {
-        $numberOfPages = $this->getNumberOfPages();
-
-        if ($numberOfPages === 0) {
-            return [];
+        if ($this->outputFormat === '') {
+            $this->outputFormat = $this->determineOutputFormat($pathToImage);
         }
 
-        return array_map(function ($pageNumber) use ($directory, $prefix) {
-            $this->setPage($pageNumber);
+        $this->ghostscript->setDevice($this->outputFormat);
 
-            $destination = "{$directory}/{$prefix}{$pageNumber}.{$this->outputFormat}";
+        $this->ghostscript->setOutputFile($pathToImage);
 
-            $this->saveImage($destination);
-
-            return $destination;
-        }, range(1, $numberOfPages));
+        $this->ghostscript->render();
     }
 
-    public function getImageData(string $pathToImage): Imagick
+    protected function isValidOutputFormat(string $outputFormat): bool
     {
-        /*
-         * Reinitialize imagick because the target resolution must be set
-         * before reading the actual image.
-         */
-        $this->imagick = new Imagick();
-
-        $this->imagick->setResolution($this->resolution, $this->resolution);
-
-        if ($this->colorspace !== null) {
-            $this->imagick->setColorspace($this->colorspace);
-        }
-
-        if ($this->compressionQuality !== null) {
-            $this->imagick->setCompressionQuality($this->compressionQuality);
-        }
-
-        if (filter_var($this->pdfFile, FILTER_VALIDATE_URL)) {
-            return $this->getRemoteImageData($pathToImage);
-        }
-
-        $this->imagick->readImage(sprintf('%s[%s]', $this->pdfFile, $this->page - 1));
-
-        if (is_int($this->layerMethod)) {
-            $this->imagick = $this->imagick->mergeImageLayers($this->layerMethod);
-        }
-
-        $this->imagick->setFormat($this->determineOutputFormat($pathToImage));
-
-        return $this->imagick;
-    }
-
-    public function setColorspace(int $colorspace)
-    {
-        $this->colorspace = $colorspace;
-
-        return $this;
-    }
-
-    public function setCompressionQuality(int $compressionQuality)
-    {
-        $this->compressionQuality = $compressionQuality;
-
-        return $this;
-    }
-
-    protected function getRemoteImageData(string $pathToImage): Imagick
-    {
-        $this->imagick->readImage($this->pdfFile);
-
-        $this->imagick->setIteratorIndex($this->page - 1);
-
-        if (is_int($this->layerMethod)) {
-            $this->imagick = $this->imagick->mergeImageLayers($this->layerMethod);
-        }
-
-        $this->imagick->setFormat($this->determineOutputFormat($pathToImage));
-
-        return $this->imagick;
+        return in_array($outputFormat, $this->validOutputFormats);
     }
 
     protected function determineOutputFormat(string $pathToImage): string
     {
         $outputFormat = pathinfo($pathToImage, PATHINFO_EXTENSION);
 
-        if ($this->outputFormat != '') {
-            $outputFormat = $this->outputFormat;
-        }
-
         $outputFormat = strtolower($outputFormat);
 
         if (! $this->isValidOutputFormat($outputFormat)) {
-            $outputFormat = 'jpg';
+            $outputFormat = 'jpeg';
+        }
+
+        if ($outputFormat == 'jpg') {
+            $outputFormat = 'jpeg';
         }
 
         return $outputFormat;

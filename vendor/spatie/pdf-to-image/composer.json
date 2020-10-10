@@ -19,11 +19,13 @@
         }
     ],
     "require": {
-        "php" : "^7.2",
-        "ext-imagick" : "*"
+        "php" : "^7.0",
+        "org_heigl/ghostscript": "^2.2"
+
     },
     "require-dev": {
-        "phpunit/phpunit" : "^8.0"
+        "phpunit/phpunit" : "^6.2",
+        "spatie/temporary-directory": "^1.1"
     },
     "autoload": {
         "psr-4": {

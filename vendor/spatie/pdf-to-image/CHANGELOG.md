@@ -2,55 +2,6 @@
 
 All notable changes to `pdf-to-image` will be documented in this file
 
-## 2.0.1 - 2020-04-29
-
-- add usage of Imagick `pingImage` to speedup the page count
-
-## 2.0.0 - 2020-01-08
-
-- added typehints
-- removal of ability of loading pdfs via URLs
-
-## 1.8.2 - 2019-07-31
-
-- add exception message to `PdfDoesNotExist`
-
-## 1.8.1 - 2018-06-02
-- throw exception when trying to fetch a negative page number
-
-## 1.8.0 - 2018-04-03
-- add method getOutputFormat and update saveImage for auto set filename
-
-## 1.7.0 - 2018-03-14
-- make `imagick` public
-
-## 1.6.1 - 2018-03-14
-- fix bug around `setCompressionQuality`
-
-## 1.6.0 - 2017-12-20
-- add `setCompressionQuality`
-
-## 1.5.0 - 2017-10-11
-- add `setColorspace`
-
-## 1.4.6 - 2017-10-11
-- fix remote pdf handling
-
-## 1.4.5 - 2017-07-18
-- fix flattening of pdf
-
-## 1.4.4 - 2017-07-07
-- fix where `getNumberOfPages` would report the wrong number when looping through the pdf
-
-## 1.4.3 - 2017-07-07
-- fix bugs introduced in 1.4.2
-
-## 1.4.2 - 2017-07-01
-- fix for setting custom resolution
-
-## 1.4.1 - 2017-06-28
-- fix `setLayerMethod` method
-
 ## 1.4.0 - 2017-06-15
 - add `setLayerMethod` method
 
