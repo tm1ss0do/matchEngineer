@@ -29,7 +29,14 @@ class ChangeProfileController extends Controller
       // プロフィール編集画面を表示
       $user = User::find($id);
 
-      return view('users.profile_edit_form', compact('user'));
+      // ユーザーのプロフィール画像
+      $images = $user->profile_icon;
+      // $images = Image::all();
+      // return view('index', ['images'=>$images]);
+
+      // $paths3 = Storage::disk('s3')->url('hoge.jpg');
+
+      return view('users.profile_edit_form', compact('user', 'images'));
     }
 
     public function profile_edit_post(StoreProfileRequest $request, $id){
@@ -47,14 +54,44 @@ class ChangeProfileController extends Controller
         $user->updated_at = Carbon::now();
         // 新しい画像はstorage配下へ保存
         if( $request->profile_icon ){
-          // 新しい画像ファイルがPOSTされていた場合
-          // 元の画像を削除
-          $path_prev = $user->profile_icon;
-          $pathdel = storage_path() . '/app/public/avatar/'.$path_prev;
-          \File::delete($pathdel);
-          // 新しい画像を登録
-          $path = $request->profile_icon->store('public/avatar');
-          $user->profile_icon = basename($path);
+
+          // // ==ローカル環境（シンボリックリンクを貼ると動きます）==
+          // // 新しい画像ファイルがPOSTされていた場合
+          // // 元の画像を削除
+          // $path_prev = $user->profile_icon;
+          // $pathdel = storage_path() . '/app/public/avatar/'.$path_prev;
+          // \File::delete($pathdel);
+          // // 新しい画像を登録
+          // $path = $request->profile_icon->store('public/avatar');
+          // $user->profile_icon = basename($path);
+
+          // ==aws s3環境（herokuの本番環境用です）==
+          // $image = new Image();
+          // アップロードされた画像を$uploadImg変数へ保存
+          $uploadImg = $user->profile_icon = $request->profile_icon;
+          // 第一引数：バケット内階層
+          // 第二引数：受け取った画像が入っている変数
+          // 第三引数：publicに対する他からのアクセス全般を許可（ファイルのURLによるアクセスが可能）
+          $paths3 = Storage::disk('s3')->putFile('/', $uploadImg, 'public');
+          // S3に保存した画像を取り出すためのパスをDB保存(表示時に取り出し)
+          $user->profile_icon = Storage::disk('s3')->url($paths3);
+          // $image->save();
+          return redirect('/');
+
+
+          // ==aws s3環境（herokuの本番環境用です）==
+          // $file = $request->profile_icon;
+          // // 第一引数はディレクトリの指定
+          // // 第二引数はファイル
+          // // 第三引数はpublickを指定することで、URLによるアクセスが可能となる
+          // $paths3 = Storage::disk('s3')->putFile('/', $file, 'public');
+          // // hogeディレクトリにアップロード
+          // // $paths3 = Storage::disk('s3')->putFile('/hoge', $file, 'public');
+          // // ファイル名を指定する場合はputFileAsを利用する
+          // // $paths3 = Storage::disk('s3')->putFileAs('/', $file, 'hoge.jpg', 'public');
+
+
+
 
         }elseif( $user->profile_icon ){
           // 新しい画像がPOSTされていない、かつ、古い画像があった場合
