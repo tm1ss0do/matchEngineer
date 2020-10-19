@@ -26,12 +26,6 @@
       background: $color-black-sub;
       color: $color-white;
     }
-    & .u-pagination--disable{
-      &:hover{
-        color: $color-sub;
-        cursor: default;
-      }
-    }
     &--disable{
       @extend .c-pagination;
       display: block;
