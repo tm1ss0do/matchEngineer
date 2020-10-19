@@ -1,0 +1,10 @@
+.u-pagination{
+  &__disable{
+    border-radius: $radius-ss;
+    color: $color-sub;
+  }
+  &__active{
+    border-radius: $radius-ss;
+    background: $color-black-sub;
+  }
+}

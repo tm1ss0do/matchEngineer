@@ -38,7 +38,7 @@
           :prev-link-class="'c-pagination__link--prev'"
           :next-class="'c-pagination__item--next'"
           :next-link-class="'c-pagination__link--next'"
-          :active-class="'u-pagination__disable'"
+          :active-class="'u-pagination__active'"
           :disabled-class="'u-pagination__disable'">
         </paginate>
       </div>
