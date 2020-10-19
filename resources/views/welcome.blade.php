@@ -105,9 +105,6 @@
           「こんなサービスがあれば、もっと大きく育てられるのに」</br>
           「作りたいサービスがあるのに、時間が足りない」</br>
           パートナーとなるエンジニアを見つけ、頭の中に浮かんだアイデアを形にしましょう。
-          <div class="c-btn__panel">
-            <a class="c-btn__medi" href="{{ route('project.all') }}">案件を見てみる</a>
-          </div>
         </div>
       </div>
       <div class="c-img__container--sqhalf u-width__half">
@@ -147,9 +144,6 @@
             メールアドレス・パスワード・表示名</br>
             の３つだけ。</br>
             無料登録完了後、登録された案件へ応募できます。
-            <div class="c-btn__panel">
-              <a class="c-btn__medi" href="{{ route('register') }}">無料登録はこちら</a>
-            </div>
           </div>
         </div>
         <div class="c-img__container--sqwide">
