@@ -11,10 +11,9 @@ class EmailReset extends Model
 {
   use Notifiable;
   use SoftDeletes;
-  
+
     //
     protected $fillable = ['user_id', 'new_email', 'token'];
-
     /**
     * メールアドレス確定メールを送信
     *
