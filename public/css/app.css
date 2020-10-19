@@ -341,11 +341,15 @@ body {
 .l-footer {
   background: #BCE0FD;
   margin-top: auto;
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
 .l-header {
   background: #2699FB;
   height: 56px;
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
 .l-main__wrap {
@@ -354,6 +358,8 @@ body {
   margin-right: auto;
   min-height: 100vh;
   margin-bottom: 128px;
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
 .c-btn,
@@ -801,11 +807,6 @@ body {
   display: flex;
   border: 1px solid #292828;
   border-radius: 4px;
-}
-
-.c-search__item,
-.c-search__item--border {
-  margin-right: 8px;
 }
 
 .c-search__item--border {
