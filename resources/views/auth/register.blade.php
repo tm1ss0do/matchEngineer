@@ -16,7 +16,7 @@
       <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
       <section class="c-input__line">
-        <label class="c-title--label" for="name">{{ __('Name') }}</label></br>
+        <label class="c-title--label" for="name">{{ __('Name') }}<span class="u-font--require">※</span></label></br>
         <input id="name" type="text" class="c-input__text @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
         @error('name')
             <span class="u-font--error" role="alert">
@@ -26,7 +26,7 @@
       </section>
 
       <section class="c-input__line">
-        <label class="c-title--label" for="email">{{ __('E-Mail Address') }}</label></br>
+        <label class="c-title--label" for="email">{{ __('E-Mail Address') }}<span class="u-font--require">※</span></label></br>
         <input id="email" type="email" class="c-input__text @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
         @error('email')
             <span class="u-font--error" role="alert">
@@ -37,7 +37,7 @@
 
 
       <section class="c-input__line">
-        <label class="c-title--label" for="password">{{ __('Password') }}</label></br>
+        <label class="c-title--label" for="password">{{ __('Password') }}<span class="u-font--require">※</span></label></br>
         <input id="password" type="password" class="c-input__text @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
         @error('password')
             <span class="u-font--error" role="alert">
@@ -47,7 +47,7 @@
       </section>
 
       <section class="c-input__line">
-        <label class="c-title--label" for="password-confirm">{{ __('Confirm Password') }}</label></br>
+        <label class="c-title--label" for="password-confirm">{{ __('Confirm Password') }}<span class="u-font--require">※</span></label></br>
         <input id="password-confirm" type="password" class="c-input__text" name="password_confirmation" required autocomplete="new-password">
       </section>
 
