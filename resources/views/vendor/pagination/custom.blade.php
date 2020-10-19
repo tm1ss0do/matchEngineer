@@ -23,7 +23,7 @@
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <li class="c-pagination__item u-pagination__disable" aria-current="page"><span class="c-pagination__dislink">{{ $page }}</span></li>
+                            <li class="c-pagination__item u-pagination__active" aria-current="page"><span class="c-pagination__dislink">{{ $page }}</span></li>
                         @else
                             <li class="c-pagination__item"><a class="c-pagination__link" href="{{ $url }}">{{ $page }}</a></li>
                         @endif
@@ -38,7 +38,7 @@
                 </li>
             @else
                 <li class="c-pagination__item--next u-pagination__disable" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span class="c-pagination__dislink--next" aria-hidden="true">&rsaquo;</span>
+                    <span class="c-pagination__link--next" aria-hidden="true">&rsaquo;</span>
                 </li>
             @endif
         </ul>
