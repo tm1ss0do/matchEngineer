@@ -18,11 +18,11 @@
 
   @if($pm_yet_notify_flg)
     @slot('pm_yet_notify_flg')
-    <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/public_msg">
+    <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypage/public_msg">
     @endslot
   @else
     @slot('pm_yet_notify_flg')
-    <a class="c-my-menu__link" href="{{ url('/') }}/mypages/public_msg">
+    <a class="c-my-menu__link" href="{{ url('/') }}/mypage/public_msg">
     @endslot
   @endif
 
@@ -30,11 +30,11 @@
 
   @if($dm_yet_notify_flg)
     @slot('dm_yet_notify_flg')
-      <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/direct_msg">
+      <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypage/direct_msg">
     @endslot
   @else
     @slot('dm_yet_notify_flg')
-      <a class="c-my-menu__link" href="{{ url('/') }}/mypages/direct_msg">
+      <a class="c-my-menu__link" href="{{ url('/') }}/mypage/direct_msg">
     @endslot
   @endif
 
@@ -46,7 +46,7 @@
 @endcomponent
 
 
-<h3 class="c-title__page">パブリックメッセージ一覧</h3>
+<h3 class="c-title--page">パブリックメッセージ一覧</h3>
 
 @if( $publics )
 
@@ -54,7 +54,7 @@
 
       @foreach($public_msgs_yet as $pub_msg )
         @if( $pub_msg->public_board_id === $public->project->id )
-        <p class="u-font__bold u-color__main">
+        <p class="u-font--bold u-color--main">
           <i class="far fa-flag"></i>
           未読
         </p>
@@ -80,10 +80,10 @@
               </a>
             </span>
           </div>
-          <div class="c-comment__body u-indention u-textover__reader">{{ $public->content }}</div>
+          <div class="c-comment__body u-indention u-textover--reader">{{ $public->content }}</div>
           <div class="c-comment__footer">
             <span class="c-comment__info" >送信日：{{ $public->send_date }}</span>
-            <a class="c-btn__medi" href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>
+            <a class="c-btn--medi" href="{{ url('/') }}/projects/{{ $public->project_id }}">メッセージページへ</a>
           </div>
         </div>
 

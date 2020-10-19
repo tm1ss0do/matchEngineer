@@ -8,23 +8,23 @@
 
 @section('content')
 
-<h3 class="c-title__page u-text-align__center">{{ __('Reset Password') }}</h3>
+<h3 class="c-title--page u-text-align--center">{{ __('Reset Password') }}</h3>
 
-<p class="u-font__sub u-text-align__center">
+<p class="u-font--sub u-text-align--center">
   パスワードリセット用のリンクを送信します。</br>
   ご登録中のメールアドレスをご入力ください。
 </p>
-<div class="p-form__container u-flex u-flex__center">
+<div class="p-form__container u-flex u-flex--center">
 
   <form class="p-form__form--midi js-form" method="POST" action="{{ route('password.email') }}">
     @csrf
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
     <section class="c-input__line">
-      <label class="c-title__label" for="email">{{ __('E-Mail Address') }}</label></br>
+      <label class="c-title--label" for="email">{{ __('E-Mail Address') }}</label></br>
       <input id="email" type="email" class="c-input__text @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
       @error('email')
-          <span class="u-font__error" role="alert">
+          <span class="u-font--error" role="alert">
               <strong>{{ $message }}</strong>
           </span>
       @enderror

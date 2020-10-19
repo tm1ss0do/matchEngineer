@@ -37,28 +37,83 @@ class ApplyForProjectController extends Controller
 
     public function apply_form($id){
       // 応募フォーム
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // 画面表示時のバリデーション
+
       // 数値でなかった場合
       if(!ctype_digit($id)){
-        return back()->with('flash_message', __('Invalid operation was performed.'));
-        }
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
 
-        $project = Project::find($id);
-        $user = $project->user;
+      $project = Project::find($id);
+      // 存在するprojectか判定
+      if( empty( $project ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
 
-        $projects = Project::with('user')->get();
+      $auther_id = Auth::id();
+      $user = $project->user;
+
+      // プロジェクトの投稿者だった場合
+      if( $auther_id === $project->user->id ){
+        return redirect('/home')->with('flash_message', ('自分の案件には応募できません'));
+      }
+
+      // 既に応募済みだった場合
+      $already_apply = DirectMsgsBoard::where('project_id', $id)
+                            ->where('sender_id', $auther_id)
+                            ->first();
+
+      if( $already_apply ){
+        return redirect('/home')->with('flash_message', ('既に応募済みです'));
+      }
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+
+      $projects = Project::with('user')->get();
 
       return view('projects.apply', compact('project', 'user'));
     }
 
     public function apply(StoreMessageRequest $request, $id){
+      // 応募メッセージをポスト
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // ポスト時のバリデーション（画面表示自体不可能ですが念のため付けています）
+      // 数値でなかった場合
       if(!ctype_digit($id)){
-        return back()->with('flash_message', __('Invalid operation was performed.'));
-        }
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      $project = Project::find($id);
+      // 存在するprojectか判定
+      if( empty( $project ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      $auther_id = Auth::id();
+      $user = $project->user;
+
+      // プロジェクトの投稿者だった場合
+      if( $auther_id === $project->user->id ){
+        return redirect('/home')->with('flash_message', ('自分の案件には応募できません'));
+      }
+
+      // 既に応募済みだった場合
+      $already_apply = DirectMsgsBoard::where('project_id', $id)
+                            ->where('sender_id', $auther_id)
+                            ->first();
+
+      if( $already_apply ){
+        return redirect('/home')->with('flash_message', ('既に応募済みです'));
+      }
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
 
        // 応募フォームの内容をバリデーション
        $request->validated();
 
-       $project = Project::find($id);
        $recruiter_id = $project->user_id;
 
          // DirectMsgsBoardの処理ーーーーーーー

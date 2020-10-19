@@ -7,22 +7,14 @@
     padding: $spacing-1 $spacing-2;
     margin: $spacing-1 $spacing-2;
   }
-  &__disabled{
-    @extend .c-pagination;
-  }
-  &__able{
-    @extend .c-pagination;
-
-  }
   &__item{
     @extend .c-pagination;
-
-    &--prev{
-      @extend .c-pagination__item;
-    }
-    &--next{
-      @extend .c-pagination__item;
-    }
+  }
+  &__item-prev{
+    @extend .c-pagination__item;
+  }
+  &__item-next{
+    @extend .c-pagination__item;
   }
   &__link{
     @extend .c-pagination;
@@ -35,24 +27,24 @@
       background: $color-black-sub;
       color: $color-white;
     }
-    &--prev{
-      @extend .c-pagination__link;
-    }
-    &--next{
-      @extend .c-pagination__link;
+    &--disable{
+      @extend .c-pagination;
+      display: block;
+      text-decoration: none;
+      padding: $spacing-1 $spacing-2;
+      border-radius: $radius-ss;
     }
   }
-  &__dislink{
-    @extend .c-pagination;
-    display: block;
-    text-decoration: none;
-    padding: $spacing-1 $spacing-2;
-    border-radius: $radius-ss;
-    &--prev{
-      @extend .c-pagination__dislink;
+  &__link-prev{
+    @extend .c-pagination__link;
+    &--disable{
+      @extend .c-pagination__link--disable;
     }
-    &--next{
-      @extend .c-pagination__dislink;
+  }
+  &__link-next{
+    @extend .c-pagination__link;
+    &--disable{
+      @extend .c-pagination__link--disable;
     }
   }
 

@@ -1,29 +1,33 @@
 .u-font{
-  &__ss{
+  &--ss{
     font-size: $font-ss;
   }
-  &__s{
+  &--s{
     font-size: $font-s;
   }
-  &__xl{
+  &--xl{
     font-size: $font-xl;
   }
-  &__sub{
+  &--sub{
     font-size: $font-s;
     color: $color-black-main;
     padding: $padding-s;
   }
-  &__bold{
+  &--bold{
     font-weight: bold;
   }
-  &__error{
+  &--error{
     color: $color-emphasis;
     padding: $spacing-1;
   }
-  &__success{
+  &--require{
+    color: $color-emphasis;
+    font-size: $font-ss;
+  }
+  &--success{
     color: $color-main;
   }
-  &__num{
+  &--num{
     background: $color-main;
     padding: $padding-ss;
     border-radius: $radius-ss;

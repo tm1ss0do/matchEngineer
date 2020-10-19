@@ -12,12 +12,12 @@
 @section('content')
 <!-- DM送信フォーム表示画面 -->
 
-<h3 class="c-title__page">ダイレクトメッセージ送信フォーム</h3>
+<h3 class="c-title--page">ダイレクトメッセージ送信フォーム</h3>
 
 @if ($errors->any())
-  <ul class="u-font__error" role="alert">
+  <ul class="u-font--error" role="alert">
     @foreach ($errors->all() as $error)
-      <li class="u-list__none">{{ $error }}</li>
+      <li class="u-list--none">{{ $error }}</li>
     @endforeach
   </ul>
 @endif
@@ -26,7 +26,7 @@
   @csrf
   <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-  <label class="c-title__small" for="detail">ダイレクトメッセージ</label></br>
+  <label class="c-title--small" for="detail">ダイレクトメッセージ</label></br>
   <counter-component
     :countnum = "1000"
     ex = "例：はじめまして。プロフィールを拝見し、ぜひ一度弊社の案件をご検討いただきたく連絡いたしました。"

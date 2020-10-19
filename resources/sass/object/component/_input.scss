@@ -20,20 +20,19 @@
   &__line{
     margin-bottom: $spacing-half;
     padding: $padding-s;
-    &--inner{
-      margin-bottom: $spacing-half;
-    }
-    &--check{
-      display: flex;
-    }
-
     & > .vdp-datepicker__calendar{
       @include sm{
         width: auto;
       }
     }
   }
-  &__select--wrap{
+  &__line-inner{
+    margin-bottom: $spacing-half;
+  }
+  &__line-check{
+    margin-bottom: $spacing-half;
+  }
+  &__select-wrap{
     position: relative;
     &:after{
       display: block;
@@ -63,10 +62,9 @@
     padding: $spacing-half;
     border: 1px solid $color-sub;
     border-radius: $radius-ss;
-    &--container{
-      margin-bottom: $spacing-half;
-      padding: $spacing-1;
-    }
-
+  }
+  &__num-container{
+    margin-bottom: $spacing-half;
+    padding: $spacing-1;
   }
 }

@@ -3,9 +3,16 @@
     display: flex;
     list-style: none;
     padding: $spacing-half 0;
-    // justify-content: space-between;
     border-bottom: 1px solid $color-black-sub;
     margin: $spacing-2 0;
+    @include md() {
+      display: block;
+      list-style: none;
+      padding: $spacing-half 0;
+      border-bottom: 1px solid $color-black-sub;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
   }
   &__link{
     padding: $spacing-half $spacing-1;
@@ -22,14 +29,31 @@
       text-decoration: underline;
       color: $color-main;
     }
+    @include md() {
+      padding: 4px 0px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
   }
   &__item{
       overflow: hidden;
       width: 100%;
+      @include md() {
+        display: inline-block;
+        width: 35%;
+      }
   }
   &__text{
     @include md() {
       display: none;
+    }
+  }
+  &__mb-text{
+    display: none;
+    @include md() {
+      display: inline-block;
+      font-size: $font-ss;
     }
   }
 

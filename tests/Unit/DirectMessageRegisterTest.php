@@ -81,7 +81,7 @@ class DirectMessageRegisterTest extends TestCase
 
     // リダイレクト先を確認
     $response->assertStatus(302)
-             ->assertRedirect('/mypages/direct_msg');
+             ->assertRedirect('/mypage/direct_msg');
 
   }
 
@@ -133,9 +133,9 @@ class DirectMessageRegisterTest extends TestCase
     ]);
 
     // ダミーユーザー2のDMをやりとりしているページを表示確認
-    $response = $this->get('/mypages/direct_msg/3');
+    $response = $this->get('/mypage/direct_msg/3');
     // 送る側のユーザーを認証済みにする
-    $response = $this->actingAs($user2)->get('/mypages/direct_msg/3');
+    $response = $this->actingAs($user2)->get('/mypage/direct_msg/3');
     // 200レスポンスが帰ってくるのを確認
     $response->assertStatus(200);
 
@@ -153,7 +153,7 @@ class DirectMessageRegisterTest extends TestCase
     ];
 
     // ダイレクトメッセージをpost
-    $response = $this->post('/mypages/direct_msg/3',$data_dummy);
+    $response = $this->post('/mypage/direct_msg/3',$data_dummy);
 
     // DBへの登録を確認(direct_msgs)
     $this->assertDatabaseHas('direct_msgs', $data_dummy);
@@ -180,7 +180,7 @@ class DirectMessageRegisterTest extends TestCase
 
     // リダイレクト先を確認
     $response->assertStatus(302)
-             ->assertRedirect('/mypages/direct_msg/3');
+             ->assertRedirect('/mypage/direct_msg/3');
 
   }
 

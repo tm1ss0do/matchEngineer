@@ -11,13 +11,13 @@
 <!-- **************************** -->
 <!-- hero hedder -->
 <div class="p-hero__container">
-  <section class="p-hero__wrap u-text-align__center">
-    <p class="c-title__sub">エンジニアをもっと身近に</p>
-    <h2 class="c-title__header-logo u-font__xl">match</h2>
-    <p class="c-title__small">誰でも、簡単、手軽に、システム開発</p>
+  <section class="p-hero__wrap u-text-align--center">
+    <p class="c-title--sub">エンジニアをもっと身近に</p>
+    <h2 class="c-title--header-logo u-font--xl">match</h2>
+    <p class="c-title--small">誰でも、簡単、手軽に、システム開発</p>
     <div class="c-btn__panel--column">
-      <a class="c-btn__medi" href="{{ route('register') }}">無料登録はこちら</a>
-      <a class="c-btn__moderate" href="{{ route('login') }}">ログイン</a>
+      <a class="c-btn--medi" href="{{ route('register') }}">無料登録はこちら</a>
+      <a class="c-btn--moderate" href="{{ route('login') }}">ログイン</a>
     </div>
   </section>
 </div>
@@ -33,16 +33,16 @@
 
 <div class="p-welcome__container">
 
-  <section class="c-text__cotainer u-flex__column">
-    <h2 class="c-title__section">「誰でも」「簡単に」参加できる</h2>
-    <p class="u-font__sub">matchは、誰でも簡単に技術に触れられることを目指した、エンジニアとのマッチングサービスです。</p>
+  <section class="c-text__cotainer u-flex--column">
+    <h2 class="c-title--section">「誰でも」「簡単に」参加できる</h2>
+    <p class="u-font--sub">matchは、誰でも簡単に技術に触れられることを目指した、エンジニアとのマッチングサービスです。</p>
   </section>
 
   <div class="p-side-box">
 
     <section class="c-side-box__container">
-      <div class="c-card__no-boarder--half u-width__half">
-        <h3 class="c-card__title u-color__main">気軽に相談できる</h3>
+      <div class="c-card--half u-width--half">
+        <h3 class="c-card__title u-color--main">気軽に相談できる</h3>
         <div class="c-card__body">
           「子どもが楽しんで学べるような機能が欲しい」</br>
           「こんな機能があれば、毎日の家事をもっと楽にできるのに」</br>
@@ -52,17 +52,17 @@
            日常のちょっとした困り事もご相談できます。
         </div>
       </div>
-      <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
+      <div class="c-img__container--sqhalf u-width--half">
+        <img class="c-img__img" src="{{ secure_asset('/img/soudan-1.jpg') }}" alt="soudan-1.jpg">
       </div>
     </section>
 
-    <section class="c-side-box__container u-display__md">
-      <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
+    <section class="c-side-box__container u-display--md">
+      <div class="c-img__container--sqhalf u-width--half">
+        <img class="c-img__img" src="{{ secure_asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
       </div>
-      <div class="c-card__no-boarder--half u-width__half">
-        <h3 class="c-card__title u-color__main">
+      <div class="c-card--half u-width--half">
+        <h3 class="c-card__title u-color--main">
           １０個の項目を埋めるだけ！</br>
           空いている時間に案件登録
         </h3>
@@ -75,9 +75,9 @@
       </div>
     </section>
 
-    <section class="c-side-box__container u-display__sm">
-      <div class="c-card__no-boarder--half u-width__half">
-        <h3 class="c-card__title u-color__main">
+    <section class="c-side-box__container u-display--sm">
+      <div class="c-card--half u-width--half">
+        <h3 class="c-card__title u-color--main">
           １０個の項目を埋めるだけ！</br>
           空いている時間に案件登録
         </h3>
@@ -88,14 +88,14 @@
           「エンジニア案件って難しそう」と思っている方でも、簡単に発注できます。
         </div>
       </div>
-      <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
+      <div class="c-img__container--sqhalf u-width--half">
+        <img class="c-img__img" src="{{ secure_asset('/img/soudan-2.jpg') }}" alt="soudan-1.jpg">
       </div>
     </section>
 
     <section class="c-side-box__container">
-      <div class="c-card__no-boarder--half u-width__half">
-        <h3 class="c-card__title u-color__main">
+      <div class="c-card--no-boarder--half u-width--half">
+        <h3 class="c-card__title u-color--main">
           レベニューシェア案件にも対応</br>
           強力なパートナー探しに
         </h3>
@@ -107,15 +107,15 @@
           パートナーとなるエンジニアを見つけ、頭の中に浮かんだアイデアを形にしましょう。
         </div>
       </div>
-      <div class="c-img__container--sqhalf u-width__half">
-        <img class="c-img__img" src="{{ asset('/img/soudan-3.jpg') }}" alt="soudan-1.jpg">
+      <div class="c-img__container--sqhalf u-width--half">
+        <img class="c-img__img" src="{{ secure_asset('/img/soudan-3.jpg') }}" alt="soudan-1.jpg">
       </div>
     </section>
 
   </div>
 
   <div class="c-btn__panel">
-    <a class="c-btn__medi" href="{{ route('register') }}">無料登録はこちら</a>
+    <a class="c-btn--medi" href="{{ route('register') }}">無料登録はこちら</a>
   </div>
 
 </div>
@@ -127,16 +127,16 @@
 <!-- サービスの利用方法説明 -->
 <div class="p-welcome__container">
 
-  <section class="c-text__cotainer u-flex__column">
-    <h2 class="c-title__section">matchするまでの３ステップ</h2>
+  <section class="c-text__cotainer u-flex--column">
+    <h2 class="c-title--section">matchするまでの３ステップ</h2>
   </section>
 
   <div class="p-side-box">
     <div class="c-side-box__container">
       <section class="p-desc__container">
-        <div class="c-card__no-boarder">
+        <div class="c-card--no-boarder">
           <h3 class="c-card__title">
-            <span class="u-font__num">１</span>
+            <span class="u-font--num">１</span>
             まずは無料登録
           </h3>
           <div class="c-card__body--desc">
@@ -147,14 +147,14 @@
           </div>
         </div>
         <div class="c-img__container--sqwide">
-          <img class="c-img__img" src="{{ asset('/img/desc-1.jpg') }}" alt="soudan-1.jpg">
+          <img class="c-img__img" src="{{ secure_asset('/img/desc-1.jpg') }}" alt="soudan-1.jpg">
         </div>
       </section>
 
       <section class="p-desc__container">
-        <div class="c-card__no-boarder">
+        <div class="c-card--no-boarder">
           <h3 class="c-card__title">
-            <span class="u-font__num">２</span>
+            <span class="u-font--num">２</span>
             発注・応募
           </h3>
           <div class="c-card__body--desc">
@@ -164,14 +164,14 @@
           </div>
         </div>
         <div class="c-img__container--sqwide">
-          <img class="c-img__img" src="{{ asset('/img/desc-2.jpg') }}" alt="soudan-1.jpg">
+          <img class="c-img__img" src="{{ secure_asset('/img/desc-2.jpg') }}" alt="soudan-1.jpg">
         </div>
       </section>
 
       <section class="p-desc__container">
-        <div class="c-card__no-boarder">
+        <div class="c-card--no-boarder">
           <h3 class="c-card__title">
-            <span class="u-font__num">３</span>
+            <span class="u-font--num">３</span>
             マッチング
           </h3>
           <div class="c-card__body--desc">
@@ -181,12 +181,12 @@
           </div>
         </div>
         <div class="c-img__container--sqwide">
-          <img class="c-img__img" src="{{ asset('/img/desc-3.jpg') }}" alt="soudan-1.jpg">
+          <img class="c-img__img" src="{{ secure_asset('/img/desc-3.jpg') }}" alt="soudan-1.jpg">
         </div>
       </section>
     </div>
     <div class="c-btn__panel">
-      <a class="c-btn__medi" href="{{ route('register') }}">無料登録はこちら</a>
+      <a class="c-btn--medi" href="{{ route('register') }}">無料登録はこちら</a>
     </div>
 
   </div>

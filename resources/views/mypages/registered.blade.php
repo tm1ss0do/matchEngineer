@@ -19,11 +19,11 @@
 
   @if($pm_yet_notify_flg)
     @slot('pm_yet_notify_flg')
-    <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/public_msg">
+    <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypage/public_msg">
     @endslot
   @else
     @slot('pm_yet_notify_flg')
-    <a class="c-my-menu__link" href="{{ url('/') }}/mypages/public_msg">
+    <a class="c-my-menu__link" href="{{ url('/') }}/mypage/public_msg">
     @endslot
   @endif
 
@@ -31,11 +31,11 @@
 
   @if($dm_yet_notify_flg)
     @slot('dm_yet_notify_flg')
-      <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/direct_msg">
+      <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypage/direct_msg">
     @endslot
   @else
     @slot('dm_yet_notify_flg')
-      <a class="c-my-menu__link" href="{{ url('/') }}/mypages/direct_msg">
+      <a class="c-my-menu__link" href="{{ url('/') }}/mypage/direct_msg">
     @endslot
   @endif
 
@@ -47,7 +47,7 @@
 @endcomponent
 
 
-<h3 class="c-title__page">登録済み案件一覧</h3>
+<h3 class="c-title--page">登録済み案件一覧</h3>
 
 <ul>
     @foreach ($projects as $project)

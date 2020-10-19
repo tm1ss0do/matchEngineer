@@ -43,7 +43,7 @@ class LoginTest extends TestCase
     **/
     public function testNonloginAccessToMypageRegistered()
     {
-        $response = $this->get('/mypages/registered');
+        $response = $this->get('/mypage');
         $response->assertStatus(302)
                  ->assertRedirect('/email/verify'); // リダイレクト先を確認
         // 認証されていないことを確認
@@ -89,7 +89,7 @@ class LoginTest extends TestCase
       // ダミーのユーザー
       $user = factory(User::class)->create(['id' => 2]);
       // ダミーユーザーのdm送信フォーム画面へ遷移
-      $response = $this->get('/mypages/direct_msg/2');
+      $response = $this->get('/mypage/direct_msg/2');
       // レスポンスを確認
       $response->assertStatus(302)
                ->assertRedirect('/email/verify'); // リダイレクト先を確認
@@ -103,7 +103,7 @@ class LoginTest extends TestCase
     **/
     public function testNonloginAccessToDmList()
     {
-      $response = $this->get('/mypages/direct_msg');
+      $response = $this->get('/mypage/direct_msg');
       // レスポンスを確認
       $response->assertStatus(302)
                ->assertRedirect('/email/verify'); // リダイレクト先を確認
@@ -200,10 +200,6 @@ class LoginTest extends TestCase
          $response->assertStatus(302);
          // 認証を確認
          $this->assertAuthenticated();
-
-      //   // // 作ったユーザーを認証済みにする
-      //   // $response = $this->actingAs($user)->get('/mypages/registered');
-
     }
     /**
      * ログアウト処理を実行
@@ -218,7 +214,6 @@ class LoginTest extends TestCase
           'password' => bcrypt('aaaaaaaa'),
         ]);
         // 作ったユーザーを認証済みにする
-        // $response = $this->actingAs($user)->get('/mypages/registered');
         $response = $this->actingAs($user);
 
         // 認証を確認

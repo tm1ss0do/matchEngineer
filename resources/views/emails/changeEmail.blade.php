@@ -13,7 +13,7 @@
 
 
     <section class="c-btn">
-      <a href="{{ $actionUrl }}" class="c-btn__medi js-submit">
+      <a href="{{ $actionUrl }}" class="c-btn--medi js-submit">
         メールアドレス変更
       </a>
     </section>

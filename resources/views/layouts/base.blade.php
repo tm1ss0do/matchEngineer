@@ -10,12 +10,12 @@
     <title>match | @yield('title', 'Home')</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 
     @if(app('env') == 'production')
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
     @else
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
     @endif
 
     <!-- Scripts -->
@@ -24,7 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('img/match_blue_logo.jpg') }}">
+    <link rel="shortcut icon" href="{{ secure_asset('img/match_blue_logo.jpg') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
@@ -54,10 +54,10 @@
 
     <header id="header" class="l-header">
       <div class="c-header__container">
-        <h1 class="c-title__header-logo">
-          <a class="c-title__header-link" href="{{ route('project.all') }}">match</a>
+        <h1 class="c-title--header-logo">
+          <a class="c-title__link" href="{{ route('project.all') }}">match</a>
         </h1>
-        <nav class="c-nav__right">
+        <nav class="c-nav--right">
             @if (Route::has('login'))
               <div class="c-nav__container">
                 @auth
@@ -122,7 +122,7 @@
 
       <div class="c-btn__panel--left">
         @section('back')
-          <a class="c-btn__moderate" href="{{ url()->previous() }}">＜＜戻る</a>
+          <a class="c-btn--moderate" href="{{ url()->previous() }}">＜＜戻る</a>
         @show
       </div>
 
@@ -177,7 +177,7 @@
             </div>
           @endif
       </nav>
-      <p class="u-text-align__center u-font__ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
+      <p class="u-text-align--center u-font--ss" >©︎WEBUKATU,created by Tomomi Sasaki</p>
     </footer>
   </div>
 

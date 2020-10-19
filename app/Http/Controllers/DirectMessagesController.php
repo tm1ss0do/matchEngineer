@@ -23,18 +23,52 @@ class DirectMessagesController extends Controller
 {
     //
     public function dm_form($id){
-      if(!ctype_digit($id)){
-        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+      // ダイレクトメッセージ（ユーザーのプロフィールページから直接送る画面）
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        // 画面表示時のバリデーション
+
+        // 数値でなかった場合
+        if(!ctype_digit($id)){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
         }
+        // 存在するか判定
+        $user_exist = User::find($id);
+        if( empty( $user_exist ) ){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+        }
+        // 自分自身だった場合
+        $auther_id = Auth::id();
+        if( $auther_id === (int)$id ){
+          return redirect('/home')->with('flash_message',  __('Invalid operation was performed.'));
+        }
+
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
       return view('users.dm_form');
     }
 
     public function dm_new( StoreMessageRequest $request, $id){
-      if(!ctype_digit($id)){
-        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+        // 案件なしで直接ダイレクトメッセージを送る(POST処理)
+
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        // バリデーション
+
+        // 数値でなかった場合
+        if(!ctype_digit($id)){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
         }
-        // 案件なしで直接ダイレクトメッセージを送る
+        // 存在するか判定
+        $user_exist = User::find($id);
+        if( empty( $user_exist ) ){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+        }
+        // 自分自身だった場合
+        $auther_id = Auth::id();
+        if( $auther_id === (int)$id ){
+          return redirect('/home')->with('flash_message',  __('Invalid operation was performed.'));
+        }
+
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
         // 投稿内容をバリデーション
         $request->validated();
@@ -83,7 +117,7 @@ class DirectMessagesController extends Controller
         $direct_notify->read_flg = 0; //未読
         $direct_notify->save();
 
-      return redirect('/mypages/direct_msg')->with('flash_message', __('送信しました'));
+      return redirect('/mypage/direct_msg')->with('flash_message', __('送信しました'));
     }
 
     public function show_dm_list(){
@@ -104,6 +138,30 @@ class DirectMessagesController extends Controller
 
     public function show_dm_board($id){
       // ダイレクトメッセージを表示
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // 画面表示時のバリデーション
+
+      // 数値でなかった場合
+      if(!ctype_digit($id)){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // 存在するか判定
+      $board_exist = DirectMsgsBoard::find($id);
+      if( empty( $board_exist ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // ユーザーが関連するダイレクトメッセージボードでなかった場合
+      $board = DirectMsgsBoard::where('id',$id)->first();
+      $auther_id = Auth::id();
+      // つまり、reciever と sender のどちらでもない場合
+      if( $auther_id !== $board->reciever->id && $auther_id !== $board->sender->id ){
+        return redirect('/home')->with('flash_message',  __('Invalid operation was performed.'));
+      }
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
       $directmsgs = DirectMsgs::withTrashed()
                     ->where('board_id', $id)
                     ->with('user')
@@ -134,6 +192,30 @@ class DirectMessagesController extends Controller
 
     public function json_data_dm($id){
       // 該当のボードIDに紐付いたダイレクトメッセージの情報をjson形式で取得
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // 情報取得時のバリデーション
+
+      // 数値でなかった場合
+      if(!ctype_digit($id)){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // 存在するか判定
+      $board_exist = DirectMsgsBoard::find($id);
+      if( empty( $board_exist ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // ユーザーが関連するダイレクトメッセージボードでなかった場合
+      $board = DirectMsgsBoard::where('id',$id)->first();
+      $auther_id = Auth::id();
+      // つまり、reciever と sender のどちらでもない場合
+      if( $auther_id !== $board->reciever->id && $auther_id !== $board->sender->id ){
+        return redirect('/home')->with('flash_message',  __('Invalid operation was performed.'));
+      }
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
       $directmsgs = DirectMsgs::where('board_id', $id)
                     ->with('user')
                     ->orderBy('send_date', 'asc')
@@ -143,6 +225,29 @@ class DirectMessagesController extends Controller
 
     public function send_dm_at_board(StoreMessageRequest $request, $id){
       // ボードにあるフォームで、ダイレクトメッセージを送る機能
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // バリデーション(POST処理時)
+
+      // 数値でなかった場合
+      if(!ctype_digit($id)){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // 存在するか判定
+      $board_exist = DirectMsgsBoard::find($id);
+      if( empty( $board_exist ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // ユーザーが関連するダイレクトメッセージボードでなかった場合
+      $board = DirectMsgsBoard::where('id',$id)->first();
+      $auther_id = Auth::id();
+      // つまり、reciever と sender のどちらでもない場合
+      if( $auther_id !== $board->reciever->id && $auther_id !== $board->sender->id ){
+        return redirect('/home')->with('flash_message',  __('Invalid operation was performed.'));
+      }
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
       // 送信内容のバリデーション
       $request->validated();

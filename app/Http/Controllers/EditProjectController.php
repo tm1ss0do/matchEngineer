@@ -21,9 +21,29 @@ class EditProjectController extends Controller
 {
     //
     public function project_edit_form($id){
+      // project編集画面
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // 画面表示時バリデーション
+
+      // 数値でなかった場合
       if(!ctype_digit($id)){
-        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
-        }
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // 存在するか判定
+      $project = Project::find($id);
+      if( empty( $project ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // ユーザーが投稿したものでなかった場合
+      $auther_id = Auth::id();
+      if( $auther_id !== $project->user->id ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
       $user = Auth::user();
       $project = Project::where('id',$id)->first();
 
@@ -31,9 +51,30 @@ class EditProjectController extends Controller
     }
 
     public function project_edit_post(StoreProjectPost $request, $id){
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // バリデーション
+
+      // 数値でなかった場合
       if(!ctype_digit($id)){
-        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
-        }
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // 存在するか判定
+      $project = Project::find($id);
+      if( empty( $project ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // ユーザーが投稿したものでなかった場合
+      $auther_id = Auth::id();
+      if( $auther_id !== $project->user->id ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+
       $project = Project::find($id);
       $request->validated();
 

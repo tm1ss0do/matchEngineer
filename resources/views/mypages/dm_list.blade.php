@@ -18,11 +18,11 @@
 
   @if($pm_yet_notify_flg)
     @slot('pm_yet_notify_flg')
-    <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/public_msg">
+    <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypage/public_msg">
     @endslot
   @else
     @slot('pm_yet_notify_flg')
-    <a class="c-my-menu__link" href="{{ url('/') }}/mypages/public_msg">
+    <a class="c-my-menu__link" href="{{ url('/') }}/mypage/public_msg">
     @endslot
   @endif
 
@@ -30,11 +30,11 @@
 
   @if($dm_yet_notify_flg)
     @slot('dm_yet_notify_flg')
-      <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypages/direct_msg">
+      <a class="c-my-menu__link c-notify" href="{{ url('/') }}/mypage/direct_msg">
     @endslot
   @else
     @slot('dm_yet_notify_flg')
-      <a class="c-my-menu__link" href="{{ url('/') }}/mypages/direct_msg">
+      <a class="c-my-menu__link" href="{{ url('/') }}/mypage/direct_msg">
     @endslot
   @endif
 
@@ -46,7 +46,7 @@
 @endcomponent
 
 
-<h3 class="c-title__page">ダイレクトメッセージ一覧</h3>
+<h3 class="c-title--page">ダイレクトメッセージ一覧</h3>
 
 <div class="">
 
@@ -56,7 +56,7 @@
 
       @foreach($direct_msgs_yet as $direct )
         @if( $direct->direct_board_id === $direct_msg_board->id )
-        <p class="u-font__bold u-color__main">
+        <p class="u-font--bold u-color--main">
           <i class="far fa-flag"></i>
           未読
         </p>
@@ -85,13 +85,13 @@
         <div class="c-comment__body">
           @if ( $direct_msg_board->project )
             <p>案件名：
-              <a class="c-card__title--link" href="{{ url('/') }}/projects/{{ $direct_msg_board->project->id }}">{{ $direct_msg_board->project->project_title }}</a>
+              <a class="c-card__title-link" href="{{ url('/') }}/projects/{{ $direct_msg_board->project->id }}">{{ $direct_msg_board->project->project_title }}</a>
             </p>
           @else
             <p>案件名：-</p>
           @endif
-          <div class="c-btn__end">
-            <a class="c-btn__medi" href="{{ url('/') }}/mypages/direct_msg/{{ $direct_msg_board->id }}">メッセージページへ</a>
+          <div class="c-btn--end">
+            <a class="c-btn--medi" href="{{ url('/') }}/mypage/direct_msg/{{ $direct_msg_board->id }}">メッセージページへ</a>
           </div>
         </div>
         <div class="c-comment__footer">

@@ -9,7 +9,7 @@
 @section('content')
 <!-- ユーザーのプロフィール表示画面 -->
 
-<h3 class="c-title__page">プロフィール</h3>
+<h3 class="c-title--page">プロフィール</h3>
 
 <div class="c-card__simple">
 
@@ -38,9 +38,9 @@
 
   <div class="c-btn__panel--left">
     @if( Auth::id() !== $user->id )
-      <a class="c-btn__medi" href="{{ url('/') }}/projects/dm/{{ $user->id }}">ダイレクトメッセージを送る</a>
+      <a class="c-btn--medi" href="{{ url('/') }}/projects/dm/{{ $user->id }}">ダイレクトメッセージを送る</a>
     @elseif( Auth::id() === $user->id )
-      <a class="c-btn__moderate" href="{{ url('/') }}/mypages/{{$user->id}}/profile/edit">編集する</a>
+      <a class="c-btn--moderate" href="{{ url('/') }}/mypage/{{$user->id}}/profile/edit">編集する</a>
     @endif
 
   </div>
@@ -50,5 +50,5 @@
 
 @endsection
 @section('back')
-  <a class="c-btn__moderate" href="{{ route('mypage.registered') }}">マイページへ</a>
+  <a class="c-btn--moderate" href="{{ route('mypage.registered') }}">マイページへ</a>
 @endsection

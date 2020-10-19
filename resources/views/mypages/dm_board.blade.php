@@ -10,7 +10,7 @@
 
 @section('content')
 
-<h3 class="c-title__page">ダイレクトメッセージボード</h3>
+<h3 class="c-title--page">ダイレクトメッセージボード</h3>
 
 <direct-message
 :msgs = "{{ $directmsgs }}"
@@ -18,14 +18,14 @@
 ></direct-message>
 
 @if($no_form)
-<p class="u-font__error">このユーザーは退会しているため、メッセージは送れません。</p>
+<p class="u-font--error">このユーザーは退会しているため、メッセージは送れません。</p>
 
 @else
 
   @if ($errors->any())
-    <ul class="u-font__error" role="alert">
+    <ul class="u-font--error" role="alert">
       @foreach ($errors->all() as $error)
-        <li class="u-list__none">{{ $error }}</li>
+        <li class="u-list--none">{{ $error }}</li>
       @endforeach
     </ul>
   @endif

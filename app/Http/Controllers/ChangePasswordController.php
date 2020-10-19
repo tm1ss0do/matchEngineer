@@ -18,10 +18,49 @@ class ChangePasswordController extends Controller
     //
     public function pass_edit_form($id){
 
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // 画面表示時のバリデーション
+
+      // 数値でなかった場合
+      if(!ctype_digit($id)){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+      // 存在するか判定
+      $user_exist = User::find($id);
+      if( empty( $user_exist ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      $auther_id = Auth::id();
+      // ログイン中のユーザーidとは異なる場合
+      if( $auther_id !== (int)$id ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
       return view('users.password_edit');
     }
 
     public function pass_edit_post(Request $request, $id){
+
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        // POST時のバリデーション
+        // 数値でなかった場合
+        if(!ctype_digit($id)){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+        }
+        // 存在するか判定
+        $user_exist = User::find($id);
+        if( empty( $user_exist ) ){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+        }
+
+        $auther_id = Auth::id();
+        // ログイン中のユーザーidとは異なる場合
+        if( $auther_id !== (int)$id ){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+        }
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
         //現在のパスワードが正しいかを調べる
         if(!(Hash::check($request->get('current-password'), Auth::user()->password))) {

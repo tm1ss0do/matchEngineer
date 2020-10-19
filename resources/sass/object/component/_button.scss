@@ -16,18 +16,18 @@
       align-items: center;
     }
   }
-  &__right{
+  &--right{
     display: flex;
     justify-content: flex-end;
   }
-  &__end{
+  &--end{
     display: flex;
     justify-content: flex-end;
     @include sm{
       flex-direction: column;
     }
   }
-  &__medi{
+  &--medi{
     @extend .c-btn;
     background: $color-main;
     color: $color-white;
@@ -39,7 +39,7 @@
       display: block;
     }
   }
-  &__half{
+  &--half{
     @extend .c-btn;
     background: $color-main;
     color: $color-white;
@@ -49,7 +49,7 @@
       background: $color-sub;
     }
   }
-  &__emphasis{
+  &--emphasis{
     @extend .c-btn;
     background: $color-emphasis;
     color: $color-white;
@@ -58,7 +58,7 @@
       background: $color-sub;
     }
   }
-  &__sub{
+  &--sub{
     @extend .c-btn;
     background: $color-sub;
     color: $color-black-main;
@@ -68,14 +68,14 @@
     }
   }
   &__submit{
-    @extend .c-btn__half;
+    @extend .c-btn--half;
   }
-  &__forbid{
+  &--forbid{
     @extend .c-btn;
     background: $color-black-sub;
     cursor: not-allowed;
   }
-  &__simple{
+  &--simple{
     margin: $spacing-1 0;
     padding: $padding-s;
     border-radius: $radius-ss;
@@ -89,7 +89,7 @@
       background: $color-sub;
     }
   }
-  &__moderate{
+  &--moderate{
     @extend .c-btn;
     text-decoration: underline;
     color: $color-black-main;

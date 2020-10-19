@@ -8,12 +8,12 @@
 
 @section('content')
 
-<h3 class="c-title__page text-align u-text-align__center">{{ __('Verify Your Email Address') }}</h3>
+<h3 class="c-title--page text-align u-text-align--center">{{ __('Verify Your Email Address') }}</h3>
 
-<div class="p-form__container u-flex u-flex__center">
+<div class="p-form__container u-flex u-flex--center">
   <div class="card-body">
     @if (session('resent'))
-    <span class="u-font__success" role="alert">
+    <span class="u-font--success" role="alert">
       <strong>{{ __('A fresh verification link has been sent to your email address.') }}</strong>
     </span>
     @endif
@@ -25,10 +25,10 @@
       <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
       <section class="c-btn__panel--column">
-        <button type="submit" class="c-btn__medi js-submit">
+        <button type="submit" class="c-btn--medi js-submit">
           {{ __('click here to request another') }}
         </button>
-        <a href="{{ route('email.email_edit_form', ['id' => Auth::id()]) }}" class="c-btn__moderate js-submit">
+        <a href="{{ route('email.email_edit_form', ['id' => Auth::id()]) }}" class="c-btn--moderate js-submit">
           ご登録時のメールアドレスをお間違えの方はこちら
         </a>
       </section>

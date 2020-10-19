@@ -60,6 +60,23 @@ class PublicMessagesController extends Controller
     }
 
     public function send_pm( StoreMessageRequest $request, $id){
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // バリデーション
+      // 数値でなかった場合
+      if(!ctype_digit($id)){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // 存在するか判定
+      $project = Project::find($id);
+      if( empty( $project ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+      // ログイン判定はweb.phpにて実行
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
       // パブリックメッセージの登録機能
        $request->validated();
        $publicmsgs = new PublicMsg;

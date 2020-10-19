@@ -86,7 +86,7 @@ class ApplyMessagePostTest extends TestCase
     ]);
 
     // 遷移先を確認
-    $response = $this->get('/mypages/applied');
+    $response = $this->get('/mypage/applied');
     $response->assertStatus(200);
 
   }

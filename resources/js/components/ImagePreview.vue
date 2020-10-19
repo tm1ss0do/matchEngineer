@@ -10,31 +10,28 @@
 </template>
 
 <script>
-export default {
-  props:['icon', 'src', 'default'],
-  data () {
-    return {
-      data: {
-        image: "",
-        name: "",
-      }
+    export default {
+      props:['icon', 'src', 'default'],
+      data () {
+        return {
+          data: {
+            image: "",
+            name: "",
+          }
 
-    }
-  },
-  methods: {
-    setImage(e){
-      const files = this.$refs.file;
-        const fileImg = files.files[0];
-        if (fileImg.type.startsWith("image/")) {
-          this.data.image = window.URL.createObjectURL(fileImg);
-          this.data.name = fileImg.name;
-          this.data.type = fileImg.type;
         }
+      },
+      methods: {
+        setImage(e){ //fileが変更された時（ユーザーが画像をアップロードしたとき）の処理
+          const files = this.$refs.file; //DOMを参照
+            const fileImg = files.files[0]; //ファイルのdataを取得
+            if (fileImg.type.startsWith("image/")) { //画像か判定（"image/"で始まっているか）
+              this.data.image = window.URL.createObjectURL(fileImg); //srcにURLを生成し指定
+              this.data.name = fileImg.name;
+              this.data.type = fileImg.type;
+            }
+        }
+      },
     }
-  },
-  mounted () {
-
-  }
-}
 
 </script>

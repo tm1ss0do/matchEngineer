@@ -14,7 +14,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
 @section('content')
 
-<h3 class="c-title__page">案件詳細</h3>
+<h3 class="c-title--page">案件詳細</h3>
 
   <project-item
   :project="{{ $project }}"
@@ -36,19 +36,19 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
   <div class="c-btn__panel">
     @if( $auther )
       @if( $project->user_id === $auther->id )
-      <a class="c-btn__moderate" href="{{ url('projects/'.$project->id.'/edit' ) }}">
+      <a class="c-btn--moderate" href="{{ url('projects/'.$project->id.'/edit' ) }}">
         編集する
       </a>
 
       @elseif( $already_apply )
-      <a class="c-btn__medi" href="{{ url('mypages/direct_msg/'.$already_apply->id ) }}">
+      <a class="c-btn--medi" href="{{ url('mypage/direct_msg/'.$already_apply->id ) }}">
         この案件は応募済みです
       </a>
       @else
-      <a class="c-btn__emphasis" href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
+      <a class="c-btn--emphasis" href="{{ url('projects/'.$project->id.'/application' ) }}">応募する</a>
       @endif
     @else
-    <a class="c-btn__emphasis" href="{{ route('login') }}">
+    <a class="c-btn--emphasis" href="{{ route('login') }}">
       <i class="fas fa-sign-in-alt"></i>
       ログインして応募しましょう！
     </a>
@@ -64,8 +64,8 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
 <section class="p-comments">
 
-  <h3 class="c-title__section">メッセージ</h3>
-  <p class="u-font__sub">この依頼に関する質問などを送りましょう！</br>
+  <h3 class="c-title--section">メッセージ</h3>
+  <p class="u-font--sub">この依頼に関する質問などを送りましょう！</br>
     例）ご希望の完成像について、具体的なイメージに近いサイトがあれば教えてください。
   </p>
 
@@ -76,9 +76,9 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
   ></message-component>
 
   @if ($errors->any())
-    <ul class="u-font__error" role="alert">
+    <ul class="u-font--error" role="alert">
       @foreach ($errors->all() as $error)
-        <li class="u-list__none">{{ $error }}</li>
+        <li class="u-list--none">{{ $error }}</li>
       @endforeach
     </ul>
   @endif
@@ -87,7 +87,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
     @csrf
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-    <label class="c-title__small" for="pub_msg">メッセージ送信フォーム
+    <label class="c-title--small" for="pub_msg">メッセージ送信フォーム
        <counter-component
         :countnum = "1000"
         ex = "募集者へ質問してみましょう。"

@@ -11,12 +11,12 @@
 
 @section('content')
 
-<h3 class="c-title__page">応募画面</h3>
+<h3 class="c-title--page">応募画面</h3>
 
 
 <!-- 応募するプロジェクト詳細 -->
 
-<h3 class="c-title__small">案件詳細</h3>
+<h3 class="c-title--small">案件詳細</h3>
   <project-item
   :project="{{ $project }}"
   :user="{{ $project->user }}"
@@ -28,12 +28,12 @@
 
   <!-- 応募フォーム -->
 
-<h3 class="c-title__small">応募メッセージ</h3>
+<h3 class="c-title--small">応募メッセージ</h3>
 
 @if ($errors->any())
-  <ul class="u-font__error" role="alert">
+  <ul class="u-font--error" role="alert">
     @foreach ($errors->all() as $error)
-      <li class="u-list__none">{{ $error }}</li>
+      <li class="u-list--none">{{ $error }}</li>
     @endforeach
   </ul>
 @endif

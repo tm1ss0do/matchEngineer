@@ -21,20 +21,56 @@ use Illuminate\Support\Facades\Storage;
 class ChangeProfileController extends Controller
 {
     public function profile_edit_form($id){
-      if(!ctype_digit($id)){
-        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
-      }
       // プロフィール編集画面を表示
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // 画面表示時のバリデーション
+
+      // 数値でなかった場合
+      if(!ctype_digit($id)){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+      // 存在するか判定
+      $user_exist = User::find($id);
+      if( empty( $user_exist ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      $auther_id = Auth::id();
+      // ログイン中のユーザーidとは異なる場合
+      if( $auther_id !== (int)$id ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
       $user = User::find($id);
 
       return view('users.profile_edit_form', compact('user'));
     }
 
     public function profile_edit_post(StoreProfileRequest $request, $id){
-      if(!ctype_digit($id)){
-        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
-        }
         // ユーザーのプロフィール更新処理
+
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        // 画面表示時のバリデーション
+
+        // 数値でなかった場合
+        if(!ctype_digit($id)){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+        }
+        // 存在するか判定
+        $user_exist = User::find($id);
+        if( empty( $user_exist ) ){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+        }
+
+        $auther_id = Auth::id();
+        // ログイン中のユーザーidとは異なる場合
+        if( $auther_id !== (int)$id ){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+        }
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        
+
         $user = User::find($id);
         // バリデーション
         $request->validated();

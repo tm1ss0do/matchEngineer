@@ -44,6 +44,7 @@ class CreateProjectController extends Controller
        $project = new Project;
        $fillData = $request->all();
        $fillData += array('user_id' => Auth::id());
+       $fillData += array('project_status' => 0); //募集中
 
        $project->fill($fillData)->save();
 
@@ -59,7 +60,7 @@ class CreateProjectController extends Controller
        $public_notify->read_flg = '1';
        $public_notify->save();
 
-       return redirect('mypages/registered')->with('flash_message', __('Registered.'));
+       return redirect('mypage/registered')->with('flash_message', __('Registered.'));
     }
 
 

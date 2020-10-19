@@ -5,20 +5,19 @@
   border-radius: $radius-ss;
   margin-bottom: $spacing-2;
   margin-top: $spacing-2;
-  &__no-boarder{
+  &--no-boarder{
     padding: $padding-m;
     box-sizing: border-box;
     margin-bottom: $spacing-2;
     margin-top: $spacing-2;
     border: none;
-    &--half{
-      @extend .c-card__no-boarder;
-      width: 50%;
-      @include sm{
-        width: 100%;
-      }
+  }
+  &--half{
+    @extend .c-card--no-boarder;
+    width: 50%;
+    @include sm{
+      width: 100%;
     }
-
   }
   &__header{
     padding: $padding-ss;
@@ -33,22 +32,23 @@
     @include sm(){
       font-size: $font-m;
     }
-
-    &--link{
-      color: $color-main;
-      &:hover{
-        color: $color-sub;
-      }
+  }
+  &__title-link{
+    color: $color-main;
+    &:hover{
+      color: $color-sub;
     }
   }
-  &__text-sub{
-    font-size: $font-ss;
-  }
-  &__text-emphasis{
-    color: $color-emphasis;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: $spacing-half;
+  &__text{
+    &--sub{
+      font-size: $font-ss;
+    }
+    &--emphasis{
+      color: $color-emphasis;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: $spacing-half;
+    }
   }
   &__body{
     padding: $padding-ss;

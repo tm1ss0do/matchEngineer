@@ -34,6 +34,21 @@ class ProjectsController extends Controller
 
     public function json_data_msg($id){
       // 該当のプロジェクトに紐付いたパブリックメッセージの情報をjson形式で取得
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // バリデーション
+
+      // 数値でなかった場合
+      if(!ctype_digit($id)){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // 存在するか判定
+      $project = Project::find($id);
+      if( empty( $project ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
       $publicmsgs = PublicMsg::where('project_id', $id)
                     ->with('user')
                     ->orderBy('send_date', 'asc')
@@ -44,12 +59,21 @@ class ProjectsController extends Controller
 
 
     public function show_project_detail($id){
-      // 渡されたidにしたがって、projectの詳細ページを表示
-      if(!ctype_digit($id)){
-        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
+        // 渡されたidにしたがって、projectの詳細ページを表示
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        // バリデーション
+        // 数値でなかった場合
+        if(!ctype_digit($id)){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
         }
 
+        // 存在するか判定
         $project = Project::find($id);
+        if( empty( $project ) ){
+          return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+        }
+        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
         $user = $project->user;
 
         // パブリックメッセージを表示
@@ -88,9 +112,19 @@ class ProjectsController extends Controller
 
     public function profile($id){
       // 渡されたidにしたがって、userのprofileページを表示
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+      // バリデーション
+      // 数値でなかった場合
       if(!ctype_digit($id)){
-        return redirect('/projects/all')->with('flash_message', __('Invalid operation was performed.'));
-        }
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+
+      // 存在するか判定
+      $user_exist = User::find($id);
+      if( empty( $user_exist ) ){
+        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
+      }
+      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
         $user = User::find($id);
         return view('users.profile', compact('user'));

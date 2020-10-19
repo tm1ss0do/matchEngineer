@@ -14,7 +14,7 @@
     }
   }
   &__item{
-    // margin-right: $spacing-1;
+    
     &--border{
       @extend .c-search__item;
       border: 1px solid $color-black-main;

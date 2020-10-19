@@ -3,28 +3,28 @@
 }
 .u-flex{
   display: flex;
-  &__center{
+  &--center{
     @extend .u-flex;
     justify-content: center;
   }
-  &__baseline{
+  &--baseline{
     @extend .u-flex;
     align-items: baseline;
   }
-  &__column{
+  &--column{
     @extend .u-flex;
     flex-direction: column;
   }
 }
 
 .u-display{
-  &__sm{
+  &--sm{
     display: none;
     @include sm{
       display: block;
     }
   }
-  &__md{
+  &--md{
     display: flex;
     @include sm{
       display: none;
