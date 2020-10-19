@@ -3,7 +3,8 @@
     <textarea v-if="value && !message" @keyup="inputText($event)" v-model.trim="value" :name="name" class="js-count-area c-input__textarea" :id="id"  rows="8" cols="80" :placeholder="ex" :maxlength="countnum"></textarea>
     <textarea v-else @keyup="inputText($event)" v-model.trim="message" :name="name" class="js-count-area c-input__textarea" :id="id"  rows="8" cols="80" :placeholder="ex" :maxlength="countnum"></textarea>
     <span v-if="error" class="u-font__error">{{ error }}</span>
-    <span class="u-font__s c-text__right">{{ length }}/{{ countnum }}文字</span></br>
+    <span v-if="length" class="u-font__s c-text__right">{{ length }}/{{ countnum }}文字</span></br>
+    <span v-if="!length" class="u-font__s c-text__right">0/{{ countnum }}文字</span></br>
   </div>
 </template>
 
@@ -12,7 +13,7 @@
         props: ['countnum', 'ex', 'id', 'name', 'old', 'db'],
         data: function() {
           return {
-            length: '',
+            length: this.old[this.name].length,
             error: '',
             value: this.db[this.name],
             message: this.old[this.name],
