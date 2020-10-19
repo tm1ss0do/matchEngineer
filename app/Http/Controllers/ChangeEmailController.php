@@ -43,25 +43,6 @@ class ChangeEmailController extends Controller
 
     public function email_edit_post(Request $request, $id){
       // 新しいメールアドレスの使用を確認してから、メールアドレスを更新する処理
-
-      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-      // バリデーション
-      // 数値でなかった場合
-      if(!ctype_digit($id)){
-        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
-      }
-      // 存在するか判定
-      $user_exist = User::find($id);
-      if( empty( $user_exist ) ){
-        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
-      }
-      $auther_id = Auth::id();
-      // ログイン中のユーザーidとは異なる場合
-      if( $auther_id !== (int)$id ){
-        return redirect('/home')->with('flash_message', __('Invalid operation was performed.'));
-      }
-      // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-
       $new_email = $request->new_email;
 
         // トークン生成
