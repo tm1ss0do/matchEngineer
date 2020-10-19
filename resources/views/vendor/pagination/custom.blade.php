@@ -38,7 +38,7 @@
                 </li>
             @else
                 <li class="c-pagination__item--next u-pagination__disable" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span class="c-pagination__link--next" aria-hidden="true">&rsaquo;</span>
+                    <span class="c-pagination__dislink--next" aria-hidden="true">&rsaquo;</span>
                 </li>
             @endif
         </ul>
