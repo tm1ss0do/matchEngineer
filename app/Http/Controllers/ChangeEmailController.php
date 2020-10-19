@@ -16,7 +16,6 @@ class ChangeEmailController extends Controller
 {
     public function email_edit_form($id){
 
-
       // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
       // 画面表示時のバリデーション
 
@@ -63,7 +62,7 @@ class ChangeEmailController extends Controller
 
             DB::commit();
 
-            $email_reset->sendEmailResetNotification($token);
+            // $email_reset->sendEmailResetNotification($token);
 
             return redirect('/home')->with('flash_message', '確認メールを送信しました。');
         } catch (\Exception $e) {
