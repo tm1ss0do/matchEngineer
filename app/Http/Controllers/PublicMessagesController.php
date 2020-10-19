@@ -54,7 +54,7 @@ class PublicMessagesController extends Controller
                    })
                    ->whereIn('project_id', $arr)
                    ->orderBy('updated_at', 'desc')
-                   ->paginate(1); //10個ごとにページネーション 
+                   ->paginate(10);
 
       return view('mypages.pm_list', compact('arr', 'projects', 'publics', 'public_msgs_yet'));
     }

@@ -12,7 +12,7 @@
         props: ['countnum', 'ex', 'id', 'name', 'old', 'db'],
         data: function() {
           return {
-            length: '0',
+            length: message.length,
             error: '',
             value: this.db[this.name],
             message: this.old[this.name],
