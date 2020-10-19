@@ -8,7 +8,6 @@ import {ja} from 'vuejs-datepicker/dist/locale'
 
     export default {
       name: 'app',
-      props: ['propdate'],
       data () {
         return {
           DatePickerFormat: 'yyyy-MM-dd', //formatを固定

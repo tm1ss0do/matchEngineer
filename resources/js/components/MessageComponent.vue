@@ -66,14 +66,14 @@
           publicmsgs: [], //関連するメッセージをjson形式で取得
           loading: true,
           errored: false,
-          getAll: false,
+          getAll: false, //全てのコメントを表示するか
         }
       },
       methods: {
-        getMsg(){
+        getMsg(){ //全て表示する
           this.getAll = true;
         },
-        closeMsg(){
+        closeMsg(){ //全て表示しない
           this.getAll = false;
         }
       },

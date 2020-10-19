@@ -64,7 +64,7 @@
             },
           }
         },
-        filters: { // 200文字以上を"..."で省略
+        filters: { // 200文字以上を"..."で省略(201文字目に"..."をプラスする)
           truncate: function(value) {
             var length = 200;
             var ommision = "...";

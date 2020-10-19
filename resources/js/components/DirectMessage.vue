@@ -62,10 +62,10 @@
       props:['board'],
       data () {
         return {
-          allmsgs: [], //関連するメッセージをjson形式で取得
+          allmsgs: [], //関連するメッセージをjson形式で取得(mount時にaxiosで取得)
           loading: true,
           errored: false,
-          getAll: false,
+          getAll: false, //コメントを全て表示するか
         }
       },
       methods: {

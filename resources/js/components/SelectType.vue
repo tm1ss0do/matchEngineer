@@ -42,7 +42,7 @@
           return {
             consult: false, //相談項目の場合true
             classObjectSelect: {
-              'u-non': false,
+              'u-non': false, //display:none;にするCSSクラス
             },
             miniAmount: this.project.project_mini_amount, //最低金額
             maxAmount: this.project.project_max_amount, //最高金額
@@ -51,10 +51,10 @@
         methods: {
           changeDisplay(event){ //レベニュー案件の場合、金額入力部分を隠す(display:none;にする)処理
             if( event.target.value === 'revenue' ){
-              this.consult = true;
+              this.consult = true; //レベニュー案件では金額を相談する
               return this.classObjectSelect['u-non'] = true;
             }else if( event.target.value === 'single' ){
-              this.consult = false;
+              this.consult = false; //単発案件では金額を自由に設定できる（空白も可）
               return this.classObjectSelect['u-non'] = false;
             }
           },
